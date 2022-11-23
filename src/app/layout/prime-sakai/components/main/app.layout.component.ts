@@ -1,9 +1,10 @@
 import { Component, OnDestroy, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
-import { LayoutService } from "./service/app.layout.service";
-import { AppSidebarComponent } from "./app.sidebar.component";
-import { AppTopBarComponent } from './app.topbar.component';
+import { TabManagerService } from 'src/app/tabler/services/tab-manager.service';
+import { LayoutService } from "../../service/app.layout.service";
+import { AppSidebarComponent } from "../sidebar/app.sidebar.component";
+import { AppTopBarComponent } from '../topbar/app.topbar.component';
 
 @Component({
     selector: 'app-layout',
@@ -17,17 +18,27 @@ export class AppLayoutComponent implements OnDestroy {
 
     profileMenuOutsideClickListener: any;
 
+    tabManagerSubscription: Subscription;
+
+    a: any;
+
     @ViewChild(AppSidebarComponent) appSidebar!: AppSidebarComponent;
 
     @ViewChild(AppTopBarComponent) appTopbar!: AppTopBarComponent;
 
-    constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router) {
+    constructor(
+        public layoutService: LayoutService,
+        public renderer: Renderer2,
+        public router: Router,
+        public tabManagerService: TabManagerService,
+
+    ) {
         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
             if (!this.menuOutsideClickListener) {
                 this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {
-                    const isOutsideClicked = !(this.appSidebar.el.nativeElement.isSameNode(event.target) || this.appSidebar.el.nativeElement.contains(event.target) 
+                    const isOutsideClicked = !(this.appSidebar.el.nativeElement.isSameNode(event.target) || this.appSidebar.el.nativeElement.contains(event.target)
                         || this.appTopbar.menuButton.nativeElement.isSameNode(event.target) || this.appTopbar.menuButton.nativeElement.contains(event.target));
-                    
+
                     if (isOutsideClicked) {
                         this.hideMenu();
                     }
@@ -50,11 +61,18 @@ export class AppLayoutComponent implements OnDestroy {
             }
         });
 
-        this.router.events.pipe(filter(event => event instanceof NavigationEnd))
-            .subscribe(() => {
+        this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(
+            () => {
                 this.hideMenu();
                 this.hideProfileMenu();
-            });
+            }
+        );
+
+        this.tabManagerSubscription = this.tabManagerService.onUpdate().subscribe(
+            (a) => {
+                this.a = a;
+            }
+        )
     }
 
     hideMenu() {
@@ -116,6 +134,10 @@ export class AppLayoutComponent implements OnDestroy {
 
         if (this.menuOutsideClickListener) {
             this.menuOutsideClickListener();
+        }
+
+        if (this.tabManagerSubscription) {
+            this.tabManagerSubscription.unsubscribe();
         }
     }
 }
