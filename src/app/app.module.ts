@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
+import { TablerModule } from 'tabler/tabler.module';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -14,15 +16,19 @@ import { EventService } from './demo/service/event.service';
 import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
-import { TablerModule } from './tabler/tabler.module';
+
 
 @NgModule({
     imports: [
         AppRoutingModule,
-        PrimeSakaiLayoutModule,
+        
         TablerModule,
 
-        
+//        AgalCoreModule,
+//        PigesDnaModule,
+
+        PrimeSakaiLayoutModule,
+
     ],
     providers: [
         {
