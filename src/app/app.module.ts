@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
-import { TablerModule } from 'tabler/tabler.module';
+import { TablerModule } from '@tabler/tabler.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,8 +24,6 @@ import { PhotoService } from './demo/service/photo.service';
         
         TablerModule,
 
-//        AgalCoreModule,
-//        PigesDnaModule,
 
         PrimeSakaiLayoutModule,
 
