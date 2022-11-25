@@ -1,0 +1,17 @@
+        <div class="h1 m-8 ml-16">{{ identity }}</div>
+        <div class="h4 ml-16">ID: <b>{{ identity.id }}</b></div>
+        <div class="h4 ml-16">identityCode: <b>{{ identity.identityCode }}</b></div>
+        <div class="h4 ml-16">email: <b>{{ identity.email }}</b></div>
+        <div class="h4 ml-16">firstName: <b>{{ identity.firstName }}</b></div>
+        <div class="h4 ml-16">lastName: <b>{{ identity.lastName }}</b></div>
+
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">fip: <b>{{ identity.fip.fipCode }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">fip: <b>{{ identity.fip.name }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">account: <b>{{ identity.account.accountCode }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">account: <b>{{ identity.account.completeName }}</b></div>
+
+<pre>{{ identity }}</pre>

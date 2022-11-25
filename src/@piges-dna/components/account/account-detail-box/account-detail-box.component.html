@@ -1,0 +1,19 @@
+        <div class="h1 m-8 ml-16">{{ account }}</div>
+        <div class="h4 ml-16">ID: <b>{{ account.id }}</b></div>
+        <div class="h4 ml-16">accountCode: <b>{{ account.accountCode }}</b></div>
+        <div class="h4 ml-16">completeName: <b>{{ account.completeName }}</b></div>
+
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">organization: <b>{{ account.organization.organizationCode }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">organization: <b>{{ account.organization.name }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">identity: <b>{{ account.identity.identityCode }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">identity: <b>{{ account.identity.email }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">identity: <b>{{ account.identity.firstName }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">identity: <b>{{ account.identity.lastName }}</b></div>
+
+<pre>{{ account }}</pre>
