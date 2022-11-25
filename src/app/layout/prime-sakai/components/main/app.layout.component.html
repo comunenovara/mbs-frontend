@@ -4,17 +4,19 @@
         <app-sidebar></app-sidebar>
     </div>
     <div class="layout-main-container">
-        <span>{{ tabler.home }}</span>
+        <a style="border: 1px solid; float:left;" [routerLink]="[tabler.home]">
+            <span>{{ tabler.home }}</span>
+        </a>
         <div *ngFor="let tab of tabler.tabs">
-            <div style="border: 1px solid; float:left; cursor: pointer;" [routerLink]="[tab.url]">
+            <a style="border: 1px solid; float:left;" [routerLink]="[tab.url]" (click)="tabManagerService.openingType(2)">
                 <span>{{ tab.url }}</span>
-                <button pButton pRipple class="p-button-rounded p-button-text p-button-sm p-button-danger" icon="pi pi-trash" (click)="tabManagerService.closeTab(tab.id)"></button>    
-            </div>
+                <button pButton pRipple class="p-button-rounded p-button-text p-button-sm p-button-danger" icon="pi pi-trash" (click)="tabManagerService.closeTab(tab.id)"></button>
+            </a>
             <div *ngFor="let card of tab.cards">
-                <div style="border: 1px solid; float:left; cursor: pointer;" [routerLink]="[card.url]">
+                <a style="border: 1px solid; float:left; cursor: pointer;" [routerLink]="[card.url]" (click)="tabManagerService.openingType(3)">
                     <span>{{ card.url }}</span>
                     <button pButton pRipple class="p-button-rounded p-button-text p-button-sm p-button-danger" icon="pi pi-trash" (click)="tabManagerService.closeCard(card.id)"></button>
-                </div>
+                </a>
             </div>
         </div>
         <div class="layout-main">

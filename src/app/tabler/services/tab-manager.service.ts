@@ -5,7 +5,7 @@ import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { TablerCard } from '../class/card.class';
 import { TablerTab } from '../class/tab.class';
 
-export enum NextOpening {
+export enum OpeningType {
 	Home, Tab, Card
 }
 export interface TabTree {
@@ -37,19 +37,19 @@ export class TabManagerService {
 		return this.tabTreeSubject.asObservable();
 	}
 
-	private default: NextOpening = NextOpening.Home;
-	private nextOpening: NextOpening = this.default;
+	private default: OpeningType = OpeningType.Home;
+	private nextOpening: OpeningType = this.default;
 
-	setDefault(nextOpening: NextOpening) {
+	setDefault(nextOpening: OpeningType) {
 		this.default = nextOpening;
 	}
 
 	openInTab() {
-		this.nextOpening = NextOpening.Tab;
+		this.nextOpening = OpeningType.Tab;
 	}
 
 	openInCard() {
-		this.nextOpening = NextOpening.Card;
+		this.nextOpening = OpeningType.Card;
 	}
 
 	async closeTab(id: number) {
@@ -61,6 +61,13 @@ export class TabManagerService {
 		await lastValueFrom(this.dbService.bulkDelete('card', [id]));
 		this.loadFromDb();
 	}
+
+	private opening: OpeningType = this.default;
+	openingType(opening: OpeningType) {
+		this.opening = opening;
+	}
+
+
 
 
 
@@ -74,15 +81,18 @@ export class TabManagerService {
 
 	private processOpening(url: string) {
 		switch (this.nextOpening) {
-			case NextOpening.Tab:
+			case OpeningType.Tab:
 				this.openTab(url);
 				break;
-			case NextOpening.Card:
+			case OpeningType.Card:
 				this.openCard(url);
 				break;
 			default:
 				// Open in home
-				this.updateHome(url);
+				if(this.opening == OpeningType.Home) {
+					this.updateHome(url);
+				}
+				this.opening = OpeningType.Home;
 				break;
 		}
 		this.nextOpening = this.default;
