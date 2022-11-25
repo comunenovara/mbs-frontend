@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
 
 import { MegaMenuModule } from 'primeng/megamenu';
-import { TablerModule } from '../../@tabler/tabler.module';
+
+import { PigesDnaModule } from '@piges-dna/dna.module';
+
+
 import { AssetDetailPageComponent } from './components/asset/asset-detail-page/asset-detail-page.component';
 import { AssetListPageComponent } from './components/asset/asset-list-page/asset-list-page.component';
 
@@ -63,7 +66,7 @@ export const routes: Route[] = [
 
 		MegaMenuModule,
 
-		//TablerModule,
+		PigesDnaModule,
 
 	],
 	providers: [
