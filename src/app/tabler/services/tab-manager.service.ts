@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter, Observable, Subject } from 'rxjs';
+import { filter, lastValueFrom, Observable, Subject } from 'rxjs';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { TablerCard } from '../class/card.class';
 import { TablerTab } from '../class/tab.class';
@@ -52,7 +52,15 @@ export class TabManagerService {
 		this.nextOpening = NextOpening.Card;
 	}
 
+	async closeTab(id: number) {
+		await lastValueFrom(this.dbService.bulkDelete('tab', [id]));
+		this.loadFromDb();
+	}
 
+	async closeCard(id: number) {
+		await lastValueFrom(this.dbService.bulkDelete('card', [id]));
+		this.loadFromDb();
+	}
 
 
 
@@ -86,9 +94,9 @@ export class TabManagerService {
 	}
 
 	private async openTab(url: string) {
-		let tab: TablerTab = new TablerTab(await this.dbService.add('tab', {
+		let tab: TablerTab = new TablerTab(await lastValueFrom(this.dbService.add('tab', {
 			url: url
-		}).toPromise());
+		})));
 
 		// selected tab
 		this.activeTab = tab;
@@ -101,10 +109,10 @@ export class TabManagerService {
 			throw new Error('No active tab');
 		}
 		
-		let card: TablerCard = new TablerCard(await this.dbService.add('card', {
+		let card: TablerCard = new TablerCard(await lastValueFrom(this.dbService.add('card', {
 			tab: this.activeTab.id,
 			url: url,
-		}).toPromise());
+		})));
 
 		//active card
 
@@ -112,14 +120,14 @@ export class TabManagerService {
 	}
 
 	private async loadFromDb() {
-		let tabsDb = await this.dbService.getAll('tab').toPromise();
+		let tabsDb = await lastValueFrom(this.dbService.getAll('tab'));
 		if (tabsDb !== undefined) {
 			let tabs: TablerTab[] = [];
 			for await(const tabDb of tabsDb) {
 				let tab = new TablerTab(tabDb);
 				{
 					let id: any = tab.id;
-					let cardsDb = await this.dbService.getAllByIndex('card', 'tab', id).toPromise()
+					let cardsDb = await lastValueFrom(this.dbService.getAllByIndex('card', 'tab', id))
 					if (cardsDb !== undefined) {
 						for await (const cardDb of cardsDb) {
 							tab.cards.push(new TablerCard(cardDb));

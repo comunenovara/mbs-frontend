@@ -20,7 +20,7 @@ export class AppLayoutComponent implements OnDestroy {
 
     tabManagerSubscription: Subscription;
 
-    a: any;
+    tabler: any;
 
     @ViewChild(AppSidebarComponent) appSidebar!: AppSidebarComponent;
 
@@ -69,8 +69,8 @@ export class AppLayoutComponent implements OnDestroy {
         );
 
         this.tabManagerSubscription = this.tabManagerService.onUpdate().subscribe(
-            (a) => {
-                this.a = a;
+            (tabler) => {
+                this.tabler = tabler;
             }
         )
     }

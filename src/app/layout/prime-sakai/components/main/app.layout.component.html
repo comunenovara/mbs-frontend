@@ -4,10 +4,22 @@
         <app-sidebar></app-sidebar>
     </div>
     <div class="layout-main-container">
+        <span>{{ tabler.home }}</span>
+        <div *ngFor="let tab of tabler.tabs">
+            <div style="border: 1px solid; float:left; cursor: pointer;" [routerLink]="[tab.url]">
+                <span>{{ tab.url }}</span>
+                <button pButton pRipple class="p-button-rounded p-button-text p-button-sm p-button-danger" icon="pi pi-trash" (click)="tabManagerService.closeTab(tab.id)"></button>    
+            </div>
+            <div *ngFor="let card of tab.cards">
+                <div style="border: 1px solid; float:left; cursor: pointer;" [routerLink]="[card.url]">
+                    <span>{{ card.url }}</span>
+                    <button pButton pRipple class="p-button-rounded p-button-text p-button-sm p-button-danger" icon="pi pi-trash" (click)="tabManagerService.closeCard(card.id)"></button>
+                </div>
+            </div>
+        </div>
         <div class="layout-main">
             <router-outlet></router-outlet>
         </div>
-        <pre>{{ a | json }}</pre>
         <app-footer></app-footer>
     </div>
     <app-config></app-config>

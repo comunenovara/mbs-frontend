@@ -12,6 +12,7 @@ import { BadgeModule } from 'primeng/badge';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { RippleModule } from 'primeng/ripple';
+import { ButtonModule } from 'primeng/button';
 
 import { AppConfigModule } from './config/config.module';
 import { AppMenuitemComponent } from './components/menu/app.menuitem.component';
@@ -37,6 +38,7 @@ import { AppSidebarComponent } from "./components/sidebar/app.sidebar.component"
         BrowserAnimationsModule,
         InputTextModule,
         SidebarModule,
+        ButtonModule,
         BadgeModule,
         RadioButtonModule,
         InputSwitchModule,
