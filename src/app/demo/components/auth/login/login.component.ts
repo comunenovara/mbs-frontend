@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LayoutService } from 'src/app/layout/prime-sakai/service/app.layout.service';
+import { LayoutService } from 'app/layout/prime-sakai/service/app.layout.service';
 
 @Component({
     selector: 'app-login',

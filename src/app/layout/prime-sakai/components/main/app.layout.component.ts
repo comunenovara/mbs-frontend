@@ -1,7 +1,7 @@
 import { Component, OnDestroy, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
-import { TabManagerService } from 'src/app/tabler/services/tab-manager.service';
+import { TabManagerService } from 'app/tabler/services/tab-manager.service';
 import { LayoutService } from "../../service/app.layout.service";
 import { AppSidebarComponent } from "../sidebar/app.sidebar.component";
 import { AppTopBarComponent } from '../topbar/app.topbar.component';
