@@ -17,9 +17,11 @@ import { EnzoOperationTypeListPageComponent } from './components/operation-type/
 import { EnzoOperationTypeDetailPageComponent } from './components/operation-type/operation-type-detail-page/operation-type-detail-page.component';
 import { EnzoRelifListPageComponent } from './components/relif/relif-list-page/relif-list-page.component';
 import { EnzoRelifDetailPageComponent } from './components/relif/relif-detail-page/relif-detail-page.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
 	imports: [ 
+		CommonModule,
 		RouterModule.forChild(enzoMbsMainRoutes),
 		MbsMainModule,
 

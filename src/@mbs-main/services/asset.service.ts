@@ -11,14 +11,14 @@ export class MbsAssetResourceService {
 	) { }
 
 	getAssetUsingGET(id: number): Observable<MbsAssetDTO> {
-		return this.http.get<MbsAssetDTO>("url");
+		return this.http.get<MbsAssetDTO>("http://localhost:3000/mbs/assets/"+id);
 	}
 
 	getAllAssetsUsingGET(filters: any): Observable<MbsAssetDTO[]> {
-		return this.http.get<MbsAssetDTO[]>("url");
+		return this.http.get<MbsAssetDTO[]>("http://localhost:3000/mbs/assets");
 	}
 	
 	countAssetsUsingGET(filters: any): Observable<number> {
-		return this.http.get<number>("url");
+		return this.http.get<number>("http://localhost:3000/mbs/assets/count");
 	}
 }

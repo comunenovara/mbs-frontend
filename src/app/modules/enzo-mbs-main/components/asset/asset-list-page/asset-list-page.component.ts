@@ -5,6 +5,7 @@ import { lastValueFrom } from "rxjs";
 import { MbsAssetDTO, MbsAssetResourceService} from '@mbs-main';
 
 import { AgalPaginator } from '@agal-core/components/paginator/paginator.component';
+import { TabManagerService } from "@tabler/services/tab-manager.service";
 
 @Component({
 	templateUrl  : './asset-list-page.component.html',
@@ -12,6 +13,7 @@ import { AgalPaginator } from '@agal-core/components/paginator/paginator.compone
 export class EnzoAssetListPageComponent {
 	constructor(
 		private router: Router,
+		public tabManagerService: TabManagerService,
 	) { }
 
 	assetListPaginator: AgalPaginator = {
@@ -20,7 +22,7 @@ export class EnzoAssetListPageComponent {
 	};
 	assetCount: number;
 
-	assetListDc = [ '_ck' , 'id'];
+	assetListDc = [ '_ck', 'id', 'description'];
 	paginatorEvent(paginator: any) {
 		let assetListPaginator = { ...paginator }
 		this.assetListPaginator = assetListPaginator;
@@ -48,10 +50,8 @@ export class EnzoAssetListPageComponent {
 			icon: "pi pi-search",
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
-			command: (e: any) => {
-				//this._gcs.tabManagerService.openInTab()
-				this.router.navigateByUrl("/main/asset/detail/"+e.id)
-			},
+			link: "../detail",
+			command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
 					label: "Edit",
