@@ -15,11 +15,6 @@ export class MbsAssetResourceService {
 	}
 
 	getAllAssetsUsingGET(filters: any): Observable<MbsAssetDTO[]> {
-
-		console.log("loooot");
-
-
-
 		return this.http.get<MbsAssetDTO[]>("url");
 	}
 	

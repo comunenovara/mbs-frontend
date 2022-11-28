@@ -15,7 +15,8 @@ const routes: Route[] = [
             { path: 'documentation', loadChildren: () => import('./demo/components/documentation/documentation.module').then(m => m.DocumentationModule) },
             { path: 'blocks', loadChildren: () => import('./demo/components/primeblocks/primeblocks.module').then(m => m.PrimeBlocksModule) },
             { path: 'pages', loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule) },
-            { path: 'mbs', loadChildren: () => import('./mbs/mbs.module').then(m => m.MbsModule) }
+            { path: 'mbs', loadChildren: () => import('./mbs/mbs.module').then(m => m.MbsModule) },
+            { path: 'enzo', loadChildren: () => import('./modules/enzo-mbs-main/mbs-main.module').then(m => m.EnzoMbsMainModule) }
         ]
     },
     { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },

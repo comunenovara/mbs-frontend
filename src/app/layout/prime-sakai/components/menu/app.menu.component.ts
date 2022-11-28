@@ -20,6 +20,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/mbs'] },
                     { label: 'Bene immobile', icon: 'pi pi-fw pi-id-card', routerLink: ['/mbs/asset'] },
                     { label: 'Interventi', icon: 'pi pi-fw pi-check-square', routerLink: ['/mbs/operation'] },
+                    { label: 'Interventi', icon: 'pi pi-fw pi-check-square', routerLink: ['/enzo/asset/list'] },
                 ]
             },
             {
