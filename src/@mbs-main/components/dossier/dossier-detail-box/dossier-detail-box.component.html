@@ -1,0 +1,33 @@
+		<div class="h1 m-8 ml-16">{{ dossier }}</div>
+		<div class="h4 ml-16">ID: <b>{{ dossier.id }}</b></div>
+		<div class="h4 ml-16">description: <b>{{ dossier.description }}</b></div>
+		<div class="h4 ml-16">creationDate: <b>{{ dossier.creationDate }}</b></div>
+
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">dossierType: <b>{{ dossier.type.description }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">dossierType: <b>{{ dossier.type.category }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">asset: <b>{{ dossier.asset.description }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">asset: <b>{{ dossier.asset.address }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">asset: <b>{{ dossier.asset.mq }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">relif: <b>{{ dossier.relif.date }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">relif: <b>{{ dossier.relif.creationDate }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">relif: <b>{{ dossier.relif.reason }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">operation: <b>{{ dossier.operation.description }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">operation: <b>{{ dossier.operation.value }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">operation: <b>{{ dossier.operation.creationDate }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">operation: <b>{{ dossier.operation.startDate }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">operation: <b>{{ dossier.operation.endDate }}</b></div>
+
+<pre>{{ dossier }}</pre>

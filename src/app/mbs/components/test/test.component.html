@@ -4,4 +4,8 @@ test1<br>
 test1<br>
 test1<br>
 test1<br>
-<piges-account-list-loader></piges-account-list-loader>
+
+<a [routerLink]="['../detail/1']" (click)="tabManagerService.openInTab()">link 1</a>
+<a [routerLink]="['../detail/2']" (click)="tabManagerService.openInCard()">link 2</a>
+
+<mbs-asset-list-loader></mbs-asset-list-loader>

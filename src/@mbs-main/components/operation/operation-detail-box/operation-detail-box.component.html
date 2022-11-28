@@ -1,0 +1,18 @@
+		<div class="h1 m-8 ml-16">{{ operation }}</div>
+		<div class="h4 ml-16">ID: <b>{{ operation.id }}</b></div>
+		<div class="h4 ml-16">description: <b>{{ operation.description }}</b></div>
+		<div class="h4 ml-16">value: <b>{{ operation.value }}</b></div>
+		<div class="h4 ml-16">creationDate: <b>{{ operation.creationDate }}</b></div>
+		<div class="h4 ml-16">startDate: <b>{{ operation.startDate }}</b></div>
+		<div class="h4 ml-16">endDate: <b>{{ operation.endDate }}</b></div>
+
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">operationType: <b>{{ operation.type.description }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">asset: <b>{{ operation.asset.description }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">asset: <b>{{ operation.asset.address }}</b></div>
+ *ngIf="eoopo.person"
+<div class="h4 ml-16">asset: <b>{{ operation.asset.mq }}</b></div>
+
+<pre>{{ operation }}</pre>
