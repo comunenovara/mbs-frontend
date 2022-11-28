@@ -14,6 +14,7 @@ export class EnzoAssetListPageComponent {
 	constructor(
 		private router: Router,
 		public tabManagerService: TabManagerService,
+		private resourceService: MbsAssetResourceService,
 	) { }
 
 	assetListPaginator: AgalPaginator = {
@@ -64,7 +65,7 @@ export class EnzoAssetListPageComponent {
 					label: "Delete",
 					icon: "pi pi-trash",
 					command: async (e: any) => {
-						console.log("delete", e.item.data.id);
+						await lastValueFrom(this.resourceService.deleteAssetUsingDELETE(e.item.data.id));
 					}
 				}
 			]

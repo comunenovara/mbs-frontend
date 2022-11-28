@@ -10,8 +10,16 @@ export class MbsAssetResourceService {
 
 	) { }
 
-	getAssetUsingGET(id: number): Observable<MbsAssetDTO> {
-		return this.http.get<MbsAssetDTO>("http://localhost:3000/mbs/assets/"+id);
+	createAssetUsingPOST(asset: MbsAssetDTO): Observable<MbsAssetDTO> {
+		return this.http.get<MbsAssetDTO>("http://localhost:3000/mbs/assets/");
+	}
+
+	updateAssetUsingPUT(asset: MbsAssetDTO): Observable<MbsAssetDTO> {
+		return this.http.get<MbsAssetDTO>("http://localhost:3000/mbs/assets/");
+	}
+
+	deleteAssetUsingDELETE(id: number): Observable<MbsAssetDTO> {
+		return this.http.delete<MbsAssetDTO>("http://localhost:3000/mbs/assets/"+id+"/delete");
 	}
 
 	getAllAssetsUsingGET(filters: any): Observable<MbsAssetDTO[]> {
@@ -20,5 +28,9 @@ export class MbsAssetResourceService {
 	
 	countAssetsUsingGET(filters: any): Observable<number> {
 		return this.http.get<number>("http://localhost:3000/mbs/assets/count");
+	}
+
+	getAssetUsingGET(id: number): Observable<MbsAssetDTO> {
+		return this.http.get<MbsAssetDTO>("http://localhost:3000/mbs/assets/"+id);
 	}
 }

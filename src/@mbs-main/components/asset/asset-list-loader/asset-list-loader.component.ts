@@ -27,4 +27,8 @@ export class MbsAssetListLoaderComponent extends AgalGenericTable2 {
 			console.log(e);
 		}
 	}
+	lota(a: any) {
+		console.log("1", a);
+		return false;
+	}
 }
