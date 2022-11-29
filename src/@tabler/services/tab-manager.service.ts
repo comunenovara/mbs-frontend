@@ -10,6 +10,9 @@ export enum OpeningType {
 }
 export interface TabTree {
 	home: string | undefined,
+	activeTab: TablerTab | undefined,
+	activeCard: TablerCard | undefined,
+	default: OpeningType,
 	tabs: TablerTab[]
 }
 
@@ -37,6 +40,7 @@ export class TabManagerService {
 		return this.tabTreeSubject.asObservable();
 	}
 
+
 	private default: OpeningType = OpeningType.Home;
 	private nextOpening: OpeningType = this.default;
 
@@ -62,10 +66,20 @@ export class TabManagerService {
 		this.loadFromDb();
 	}
 
-	private opening: OpeningType = this.default;
-	openingType(opening: OpeningType) {
-		this.opening = opening;
+	private activation: boolean = false;
+	tabActivation(tab: TablerTab) {
+		this.tabTree.activeTab = tab;
+		this.tabTree.activeCard = undefined;
+		this.activation = true;
 	}
+
+	cardActivation(card: TablerCard) {
+		this.tabTree.activeCard = card;
+		this.activation = true;
+	}
+
+
+
 
 
 
@@ -75,11 +89,19 @@ export class TabManagerService {
 
 	private tabTree: TabTree = {
 		home: undefined,
+		activeTab: undefined,
+		activeCard: undefined,
+		default: this.default,
 		tabs: []
 	};
 	private activeTab: TablerTab | undefined;
+	private activeCard: TablerCard | undefined;
 
 	private processOpening(url: string) {
+		if(this.activation) {
+			this.activation = false;
+			return;
+		}
 		switch (this.nextOpening) {
 			case OpeningType.Tab:
 				this.openTab(url);
@@ -88,11 +110,7 @@ export class TabManagerService {
 				this.openCard(url);
 				break;
 			default:
-				// Open in home
-				if(this.opening == OpeningType.Home) {
-					this.updateHome(url);
-				}
-				this.opening = OpeningType.Home;
+				this.updateHome(url);
 				break;
 		}
 		this.nextOpening = this.default;
@@ -100,6 +118,7 @@ export class TabManagerService {
 
 	private updateHome(url: string) {
 		this.tabTree.home = url;
+		this.tabTree.activeTab = undefined;
 		this.tabTreeSubject.next(this.tabTree);
 	}
 
@@ -110,6 +129,7 @@ export class TabManagerService {
 
 		// selected tab
 		this.activeTab = tab;
+		this.tabTree.activeTab = this.activeTab;
 
 		this.loadFromDb();
 	}
@@ -123,6 +143,9 @@ export class TabManagerService {
 			tab: this.activeTab.id,
 			url: url,
 		})));
+
+		this.activeCard = card;
+		this.tabTree.activeCard = this.activeCard;
 
 		//active card
 

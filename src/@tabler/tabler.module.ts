@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { TabManagerService } from './services/tab-manager.service';
 import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
+import { TablerTabsListComponent } from './components/tab-list/tabs-list.component';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
 
 
@@ -35,7 +39,11 @@ const dbConfig: DBConfig = {
 
 @NgModule({
     imports: [
+        CommonModule,
+        RouterModule,
         NgxIndexedDBModule.forRoot(dbConfig),
+        
+        ButtonModule,
 
     ],
     providers: [
@@ -43,10 +51,11 @@ const dbConfig: DBConfig = {
 
     ],
     declarations: [
+        TablerTabsListComponent,
 
     ],
     exports: [
-
+        TablerTabsListComponent,
 
     ],
 })

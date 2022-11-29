@@ -18,10 +18,6 @@ export class AppLayoutComponent implements OnDestroy {
 
     profileMenuOutsideClickListener: any;
 
-    tabManagerSubscription: Subscription;
-
-    tabler: any;
-
     @ViewChild(AppSidebarComponent) appSidebar!: AppSidebarComponent;
 
     @ViewChild(AppTopBarComponent) appTopbar!: AppTopBarComponent;
@@ -67,12 +63,6 @@ export class AppLayoutComponent implements OnDestroy {
                 this.hideProfileMenu();
             }
         );
-
-        this.tabManagerSubscription = this.tabManagerService.onUpdate().subscribe(
-            (tabler) => {
-                this.tabler = tabler;
-            }
-        )
     }
 
     hideMenu() {
@@ -134,10 +124,6 @@ export class AppLayoutComponent implements OnDestroy {
 
         if (this.menuOutsideClickListener) {
             this.menuOutsideClickListener();
-        }
-
-        if (this.tabManagerSubscription) {
-            this.tabManagerSubscription.unsubscribe();
         }
     }
 }

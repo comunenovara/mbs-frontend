@@ -21,6 +21,7 @@ import { AppMenuComponent } from './components/menu/app.menu.component';
 import { AppTopBarComponent } from './components/topbar/app.topbar.component';
 import { AppFooterComponent } from './components/footer/app.footer.component';
 import { AppSidebarComponent } from "./components/sidebar/app.sidebar.component";
+import { TablerModule } from '@tabler/tabler.module';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,9 @@ import { AppSidebarComponent } from "./components/sidebar/app.sidebar.component"
         InputSwitchModule,
         RippleModule,
         RouterModule,
-        AppConfigModule
+        AppConfigModule,
+
+        TablerModule,
     ],
     exports: [AppLayoutComponent]
 })

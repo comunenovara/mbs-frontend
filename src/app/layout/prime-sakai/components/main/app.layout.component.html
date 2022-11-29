@@ -4,21 +4,7 @@
         <app-sidebar></app-sidebar>
     </div>
     <div class="layout-main-container">
-        <a style="border: 1px solid; float:left;" [routerLink]="[tabler.home]">
-            <span>{{ tabler.home }}</span>
-        </a>
-        <div *ngFor="let tab of tabler.tabs">
-            <a style="border: 1px solid; float:left;" [routerLink]="[tab.url]" (click)="tabManagerService.openingType(2)">
-                <span>{{ tab.url }}</span>
-                <button pButton pRipple class="p-button-rounded p-button-text p-button-sm p-button-danger" icon="pi pi-trash" (click)="tabManagerService.closeTab(tab.id)"></button>
-            </a>
-            <div *ngFor="let card of tab.cards">
-                <a style="border: 1px solid; float:left; cursor: pointer;" [routerLink]="[card.url]" (click)="tabManagerService.openingType(3)">
-                    <span>{{ card.url }}</span>
-                    <button pButton pRipple class="p-button-rounded p-button-text p-button-sm p-button-danger" icon="pi pi-trash" (click)="tabManagerService.closeCard(card.id)"></button>
-                </a>
-            </div>
-        </div>
+        <tabler-tabs-list></tabler-tabs-list>
         <div class="layout-main">
             <router-outlet></router-outlet>
         </div>
