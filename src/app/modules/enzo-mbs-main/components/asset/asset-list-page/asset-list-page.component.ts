@@ -1,11 +1,10 @@
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
-import { lastValueFrom } from "rxjs";
-
-import { MbsAssetDTO, MbsAssetResourceService} from '@mbs-main';
-
 import { AgalPaginator } from '@agal-core/components/paginator/paginator.component';
-import { TabManagerService } from "@tabler/services/tab-manager.service";
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
+
+import { TabManagerService } from '@tabler/services/tab-manager.service';
+import { MbsAssetResourceService } from '@mbs-main';
 
 @Component({
 	templateUrl  : './asset-list-page.component.html',
@@ -23,7 +22,7 @@ export class EnzoAssetListPageComponent {
 	};
 	assetCount: number;
 
-	assetListDc = [ '_ck', 'id', 'description'];
+	assetListDc = ['_ck' , 'id', 'description'];
 	paginatorEvent(paginator: any) {
 		let assetListPaginator = { ...paginator }
 		this.assetListPaginator = assetListPaginator;

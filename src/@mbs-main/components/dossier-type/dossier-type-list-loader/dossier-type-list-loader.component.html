@@ -9,20 +9,15 @@
 	<div *ngSwitchDefault>
 		<p-table styleClass="p-datatable-sm" [value]="ds" [lazy]="true" (onLazyLoad)="lazyLoad($event)"
 			[resizableColumns]="true" [selection]="selectedElements" (selectionChange)="selection($event)">
-
 			<ng-template pTemplate="header">
 				<tr>
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
-						<!-- Filed of entity -->
-<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="dossierType.description"> description </th>
-<th *ngSwitchCase="'category'" style="width:auto" pResizableColumn pSortableColumn="dossierType.category"> category </th>
-<!-- Filed of relational entity -->
-
+						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="dossierType.description"> description </th>
+						<th *ngSwitchCase="'category'" style="width:auto" pResizableColumn pSortableColumn="dossierType.category"> category </th>
 					</ng-container>
 					<th *ngIf="buttons" style="width:150px"></th>
-
 				</tr>
 			</ng-template>
 			<ng-template pTemplate="body" let-e>
@@ -30,20 +25,17 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
-						<!-- Filed of entity -->
-						 <td *ngSwitchCase="'description'">{{ e.description }}</td>
-						 <td *ngSwitchCase="'category'">{{ e.category }}</td>
-
-				<!-- Filed of relational entity -->
+						<td *ngSwitchCase="'description'">{{ e.description }}</td>
+						<td *ngSwitchCase="'category'">{{ e.category }}</td>
 					</ng-container>
-						<td *ngIf="buttons" style="text-align:center">
+					<td *ngIf="buttons" style="text-align:center">
 						<ng-container *ngFor="let b of buttons">
-							<button pButton type="button" 
+							<a (click)="b.command(e)" [routerLink]="[b.link, e.id]"><button pButton type="button"
 								class="{{ b.class }} p-button-{{ b.severity }}" [ngClass]="{'ui-button-icon-only': b.hideLabel}" 
-								label="{{ b.label }}" icon="{{ b.icon }}" (click)="b.command(e)">
-							</button>
+								label="{{ b.label }}" icon="{{ b.icon }}">
+							</button></a>
 							<ng-container *ngIf="b.childs">
-								<button pButton type="button" 
+								<button pButton type="button"
 									class="{{ b.class }} ml-0.5 p-button-{{ b.severity }}"
 									pRipple icon="pi pi-chevron-down" (click)="menu.toggle($event)">
 								</button>
@@ -51,7 +43,6 @@
 							</ng-container>
 						</ng-container>
 					</td>
-
 				</tr>
 			</ng-template>
 		</p-table>

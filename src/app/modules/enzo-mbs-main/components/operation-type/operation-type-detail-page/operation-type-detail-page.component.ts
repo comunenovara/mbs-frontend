@@ -1,18 +1,21 @@
-import { Component } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
-import { MbsOperationTypeDTO, MbsOperationTypeResourceService} from '@mbs-main';
+import { MbsOperationTypeDto, MbsOperationTypeResourceService} from '@mbs-main';
 
 @Component({
 	selector: 'enzo-operation-type-detail-page',
 	templateUrl: './operation-type-detail-page.component.html',
 	styleUrls: ['./operation-type-detail-page.component.scss']
 })
-export class EnzoOperationTypeDetailPageComponent {
+export class EnzoOperationTypeDetailPageComponent implements OnInit {
+	id: number;
+
 	constructor(
 		private resourceService: MbsOperationTypeResourceService,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private router: Router,
 	) {
 		var id = route.snapshot.paramMap.get('id');
 		if(id === null) throw new Error('Not valid Id');
@@ -20,25 +23,34 @@ export class EnzoOperationTypeDetailPageComponent {
 		this.onLoad();
 	}
 
-	id: number;
-	operationTypeDTO: MbsOperationTypeDTO;
+	ngOnInit(): void {
+		this.router.events
+			.subscribe((e: any) => {
+				if (e instanceof NavigationEnd) {
+					this.onLoad();
+				}
+			});
+	}
+
+	operationTypeDto: MbsOperationTypeDto;
 
 	onLoad() {
-		this.operationTypeDTO = this.route.snapshot.data['operationType'];
+		this.operationTypeDto = this.route.snapshot.data['operationType'];
 	} 
 
 	async reloadPage() {
-		if(this.operationTypeDTO.id === undefined) return;
-		this.operationTypeDTO = await lastValueFrom(this.resourceService.getOperationTypeUsingGET(this.operationTypeDTO.id));
+		if(this.operationTypeDto.id === undefined) return;
+		this.operationTypeDto = await lastValueFrom(this.resourceService.getOperationTypeUsingGET(this.operationTypeDto.id));
 	}
 
-	/*editOperationType(operationType: OperationTypeDTO) {
+	/*editOperationType(operationType: OperationTypeDto) {
 		//this.dialog.open(EnzoOperationTypeNewUpdateDialogComponent, { data: { operationType: operationType } });
 	}
+	*/
 
-	async deleteOperationType(operationTypeDTO: OperationTypeDTO) {
+	async deleteOperationType(operationTypeDto: MbsOperationTypeDto) {
 	
-	}*/
+	}
 }
 
 

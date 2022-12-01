@@ -1,5 +1,5 @@
 
-export class MbsAssetDTO {
+export class MbsAssetDto {
 	id?: number;
 
 	description: string;

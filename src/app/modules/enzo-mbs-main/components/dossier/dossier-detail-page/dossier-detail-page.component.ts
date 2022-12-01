@@ -1,18 +1,21 @@
-import { Component } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
-import { MbsDossierDTO, MbsDossierResourceService} from '@mbs-main';
+import { MbsDossierDto, MbsDossierResourceService} from '@mbs-main';
 
 @Component({
 	selector: 'enzo-dossier-detail-page',
 	templateUrl: './dossier-detail-page.component.html',
 	styleUrls: ['./dossier-detail-page.component.scss']
 })
-export class EnzoDossierDetailPageComponent {
+export class EnzoDossierDetailPageComponent implements OnInit {
+	id: number;
+
 	constructor(
 		private resourceService: MbsDossierResourceService,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private router: Router,
 	) {
 		var id = route.snapshot.paramMap.get('id');
 		if(id === null) throw new Error('Not valid Id');
@@ -20,25 +23,34 @@ export class EnzoDossierDetailPageComponent {
 		this.onLoad();
 	}
 
-	id: number;
-	dossierDTO: MbsDossierDTO;
+	ngOnInit(): void {
+		this.router.events
+			.subscribe((e: any) => {
+				if (e instanceof NavigationEnd) {
+					this.onLoad();
+				}
+			});
+	}
+
+	dossierDto: MbsDossierDto;
 
 	onLoad() {
-		this.dossierDTO = this.route.snapshot.data['dossier'];
+		this.dossierDto = this.route.snapshot.data['dossier'];
 	} 
 
 	async reloadPage() {
-		if(this.dossierDTO.id === undefined) return;
-		this.dossierDTO = await lastValueFrom(this.resourceService.getDossierUsingGET(this.dossierDTO.id));
+		if(this.dossierDto.id === undefined) return;
+		this.dossierDto = await lastValueFrom(this.resourceService.getDossierUsingGET(this.dossierDto.id));
 	}
 
-	/*editDossier(dossier: DossierDTO) {
+	/*editDossier(dossier: DossierDto) {
 		//this.dialog.open(EnzoDossierNewUpdateDialogComponent, { data: { dossier: dossier } });
 	}
+	*/
 
-	async deleteDossier(dossierDTO: DossierDTO) {
+	async deleteDossier(dossierDto: MbsDossierDto) {
 	
-	}*/
+	}
 }
 
 

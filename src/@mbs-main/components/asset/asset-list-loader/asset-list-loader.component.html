@@ -9,21 +9,16 @@
 	<div *ngSwitchDefault>
 		<p-table styleClass="p-datatable-sm" [value]="ds" [lazy]="true" (onLazyLoad)="lazyLoad($event)"
 			[resizableColumns]="true" [selection]="selectedElements" (selectionChange)="selection($event)">
-
 			<ng-template pTemplate="header">
 				<tr>
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
-						<!-- Filed of entity -->
-<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="asset.description"> description </th>
-<th *ngSwitchCase="'address'" style="width:auto" pResizableColumn pSortableColumn="asset.address"> address </th>
-<th *ngSwitchCase="'mq'" style="width:auto" pResizableColumn pSortableColumn="asset.mq"> mq </th>
-<!-- Filed of relational entity -->
-
+						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="asset.description"> description </th>
+						<th *ngSwitchCase="'address'" style="width:auto" pResizableColumn pSortableColumn="asset.address"> address </th>
+						<th *ngSwitchCase="'mq'" style="width:auto" pResizableColumn pSortableColumn="asset.mq"> mq </th>
 					</ng-container>
 					<th *ngIf="buttons" style="width:150px"></th>
-
 				</tr>
 			</ng-template>
 			<ng-template pTemplate="body" let-e>
@@ -31,12 +26,9 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
-						<!-- Filed of entity -->
-						 <td *ngSwitchCase="'description'">{{ e.description }}</td>
-						 <td *ngSwitchCase="'address'">{{ e.address }}</td>
-						 <td *ngSwitchCase="'mq'">{{ e.mq }}</td>
-
-				<!-- Filed of relational entity -->
+						<td *ngSwitchCase="'description'">{{ e.description }}</td>
+						<td *ngSwitchCase="'address'">{{ e.address }}</td>
+						<td *ngSwitchCase="'mq'">{{ e.mq }}</td>
 					</ng-container>
 					<td *ngIf="buttons" style="text-align:center">
 						<ng-container *ngFor="let b of buttons">

@@ -9,33 +9,25 @@
 	<div *ngSwitchDefault>
 		<p-table styleClass="p-datatable-sm" [value]="ds" [lazy]="true" (onLazyLoad)="lazyLoad($event)"
 			[resizableColumns]="true" [selection]="selectedElements" (selectionChange)="selection($event)">
-
 			<ng-template pTemplate="header">
 				<tr>
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
-						<!-- Filed of entity -->
-<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="dossier.description"> description </th>
-<th *ngSwitchCase="'creationDate'" style="width:auto" pResizableColumn pSortableColumn="dossier.creationDate"> creationDate </th>
-<!-- Filed of relational entity -->
-<th *ngSwitchCase="'dossierType.description'" style="width:auto" pResizableColumn pSortableColumn="dossierType.description"> description</th>
-<th *ngSwitchCase="'dossierType.category'" style="width:auto" pResizableColumn pSortableColumn="dossierType.category"> category</th>
-<th *ngSwitchCase="'asset.description'" style="width:auto" pResizableColumn pSortableColumn="asset.description"> description</th>
-<th *ngSwitchCase="'asset.address'" style="width:auto" pResizableColumn pSortableColumn="asset.address"> address</th>
-<th *ngSwitchCase="'asset.mq'" style="width:auto" pResizableColumn pSortableColumn="asset.mq"> mq</th>
-<th *ngSwitchCase="'relif.date'" style="width:auto" pResizableColumn pSortableColumn="relif.date"> date</th>
-<th *ngSwitchCase="'relif.creationDate'" style="width:auto" pResizableColumn pSortableColumn="relif.creationDate"> creationDate</th>
-<th *ngSwitchCase="'relif.reason'" style="width:auto" pResizableColumn pSortableColumn="relif.reason"> reason</th>
-<th *ngSwitchCase="'operation.description'" style="width:auto" pResizableColumn pSortableColumn="operation.description"> description</th>
-<th *ngSwitchCase="'operation.value'" style="width:auto" pResizableColumn pSortableColumn="operation.value"> value</th>
-<th *ngSwitchCase="'operation.creationDate'" style="width:auto" pResizableColumn pSortableColumn="operation.creationDate"> creationDate</th>
-<th *ngSwitchCase="'operation.startDate'" style="width:auto" pResizableColumn pSortableColumn="operation.startDate"> startDate</th>
-<th *ngSwitchCase="'operation.endDate'" style="width:auto" pResizableColumn pSortableColumn="operation.endDate"> endDate</th>
-
+						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="dossier.description"> description </th>
+						<th *ngSwitchCase="'dossierType.description'" style="width:auto" pResizableColumn pSortableColumn="dossierType.description"> description</th>
+						<th *ngSwitchCase="'dossierType.category'" style="width:auto" pResizableColumn pSortableColumn="dossierType.category"> category</th>
+						<th *ngSwitchCase="'asset.description'" style="width:auto" pResizableColumn pSortableColumn="asset.description"> description</th>
+						<th *ngSwitchCase="'asset.address'" style="width:auto" pResizableColumn pSortableColumn="asset.address"> address</th>
+						<th *ngSwitchCase="'asset.mq'" style="width:auto" pResizableColumn pSortableColumn="asset.mq"> mq</th>
+						<th *ngSwitchCase="'relif.date'" style="width:auto" pResizableColumn pSortableColumn="relif.date"> date</th>
+						<th *ngSwitchCase="'relif.reason'" style="width:auto" pResizableColumn pSortableColumn="relif.reason"> reason</th>
+						<th *ngSwitchCase="'operation.description'" style="width:auto" pResizableColumn pSortableColumn="operation.description"> description</th>
+						<th *ngSwitchCase="'operation.value'" style="width:auto" pResizableColumn pSortableColumn="operation.value"> value</th>
+						<th *ngSwitchCase="'operation.startDate'" style="width:auto" pResizableColumn pSortableColumn="operation.startDate"> startDate</th>
+						<th *ngSwitchCase="'operation.endDate'" style="width:auto" pResizableColumn pSortableColumn="operation.endDate"> endDate</th>
 					</ng-container>
 					<th *ngIf="buttons" style="width:150px"></th>
-
 				</tr>
 			</ng-template>
 			<ng-template pTemplate="body" let-e>
@@ -43,33 +35,27 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
-						<!-- Filed of entity -->
-						 <td *ngSwitchCase="'description'">{{ e.description }}</td>
-						 <td *ngSwitchCase="'creationDate'">{{ e.creationDate }}</td>
-
-				<!-- Filed of relational entity -->
+						<td *ngSwitchCase="'description'">{{ e.description }}</td>
 						<td *ngSwitchCase="'dossierType.description'">{{ e.dossierType.description }}</td>
 						<td *ngSwitchCase="'dossierType.category'">{{ e.dossierType.category }}</td>
 						<td *ngSwitchCase="'asset.description'">{{ e.asset.description }}</td>
 						<td *ngSwitchCase="'asset.address'">{{ e.asset.address }}</td>
 						<td *ngSwitchCase="'asset.mq'">{{ e.asset.mq }}</td>
 						<td *ngSwitchCase="'relif.date'">{{ e.relif.date }}</td>
-						<td *ngSwitchCase="'relif.creationDate'">{{ e.relif.creationDate }}</td>
 						<td *ngSwitchCase="'relif.reason'">{{ e.relif.reason }}</td>
 						<td *ngSwitchCase="'operation.description'">{{ e.operation.description }}</td>
 						<td *ngSwitchCase="'operation.value'">{{ e.operation.value }}</td>
-						<td *ngSwitchCase="'operation.creationDate'">{{ e.operation.creationDate }}</td>
 						<td *ngSwitchCase="'operation.startDate'">{{ e.operation.startDate }}</td>
 						<td *ngSwitchCase="'operation.endDate'">{{ e.operation.endDate }}</td>
 					</ng-container>
-						<td *ngIf="buttons" style="text-align:center">
+					<td *ngIf="buttons" style="text-align:center">
 						<ng-container *ngFor="let b of buttons">
-							<button pButton type="button" 
+							<a (click)="b.command(e)" [routerLink]="[b.link, e.id]"><button pButton type="button"
 								class="{{ b.class }} p-button-{{ b.severity }}" [ngClass]="{'ui-button-icon-only': b.hideLabel}" 
-								label="{{ b.label }}" icon="{{ b.icon }}" (click)="b.command(e)">
-							</button>
+								label="{{ b.label }}" icon="{{ b.icon }}">
+							</button></a>
 							<ng-container *ngIf="b.childs">
-								<button pButton type="button" 
+								<button pButton type="button"
 									class="{{ b.class }} ml-0.5 p-button-{{ b.severity }}"
 									pRipple icon="pi pi-chevron-down" (click)="menu.toggle($event)">
 								</button>
@@ -77,7 +63,6 @@
 							</ng-container>
 						</ng-container>
 					</td>
-
 				</tr>
 			</ng-template>
 		</p-table>

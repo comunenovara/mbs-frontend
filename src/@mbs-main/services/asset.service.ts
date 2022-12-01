@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { MbsAssetDTO } from '../class/asset-dto.class';
+import { MbsAssetDto } from '../class/asset-dto.class';
 
 @Injectable()
 export class MbsAssetResourceService {
@@ -10,27 +10,27 @@ export class MbsAssetResourceService {
 
 	) { }
 
-	createAssetUsingPOST(asset: MbsAssetDTO): Observable<MbsAssetDTO> {
-		return this.http.get<MbsAssetDTO>("http://localhost:3000/mbs/assets/");
+	createAssetUsingPOST(asset: MbsAssetDto): Observable<MbsAssetDto> {
+		return this.http.get<MbsAssetDto>("http://localhost:3000/mbs/main/assets/");
 	}
 
-	updateAssetUsingPUT(asset: MbsAssetDTO): Observable<MbsAssetDTO> {
-		return this.http.get<MbsAssetDTO>("http://localhost:3000/mbs/assets/");
+	updateAssetUsingPUT(asset: MbsAssetDto): Observable<MbsAssetDto> {
+		return this.http.get<MbsAssetDto>("http://localhost:3000/mbs/main/assets/");
 	}
 
-	deleteAssetUsingDELETE(id: number): Observable<MbsAssetDTO> {
-		return this.http.delete<MbsAssetDTO>("http://localhost:3000/mbs/assets/"+id+"/delete");
-	}
-
-	getAllAssetsUsingGET(filters: any): Observable<MbsAssetDTO[]> {
-		return this.http.get<MbsAssetDTO[]>("http://localhost:3000/mbs/assets");
+	getAllAssetsUsingGET(filters: any): Observable<MbsAssetDto[]> {
+		return this.http.get<MbsAssetDto[]>("http://localhost:3000/mbs/main/assets/");
 	}
 	
 	countAssetsUsingGET(filters: any): Observable<number> {
-		return this.http.get<number>("http://localhost:3000/mbs/assets/count");
+		return this.http.get<number>("http://localhost:3000/mbs/main/assets/");
 	}
 
-	getAssetUsingGET(id: number): Observable<MbsAssetDTO> {
-		return this.http.get<MbsAssetDTO>("http://localhost:3000/mbs/assets/"+id);
+	getAssetUsingGET(id: number): Observable<MbsAssetDto> {
+		return this.http.get<MbsAssetDto>("http://localhost:3000/mbs/main/assets/"+id);
+	}
+
+	deleteAssetUsingDELETE(id: number): Observable<MbsAssetDto> {
+		return this.http.get<MbsAssetDto>("http://localhost:3000/mbs/main/assets/"+id+"/delete");
 	}
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { MbsDossierTypeDTO } from '../class/dossier-type-dto.class';
+import { MbsDossierTypeDto } from '../class/dossier-type-dto.class';
 
 @Injectable()
 export class MbsDossierTypeResourceService {
@@ -10,15 +10,27 @@ export class MbsDossierTypeResourceService {
 
 	) { }
 
-	getDossierTypeUsingGET(id: number): Observable<MbsDossierTypeDTO> {
-		return this.http.get<MbsDossierTypeDTO>("url");
+	createDossierTypeUsingPOST(dossierType: MbsDossierTypeDto): Observable<MbsDossierTypeDto> {
+		return this.http.get<MbsDossierTypeDto>("http://localhost:3000/mbs/main/dossierTypes/");
 	}
 
-	getAllDossierTypesUsingGET(filters: any): Observable<MbsDossierTypeDTO[]> {
-		return this.http.get<MbsDossierTypeDTO[]>("url");
+	updateDossierTypeUsingPUT(dossierType: MbsDossierTypeDto): Observable<MbsDossierTypeDto> {
+		return this.http.get<MbsDossierTypeDto>("http://localhost:3000/mbs/main/dossierTypes/");
+	}
+
+	getAllDossierTypesUsingGET(filters: any): Observable<MbsDossierTypeDto[]> {
+		return this.http.get<MbsDossierTypeDto[]>("http://localhost:3000/mbs/main/dossierTypes/");
 	}
 	
 	countDossierTypesUsingGET(filters: any): Observable<number> {
-		return this.http.get<number>("url");
+		return this.http.get<number>("http://localhost:3000/mbs/main/dossierTypes/");
+	}
+
+	getDossierTypeUsingGET(id: number): Observable<MbsDossierTypeDto> {
+		return this.http.get<MbsDossierTypeDto>("http://localhost:3000/mbs/main/dossierTypes/"+id);
+	}
+
+	deleteDossierTypeUsingDELETE(id: number): Observable<MbsDossierTypeDto> {
+		return this.http.get<MbsDossierTypeDto>("http://localhost:3000/mbs/main/dossierTypes/"+id+"/delete");
 	}
 }

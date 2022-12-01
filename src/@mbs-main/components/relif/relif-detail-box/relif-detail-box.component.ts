@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MbsRelifDTO } from '../../../class/relif-dto.class';
+import { MbsRelifDto } from '../../../class/relif-dto.class';
 
 @Component({
 	selector: 'mbs-relif-detail-box',
@@ -9,7 +9,7 @@ import { MbsRelifDTO } from '../../../class/relif-dto.class';
 export class MbsRelifDetailBoxComponent {
 
 	@Input()
-	relif: MbsRelifDTO;
+	relif: MbsRelifDto;
 
 	constructor( ) { }
 }

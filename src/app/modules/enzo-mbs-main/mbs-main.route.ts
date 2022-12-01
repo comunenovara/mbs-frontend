@@ -23,10 +23,10 @@ export const enzoMbsMainRoutes: Route[] = [
 	{
 		path: '', 
 		pathMatch : 'full',
-		redirectTo: 'asset'
+		redirectTo: 'page'
 	},
 	{
-		path: 'asset', 
+		path: 'asset',
 		children: [
 			{
 				path: '',
@@ -47,7 +47,7 @@ export const enzoMbsMainRoutes: Route[] = [
 		]
 	},
 	{
-		path: 'dossier', 
+		path: 'dossier',
 		children: [
 			{
 				path: '',
@@ -68,7 +68,7 @@ export const enzoMbsMainRoutes: Route[] = [
 		]
 	},
 	{
-		path: 'dossier-type', 
+		path: 'dossier-type',
 		children: [
 			{
 				path: '',
@@ -89,7 +89,7 @@ export const enzoMbsMainRoutes: Route[] = [
 		]
 	},
 	{
-		path: 'operation', 
+		path: 'operation',
 		children: [
 			{
 				path: '',
@@ -110,7 +110,7 @@ export const enzoMbsMainRoutes: Route[] = [
 		]
 	},
 	{
-		path: 'operation-type', 
+		path: 'operation-type',
 		children: [
 			{
 				path: '',
@@ -131,7 +131,7 @@ export const enzoMbsMainRoutes: Route[] = [
 		]
 	},
 	{
-		path: 'relif', 
+		path: 'relif',
 		children: [
 			{
 				path: '',

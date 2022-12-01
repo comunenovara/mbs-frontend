@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MbsAssetDTO } from '../../../class/asset-dto.class';
+import { MbsAssetDto } from '../../../class/asset-dto.class';
 
 @Component({
 	selector: 'mbs-asset-detail-box',
@@ -9,7 +9,7 @@ import { MbsAssetDTO } from '../../../class/asset-dto.class';
 export class MbsAssetDetailBoxComponent {
 
 	@Input()
-	asset: MbsAssetDTO;
+	asset: MbsAssetDto;
 
 	constructor( ) { }
 }

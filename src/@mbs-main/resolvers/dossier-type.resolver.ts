@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MbsDossierTypeDTO } from '../class/dossier-type-dto.class';
+import { MbsDossierTypeDto } from '../class/dossier-type-dto.class';
 import { MbsDossierTypeResourceService } from '../services/dossier-type.service';
 
 @Injectable()
-export class MbsDossierTypeResolver implements Resolve<Observable<MbsDossierTypeDTO>> {
+export class MbsDossierTypeResolver implements Resolve<Observable<MbsDossierTypeDto>> {
 	constructor(private dossierTypeResourceService: MbsDossierTypeResourceService) { }
 
 	resolve(route: ActivatedRouteSnapshot) {

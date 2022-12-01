@@ -1,10 +1,10 @@
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
-import { lastValueFrom } from "rxjs";
-
-import { MbsRelifDTO, MbsRelifResourceService} from '@mbs-main';
-
 import { AgalPaginator } from '@agal-core/components/paginator/paginator.component';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
+
+import { TabManagerService } from '@tabler/services/tab-manager.service';
+import { MbsRelifResourceService } from '@mbs-main';
 
 @Component({
 	templateUrl  : './relif-list-page.component.html',
@@ -12,6 +12,8 @@ import { AgalPaginator } from '@agal-core/components/paginator/paginator.compone
 export class EnzoRelifListPageComponent {
 	constructor(
 		private router: Router,
+		public tabManagerService: TabManagerService,
+		private resourceService: MbsRelifResourceService,
 	) { }
 
 	relifListPaginator: AgalPaginator = {
@@ -48,10 +50,8 @@ export class EnzoRelifListPageComponent {
 			icon: "pi pi-search",
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
-			command: (e: any) => {
-				//this._gcs.tabManagerService.openInTab()
-				this.router.navigateByUrl("/main/relif/detail/"+e.id)
-			},
+			link: "../detail",
+			command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
 					label: "Edit",
@@ -64,7 +64,7 @@ export class EnzoRelifListPageComponent {
 					label: "Delete",
 					icon: "pi pi-trash",
 					command: async (e: any) => {
-						console.log("delete", e.item.data.id);
+						await lastValueFrom(this.resourceService.deleteRelifUsingDELETE(e.item.data.id));
 					}
 				}
 			]

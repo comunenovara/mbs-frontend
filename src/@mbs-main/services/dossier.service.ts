@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { MbsDossierDTO } from '../class/dossier-dto.class';
+import { MbsDossierDto } from '../class/dossier-dto.class';
 
 @Injectable()
 export class MbsDossierResourceService {
@@ -10,15 +10,27 @@ export class MbsDossierResourceService {
 
 	) { }
 
-	getDossierUsingGET(id: number): Observable<MbsDossierDTO> {
-		return this.http.get<MbsDossierDTO>("url");
+	createDossierUsingPOST(dossier: MbsDossierDto): Observable<MbsDossierDto> {
+		return this.http.get<MbsDossierDto>("http://localhost:3000/mbs/main/dossiers/");
 	}
 
-	getAllDossiersUsingGET(filters: any): Observable<MbsDossierDTO[]> {
-		return this.http.get<MbsDossierDTO[]>("url");
+	updateDossierUsingPUT(dossier: MbsDossierDto): Observable<MbsDossierDto> {
+		return this.http.get<MbsDossierDto>("http://localhost:3000/mbs/main/dossiers/");
+	}
+
+	getAllDossiersUsingGET(filters: any): Observable<MbsDossierDto[]> {
+		return this.http.get<MbsDossierDto[]>("http://localhost:3000/mbs/main/dossiers/");
 	}
 	
 	countDossiersUsingGET(filters: any): Observable<number> {
-		return this.http.get<number>("url");
+		return this.http.get<number>("http://localhost:3000/mbs/main/dossiers/");
+	}
+
+	getDossierUsingGET(id: number): Observable<MbsDossierDto> {
+		return this.http.get<MbsDossierDto>("http://localhost:3000/mbs/main/dossiers/"+id);
+	}
+
+	deleteDossierUsingDELETE(id: number): Observable<MbsDossierDto> {
+		return this.http.get<MbsDossierDto>("http://localhost:3000/mbs/main/dossiers/"+id+"/delete");
 	}
 }

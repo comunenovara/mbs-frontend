@@ -1,12 +1,11 @@
-import { MbsAssetDTO } from "./asset-dto.class";
+import { MbsAssetDto } from "./asset-dto.class";
 
-export class MbsRelifDTO {
+export class MbsRelifDto {
 	id?: number;
 
 	date: Date;
-	creationDate: Date;
 	reason: string;
 
-	asset: MbsAssetDTO;
+	asset: MbsAssetDto;
 
 }

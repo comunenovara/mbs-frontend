@@ -1,5 +1,5 @@
 
-export class MbsDossierTypeDTO {
+export class MbsDossierTypeDto {
 	id?: number;
 
 	description: string;

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MbsDossierDTO } from '../../../class/dossier-dto.class';
+import { MbsDossierDto } from '../../../class/dossier-dto.class';
 
 @Component({
 	selector: 'mbs-dossier-detail-box',
@@ -9,7 +9,7 @@ import { MbsDossierDTO } from '../../../class/dossier-dto.class';
 export class MbsDossierDetailBoxComponent {
 
 	@Input()
-	dossier: MbsDossierDTO;
+	dossier: MbsDossierDto;
 
 	constructor( ) { }
 }

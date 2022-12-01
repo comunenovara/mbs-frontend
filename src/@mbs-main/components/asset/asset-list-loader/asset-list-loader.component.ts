@@ -4,7 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { AgalCommonService } from '@agal-core/services/common.service';
 import { AgalGenericTable2 } from '@agal-core/components/agal-generic-table2';
 
-import { MbsAssetDTO } from '../../../class/asset-dto.class';
+import { MbsAssetDto } from '../../../class/asset-dto.class';
 import { MbsAssetResourceService } from '../../../services/asset.service';
 
 @Component({
@@ -26,9 +26,5 @@ export class MbsAssetListLoaderComponent extends AgalGenericTable2 {
 		} catch(e) {
 			console.log(e);
 		}
-	}
-	lota(a: any) {
-		console.log("1", a);
-		return false;
 	}
 }

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MbsOperationTypeDTO } from '../class/operation-type-dto.class';
+import { MbsOperationTypeDto } from '../class/operation-type-dto.class';
 import { MbsOperationTypeResourceService } from '../services/operation-type.service';
 
 @Injectable()
-export class MbsOperationTypeResolver implements Resolve<Observable<MbsOperationTypeDTO>> {
+export class MbsOperationTypeResolver implements Resolve<Observable<MbsOperationTypeDto>> {
 	constructor(private operationTypeResourceService: MbsOperationTypeResourceService) { }
 
 	resolve(route: ActivatedRouteSnapshot) {

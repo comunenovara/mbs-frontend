@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MbsOperationTypeDTO } from '../../../class/operation-type-dto.class';
+import { MbsOperationTypeDto } from '../../../class/operation-type-dto.class';
 
 @Component({
 	selector: 'mbs-operation-type-detail-box',
@@ -9,7 +9,7 @@ import { MbsOperationTypeDTO } from '../../../class/operation-type-dto.class';
 export class MbsOperationTypeDetailBoxComponent {
 
 	@Input()
-	operationType: MbsOperationTypeDTO;
+	operationType: MbsOperationTypeDto;
 
 	constructor( ) { }
 }

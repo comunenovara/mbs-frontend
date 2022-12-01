@@ -1,14 +1,9 @@
-		<div class="h1 m-8 ml-16">{{ relif }}</div>
-		<div class="h4 ml-16">ID: <b>{{ relif.id }}</b></div>
-		<div class="h4 ml-16">date: <b>{{ relif.date }}</b></div>
-		<div class="h4 ml-16">creationDate: <b>{{ relif.creationDate }}</b></div>
-		<div class="h4 ml-16">reason: <b>{{ relif.reason }}</b></div>
+<div class="h4 ml-16">ID: <b>{{ relif.id }}</b></div>
+<div class="h4 ml-16">date: <b>{{ relif.date }}</b></div>
+<div class="h4 ml-16">reason: <b>{{ relif.reason }}</b></div>
 
- *ngIf="eoopo.person"
 <div class="h4 ml-16">asset: <b>{{ relif.asset.description }}</b></div>
- *ngIf="eoopo.person"
 <div class="h4 ml-16">asset: <b>{{ relif.asset.address }}</b></div>
- *ngIf="eoopo.person"
 <div class="h4 ml-16">asset: <b>{{ relif.asset.mq }}</b></div>
 
-<pre>{{ relif }}</pre>
+<pre>{{ relif | json }}</pre>

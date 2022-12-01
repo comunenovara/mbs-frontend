@@ -4,7 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { AgalCommonService } from '@agal-core/services/common.service';
 import { AgalGenericTable2 } from '@agal-core/components/agal-generic-table2';
 
-import { MbsOperationTypeDTO } from '../../../class/operation-type-dto.class';
+import { MbsOperationTypeDto } from '../../../class/operation-type-dto.class';
 import { MbsOperationTypeResourceService } from '../../../services/operation-type.service';
 
 @Component({

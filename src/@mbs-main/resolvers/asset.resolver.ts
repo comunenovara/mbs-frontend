@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MbsAssetDTO } from '../class/asset-dto.class';
+import { MbsAssetDto } from '../class/asset-dto.class';
 import { MbsAssetResourceService } from '../services/asset.service';
 
 @Injectable()
-export class MbsAssetResolver implements Resolve<Observable<MbsAssetDTO>> {
+export class MbsAssetResolver implements Resolve<Observable<MbsAssetDto>> {
 	constructor(private assetResourceService: MbsAssetResourceService) { }
 
 	resolve(route: ActivatedRouteSnapshot) {

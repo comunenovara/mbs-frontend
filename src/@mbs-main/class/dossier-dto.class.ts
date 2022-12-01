@@ -1,17 +1,16 @@
-import { MbsDossierTypeDTO } from "./dossier-type-dto.class";
-import { MbsAssetDTO } from "./asset-dto.class";
-import { MbsRelifDTO } from "./relif-dto.class";
-import { MbsOperationDTO } from "./operation-dto.class";
+import { MbsDossierTypeDto } from "./dossier-type-dto.class";
+import { MbsAssetDto } from "./asset-dto.class";
+import { MbsRelifDto } from "./relif-dto.class";
+import { MbsOperationDto } from "./operation-dto.class";
 
-export class MbsDossierDTO {
+export class MbsDossierDto {
 	id?: number;
 
 	description: string;
-	creationDate: Date;
 
-	type: MbsDossierTypeDTO;
-	asset: MbsAssetDTO;
-	relif: MbsRelifDTO;
-	operation: MbsOperationDTO;
+	type: MbsDossierTypeDto;
+	asset: MbsAssetDto;
+	relif: MbsRelifDto;
+	operation: MbsOperationDto;
 
 }

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MbsRelifDTO } from '../class/relif-dto.class';
+import { MbsRelifDto } from '../class/relif-dto.class';
 import { MbsRelifResourceService } from '../services/relif.service';
 
 @Injectable()
-export class MbsRelifResolver implements Resolve<Observable<MbsRelifDTO>> {
+export class MbsRelifResolver implements Resolve<Observable<MbsRelifDto>> {
 	constructor(private relifResourceService: MbsRelifResourceService) { }
 
 	resolve(route: ActivatedRouteSnapshot) {

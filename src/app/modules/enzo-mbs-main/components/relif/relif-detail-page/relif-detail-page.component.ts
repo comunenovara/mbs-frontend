@@ -1,18 +1,21 @@
-import { Component } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
-import { MbsRelifDTO, MbsRelifResourceService} from '@mbs-main';
+import { MbsRelifDto, MbsRelifResourceService} from '@mbs-main';
 
 @Component({
 	selector: 'enzo-relif-detail-page',
 	templateUrl: './relif-detail-page.component.html',
 	styleUrls: ['./relif-detail-page.component.scss']
 })
-export class EnzoRelifDetailPageComponent {
+export class EnzoRelifDetailPageComponent implements OnInit {
+	id: number;
+
 	constructor(
 		private resourceService: MbsRelifResourceService,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private router: Router,
 	) {
 		var id = route.snapshot.paramMap.get('id');
 		if(id === null) throw new Error('Not valid Id');
@@ -20,25 +23,34 @@ export class EnzoRelifDetailPageComponent {
 		this.onLoad();
 	}
 
-	id: number;
-	relifDTO: MbsRelifDTO;
+	ngOnInit(): void {
+		this.router.events
+			.subscribe((e: any) => {
+				if (e instanceof NavigationEnd) {
+					this.onLoad();
+				}
+			});
+	}
+
+	relifDto: MbsRelifDto;
 
 	onLoad() {
-		this.relifDTO = this.route.snapshot.data['relif'];
+		this.relifDto = this.route.snapshot.data['relif'];
 	} 
 
 	async reloadPage() {
-		if(this.relifDTO.id === undefined) return;
-		this.relifDTO = await lastValueFrom(this.resourceService.getRelifUsingGET(this.relifDTO.id));
+		if(this.relifDto.id === undefined) return;
+		this.relifDto = await lastValueFrom(this.resourceService.getRelifUsingGET(this.relifDto.id));
 	}
 
-	/*editRelif(relif: RelifDTO) {
+	/*editRelif(relif: RelifDto) {
 		//this.dialog.open(EnzoRelifNewUpdateDialogComponent, { data: { relif: relif } });
 	}
+	*/
 
-	async deleteRelif(relifDTO: RelifDTO) {
+	async deleteRelif(relifDto: MbsRelifDto) {
 	
-	}*/
+	}
 }
 
 
