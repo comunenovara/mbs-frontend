@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { RouterModule } from '@angular/router';
 
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+
 import { MbsMainModule } from '@mbs-main/main.module';
 
 //import { EnzoSharedModule } from 'app/shared/shared.module';
@@ -19,6 +21,9 @@ import { EnzoOperationTypeListPageComponent } from './components/operation-type/
 import { EnzoOperationTypeDetailPageComponent } from './components/operation-type/operation-type-detail-page/operation-type-detail-page.component';
 import { EnzoRelifListPageComponent } from './components/relif/relif-list-page/relif-list-page.component';
 import { EnzoRelifDetailPageComponent } from './components/relif/relif-detail-page/relif-detail-page.component';
+import { EnzoAssetDialogComponent } from './components/asset/asset-dialog/asset-dialog.component';
+import { ButtonModule } from 'primeng/button';
+
 
 @NgModule({
 	imports: [ 
@@ -26,6 +31,8 @@ import { EnzoRelifDetailPageComponent } from './components/relif/relif-detail-pa
 		RouterModule.forChild(enzoMbsMainRoutes),
 		MbsMainModule,
 
+		DynamicDialogModule,
+		ButtonModule,
 		//EnzoSharedModule,
 	],
 	declarations: [
@@ -41,9 +48,11 @@ import { EnzoRelifDetailPageComponent } from './components/relif/relif-detail-pa
 		EnzoOperationTypeDetailPageComponent,
 		EnzoRelifListPageComponent,
 		EnzoRelifDetailPageComponent,
+
+		EnzoAssetDialogComponent,
 	],
 	providers: [
-		
+		DialogService,
 	],
 })
 export class EnzoMbsMainModule {}

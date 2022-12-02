@@ -3,6 +3,8 @@ import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
 import { MbsAssetDto, MbsAssetResourceService} from '@mbs-main';
+import { DialogService } from "primeng/dynamicdialog";
+import { EnzoAssetDialogComponent } from "../asset-dialog/asset-dialog.component";
 
 @Component({
 	selector: 'enzo-asset-detail-page',
@@ -16,6 +18,7 @@ export class EnzoAssetDetailPageComponent implements OnInit {
 		private resourceService: MbsAssetResourceService,
 		private route: ActivatedRoute,
 		private router: Router,
+		private dialogService: DialogService,
 	) {
 		var id = route.snapshot.paramMap.get('id');
 		if(id === null) throw new Error('Not valid Id');
@@ -43,13 +46,17 @@ export class EnzoAssetDetailPageComponent implements OnInit {
 		this.assetDto = await lastValueFrom(this.resourceService.getAssetUsingGET(this.assetDto.id));
 	}
 
-	/*editAsset(asset: AssetDto) {
-		//this.dialog.open(EnzoAssetNewUpdateDialogComponent, { data: { asset: asset } });
+	editAsset(asset: MbsAssetDto) {
+		const ref = this.dialogService.open(EnzoAssetDialogComponent, {
+			data: asset,
+			header: 'Update asset',
+			width: '70%'
+		});
 	}
-	*/
 
-	async deleteAsset(assetDto: MbsAssetDto) {
-	
+	async deleteAsset(asset: MbsAssetDto) {
+		if(asset.id === undefined) return;
+		await lastValueFrom(this.resourceService.deleteAssetUsingDELETE(asset.id));
 	}
 }
 

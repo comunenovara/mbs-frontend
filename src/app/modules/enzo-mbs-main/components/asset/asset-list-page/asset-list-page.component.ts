@@ -5,6 +5,8 @@ import { lastValueFrom } from 'rxjs';
 
 import { TabManagerService } from '@tabler/services/tab-manager.service';
 import { MbsAssetResourceService } from '@mbs-main';
+import { DialogService } from 'primeng/dynamicdialog';
+import { EnzoAssetDialogComponent } from '../asset-dialog/asset-dialog.component';
 
 @Component({
 	templateUrl  : './asset-list-page.component.html',
@@ -14,6 +16,7 @@ export class EnzoAssetListPageComponent {
 		private router: Router,
 		public tabManagerService: TabManagerService,
 		private resourceService: MbsAssetResourceService,
+		private dialogService: DialogService,
 	) { }
 
 	assetListPaginator: AgalPaginator = {
@@ -22,7 +25,7 @@ export class EnzoAssetListPageComponent {
 	};
 	assetCount: number;
 
-	assetListDc = ['_ck' , 'id', 'description'];
+	assetListDc = ['_ck' , 'id', 'description', 'address', 'mq'];
 	paginatorEvent(paginator: any) {
 		let assetListPaginator = { ...paginator }
 		this.assetListPaginator = assetListPaginator;
@@ -57,7 +60,11 @@ export class EnzoAssetListPageComponent {
 					label: "Edit",
 					icon: "pi pi-pencil",
 					command: (e: any) => {
-						console.log("edit", e.item.data.id);
+						const ref = this.dialogService.open(EnzoAssetDialogComponent, {
+							data: e.item.data,
+							header: 'Update asset',
+							width: '70%'
+						});
 					}
 				},
 				{
