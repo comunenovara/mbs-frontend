@@ -1,2 +1,8 @@
 <mbs-operation-type-detail-box [operationType]="operationTypeDto"></mbs-operation-type-detail-box>
 
+
+<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editOperationType(operationTypeDto)"></button>
+<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteOperationType(operationTypeDto)"></button>
+
+<h3>operation</h3>
+<mbs-operation-list-loader [filters]="{operationTypeId: operationTypeDto.id}" [dcs]="['id', 'description']"></mbs-operation-list-loader>

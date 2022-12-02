@@ -2,9 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
+import { DialogService } from 'primeng/dynamicdialog';
+
 import { MbsAssetDto, MbsAssetResourceService} from '@mbs-main';
-import { DialogService } from "primeng/dynamicdialog";
-import { EnzoAssetDialogComponent } from "../asset-dialog/asset-dialog.component";
+import { EnzoAssetDialogComponent } from '../asset-dialog/asset-dialog.component';
 
 @Component({
 	selector: 'enzo-asset-detail-page',

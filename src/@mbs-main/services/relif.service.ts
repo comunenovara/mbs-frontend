@@ -11,11 +11,11 @@ export class MbsRelifResourceService {
 	) { }
 
 	createRelifUsingPOST(relif: MbsRelifDto): Observable<MbsRelifDto> {
-		return this.http.get<MbsRelifDto>("http://localhost:3000/mbs/main/relifs/");
+		return this.http.post<MbsRelifDto>("http://localhost:3000/mbs/main/relifs/", relif);
 	}
 
 	updateRelifUsingPUT(relif: MbsRelifDto): Observable<MbsRelifDto> {
-		return this.http.get<MbsRelifDto>("http://localhost:3000/mbs/main/relifs/");
+		return this.http.put<MbsRelifDto>("http://localhost:3000/mbs/main/relifs/", relif);
 	}
 
 	getAllRelifsUsingGET(filters: any): Observable<MbsRelifDto[]> {
@@ -31,6 +31,6 @@ export class MbsRelifResourceService {
 	}
 
 	deleteRelifUsingDELETE(id: number): Observable<MbsRelifDto> {
-		return this.http.get<MbsRelifDto>("http://localhost:3000/mbs/main/relifs/"+id+"/delete");
+		return this.http.delete<MbsRelifDto>("http://localhost:3000/mbs/main/relifs/"+id+"/delete");
 	}
 }

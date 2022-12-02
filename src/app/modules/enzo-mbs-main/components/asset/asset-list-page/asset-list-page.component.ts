@@ -3,13 +3,15 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 
+import { DialogService } from 'primeng/dynamicdialog';
+
 import { TabManagerService } from '@tabler/services/tab-manager.service';
 import { MbsAssetResourceService } from '@mbs-main';
-import { DialogService } from 'primeng/dynamicdialog';
 import { EnzoAssetDialogComponent } from '../asset-dialog/asset-dialog.component';
 
 @Component({
 	templateUrl  : './asset-list-page.component.html',
+	styleUrls: ['./asset-list-page.component.scss']
 })
 export class EnzoAssetListPageComponent {
 	constructor(
@@ -25,7 +27,7 @@ export class EnzoAssetListPageComponent {
 	};
 	assetCount: number;
 
-	assetListDc = ['_ck' , 'id', 'description', 'address', 'mq'];
+	assetListDc = ['_ck', 'id', 'description', 'address', 'mq']; 
 	paginatorEvent(paginator: any) {
 		let assetListPaginator = { ...paginator }
 		this.assetListPaginator = assetListPaginator;

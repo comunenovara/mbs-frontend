@@ -2,7 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
+import { DialogService } from 'primeng/dynamicdialog';
+
 import { MbsOperationTypeDto, MbsOperationTypeResourceService} from '@mbs-main';
+import { EnzoOperationTypeDialogComponent } from '../operation-type-dialog/operation-type-dialog.component';
 
 @Component({
 	selector: 'enzo-operation-type-detail-page',
@@ -16,6 +19,7 @@ export class EnzoOperationTypeDetailPageComponent implements OnInit {
 		private resourceService: MbsOperationTypeResourceService,
 		private route: ActivatedRoute,
 		private router: Router,
+		private dialogService: DialogService,
 	) {
 		var id = route.snapshot.paramMap.get('id');
 		if(id === null) throw new Error('Not valid Id');
@@ -43,13 +47,17 @@ export class EnzoOperationTypeDetailPageComponent implements OnInit {
 		this.operationTypeDto = await lastValueFrom(this.resourceService.getOperationTypeUsingGET(this.operationTypeDto.id));
 	}
 
-	/*editOperationType(operationType: OperationTypeDto) {
-		//this.dialog.open(EnzoOperationTypeNewUpdateDialogComponent, { data: { operationType: operationType } });
+	editOperationType(operationType: MbsOperationTypeDto) {
+		const ref = this.dialogService.open(EnzoOperationTypeDialogComponent, {
+			data: operationType,
+			header: 'Update asset',
+			width: '70%'
+		});
 	}
-	*/
 
-	async deleteOperationType(operationTypeDto: MbsOperationTypeDto) {
-	
+	async deleteOperationType(operationType: MbsOperationTypeDto) {
+		if(operationType.id === undefined) return;
+		await lastValueFrom(this.resourceService.deleteOperationTypeUsingDELETE(operationType.id));
 	}
 }
 

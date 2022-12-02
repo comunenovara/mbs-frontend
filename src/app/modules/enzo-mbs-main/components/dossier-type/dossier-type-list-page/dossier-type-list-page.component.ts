@@ -3,17 +3,22 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 
+import { DialogService } from 'primeng/dynamicdialog';
+
 import { TabManagerService } from '@tabler/services/tab-manager.service';
 import { MbsDossierTypeResourceService } from '@mbs-main';
+import { EnzoDossierTypeDialogComponent } from '../dossier-type-dialog/dossier-type-dialog.component';
 
 @Component({
 	templateUrl  : './dossier-type-list-page.component.html',
+	styleUrls: ['./dossier-type-list-page.component.scss']
 })
 export class EnzoDossierTypeListPageComponent {
 	constructor(
 		private router: Router,
 		public tabManagerService: TabManagerService,
 		private resourceService: MbsDossierTypeResourceService,
+		private dialogService: DialogService,
 	) { }
 
 	dossierTypeListPaginator: AgalPaginator = {
@@ -22,7 +27,7 @@ export class EnzoDossierTypeListPageComponent {
 	};
 	dossierTypeCount: number;
 
-	dossierTypeListDc = [ '_ck' , 'id'];
+	dossierTypeListDc = ['_ck', 'id'];
 	paginatorEvent(paginator: any) {
 		let dossierTypeListPaginator = { ...paginator }
 		this.dossierTypeListPaginator = dossierTypeListPaginator;
@@ -57,7 +62,11 @@ export class EnzoDossierTypeListPageComponent {
 					label: "Edit",
 					icon: "pi pi-pencil",
 					command: (e: any) => {
-						console.log("edit", e.item.data.id);
+						const ref = this.dialogService.open(EnzoDossierTypeDialogComponent, {
+							data: e.item.data,
+							header: 'Update dossierType',
+							width: '70%'
+						});
 					}
 				},
 				{

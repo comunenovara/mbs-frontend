@@ -3,17 +3,22 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 
+import { DialogService } from 'primeng/dynamicdialog';
+
 import { TabManagerService } from '@tabler/services/tab-manager.service';
 import { MbsOperationTypeResourceService } from '@mbs-main';
+import { EnzoOperationTypeDialogComponent } from '../operation-type-dialog/operation-type-dialog.component';
 
 @Component({
 	templateUrl  : './operation-type-list-page.component.html',
+	styleUrls: ['./operation-type-list-page.component.scss']
 })
 export class EnzoOperationTypeListPageComponent {
 	constructor(
 		private router: Router,
 		public tabManagerService: TabManagerService,
 		private resourceService: MbsOperationTypeResourceService,
+		private dialogService: DialogService,
 	) { }
 
 	operationTypeListPaginator: AgalPaginator = {
@@ -22,7 +27,7 @@ export class EnzoOperationTypeListPageComponent {
 	};
 	operationTypeCount: number;
 
-	operationTypeListDc = [ '_ck' , 'id'];
+	operationTypeListDc = ['_ck', 'id'];
 	paginatorEvent(paginator: any) {
 		let operationTypeListPaginator = { ...paginator }
 		this.operationTypeListPaginator = operationTypeListPaginator;
@@ -57,7 +62,11 @@ export class EnzoOperationTypeListPageComponent {
 					label: "Edit",
 					icon: "pi pi-pencil",
 					command: (e: any) => {
-						console.log("edit", e.item.data.id);
+						const ref = this.dialogService.open(EnzoOperationTypeDialogComponent, {
+							data: e.item.data,
+							header: 'Update operationType',
+							width: '70%'
+						});
 					}
 				},
 				{

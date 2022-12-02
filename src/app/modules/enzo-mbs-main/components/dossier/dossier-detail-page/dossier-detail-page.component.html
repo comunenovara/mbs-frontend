@@ -4,3 +4,7 @@
 <mbs-asset-detail-box [asset]="dossierDto.asset" ></mbs-asset-detail-box>
 <mbs-relif-detail-box [relif]="dossierDto.relif" ></mbs-relif-detail-box>
 <mbs-operation-detail-box [operation]="dossierDto.operation" ></mbs-operation-detail-box>
+
+<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editDossier(dossierDto)"></button>
+<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteDossier(dossierDto)"></button>
+

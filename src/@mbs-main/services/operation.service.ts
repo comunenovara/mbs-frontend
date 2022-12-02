@@ -11,11 +11,11 @@ export class MbsOperationResourceService {
 	) { }
 
 	createOperationUsingPOST(operation: MbsOperationDto): Observable<MbsOperationDto> {
-		return this.http.get<MbsOperationDto>("http://localhost:3000/mbs/main/operations/");
+		return this.http.post<MbsOperationDto>("http://localhost:3000/mbs/main/operations/", operation);
 	}
 
 	updateOperationUsingPUT(operation: MbsOperationDto): Observable<MbsOperationDto> {
-		return this.http.get<MbsOperationDto>("http://localhost:3000/mbs/main/operations/");
+		return this.http.put<MbsOperationDto>("http://localhost:3000/mbs/main/operations/", operation);
 	}
 
 	getAllOperationsUsingGET(filters: any): Observable<MbsOperationDto[]> {
@@ -31,6 +31,6 @@ export class MbsOperationResourceService {
 	}
 
 	deleteOperationUsingDELETE(id: number): Observable<MbsOperationDto> {
-		return this.http.get<MbsOperationDto>("http://localhost:3000/mbs/main/operations/"+id+"/delete");
+		return this.http.delete<MbsOperationDto>("http://localhost:3000/mbs/main/operations/"+id+"/delete");
 	}
 }

@@ -11,11 +11,11 @@ export class MbsDossierResourceService {
 	) { }
 
 	createDossierUsingPOST(dossier: MbsDossierDto): Observable<MbsDossierDto> {
-		return this.http.get<MbsDossierDto>("http://localhost:3000/mbs/main/dossiers/");
+		return this.http.post<MbsDossierDto>("http://localhost:3000/mbs/main/dossiers/", dossier);
 	}
 
 	updateDossierUsingPUT(dossier: MbsDossierDto): Observable<MbsDossierDto> {
-		return this.http.get<MbsDossierDto>("http://localhost:3000/mbs/main/dossiers/");
+		return this.http.put<MbsDossierDto>("http://localhost:3000/mbs/main/dossiers/", dossier);
 	}
 
 	getAllDossiersUsingGET(filters: any): Observable<MbsDossierDto[]> {
@@ -31,6 +31,6 @@ export class MbsDossierResourceService {
 	}
 
 	deleteDossierUsingDELETE(id: number): Observable<MbsDossierDto> {
-		return this.http.get<MbsDossierDto>("http://localhost:3000/mbs/main/dossiers/"+id+"/delete");
+		return this.http.delete<MbsDossierDto>("http://localhost:3000/mbs/main/dossiers/"+id+"/delete");
 	}
 }
