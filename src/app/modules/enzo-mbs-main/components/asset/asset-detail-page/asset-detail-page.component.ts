@@ -73,4 +73,28 @@ export class EnzoAssetDetailPageComponent implements OnInit {
 			command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	]
+
+	operationTableButtons: any[] = [
+		{
+			label: "Dettagli",
+			hideLabel: true,
+			icon: "pi pi-search",
+			severity: "secondary",
+			class: "p-button-sm p-button-outlined",
+			link: "../../../operation/detail",
+			command: (e: any) => this.tabManagerService.openInCard(),
+		}
+	]
+
+	relifTableButtons: any[] = [
+		{
+			label: "Dettagli",
+			hideLabel: true,
+			icon: "pi pi-search",
+			severity: "secondary",
+			class: "p-button-sm p-button-outlined",
+			link: "../../../relif/detail",
+			command: (e: any) => this.tabManagerService.openInCard(),
+		}
+	]
 }
