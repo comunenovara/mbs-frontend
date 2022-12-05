@@ -1,17 +1,4 @@
-<div class="h4 ml-16">ID: <b>{{ dossier.id }}</b></div>
-<div class="h4 ml-16">description: <b>{{ dossier.description }}</b></div>
-
-<div class="h4 ml-16">dossierType: <b>{{ dossier.type.description }}</b></div>
-<div class="h4 ml-16">dossierType: <b>{{ dossier.type.category }}</b></div>
-<div class="h4 ml-16">asset: <b>{{ dossier.asset.description }}</b></div>
-<div class="h4 ml-16">asset: <b>{{ dossier.asset.address }}</b></div>
-<div class="h4 ml-16">asset: <b>{{ dossier.asset.mq }}</b></div>
-<div class="h4 ml-16">relif: <b>{{ dossier.relif.description }}</b></div>
-<div class="h4 ml-16">relif: <b>{{ dossier.relif.startDate }}</b></div>
-<div class="h4 ml-16">relif: <b>{{ dossier.relif.endDate }}</b></div>
-<div class="h4 ml-16">operation: <b>{{ dossier.operation.description }}</b></div>
-<div class="h4 ml-16">operation: <b>{{ dossier.operation.value }}</b></div>
-<div class="h4 ml-16">operation: <b>{{ dossier.operation.startDate }}</b></div>
-<div class="h4 ml-16">operation: <b>{{ dossier.operation.endDate }}</b></div>
-
-<pre>{{ dossier | json }}</pre>
+<ng-container *ngIf="dossier">
+	<div class="h4 ml-16">ID: <b>{{ dossier.id }}</b></div>
+	<div class="h4 ml-16">description: <b>{{ dossier.description }}</b></div>
+</ng-container>

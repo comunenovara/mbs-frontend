@@ -1,12 +1,7 @@
-<div class="h4 ml-16">ID: <b>{{ operation.id }}</b></div>
-<div class="h4 ml-16">description: <b>{{ operation.description }}</b></div>
-<div class="h4 ml-16">value: <b>{{ operation.value }}</b></div>
-<div class="h4 ml-16">startDate: <b>{{ operation.startDate }}</b></div>
-<div class="h4 ml-16">endDate: <b>{{ operation.endDate }}</b></div>
-
-<div class="h4 ml-16">operationType: <b>{{ operation.type.description }}</b></div>
-<div class="h4 ml-16">asset: <b>{{ operation.asset.description }}</b></div>
-<div class="h4 ml-16">asset: <b>{{ operation.asset.address }}</b></div>
-<div class="h4 ml-16">asset: <b>{{ operation.asset.mq }}</b></div>
-
-<pre>{{ operation | json }}</pre>
+<ng-container *ngIf="operation">
+	<div class="h4 ml-16">ID: <b>{{ operation.id }}</b></div>
+	<div class="h4 ml-16">description: <b>{{ operation.description }}</b></div>
+	<div class="h4 ml-16">value: <b>{{ operation.value }}</b></div>
+	<div class="h4 ml-16">startDate: <b>{{ operation.startDate }}</b></div>
+	<div class="h4 ml-16">endDate: <b>{{ operation.endDate }}</b></div>
+</ng-container>

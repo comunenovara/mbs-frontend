@@ -1,10 +1,6 @@
-<div class="h4 ml-16">ID: <b>{{ relif.id }}</b></div>
-<div class="h4 ml-16">description: <b>{{ relif.description }}</b></div>
-<div class="h4 ml-16">startDate: <b>{{ relif.startDate }}</b></div>
-<div class="h4 ml-16">endDate: <b>{{ relif.endDate }}</b></div>
-
-<div class="h4 ml-16">asset: <b>{{ relif.asset.description }}</b></div>
-<div class="h4 ml-16">asset: <b>{{ relif.asset.address }}</b></div>
-<div class="h4 ml-16">asset: <b>{{ relif.asset.mq }}</b></div>
-
-<pre>{{ relif | json }}</pre>
+<ng-container *ngIf="relif">
+	<div class="h4 ml-16">ID: <b>{{ relif.id }}</b></div>
+	<div class="h4 ml-16">description: <b>{{ relif.description }}</b></div>
+	<div class="h4 ml-16">startDate: <b>{{ relif.startDate }}</b></div>
+	<div class="h4 ml-16">endDate: <b>{{ relif.endDate }}</b></div>
+</ng-container>
