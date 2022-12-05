@@ -50,7 +50,7 @@ export class EnzoDossierTypeDetailPageComponent implements OnInit {
 	editDossierType(dossierType: MbsDossierTypeDto) {
 		const ref = this.dialogService.open(EnzoDossierTypeDialogComponent, {
 			data: dossierType,
-			header: 'Update asset',
+			header: 'Update dossierType',
 			width: '70%'
 		});
 	}

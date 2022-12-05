@@ -50,7 +50,7 @@ export class EnzoDossierDetailPageComponent implements OnInit {
 	editDossier(dossier: MbsDossierDto) {
 		const ref = this.dialogService.open(EnzoDossierDialogComponent, {
 			data: dossier,
-			header: 'Update asset',
+			header: 'Update dossier',
 			width: '70%'
 		});
 	}

@@ -50,7 +50,7 @@ export class EnzoRelifDetailPageComponent implements OnInit {
 	editRelif(relif: MbsRelifDto) {
 		const ref = this.dialogService.open(EnzoRelifDialogComponent, {
 			data: relif,
-			header: 'Update asset',
+			header: 'Update relif',
 			width: '70%'
 		});
 	}

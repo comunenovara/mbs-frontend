@@ -50,7 +50,7 @@ export class EnzoOperationTypeDetailPageComponent implements OnInit {
 	editOperationType(operationType: MbsOperationTypeDto) {
 		const ref = this.dialogService.open(EnzoOperationTypeDialogComponent, {
 			data: operationType,
-			header: 'Update asset',
+			header: 'Update operationType',
 			width: '70%'
 		});
 	}
