@@ -18,7 +18,7 @@
 						<th *ngSwitchCase="'value'" style="width:auto" pResizableColumn pSortableColumn="operation.value"> value </th>
 						<th *ngSwitchCase="'startDate'" style="width:auto" pResizableColumn pSortableColumn="operation.startDate"> startDate </th>
 						<th *ngSwitchCase="'endDate'" style="width:auto" pResizableColumn pSortableColumn="operation.endDate"> endDate </th>
-						<th *ngSwitchCase="'operationType.description'" style="width:auto" pResizableColumn pSortableColumn="operationType.description"> description</th>
+						<th *ngSwitchCase="'type.description'" style="width:auto" pResizableColumn pSortableColumn="operationType.description"> description</th>
 						<th *ngSwitchCase="'asset.description'" style="width:auto" pResizableColumn pSortableColumn="asset.description"> description</th>
 						<th *ngSwitchCase="'asset.address'" style="width:auto" pResizableColumn pSortableColumn="asset.address"> address</th>
 						<th *ngSwitchCase="'asset.mq'" style="width:auto" pResizableColumn pSortableColumn="asset.mq"> mq</th>
@@ -35,7 +35,7 @@
 						<td *ngSwitchCase="'value'">{{ e.value }}</td>
 						<td *ngSwitchCase="'startDate'">{{ e.startDate }}</td>
 						<td *ngSwitchCase="'endDate'">{{ e.endDate }}</td>
-						<td *ngSwitchCase="'operationType.description'">{{ e.operationType.description }}</td>
+						<td *ngSwitchCase="'type.description'">{{ e.type.description }}</td>
 						<td *ngSwitchCase="'asset.description'">{{ e.asset.description }}</td>
 						<td *ngSwitchCase="'asset.address'">{{ e.asset.address }}</td>
 						<td *ngSwitchCase="'asset.mq'">{{ e.asset.mq }}</td>

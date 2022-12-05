@@ -15,8 +15,8 @@
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
 						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="dossier.description"> description </th>
-						<th *ngSwitchCase="'dossierType.description'" style="width:auto" pResizableColumn pSortableColumn="dossierType.description"> description</th>
-						<th *ngSwitchCase="'dossierType.category'" style="width:auto" pResizableColumn pSortableColumn="dossierType.category"> category</th>
+						<th *ngSwitchCase="'type.description'" style="width:auto" pResizableColumn pSortableColumn="dossierType.description"> description</th>
+						<th *ngSwitchCase="'type.category'" style="width:auto" pResizableColumn pSortableColumn="dossierType.category"> category</th>
 						<th *ngSwitchCase="'asset.description'" style="width:auto" pResizableColumn pSortableColumn="asset.description"> description</th>
 						<th *ngSwitchCase="'asset.address'" style="width:auto" pResizableColumn pSortableColumn="asset.address"> address</th>
 						<th *ngSwitchCase="'asset.mq'" style="width:auto" pResizableColumn pSortableColumn="asset.mq"> mq</th>
@@ -37,8 +37,8 @@
 						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
 						<td *ngSwitchCase="'description'">{{ e.description }}</td>
-						<td *ngSwitchCase="'dossierType.description'">{{ e.dossierType.description }}</td>
-						<td *ngSwitchCase="'dossierType.category'">{{ e.dossierType.category }}</td>
+						<td *ngSwitchCase="'type.description'">{{ e.type.description }}</td>
+						<td *ngSwitchCase="'type.category'">{{ e.type.category }}</td>
 						<td *ngSwitchCase="'asset.description'">{{ e.asset.description }}</td>
 						<td *ngSwitchCase="'asset.address'">{{ e.asset.address }}</td>
 						<td *ngSwitchCase="'asset.mq'">{{ e.asset.mq }}</td>
