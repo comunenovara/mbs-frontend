@@ -5,6 +5,7 @@ import { TablerTabsListComponent } from './components/tab-list/tabs-list.compone
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { IsChildPipe } from './pipes/is-child.pipe';
 
 
 
@@ -24,14 +25,22 @@ const dbConfig: DBConfig = {
             storeConfig: { keyPath: 'id', autoIncrement: true },
             storeSchema: [
                 { name: 'url', keypath: 'url', options: { unique: false } },
+                { name: 'isMain', keypath: 'isMain', options: { unique: false } },
             ]
-        }
+        },
+        {
+            store: 'config',
+            storeConfig: { keyPath: 'name', autoIncrement: false },
+            storeSchema: [
+                { name: 'value', keypath: 'value', options: { unique: false } },
+            ]
+        },
     ],
     migrationFactory() {
         return {
             1: (db: any, transaction: any) => {
-              const store = transaction.objectStore('card');
-              store.createIndex('tab', 'tab', { unique: false });
+                transaction.objectStore('card').createIndex('tab', 'tab', { unique: false });
+                transaction.objectStore('config').createIndex('name', 'name', { unique: true });
             }
         };
     },
@@ -42,7 +51,7 @@ const dbConfig: DBConfig = {
         CommonModule,
         RouterModule,
         NgxIndexedDBModule.forRoot(dbConfig),
-        
+
         ButtonModule,
 
     ],
@@ -52,6 +61,8 @@ const dbConfig: DBConfig = {
     ],
     declarations: [
         TablerTabsListComponent,
+
+        IsChildPipe,
 
     ],
     exports: [
