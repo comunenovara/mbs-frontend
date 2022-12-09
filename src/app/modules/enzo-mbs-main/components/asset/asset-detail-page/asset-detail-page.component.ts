@@ -4,9 +4,10 @@ import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
+import { TabManagerService } from "@tabler/services/tab-manager.service";
+
 import { MbsAssetDto, MbsAssetResourceService} from '@mbs-main';
 import { EnzoAssetDialogComponent } from '../asset-dialog/asset-dialog.component';
-import { TabManagerService } from "@tabler/services/tab-manager.service";
 
 @Component({
 	selector: 'enzo-asset-detail-page',
@@ -20,8 +21,8 @@ export class EnzoAssetDetailPageComponent implements OnInit {
 		private resourceService: MbsAssetResourceService,
 		private route: ActivatedRoute,
 		private router: Router,
-		public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
+		public tabManagerService: TabManagerService,
 	) {
 		var id = route.snapshot.paramMap.get('id');
 		if(id === null) throw new Error('Not valid Id');
@@ -61,40 +62,7 @@ export class EnzoAssetDetailPageComponent implements OnInit {
 		if(asset.id === undefined) return;
 		await lastValueFrom(this.resourceService.deleteAssetUsingDELETE(asset.id));
 	}
-
-	dossierTableButtons: any[] = [
-		{
-			label: "Dettagli",
-			hideLabel: true,
-			icon: "pi pi-search",
-			severity: "secondary",
-			class: "p-button-sm p-button-outlined",
-			link: "../../../dossier/detail",
-			command: (e: any) => this.tabManagerService.openInCard(),
-		}
-	]
-
-	operationTableButtons: any[] = [
-		{
-			label: "Dettagli",
-			hideLabel: true,
-			icon: "pi pi-search",
-			severity: "secondary",
-			class: "p-button-sm p-button-outlined",
-			link: "../../../operation/detail",
-			command: (e: any) => this.tabManagerService.openInCard(),
-		}
-	]
-
-	relifTableButtons: any[] = [
-		{
-			label: "Dettagli",
-			hideLabel: true,
-			icon: "pi pi-search",
-			severity: "secondary",
-			class: "p-button-sm p-button-outlined",
-			link: "../../../relif/detail",
-			command: (e: any) => this.tabManagerService.openInCard(),
-		}
-	]
 }
+
+
+

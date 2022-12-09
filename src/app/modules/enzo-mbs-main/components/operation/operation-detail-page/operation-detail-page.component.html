@@ -1,12 +1,30 @@
-Operation detail page
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-6">
+        <div class="card mb-0">
+			<mbs-operation-detail-box [operation]="operationDto"></mbs-operation-detail-box>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editOperation(operationDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteOperation(operationDto)"></button>
+		</div>
+	</div>
 
-<mbs-operation-detail-box [operation]="operationDto"></mbs-operation-detail-box>
+	<div class="col-12 lg:col-6 xl:col-3">
+        <div class="card mb-0">
+			<h3>operation-type</h3>
+			<mbs-operation-type-detail-box [operationType]="operationDto.type" ></mbs-operation-type-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" [routerLink]="['../../../operation-type/detail', operationDto.type.id]" (click)="tabManagerService.openInCard()"></button>
+		</div>
+	</div>
+	<div class="col-12 lg:col-6 xl:col-3">
+        <div class="card mb-0">
+			<h3>asset</h3>
+			<mbs-asset-detail-box [asset]="operationDto.asset" ></mbs-asset-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" [routerLink]="['../../../asset/detail', operationDto.asset.id]" (click)="tabManagerService.openInCard()"></button>
+		</div>
+	</div>
 
-<mbs-operation-type-detail-box [operationType]="operationDto.type" ></mbs-operation-type-detail-box>
-<mbs-asset-detail-box [asset]="operationDto.asset" ></mbs-asset-detail-box>
-
-<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editOperation(operationDto)"></button>
-<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteOperation(operationDto)"></button>
-
-<h3>dossier</h3>
-<mbs-dossier-list-loader [filters]="{operationId: operationDto.id}" [dcs]="['id', 'description']"></mbs-dossier-list-loader>
+	<div class="col-12 lg:col-12 xl:col-12">
+        <div class="card mb-0">
+			<h3>dossier</h3>
+			<mbs-dossier-list-loader [filters]="{operationId: operationDto.id}" [dcs]="['id', 'description']"></mbs-dossier-list-loader>
+		</div>
+	</div>

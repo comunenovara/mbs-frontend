@@ -1,8 +1,16 @@
-<mbs-operation-type-detail-box [operationType]="operationTypeDto"></mbs-operation-type-detail-box>
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-6">
+        <div class="card mb-0">
+			<mbs-operation-type-detail-box [operationType]="operationTypeDto"></mbs-operation-type-detail-box>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editOperationType(operationTypeDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteOperationType(operationTypeDto)"></button>
+		</div>
+	</div>
 
 
-<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editOperationType(operationTypeDto)"></button>
-<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteOperationType(operationTypeDto)"></button>
-
-<h3>operation</h3>
-<mbs-operation-list-loader [filters]="{operationTypeId: operationTypeDto.id}" [dcs]="['id', 'description']"></mbs-operation-list-loader>
+	<div class="col-12 lg:col-12 xl:col-12">
+        <div class="card mb-0">
+			<h3>operation</h3>
+			<mbs-operation-list-loader [filters]="{operationTypeId: operationTypeDto.id}" [dcs]="['id', 'description']"></mbs-operation-list-loader>
+		</div>
+	</div>

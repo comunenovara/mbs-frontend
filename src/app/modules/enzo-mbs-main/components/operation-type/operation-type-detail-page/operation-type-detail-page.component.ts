@@ -4,6 +4,8 @@ import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
+import { TabManagerService } from "@tabler/services/tab-manager.service";
+
 import { MbsOperationTypeDto, MbsOperationTypeResourceService} from '@mbs-main';
 import { EnzoOperationTypeDialogComponent } from '../operation-type-dialog/operation-type-dialog.component';
 
@@ -20,6 +22,7 @@ export class EnzoOperationTypeDetailPageComponent implements OnInit {
 		private route: ActivatedRoute,
 		private router: Router,
 		private dialogService: DialogService,
+		public tabManagerService: TabManagerService,
 	) {
 		var id = route.snapshot.paramMap.get('id');
 		if(id === null) throw new Error('Not valid Id');
