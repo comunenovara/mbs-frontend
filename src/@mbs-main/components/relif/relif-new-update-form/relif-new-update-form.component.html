@@ -1,0 +1,58 @@
+<div id="mbs-relif-new-update-form" *ngIf="step.form">
+    <form [formGroup]="_relifNewUpdateForm" (ngSubmit)="submit()">
+        <div class="grid p-fluid" style="margin-top: 0px;">
+
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'description' }}</span>
+				<input type="text" pInputText formControlName="description" placeholder="">
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'startDate' }}</span>
+				<input type="text" pInputText formControlName="startDate" placeholder="">
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'endDate' }}</span>
+				<input type="text" pInputText formControlName="endDate" placeholder="">
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'asset' }}</span>
+				<input type="text" pInputText formControlName="asset" placeholder="">
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'asset' }}</span>
+				<input type="text" pInputText formControlName="asset" placeholder="">
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'asset' }}</span>
+				<input type="text" pInputText formControlName="asset" placeholder="">
+			</div>
+
+            <div class="col-12 md:col-6 lg:col-3">
+                <br>
+                <button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'MAIN.CREATE' }}</button>
+                <button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'MAIN.UPDATE' }}</button>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    loading
+</div>
+
+<div *ngIf="step.complete">
+    <h1 *ngIf="!_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.CREATION_OK' }}</h1>
+    <h1 *ngIf="_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.UPDATE_OK' }}</h1>
+
+    <hr>
+
+    <mbs-relif-detail-box [relif]="_relifResult"></mbs-relif-detail-box>
+
+    <div *ngIf="!_isUpdate">
+        <button pButton color="primary" (click)="newRelif()">
+            <span *ngIf="!returnToParent">{{ 'MAIN.CREATE_NEW' }}</span>
+            <span *ngIf="returnToParent">{{ 'MAIN.EDIT' }}</span>
+        </button>
+    </div>
+</div>
