@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 
+import { MbsOperationTypeResourceService } from '@mbs-main/services/operation-type.service';
 import { MbsOperationTypeDto } from '@mbs-main/class/operation-type-dto.class';
 
 @Component({
@@ -17,6 +18,7 @@ export class MbsOperationTypeNewUpdateFormComponent implements OnInit {
     
     constructor(
 		private _formBuilder: FormBuilder,
+		private operationTypeResourceService: MbsOperationTypeResourceService,
 	) { }
 
 	step: any = {
@@ -30,8 +32,6 @@ export class MbsOperationTypeNewUpdateFormComponent implements OnInit {
 	_isUpdate: boolean = false;
 	_operationTypeResult: any;
 
-    // relation
-	//_filteredAsset: Observable<MbsAssetDto[]>;
 
 	ngOnInit(): void {
 		this._operationTypeNewUpdateForm = this._formBuilder.group({
@@ -44,7 +44,6 @@ export class MbsOperationTypeNewUpdateFormComponent implements OnInit {
 			this._isUpdate = true;
 		}
 
-		//this._filteredAsset = this.commerceAutocompleteService.filterBuyer(this._operationTypeNewUpdateForm.controls['buyer'].valueChanges);
 	}
 
 	async submit() {
@@ -65,10 +64,10 @@ export class MbsOperationTypeNewUpdateFormComponent implements OnInit {
 			try {
 				let postOrPut: string;
 				if (operationType.id != 0) {
-					//await this.operationTypeResourceService.updateOperationTypeUsingPUT(operationType).toPromise();
+					await lastValueFrom(this.operationTypeResourceService.updateOperationTypeUsingPUT(operationType));
 					postOrPut = "updated";
 				} else {
-					//await this.operationTypeResourceService.createOperationTypeUsingPOST(operationType).toPromise();
+					await lastValueFrom(this.operationTypeResourceService.createOperationTypeUsingPOST(operationType));
 					postOrPut = "created";
 				}
 

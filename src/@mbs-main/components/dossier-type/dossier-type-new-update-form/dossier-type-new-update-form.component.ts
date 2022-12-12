@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 
+import { MbsDossierTypeResourceService } from '@mbs-main/services/dossier-type.service';
 import { MbsDossierTypeDto } from '@mbs-main/class/dossier-type-dto.class';
 
 @Component({
@@ -17,6 +18,7 @@ export class MbsDossierTypeNewUpdateFormComponent implements OnInit {
     
     constructor(
 		private _formBuilder: FormBuilder,
+		private dossierTypeResourceService: MbsDossierTypeResourceService,
 	) { }
 
 	step: any = {
@@ -30,8 +32,6 @@ export class MbsDossierTypeNewUpdateFormComponent implements OnInit {
 	_isUpdate: boolean = false;
 	_dossierTypeResult: any;
 
-    // relation
-	//_filteredAsset: Observable<MbsAssetDto[]>;
 
 	ngOnInit(): void {
 		this._dossierTypeNewUpdateForm = this._formBuilder.group({
@@ -45,7 +45,6 @@ export class MbsDossierTypeNewUpdateFormComponent implements OnInit {
 			this._isUpdate = true;
 		}
 
-		//this._filteredAsset = this.commerceAutocompleteService.filterBuyer(this._dossierTypeNewUpdateForm.controls['buyer'].valueChanges);
 	}
 
 	async submit() {
@@ -66,10 +65,10 @@ export class MbsDossierTypeNewUpdateFormComponent implements OnInit {
 			try {
 				let postOrPut: string;
 				if (dossierType.id != 0) {
-					//await this.dossierTypeResourceService.updateDossierTypeUsingPUT(dossierType).toPromise();
+					await lastValueFrom(this.dossierTypeResourceService.updateDossierTypeUsingPUT(dossierType));
 					postOrPut = "updated";
 				} else {
-					//await this.dossierTypeResourceService.createDossierTypeUsingPOST(dossierType).toPromise();
+					await lastValueFrom(this.dossierTypeResourceService.createDossierTypeUsingPOST(dossierType));
 					postOrPut = "created";
 				}
 

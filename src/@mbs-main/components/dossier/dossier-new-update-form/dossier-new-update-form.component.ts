@@ -1,8 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 
+import { MbsDossierResourceService } from '@mbs-main/services/dossier.service';
 import { MbsDossierDto } from '@mbs-main/class/dossier-dto.class';
+import { MbsDossierTypeDto } from '@mbs-main/class/dossier-type-dto.class';
+import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
+import { MbsRelifDto } from '@mbs-main/class/relif-dto.class';
+import { MbsOperationDto } from '@mbs-main/class/operation-dto.class';
 
 @Component({
 	selector: 'mbs-dossier-new-update-form',
@@ -17,6 +22,7 @@ export class MbsDossierNewUpdateFormComponent implements OnInit {
     
     constructor(
 		private _formBuilder: FormBuilder,
+		private dossierResourceService: MbsDossierResourceService,
 	) { }
 
 	step: any = {
@@ -30,8 +36,10 @@ export class MbsDossierNewUpdateFormComponent implements OnInit {
 	_isUpdate: boolean = false;
 	_dossierResult: any;
 
-    // relation
-	//_filteredAsset: Observable<MbsAssetDto[]>;
+	_filteredType: Observable<MbsDossierTypeDto[]>;
+	_filteredAsset: Observable<MbsAssetDto[]>;
+	_filteredRelif: Observable<MbsRelifDto[]>;
+	_filteredOperation: Observable<MbsOperationDto[]>;
 
 	ngOnInit(): void {
 		this._dossierNewUpdateForm = this._formBuilder.group({
@@ -48,7 +56,10 @@ export class MbsDossierNewUpdateFormComponent implements OnInit {
 			this._isUpdate = true;
 		}
 
-		//this._filteredAsset = this.commerceAutocompleteService.filterBuyer(this._dossierNewUpdateForm.controls['buyer'].valueChanges);
+		//this._filteredType = this.mbsMainAutocompleteService.filterType(this._dossierNewUpdateForm.controls['type'].valueChanges);
+		//this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._dossierNewUpdateForm.controls['asset'].valueChanges);
+		//this._filteredRelif = this.mbsMainAutocompleteService.filterRelif(this._dossierNewUpdateForm.controls['relif'].valueChanges);
+		//this._filteredOperation = this.mbsMainAutocompleteService.filterOperation(this._dossierNewUpdateForm.controls['operation'].valueChanges);
 	}
 
 	async submit() {
@@ -69,10 +80,10 @@ export class MbsDossierNewUpdateFormComponent implements OnInit {
 			try {
 				let postOrPut: string;
 				if (dossier.id != 0) {
-					//await this.dossierResourceService.updateDossierUsingPUT(dossier).toPromise();
+					await lastValueFrom(this.dossierResourceService.updateDossierUsingPUT(dossier));
 					postOrPut = "updated";
 				} else {
-					//await this.dossierResourceService.createDossierUsingPOST(dossier).toPromise();
+					await lastValueFrom(this.dossierResourceService.createDossierUsingPOST(dossier));
 					postOrPut = "created";
 				}
 

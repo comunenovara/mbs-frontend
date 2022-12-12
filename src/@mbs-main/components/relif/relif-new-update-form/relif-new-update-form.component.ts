@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 
+import { MbsRelifResourceService } from '@mbs-main/services/relif.service';
 import { MbsRelifDto } from '@mbs-main/class/relif-dto.class';
+import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 
 @Component({
 	selector: 'mbs-relif-new-update-form',
@@ -17,6 +19,7 @@ export class MbsRelifNewUpdateFormComponent implements OnInit {
     
     constructor(
 		private _formBuilder: FormBuilder,
+		private relifResourceService: MbsRelifResourceService,
 	) { }
 
 	step: any = {
@@ -30,8 +33,7 @@ export class MbsRelifNewUpdateFormComponent implements OnInit {
 	_isUpdate: boolean = false;
 	_relifResult: any;
 
-    // relation
-	//_filteredAsset: Observable<MbsAssetDto[]>;
+	_filteredAsset: Observable<MbsAssetDto[]>;
 
 	ngOnInit(): void {
 		this._relifNewUpdateForm = this._formBuilder.group({
@@ -47,7 +49,7 @@ export class MbsRelifNewUpdateFormComponent implements OnInit {
 			this._isUpdate = true;
 		}
 
-		//this._filteredAsset = this.commerceAutocompleteService.filterBuyer(this._relifNewUpdateForm.controls['buyer'].valueChanges);
+		//this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._relifNewUpdateForm.controls['asset'].valueChanges);
 	}
 
 	async submit() {
@@ -68,10 +70,10 @@ export class MbsRelifNewUpdateFormComponent implements OnInit {
 			try {
 				let postOrPut: string;
 				if (relif.id != 0) {
-					//await this.relifResourceService.updateRelifUsingPUT(relif).toPromise();
+					await lastValueFrom(this.relifResourceService.updateRelifUsingPUT(relif));
 					postOrPut = "updated";
 				} else {
-					//await this.relifResourceService.createRelifUsingPOST(relif).toPromise();
+					await lastValueFrom(this.relifResourceService.createRelifUsingPOST(relif));
 					postOrPut = "created";
 				}
 

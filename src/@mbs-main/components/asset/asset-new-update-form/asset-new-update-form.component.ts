@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 
+import { MbsAssetResourceService } from '@mbs-main/services/asset.service';
 import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 
 @Component({
@@ -17,6 +18,7 @@ export class MbsAssetNewUpdateFormComponent implements OnInit {
     
     constructor(
 		private _formBuilder: FormBuilder,
+		private assetResourceService: MbsAssetResourceService,
 	) { }
 
 	step: any = {
@@ -30,8 +32,6 @@ export class MbsAssetNewUpdateFormComponent implements OnInit {
 	_isUpdate: boolean = false;
 	_assetResult: any;
 
-    // relation
-	//_filteredAsset: Observable<MbsAssetDto[]>;
 
 	ngOnInit(): void {
 		this._assetNewUpdateForm = this._formBuilder.group({
@@ -46,7 +46,6 @@ export class MbsAssetNewUpdateFormComponent implements OnInit {
 			this._isUpdate = true;
 		}
 
-		//this._filteredAsset = this.commerceAutocompleteService.filterBuyer(this._assetNewUpdateForm.controls['buyer'].valueChanges);
 	}
 
 	async submit() {
@@ -67,10 +66,10 @@ export class MbsAssetNewUpdateFormComponent implements OnInit {
 			try {
 				let postOrPut: string;
 				if (asset.id != 0) {
-					//await this.assetResourceService.updateAssetUsingPUT(asset).toPromise();
+					await lastValueFrom(this.assetResourceService.updateAssetUsingPUT(asset));
 					postOrPut = "updated";
 				} else {
-					//await this.assetResourceService.createAssetUsingPOST(asset).toPromise();
+					await lastValueFrom(this.assetResourceService.createAssetUsingPOST(asset));
 					postOrPut = "created";
 				}
 
@@ -80,7 +79,8 @@ export class MbsAssetNewUpdateFormComponent implements OnInit {
 
 				this.setStep("complete");
 
-			} catch (error: any) {
+			} catch (e: any) {
+				console.log("errore gestito:", e.error.message);
 				//this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
 				this.setStep("form");
 			}

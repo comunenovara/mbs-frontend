@@ -1,8 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 
+import { MbsOperationResourceService } from '@mbs-main/services/operation.service';
 import { MbsOperationDto } from '@mbs-main/class/operation-dto.class';
+import { MbsOperationTypeDto } from '@mbs-main/class/operation-type-dto.class';
+import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 
 @Component({
 	selector: 'mbs-operation-new-update-form',
@@ -17,6 +20,7 @@ export class MbsOperationNewUpdateFormComponent implements OnInit {
     
     constructor(
 		private _formBuilder: FormBuilder,
+		private operationResourceService: MbsOperationResourceService,
 	) { }
 
 	step: any = {
@@ -30,8 +34,8 @@ export class MbsOperationNewUpdateFormComponent implements OnInit {
 	_isUpdate: boolean = false;
 	_operationResult: any;
 
-    // relation
-	//_filteredAsset: Observable<MbsAssetDto[]>;
+	_filteredType: Observable<MbsOperationTypeDto[]>;
+	_filteredAsset: Observable<MbsAssetDto[]>;
 
 	ngOnInit(): void {
 		this._operationNewUpdateForm = this._formBuilder.group({
@@ -49,7 +53,8 @@ export class MbsOperationNewUpdateFormComponent implements OnInit {
 			this._isUpdate = true;
 		}
 
-		//this._filteredAsset = this.commerceAutocompleteService.filterBuyer(this._operationNewUpdateForm.controls['buyer'].valueChanges);
+		//this._filteredType = this.mbsMainAutocompleteService.filterType(this._operationNewUpdateForm.controls['type'].valueChanges);
+		//this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._operationNewUpdateForm.controls['asset'].valueChanges);
 	}
 
 	async submit() {
@@ -70,10 +75,10 @@ export class MbsOperationNewUpdateFormComponent implements OnInit {
 			try {
 				let postOrPut: string;
 				if (operation.id != 0) {
-					//await this.operationResourceService.updateOperationUsingPUT(operation).toPromise();
+					await lastValueFrom(this.operationResourceService.updateOperationUsingPUT(operation));
 					postOrPut = "updated";
 				} else {
-					//await this.operationResourceService.createOperationUsingPOST(operation).toPromise();
+					await lastValueFrom(this.operationResourceService.createOperationUsingPOST(operation));
 					postOrPut = "created";
 				}
 
@@ -84,6 +89,7 @@ export class MbsOperationNewUpdateFormComponent implements OnInit {
 				this.setStep("complete");
 
 			} catch (error: any) {
+				console.log("errore gestito:", error.message);
 				//this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
 				this.setStep("form");
 			}
