@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
+import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsOperationTypeResourceService } from '@mbs-main/services/operation-type.service';
 import { MbsOperationTypeDto } from '@mbs-main/class/operation-type-dto.class';
 
@@ -19,6 +20,8 @@ export class MbsOperationTypeNewUpdateFormComponent implements OnInit {
     constructor(
 		private _formBuilder: FormBuilder,
 		private operationTypeResourceService: MbsOperationTypeResourceService,
+		private mbsMainAutocompleteService: MbsMainAutocompleteService,
+		
 	) { }
 
 	step: any = {

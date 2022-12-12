@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
+import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsAssetResourceService } from '@mbs-main/services/asset.service';
 import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 
@@ -19,6 +20,8 @@ export class MbsAssetNewUpdateFormComponent implements OnInit {
     constructor(
 		private _formBuilder: FormBuilder,
 		private assetResourceService: MbsAssetResourceService,
+		private mbsMainAutocompleteService: MbsMainAutocompleteService,
+		
 	) { }
 
 	step: any = {

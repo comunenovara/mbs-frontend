@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
+import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsDossierResourceService } from '@mbs-main/services/dossier.service';
 import { MbsDossierDto } from '@mbs-main/class/dossier-dto.class';
 import { MbsDossierTypeDto } from '@mbs-main/class/dossier-type-dto.class';
@@ -23,6 +24,8 @@ export class MbsDossierNewUpdateFormComponent implements OnInit {
     constructor(
 		private _formBuilder: FormBuilder,
 		private dossierResourceService: MbsDossierResourceService,
+		private mbsMainAutocompleteService: MbsMainAutocompleteService,
+		
 	) { }
 
 	step: any = {
@@ -56,10 +59,10 @@ export class MbsDossierNewUpdateFormComponent implements OnInit {
 			this._isUpdate = true;
 		}
 
-		//this._filteredType = this.mbsMainAutocompleteService.filterType(this._dossierNewUpdateForm.controls['type'].valueChanges);
-		//this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._dossierNewUpdateForm.controls['asset'].valueChanges);
-		//this._filteredRelif = this.mbsMainAutocompleteService.filterRelif(this._dossierNewUpdateForm.controls['relif'].valueChanges);
-		//this._filteredOperation = this.mbsMainAutocompleteService.filterOperation(this._dossierNewUpdateForm.controls['operation'].valueChanges);
+		this._filteredType = this.mbsMainAutocompleteService.filterDossierType(this._dossierNewUpdateForm.controls['type'].valueChanges);
+		this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._dossierNewUpdateForm.controls['asset'].valueChanges);
+		this._filteredRelif = this.mbsMainAutocompleteService.filterRelif(this._dossierNewUpdateForm.controls['relif'].valueChanges);
+		this._filteredOperation = this.mbsMainAutocompleteService.filterOperation(this._dossierNewUpdateForm.controls['operation'].valueChanges);
 	}
 
 	async submit() {

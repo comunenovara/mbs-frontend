@@ -6,6 +6,8 @@ import { ButtonModule } from 'primeng/button';
 
 import { AgalCoreModule } from '@agal-core/agal-core.module';
 
+import { MbsMainAutocompleteService } from './service/main-auto-complete.service';
+
 import { MbsAssetListLoaderComponent } from './components/asset/asset-list-loader/asset-list-loader.component';
 import { MbsAssetDetailBoxComponent } from './components/asset/asset-detail-box/asset-detail-box.component';
 import { MbsAssetDisplayColumnComponent } from './components/asset/asset-display-column/asset-display-column.component';
@@ -85,6 +87,7 @@ import { MbsRelifResolver } from './resolvers/relif.resolver';
 		MbsRelifNewUpdateFormComponent,
 	],
 	providers: [
+		MbsMainAutocompleteService,
 		MbsAssetResourceService,
 		MbsAssetResolver,
 		MbsDossierResourceService,

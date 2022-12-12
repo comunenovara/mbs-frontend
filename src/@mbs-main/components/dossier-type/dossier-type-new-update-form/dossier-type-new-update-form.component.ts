@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
+import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsDossierTypeResourceService } from '@mbs-main/services/dossier-type.service';
 import { MbsDossierTypeDto } from '@mbs-main/class/dossier-type-dto.class';
 
@@ -19,6 +20,8 @@ export class MbsDossierTypeNewUpdateFormComponent implements OnInit {
     constructor(
 		private _formBuilder: FormBuilder,
 		private dossierTypeResourceService: MbsDossierTypeResourceService,
+		private mbsMainAutocompleteService: MbsMainAutocompleteService,
+		
 	) { }
 
 	step: any = {

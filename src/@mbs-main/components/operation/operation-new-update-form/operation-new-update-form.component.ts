@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
+import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsOperationResourceService } from '@mbs-main/services/operation.service';
 import { MbsOperationDto } from '@mbs-main/class/operation-dto.class';
 import { MbsOperationTypeDto } from '@mbs-main/class/operation-type-dto.class';
@@ -21,6 +22,8 @@ export class MbsOperationNewUpdateFormComponent implements OnInit {
     constructor(
 		private _formBuilder: FormBuilder,
 		private operationResourceService: MbsOperationResourceService,
+		private mbsMainAutocompleteService: MbsMainAutocompleteService,
+		
 	) { }
 
 	step: any = {
@@ -53,8 +56,8 @@ export class MbsOperationNewUpdateFormComponent implements OnInit {
 			this._isUpdate = true;
 		}
 
-		//this._filteredType = this.mbsMainAutocompleteService.filterType(this._operationNewUpdateForm.controls['type'].valueChanges);
-		//this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._operationNewUpdateForm.controls['asset'].valueChanges);
+		this._filteredType = this.mbsMainAutocompleteService.filterOperationType(this._operationNewUpdateForm.controls['type'].valueChanges);
+		this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._operationNewUpdateForm.controls['asset'].valueChanges);
 	}
 
 	async submit() {

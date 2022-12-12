@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
+import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsRelifResourceService } from '@mbs-main/services/relif.service';
 import { MbsRelifDto } from '@mbs-main/class/relif-dto.class';
 import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
@@ -20,6 +21,8 @@ export class MbsRelifNewUpdateFormComponent implements OnInit {
     constructor(
 		private _formBuilder: FormBuilder,
 		private relifResourceService: MbsRelifResourceService,
+		private mbsMainAutocompleteService: MbsMainAutocompleteService,
+		
 	) { }
 
 	step: any = {
@@ -49,7 +52,7 @@ export class MbsRelifNewUpdateFormComponent implements OnInit {
 			this._isUpdate = true;
 		}
 
-		//this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._relifNewUpdateForm.controls['asset'].valueChanges);
+		this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._relifNewUpdateForm.controls['asset'].valueChanges);
 	}
 
 	async submit() {
