@@ -35,7 +35,7 @@ export class MbsDossierNewUpdateFormComponent implements OnInit {
 
 	ngOnInit(): void {
 		this._dossierNewUpdateForm = this._formBuilder.group({
-			id: [''],
+			id: [null],
 			description: [null, []],
 			type: [null, []],
 			asset: [null, []],

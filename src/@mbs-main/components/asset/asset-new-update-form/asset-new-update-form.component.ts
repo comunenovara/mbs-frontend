@@ -35,7 +35,7 @@ export class MbsAssetNewUpdateFormComponent implements OnInit {
 
 	ngOnInit(): void {
 		this._assetNewUpdateForm = this._formBuilder.group({
-			id: [''],
+			id: [null],
 			description: [null, []],
 			address: [null, []],
 			mq: [null, []],

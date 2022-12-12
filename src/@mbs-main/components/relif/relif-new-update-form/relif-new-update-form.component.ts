@@ -35,7 +35,7 @@ export class MbsRelifNewUpdateFormComponent implements OnInit {
 
 	ngOnInit(): void {
 		this._relifNewUpdateForm = this._formBuilder.group({
-			id: [''],
+			id: [null],
 			description: [null, []],
 			startDate: [null, []],
 			endDate: [null, []],

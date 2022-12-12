@@ -35,7 +35,7 @@ export class MbsOperationTypeNewUpdateFormComponent implements OnInit {
 
 	ngOnInit(): void {
 		this._operationTypeNewUpdateForm = this._formBuilder.group({
-			id: [''],
+			id: [null],
 			description: [null, []],
 		});
 
