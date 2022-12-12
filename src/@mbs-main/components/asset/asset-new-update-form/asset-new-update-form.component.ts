@@ -81,7 +81,7 @@ export class MbsAssetNewUpdateFormComponent implements OnInit {
 
 			} catch (e: any) {
 				console.log("errore gestito:", e.error.message);
-				//this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+				//this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
 				this.setStep("form");
 			}
 		}

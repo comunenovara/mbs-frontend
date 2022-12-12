@@ -93,8 +93,9 @@ export class MbsDossierNewUpdateFormComponent implements OnInit {
 
 				this.setStep("complete");
 
-			} catch (error: any) {
-				//this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+			} catch (e: any) {
+				console.log("errore gestito:", e.error.message);
+				//this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
 				this.setStep("form");
 			}
 		}
