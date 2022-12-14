@@ -62,6 +62,42 @@ export class EnzoAssetDetailPageComponent implements OnInit {
 		if(asset.id === undefined) return;
 		await lastValueFrom(this.resourceService.deleteAssetUsingDELETE(asset.id));
 	}
+
+	dossierTableButtons: any[] = [
+		{
+			label: "Dettagli",
+			hideLabel: true,
+			icon: "pi pi-search",
+			severity: "secondary",
+			class: "p-button-sm p-button-outlined",
+			link: "../../../dossier/detail",
+			command: (e: any) => this.tabManagerService.openInCard(),
+		}
+	]
+
+	operationTableButtons: any[] = [
+		{
+			label: "Dettagli",
+			hideLabel: true,
+			icon: "pi pi-search",
+			severity: "secondary",
+			class: "p-button-sm p-button-outlined",
+			link: "../../../operation/detail",
+			command: (e: any) => this.tabManagerService.openInCard(),
+		}
+	]
+
+	relifTableButtons: any[] = [
+		{
+			label: "Dettagli",
+			hideLabel: true,
+			icon: "pi pi-search",
+			severity: "secondary",
+			class: "p-button-sm p-button-outlined",
+			link: "../../../relif/detail",
+			command: (e: any) => this.tabManagerService.openInCard(),
+		}
+	]
 }
 
 

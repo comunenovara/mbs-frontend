@@ -11,18 +11,18 @@
 	<div class="col-12 lg:col-12 xl:col-12">
         <div class="card mb-0">
 			<h3>dossier</h3>
-			<mbs-dossier-list-loader [filters]="{assetId: assetDto.id}" [dcs]="['id', 'description']"></mbs-dossier-list-loader>
+			<mbs-dossier-list-loader [filters]="{assetId: assetDto.id}" [dcs]="['id', 'description']" [buttons]="dossierTableButtons"></mbs-dossier-list-loader>
 		</div>
 	</div>
 	<div class="col-12 lg:col-12 xl:col-12">
         <div class="card mb-0">
 			<h3>operation</h3>
-			<mbs-operation-list-loader [filters]="{assetId: assetDto.id}" [dcs]="['id', 'description']"></mbs-operation-list-loader>
+			<mbs-operation-list-loader [filters]="{assetId: assetDto.id}" [dcs]="['id', 'description']" [buttons]="operationTableButtons"></mbs-operation-list-loader>
 		</div>
 	</div>
 	<div class="col-12 lg:col-12 xl:col-12">
         <div class="card mb-0">
 			<h3>relif</h3>
-			<mbs-relif-list-loader [filters]="{assetId: assetDto.id}" [dcs]="['id', 'description']"></mbs-relif-list-loader>
+			<mbs-relif-list-loader [filters]="{assetId: assetDto.id}" [dcs]="['id', 'description']" [buttons]="relifTableButtons"></mbs-relif-list-loader>
 		</div>
 	</div>
