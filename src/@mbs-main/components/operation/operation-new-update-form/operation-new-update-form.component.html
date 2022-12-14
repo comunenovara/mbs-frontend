@@ -20,11 +20,13 @@
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'type' }}</span>
-				<input type="text" pInputText formControlName="type" placeholder="">
+				<input type="text" pInputText formControlName="type" [agalAutocomplete]="typeAutocomplete">
+				<agal-autocomplete #typeAutocomplete [filteredElements]="_filteredType"></agal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'asset' }}</span>
-				<input type="text" pInputText formControlName="asset" placeholder="">
+				<input type="text" pInputText formControlName="asset" [agalAutocomplete]="assetAutocomplete">
+				<agal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></agal-autocomplete>
 			</div>
 
             <div class="col-12 md:col-6 lg:col-3">
@@ -56,3 +58,4 @@
         </button>
     </div>
 </div>
+<pre>{{ _operationNewUpdateForm.value | json }}</pre>
