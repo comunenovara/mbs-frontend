@@ -63,6 +63,7 @@ export class MbsRelifNewUpdateFormComponent implements OnInit {
 		this.setStep("loading");
 
 		let relif: MbsRelifDto = this._relifNewUpdateForm.value;
+		relif.assetId = relif.asset.id;
 
 		if(this.returnToParent) {
 			this.relifOutput.emit(relif);

@@ -8,13 +8,13 @@ export class MbsDossierDto {
 
 	description: string;
 
-	typeId: number;
+	typeId?: number;
 	type: MbsDossierTypeDto;
-	assetId: number;
+	assetId?: number;
 	asset: MbsAssetDto;
-	relifId: number;
+	relifId?: number;
 	relif: MbsRelifDto;
-	operationId: number;
+	operationId?: number;
 	operation: MbsOperationDto;
 
 }

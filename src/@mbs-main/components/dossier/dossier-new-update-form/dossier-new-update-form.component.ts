@@ -73,6 +73,10 @@ export class MbsDossierNewUpdateFormComponent implements OnInit {
 		this.setStep("loading");
 
 		let dossier: MbsDossierDto = this._dossierNewUpdateForm.value;
+		dossier.typeId = dossier.type.id;
+		dossier.assetId = dossier.asset.id;
+		dossier.relifId = dossier.relif.id;
+		dossier.operationId = dossier.operation.id;
 
 		if(this.returnToParent) {
 			this.dossierOutput.emit(dossier);
