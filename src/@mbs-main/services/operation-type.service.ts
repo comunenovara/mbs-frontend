@@ -21,9 +21,9 @@ export class MbsOperationTypeResourceService {
 	getAllOperationTypesUsingGET(filters: any): Observable<MbsOperationTypeDto[]> {
 		return this.http.get<MbsOperationTypeDto[]>("http://localhost:3000/mbs/main/operationTypes?" + this.prepareQueryParams(filters).toString());
 	}
-
+	
 	countOperationTypesUsingGET(filters: any): Observable<number> {
-		return this.http.get<number>("http://localhost:3000/mbs/main/operationTypes/");
+		return this.http.get<number>("http://localhost:3000/mbs/main/operationTypes?" + this.prepareQueryParams(filters).toString());
 	}
 
 	getOperationTypeUsingGET(id: number): Observable<MbsOperationTypeDto> {

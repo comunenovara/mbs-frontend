@@ -19,18 +19,26 @@ export class MbsDossierResourceService {
 	}
 
 	getAllDossiersUsingGET(filters: any): Observable<MbsDossierDto[]> {
-		return this.http.get<MbsDossierDto[]>("http://localhost:3000/mbs/main/dossiers/");
+		return this.http.get<MbsDossierDto[]>("http://localhost:3000/mbs/main/dossiers?" + this.prepareQueryParams(filters).toString());
 	}
 	
 	countDossiersUsingGET(filters: any): Observable<number> {
-		return this.http.get<number>("http://localhost:3000/mbs/main/dossiers/");
+		return this.http.get<number>("http://localhost:3000/mbs/main/dossiers?" + this.prepareQueryParams(filters).toString());
 	}
 
 	getDossierUsingGET(id: number): Observable<MbsDossierDto> {
-		return this.http.get<MbsDossierDto>("http://localhost:3000/mbs/main/dossiers/"+id);
+		return this.http.get<MbsDossierDto>("http://localhost:3000/mbs/main/dossiers/" + id);
 	}
 
 	deleteDossierUsingDELETE(id: number): Observable<MbsDossierDto> {
-		return this.http.delete<MbsDossierDto>("http://localhost:3000/mbs/main/dossiers/"+id+"/delete");
+		return this.http.delete<MbsDossierDto>("http://localhost:3000/mbs/main/dossiers/" + id + "/delete");
+	}
+
+	private prepareQueryParams(filters: any) {
+		let params = new URLSearchParams();
+		for (let key in filters) {
+			params.set(key, filters[key])
+		}
+		return params;
 	}
 }
