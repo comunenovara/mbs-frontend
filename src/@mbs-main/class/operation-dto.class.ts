@@ -9,9 +9,9 @@ export class MbsOperationDto {
 	startDate: Date;
 	endDate: Date;
 
-	typeId: number;
+	typeId?: number;
 	type: MbsOperationTypeDto;
-	assetId: number;
+	assetId?: number;
 	asset: MbsAssetDto;
 
 }

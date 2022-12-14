@@ -68,6 +68,8 @@ export class MbsOperationNewUpdateFormComponent implements OnInit {
 		this.setStep("loading");
 
 		let operation: MbsOperationDto = this._operationNewUpdateForm.value;
+		operation.typeId = operation.type.id;
+		operation.assetId = operation.asset.id;
 
 		if(this.returnToParent) {
 			this.operationOutput.emit(operation);
