@@ -1,5 +1,5 @@
-<div id="mbs-operation-new-update-form" *ngIf="step.form">
-    <form [formGroup]="_operationNewUpdateForm" (ngSubmit)="submit()">
+<div id="mbs-operation-new-update-form" *ngIf="stepIs(formStep.FORM)">
+    <form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
         <div class="grid p-fluid" style="margin-top: 0px;">
 
 			<div class="col-12 md:col-6 lg:col-4">
@@ -39,17 +39,17 @@
     </form>
 </div>
 
-<div *ngIf="step.loading" fxLayoutAlign="center">
+<div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
     loading
 </div>
 
-<div *ngIf="step.complete">
+<div *ngIf="stepIs(formStep.COMPLETE)">
     <h1 *ngIf="!_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.CREATION_OK' }}</h1>
     <h1 *ngIf="_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.UPDATE_OK' }}</h1>
 
     <hr>
 
-    <mbs-operation-detail-box [operation]="_operationResult"></mbs-operation-detail-box>
+    <mbs-operation-detail-box [operation]="_result"></mbs-operation-detail-box>
 
     <div *ngIf="!_isUpdate">
         <button pButton color="primary" (click)="newOperation()">

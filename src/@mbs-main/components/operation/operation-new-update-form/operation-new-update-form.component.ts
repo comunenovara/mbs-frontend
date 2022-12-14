@@ -1,7 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
+import { AgalCommonService } from '@agal-core/services/common.service';
+import { AgalGenericForm, FormStep } from '@agal-core/components/agal-generic-form';
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsOperationResourceService } from '@mbs-main/services/operation.service';
 import { MbsOperationDto } from '@mbs-main/class/operation-dto.class';
@@ -13,35 +15,33 @@ import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 	templateUrl: './operation-new-update-form.component.html',
 	styleUrls: ['./operation-new-update-form.component.scss']
 })
-export class MbsOperationNewUpdateFormComponent implements OnInit {
+export class MbsOperationNewUpdateFormComponent extends AgalGenericForm {
 	@Input() operation: MbsOperationDto;
-	@Input() returnToParent: boolean = false; 
-
-	@Output() operationOutput = new EventEmitter<MbsOperationDto>();
-    
-    constructor(
+	@Output() operationOutput: EventEmitter<MbsOperationDto> = new EventEmitter<MbsOperationDto>();
+	
+	constructor(
+        agcs: AgalCommonService,
 		private _formBuilder: FormBuilder,
-		private operationResourceService: MbsOperationResourceService,
+		private operationResourceService: MbsOperationResourceService, 
 		private mbsMainAutocompleteService: MbsMainAutocompleteService,
-		
-	) { }
+    ) { super(agcs); }
 
-	step: any = {
-		form: true,
-		loading: false,
-		complete: false
-	};
+/* VIEW VARIABLES*/
+	displayFn: Function = (selectedElement: any) => {
+        return selectedElement.description;
+    };
+/* */
 
-    
-	_operationNewUpdateForm: FormGroup;
-	_isUpdate: boolean = false;
-	_operationResult: any;
+	override loadVariables(): void {
+		this.input = this.operation;
+		this.output = this.operationOutput;
+	}
 
 	_filteredType: Observable<MbsOperationTypeDto[]>;
 	_filteredAsset: Observable<MbsAssetDto[]>;
 
-	ngOnInit(): void {
-		this._operationNewUpdateForm = this._formBuilder.group({
+	override loadForm(): void {
+		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
 			description: [null, []],
 			value: [null, []],
@@ -51,74 +51,47 @@ export class MbsOperationNewUpdateFormComponent implements OnInit {
 			asset: [null, []],
 		});
 
-		if(this.operation != null) {
-			this._operationNewUpdateForm.patchValue(this.operation);
-			this._isUpdate = true;
-		}
-
-		this._filteredType = this.mbsMainAutocompleteService.filterOperationType(this._operationNewUpdateForm.controls['type'].valueChanges);
-		this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._operationNewUpdateForm.controls['asset'].valueChanges);
+		this._filteredType = this.mbsMainAutocompleteService.filterOperationType(this._newUpdateForm.controls['type'].valueChanges);
+		this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._newUpdateForm.controls['asset'].valueChanges);
 	}
 
-	async submit() {
-		if (!this._operationNewUpdateForm.valid) {
-			return;
+	override prepareResult(): MbsOperationDto {
+		let result: MbsOperationDto = this._newUpdateForm.value;
+		{
+			result.typeId = result.type.id;
+			result.assetId = result.asset.id;
 		}
+		return result;
+	}
 
-		this.setStep("loading");
-
-		let operation: MbsOperationDto = this._operationNewUpdateForm.value;
-		operation.typeId = operation.type.id;
-		operation.assetId = operation.asset.id;
-
-		if(this.returnToParent) {
-			this.operationOutput.emit(operation);
-			this.setStep("complete");
-		} 
-
-		if(!this.returnToParent) {
-			try {
-				let postOrPut: string;
-				if (operation.id != 0) {
-					await lastValueFrom(this.operationResourceService.updateOperationUsingPUT(operation));
-					postOrPut = "updated";
-				} else {
-					await lastValueFrom(this.operationResourceService.createOperationUsingPOST(operation));
-					postOrPut = "created";
-				}
-
-				this._operationResult = operation;
-
-				//this.eventService.reloadCurrentPage();
-
-				this.setStep("complete");
-
-			} catch (e: any) {
-				console.log("errore gestito:", e.error.message);
-				//this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
-				this.setStep("form");
+	override async sendToBackEnd(request: MbsOperationDto) {
+		try {
+			let postOrPut: string;
+			if (request.id != 0) {
+				await lastValueFrom(this.operationResourceService.updateOperationUsingPUT(request));
+				postOrPut = "updated";
+			} else {
+				await lastValueFrom(this.operationResourceService.createOperationUsingPOST(request));
+				postOrPut = "created";
 			}
-		}
+			this._result = request;
 
-		//this._fuseProgressBarService.hide();
+			this.agcs.eventer.launchReloadContent(this._result);
+			this.setStep(FormStep.COMPLETE);
+
+		} catch (e: any) {
+			this.agcs.eventer.launchMessage({
+				severity: "error",
+				text: e.error.message,
+				duration: 5000
+			});
+			this.setStep(FormStep.FORM);
+		}
 	}
 
-
-
-	newOperation() {
+	protected newOperation() {
 		//this._operation = null;
 		this.operationOutput.emit(this.operation);
-		this.setStep("form");
+		this.setStep(FormStep.FORM);
 	}
-
-	private setStep(stepToShow: string) {
-		this.step.form = false;
-		this.step.loading = false;
-		this.step.complete = false;
-		this.step[stepToShow] = true;
-	}
-
-	displayFn: Function = (selectedElement: any) => {
-        return selectedElement.description;
-    };
 }
