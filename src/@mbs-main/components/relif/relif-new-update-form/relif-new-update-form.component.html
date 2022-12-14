@@ -16,7 +16,8 @@
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'asset' }}</span>
-				<input type="text" pInputText formControlName="asset" placeholder="">
+				<input type="text" pInputText formControlName="asset" [agalAutocomplete]="assetAutocomplete">
+                <agal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></agal-autocomplete>
 			</div>
 
             <div class="col-12 md:col-6 lg:col-3">
