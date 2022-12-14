@@ -1,4 +1,4 @@
-import { AgalPaginator } from '@agal-core/components/paginator/paginator.component';
+import { AgalPaginator } from '@agal-core/modules/paginator/components/paginator/paginator.component';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
