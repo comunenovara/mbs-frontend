@@ -4,6 +4,7 @@ import { lastValueFrom, Observable } from 'rxjs';
 
 import { AgalCommonService } from '@agal-core/services/common.service';
 import { AgalGenericForm, FormStep } from '@agal-core/components/agal-generic-form';
+
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsOperationResourceService } from '@mbs-main/services/operation.service';
 import { MbsOperationDto } from '@mbs-main/class/operation-dto.class';
@@ -20,17 +21,11 @@ export class MbsOperationNewUpdateFormComponent extends AgalGenericForm {
 	@Output() operationOutput: EventEmitter<MbsOperationDto> = new EventEmitter<MbsOperationDto>();
 	
 	constructor(
-        agcs: AgalCommonService,
+		agcs: AgalCommonService,
 		private _formBuilder: FormBuilder,
 		private operationResourceService: MbsOperationResourceService, 
 		private mbsMainAutocompleteService: MbsMainAutocompleteService,
-    ) { super(agcs); }
-
-/* VIEW VARIABLES*/
-	displayFn: Function = (selectedElement: any) => {
-        return selectedElement.description;
-    };
-/* */
+	) { super(agcs); }
 
 	override loadVariables(): void {
 		this.input = this.operation;

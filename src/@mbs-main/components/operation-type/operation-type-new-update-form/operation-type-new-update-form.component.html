@@ -1,38 +1,38 @@
-<div id="mbs-operation-type-new-update-form" *ngIf="step.form">
-    <form [formGroup]="_operationTypeNewUpdateForm" (ngSubmit)="submit()">
-        <div class="grid p-fluid" style="margin-top: 0px;">
+<div id="mbs-operation-type-new-update-form" *ngIf="stepIs(formStep.FORM)">
+	<form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
+		<div class="grid p-fluid" style="margin-top: 0px;">
 
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'description' }}</span>
 				<input type="text" pInputText formControlName="description" placeholder="">
 			</div>
 
-            <div class="col-12 md:col-6 lg:col-3">
-                <br>
-                <button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'MAIN.CREATE' }}</button>
-                <button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'MAIN.UPDATE' }}</button>
-            </div>
+			<div class="col-12 md:col-6 lg:col-3">
+				<br>
+				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'MAIN.CREATE' }}</button>
+				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'MAIN.UPDATE' }}</button>
+			</div>
 
-        </div>
-    </form>
+		</div>
+	</form>
 </div>
 
-<div *ngIf="step.loading" fxLayoutAlign="center">
-    loading
+<div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
+	loading
 </div>
 
-<div *ngIf="step.complete">
-    <h1 *ngIf="!_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.CREATION_OK' }}</h1>
-    <h1 *ngIf="_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.UPDATE_OK' }}</h1>
+<div *ngIf="stepIs(formStep.COMPLETE)">
+	<h1 *ngIf="!_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.CREATION_OK' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.UPDATE_OK' }}</h1>
 
-    <hr>
+	<hr>
 
-    <mbs-operation-type-detail-box [operationType]="_operationTypeResult"></mbs-operation-type-detail-box>
+	<mbs-operation-type-detail-box [operationType]="_result"></mbs-operation-type-detail-box>
 
-    <div *ngIf="!_isUpdate">
-        <button pButton color="primary" (click)="newOperationType()">
-            <span *ngIf="!returnToParent">{{ 'MAIN.CREATE_NEW' }}</span>
-            <span *ngIf="returnToParent">{{ 'MAIN.EDIT' }}</span>
-        </button>
-    </div>
+	<div *ngIf="!_isUpdate">
+		<button pButton color="primary" (click)="newOperationType()">
+			<span *ngIf="!returnToParent">{{ 'MAIN.CREATE_NEW' }}</span>
+			<span *ngIf="returnToParent">{{ 'MAIN.EDIT' }}</span>
+		</button>
+	</div>
 </div>

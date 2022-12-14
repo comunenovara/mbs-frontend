@@ -1,6 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
+
+import { AgalCommonService } from '@agal-core/services/common.service';
+import { AgalGenericForm, FormStep } from '@agal-core/components/agal-generic-form';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsOperationTypeResourceService } from '@mbs-main/services/operation-type.service';
@@ -11,97 +14,66 @@ import { MbsOperationTypeDto } from '@mbs-main/class/operation-type-dto.class';
 	templateUrl: './operation-type-new-update-form.component.html',
 	styleUrls: ['./operation-type-new-update-form.component.scss']
 })
-export class MbsOperationTypeNewUpdateFormComponent implements OnInit {
+export class MbsOperationTypeNewUpdateFormComponent extends AgalGenericForm {
 	@Input() operationType: MbsOperationTypeDto;
-	@Input() returnToParent: boolean = false; 
-
-	@Output() operationTypeOutput = new EventEmitter<MbsOperationTypeDto>();
-    
-    constructor(
+	@Output() operationTypeOutput: EventEmitter<MbsOperationTypeDto> = new EventEmitter<MbsOperationTypeDto>();
+	
+	constructor(
+		agcs: AgalCommonService,
 		private _formBuilder: FormBuilder,
-		private operationTypeResourceService: MbsOperationTypeResourceService,
+		private operationTypeResourceService: MbsOperationTypeResourceService, 
 		private mbsMainAutocompleteService: MbsMainAutocompleteService,
-		
-	) { }
+	) { super(agcs); }
 
-	step: any = {
-		form: true,
-		loading: false,
-		complete: false
-	};
-
-    
-	_operationTypeNewUpdateForm: FormGroup;
-	_isUpdate: boolean = false;
-	_operationTypeResult: any;
+	override loadVariables(): void {
+		this.input = this.operationType;
+		this.output = this.operationTypeOutput;
+	}
 
 
-	ngOnInit(): void {
-		this._operationTypeNewUpdateForm = this._formBuilder.group({
+	override loadForm(): void {
+		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
 			description: [null, []],
 		});
 
-		if(this.operationType != null) {
-			this._operationTypeNewUpdateForm.patchValue(this.operationType);
-			this._isUpdate = true;
-		}
-
 	}
 
-	async submit() {
-		if (!this._operationTypeNewUpdateForm.valid) {
-			return;
+	override prepareResult(): MbsOperationTypeDto {
+		let result: MbsOperationTypeDto = this._newUpdateForm.value;
+		{
 		}
+		return result;
+	}
 
-		this.setStep("loading");
-
-		let operationType: MbsOperationTypeDto = this._operationTypeNewUpdateForm.value;
-
-		if(this.returnToParent) {
-			this.operationTypeOutput.emit(operationType);
-			this.setStep("complete");
-		} 
-
-		if(!this.returnToParent) {
-			try {
-				let postOrPut: string;
-				if (operationType.id != 0) {
-					await lastValueFrom(this.operationTypeResourceService.updateOperationTypeUsingPUT(operationType));
-					postOrPut = "updated";
-				} else {
-					await lastValueFrom(this.operationTypeResourceService.createOperationTypeUsingPOST(operationType));
-					postOrPut = "created";
-				}
-
-				this._operationTypeResult = operationType;
-
-				//this.eventService.reloadCurrentPage();
-
-				this.setStep("complete");
-
-			} catch (e: any) {
-				console.log("errore gestito:", e.error.message);
-				//this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
-				this.setStep("form");
+	override async sendToBackEnd(request: MbsOperationTypeDto) {
+		try {
+			let postOrPut: string;
+			if (request.id != 0) {
+				await lastValueFrom(this.operationTypeResourceService.updateOperationTypeUsingPUT(request));
+				postOrPut = "updated";
+			} else {
+				await lastValueFrom(this.operationTypeResourceService.createOperationTypeUsingPOST(request));
+				postOrPut = "created";
 			}
-		}
+			this._result = request;
 
-		//this._fuseProgressBarService.hide();
+			this.agcs.eventer.launchReloadContent(this._result);
+			this.setStep(FormStep.COMPLETE);
+
+		} catch (e: any) {
+			this.agcs.eventer.launchMessage({
+				severity: "error",
+				text: e.error.message,
+				duration: 5000
+			});
+			this.setStep(FormStep.FORM);
+		}
 	}
 
-
-
-	newOperationType() {
+	protected newOperationType() {
 		//this._operationType = null;
 		this.operationTypeOutput.emit(this.operationType);
-		this.setStep("form");
-	}
-
-	private setStep(stepToShow: string) {
-		this.step.form = false;
-		this.step.loading = false;
-		this.step.complete = false;
-		this.step[stepToShow] = true;
+		this.setStep(FormStep.FORM);
 	}
 }

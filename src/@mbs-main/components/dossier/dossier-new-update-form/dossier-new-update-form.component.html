@@ -1,6 +1,6 @@
-<div id="mbs-dossier-new-update-form" *ngIf="step.form">
-    <form [formGroup]="_dossierNewUpdateForm" (ngSubmit)="submit()">
-        <div class="grid p-fluid" style="margin-top: 0px;">
+<div id="mbs-dossier-new-update-form" *ngIf="stepIs(formStep.FORM)">
+	<form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
+		<div class="grid p-fluid" style="margin-top: 0px;">
 
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'description' }}</span>
@@ -9,50 +9,50 @@
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'type' }}</span>
 				<input type="text" pInputText formControlName="type" [agalAutocomplete]="typeAutocomplete">
-                <agal-autocomplete #typeAutocomplete [filteredElements]="_filteredType"></agal-autocomplete>
+				<agal-autocomplete #typeAutocomplete [filteredElements]="_filteredType"></agal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'asset' }}</span>
 				<input type="text" pInputText formControlName="asset" [agalAutocomplete]="assetAutocomplete">
-                <agal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></agal-autocomplete>
+				<agal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></agal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'relif' }}</span>
 				<input type="text" pInputText formControlName="relif" [agalAutocomplete]="relifAutocomplete">
-                <agal-autocomplete #relifAutocomplete [filteredElements]="_filteredRelif"></agal-autocomplete>
+				<agal-autocomplete #relifAutocomplete [filteredElements]="_filteredRelif"></agal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'operation' }}</span>
 				<input type="text" pInputText formControlName="operation" [agalAutocomplete]="operationAutocomplete">
-                <agal-autocomplete #operationAutocomplete [filteredElements]="_filteredOperation"></agal-autocomplete>
+				<agal-autocomplete #operationAutocomplete [filteredElements]="_filteredOperation"></agal-autocomplete>
 			</div>
 
-            <div class="col-12 md:col-6 lg:col-3">
-                <br>
-                <button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'MAIN.CREATE' }}</button>
-                <button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'MAIN.UPDATE' }}</button>
-            </div>
+			<div class="col-12 md:col-6 lg:col-3">
+				<br>
+				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'MAIN.CREATE' }}</button>
+				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'MAIN.UPDATE' }}</button>
+			</div>
 
-        </div>
-    </form>
+		</div>
+	</form>
 </div>
 
-<div *ngIf="step.loading" fxLayoutAlign="center">
-    loading
+<div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
+	loading
 </div>
 
-<div *ngIf="step.complete">
-    <h1 *ngIf="!_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.CREATION_OK' }}</h1>
-    <h1 *ngIf="_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.UPDATE_OK' }}</h1>
+<div *ngIf="stepIs(formStep.COMPLETE)">
+	<h1 *ngIf="!_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.CREATION_OK' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.UPDATE_OK' }}</h1>
 
-    <hr>
+	<hr>
 
-    <mbs-dossier-detail-box [dossier]="_dossierResult"></mbs-dossier-detail-box>
+	<mbs-dossier-detail-box [dossier]="_result"></mbs-dossier-detail-box>
 
-    <div *ngIf="!_isUpdate">
-        <button pButton color="primary" (click)="newDossier()">
-            <span *ngIf="!returnToParent">{{ 'MAIN.CREATE_NEW' }}</span>
-            <span *ngIf="returnToParent">{{ 'MAIN.EDIT' }}</span>
-        </button>
-    </div>
+	<div *ngIf="!_isUpdate">
+		<button pButton color="primary" (click)="newDossier()">
+			<span *ngIf="!returnToParent">{{ 'MAIN.CREATE_NEW' }}</span>
+			<span *ngIf="returnToParent">{{ 'MAIN.EDIT' }}</span>
+		</button>
+	</div>
 </div>

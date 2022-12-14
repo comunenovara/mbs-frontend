@@ -1,6 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
+
+import { AgalCommonService } from '@agal-core/services/common.service';
+import { AgalGenericForm, FormStep } from '@agal-core/components/agal-generic-form';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsAssetResourceService } from '@mbs-main/services/asset.service';
@@ -11,99 +14,68 @@ import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 	templateUrl: './asset-new-update-form.component.html',
 	styleUrls: ['./asset-new-update-form.component.scss']
 })
-export class MbsAssetNewUpdateFormComponent implements OnInit {
+export class MbsAssetNewUpdateFormComponent extends AgalGenericForm {
 	@Input() asset: MbsAssetDto;
-	@Input() returnToParent: boolean = false; 
-
-	@Output() assetOutput = new EventEmitter<MbsAssetDto>();
-    
-    constructor(
+	@Output() assetOutput: EventEmitter<MbsAssetDto> = new EventEmitter<MbsAssetDto>();
+	
+	constructor(
+		agcs: AgalCommonService,
 		private _formBuilder: FormBuilder,
-		private assetResourceService: MbsAssetResourceService,
+		private assetResourceService: MbsAssetResourceService, 
 		private mbsMainAutocompleteService: MbsMainAutocompleteService,
-		
-	) { }
+	) { super(agcs); }
 
-	step: any = {
-		form: true,
-		loading: false,
-		complete: false
-	};
-
-    
-	_assetNewUpdateForm: FormGroup;
-	_isUpdate: boolean = false;
-	_assetResult: any;
+	override loadVariables(): void {
+		this.input = this.asset;
+		this.output = this.assetOutput;
+	}
 
 
-	ngOnInit(): void {
-		this._assetNewUpdateForm = this._formBuilder.group({
+	override loadForm(): void {
+		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
 			description: [null, []],
 			address: [null, []],
 			mq: [null, []],
 		});
 
-		if(this.asset != null) {
-			this._assetNewUpdateForm.patchValue(this.asset);
-			this._isUpdate = true;
-		}
-
 	}
 
-	async submit() {
-		if (!this._assetNewUpdateForm.valid) {
-			return;
+	override prepareResult(): MbsAssetDto {
+		let result: MbsAssetDto = this._newUpdateForm.value;
+		{
 		}
+		return result;
+	}
 
-		this.setStep("loading");
-
-		let asset: MbsAssetDto = this._assetNewUpdateForm.value;
-
-		if(this.returnToParent) {
-			this.assetOutput.emit(asset);
-			this.setStep("complete");
-		} 
-
-		if(!this.returnToParent) {
-			try {
-				let postOrPut: string;
-				if (asset.id != 0) {
-					await lastValueFrom(this.assetResourceService.updateAssetUsingPUT(asset));
-					postOrPut = "updated";
-				} else {
-					await lastValueFrom(this.assetResourceService.createAssetUsingPOST(asset));
-					postOrPut = "created";
-				}
-
-				this._assetResult = asset;
-
-				//this.eventService.reloadCurrentPage();
-
-				this.setStep("complete");
-
-			} catch (e: any) {
-				console.log("errore gestito:", e.error.message);
-				//this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
-				this.setStep("form");
+	override async sendToBackEnd(request: MbsAssetDto) {
+		try {
+			let postOrPut: string;
+			if (request.id != 0) {
+				await lastValueFrom(this.assetResourceService.updateAssetUsingPUT(request));
+				postOrPut = "updated";
+			} else {
+				await lastValueFrom(this.assetResourceService.createAssetUsingPOST(request));
+				postOrPut = "created";
 			}
-		}
+			this._result = request;
 
-		//this._fuseProgressBarService.hide();
+			this.agcs.eventer.launchReloadContent(this._result);
+			this.setStep(FormStep.COMPLETE);
+
+		} catch (e: any) {
+			this.agcs.eventer.launchMessage({
+				severity: "error",
+				text: e.error.message,
+				duration: 5000
+			});
+			this.setStep(FormStep.FORM);
+		}
 	}
 
-
-
-	newAsset() {
+	protected newAsset() {
 		//this._asset = null;
 		this.assetOutput.emit(this.asset);
-		this.setStep("form");
-	}
-
-	private setStep(stepToShow: string) {
-		this.step.form = false;
-		this.step.loading = false;
-		this.step.complete = false;
-		this.step[stepToShow] = true;
+		this.setStep(FormStep.FORM);
 	}
 }

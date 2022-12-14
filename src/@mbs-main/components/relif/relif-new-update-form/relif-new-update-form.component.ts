@@ -1,6 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
+
+import { AgalCommonService } from '@agal-core/services/common.service';
+import { AgalGenericForm, FormStep } from '@agal-core/components/agal-generic-form';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsRelifResourceService } from '@mbs-main/services/relif.service';
@@ -12,34 +15,26 @@ import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 	templateUrl: './relif-new-update-form.component.html',
 	styleUrls: ['./relif-new-update-form.component.scss']
 })
-export class MbsRelifNewUpdateFormComponent implements OnInit {
+export class MbsRelifNewUpdateFormComponent extends AgalGenericForm {
 	@Input() relif: MbsRelifDto;
-	@Input() returnToParent: boolean = false; 
-
-	@Output() relifOutput = new EventEmitter<MbsRelifDto>();
-    
-    constructor(
+	@Output() relifOutput: EventEmitter<MbsRelifDto> = new EventEmitter<MbsRelifDto>();
+	
+	constructor(
+		agcs: AgalCommonService,
 		private _formBuilder: FormBuilder,
-		private relifResourceService: MbsRelifResourceService,
+		private relifResourceService: MbsRelifResourceService, 
 		private mbsMainAutocompleteService: MbsMainAutocompleteService,
-		
-	) { }
+	) { super(agcs); }
 
-	step: any = {
-		form: true,
-		loading: false,
-		complete: false
-	};
-
-    
-	_relifNewUpdateForm: FormGroup;
-	_isUpdate: boolean = false;
-	_relifResult: any;
+	override loadVariables(): void {
+		this.input = this.relif;
+		this.output = this.relifOutput;
+	}
 
 	_filteredAsset: Observable<MbsAssetDto[]>;
 
-	ngOnInit(): void {
-		this._relifNewUpdateForm = this._formBuilder.group({
+	override loadForm(): void {
+		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
 			description: [null, []],
 			startDate: [null, []],
@@ -47,68 +42,45 @@ export class MbsRelifNewUpdateFormComponent implements OnInit {
 			asset: [null, []],
 		});
 
-		if(this.relif != null) {
-			this._relifNewUpdateForm.patchValue(this.relif);
-			this._isUpdate = true;
-		}
-
-		this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._relifNewUpdateForm.controls['asset'].valueChanges);
+		this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._newUpdateForm.controls['asset'].valueChanges);
 	}
 
-	async submit() {
-		if (!this._relifNewUpdateForm.valid) {
-			return;
+	override prepareResult(): MbsRelifDto {
+		let result: MbsRelifDto = this._newUpdateForm.value;
+		{
+			result.assetId = result.asset.id;
 		}
+		return result;
+	}
 
-		this.setStep("loading");
-
-		let relif: MbsRelifDto = this._relifNewUpdateForm.value;
-		relif.assetId = relif.asset.id;
-
-		if(this.returnToParent) {
-			this.relifOutput.emit(relif);
-			this.setStep("complete");
-		} 
-
-		if(!this.returnToParent) {
-			try {
-				let postOrPut: string;
-				if (relif.id != 0) {
-					await lastValueFrom(this.relifResourceService.updateRelifUsingPUT(relif));
-					postOrPut = "updated";
-				} else {
-					await lastValueFrom(this.relifResourceService.createRelifUsingPOST(relif));
-					postOrPut = "created";
-				}
-
-				this._relifResult = relif;
-
-				//this.eventService.reloadCurrentPage();
-
-				this.setStep("complete");
-
-			} catch (e: any) {
-				console.log("errore gestito:", e.error.message);
-				//this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
-				this.setStep("form");
+	override async sendToBackEnd(request: MbsRelifDto) {
+		try {
+			let postOrPut: string;
+			if (request.id != 0) {
+				await lastValueFrom(this.relifResourceService.updateRelifUsingPUT(request));
+				postOrPut = "updated";
+			} else {
+				await lastValueFrom(this.relifResourceService.createRelifUsingPOST(request));
+				postOrPut = "created";
 			}
-		}
+			this._result = request;
 
-		//this._fuseProgressBarService.hide();
+			this.agcs.eventer.launchReloadContent(this._result);
+			this.setStep(FormStep.COMPLETE);
+
+		} catch (e: any) {
+			this.agcs.eventer.launchMessage({
+				severity: "error",
+				text: e.error.message,
+				duration: 5000
+			});
+			this.setStep(FormStep.FORM);
+		}
 	}
 
-
-
-	newRelif() {
+	protected newRelif() {
 		//this._relif = null;
 		this.relifOutput.emit(this.relif);
-		this.setStep("form");
-	}
-
-	private setStep(stepToShow: string) {
-		this.step.form = false;
-		this.step.loading = false;
-		this.step.complete = false;
-		this.step[stepToShow] = true;
+		this.setStep(FormStep.FORM);
 	}
 }

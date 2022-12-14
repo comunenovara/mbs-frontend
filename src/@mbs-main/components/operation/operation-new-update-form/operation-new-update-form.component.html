@@ -1,6 +1,6 @@
 <div id="mbs-operation-new-update-form" *ngIf="stepIs(formStep.FORM)">
-    <form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
-        <div class="grid p-fluid" style="margin-top: 0px;">
+	<form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
+		<div class="grid p-fluid" style="margin-top: 0px;">
 
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'description' }}</span>
@@ -21,40 +21,40 @@
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'type' }}</span>
 				<input type="text" pInputText formControlName="type" [agalAutocomplete]="typeAutocomplete">
-                <agal-autocomplete #typeAutocomplete [filteredElements]="_filteredType"></agal-autocomplete>
+				<agal-autocomplete #typeAutocomplete [filteredElements]="_filteredType"></agal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'asset' }}</span>
-				<input type="text" pInputText formControlName="asset" [agalAutocomplete]="assetAutocomplete" [displayFn]="displayFn">
-                <agal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset" [displayFn]="displayFn"></agal-autocomplete>
+				<input type="text" pInputText formControlName="asset" [agalAutocomplete]="assetAutocomplete">
+				<agal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></agal-autocomplete>
 			</div>
 
-            <div class="col-12 md:col-6 lg:col-3">
-                <br>
-                <button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'MAIN.CREATE' }}</button>
-                <button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'MAIN.UPDATE' }}</button>
-            </div>
+			<div class="col-12 md:col-6 lg:col-3">
+				<br>
+				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'MAIN.CREATE' }}</button>
+				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'MAIN.UPDATE' }}</button>
+			</div>
 
-        </div>
-    </form>
+		</div>
+	</form>
 </div>
 
 <div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
-    loading
+	loading
 </div>
 
 <div *ngIf="stepIs(formStep.COMPLETE)">
-    <h1 *ngIf="!_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.CREATION_OK' }}</h1>
-    <h1 *ngIf="_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.UPDATE_OK' }}</h1>
+	<h1 *ngIf="!_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.CREATION_OK' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.UPDATE_OK' }}</h1>
 
-    <hr>
+	<hr>
 
-    <mbs-operation-detail-box [operation]="_result"></mbs-operation-detail-box>
+	<mbs-operation-detail-box [operation]="_result"></mbs-operation-detail-box>
 
-    <div *ngIf="!_isUpdate">
-        <button pButton color="primary" (click)="newOperation()">
-            <span *ngIf="!returnToParent">{{ 'MAIN.CREATE_NEW' }}</span>
-            <span *ngIf="returnToParent">{{ 'MAIN.EDIT' }}</span>
-        </button>
-    </div>
+	<div *ngIf="!_isUpdate">
+		<button pButton color="primary" (click)="newOperation()">
+			<span *ngIf="!returnToParent">{{ 'MAIN.CREATE_NEW' }}</span>
+			<span *ngIf="returnToParent">{{ 'MAIN.EDIT' }}</span>
+		</button>
+	</div>
 </div>
