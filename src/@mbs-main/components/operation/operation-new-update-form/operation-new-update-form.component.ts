@@ -117,4 +117,8 @@ export class MbsOperationNewUpdateFormComponent implements OnInit {
 		this.step.complete = false;
 		this.step[stepToShow] = true;
 	}
+
+	displayFn: Function = (selectedElement: any) => {
+        return selectedElement.description;
+    };
 }
