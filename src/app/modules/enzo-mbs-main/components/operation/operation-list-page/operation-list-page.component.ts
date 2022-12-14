@@ -1,11 +1,12 @@
-import { AgalPaginator } from '@agal-core/modules/paginator/components/paginator/paginator.component';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 
 import { DialogService } from 'primeng/dynamicdialog';
 
+import { AgalPaginator } from '@agal-core/modules/paginator/components/paginator/paginator.component';
 import { TabManagerService } from '@tabler/services/tab-manager.service';
+
 import { MbsOperationResourceService } from '@mbs-main';
 import { EnzoOperationDialogComponent } from '../operation-dialog/operation-dialog.component';
 

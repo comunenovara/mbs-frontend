@@ -1,11 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { Component } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
+import { AgalEvent, AgalEventerService } from "@agal-core/modules/eventer/services/eventer.service";
 import { TabManagerService } from "@tabler/services/tab-manager.service";
 
+import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
 import { MbsDossierDto, MbsDossierResourceService} from '@mbs-main';
 import { EnzoDossierDialogComponent } from '../dossier-dialog/dossier-dialog.component';
 
@@ -14,40 +16,28 @@ import { EnzoDossierDialogComponent } from '../dossier-dialog/dossier-dialog.com
 	templateUrl: './dossier-detail-page.component.html',
 	styleUrls: ['./dossier-detail-page.component.scss']
 })
-export class EnzoDossierDetailPageComponent implements OnInit {
-	id: number;
-
+export class EnzoDossierDetailPageComponent extends EnzoGenericDetailPageComponent {
 	constructor(
-		private resourceService: MbsDossierResourceService,
-		private route: ActivatedRoute,
-		private router: Router,
-		private dialogService: DialogService,
+		route: ActivatedRoute,
+		router: Router,
+		eventer: AgalEventerService,
 		public tabManagerService: TabManagerService,
-	) {
-		var id = route.snapshot.paramMap.get('id');
-		if(id === null) throw new Error('Not valid Id');
-		this.id = +id;
-		this.onLoad();
-	}
-
-	ngOnInit(): void {
-		this.router.events
-			.subscribe((e: any) => {
-				if (e instanceof NavigationEnd) {
-					this.onLoad();
-				}
-			});
-	}
+		private dialogService: DialogService,
+		private resourceService: MbsDossierResourceService,
+	) { super(route, router, eventer); }
 
 	dossierDto: MbsDossierDto;
 
-	onLoad() {
+	override onLoad() {
 		this.dossierDto = this.route.snapshot.data['dossier'];
-	} 
+	}
 
-	async reloadPage() {
-		if(this.dossierDto.id === undefined) return;
-		this.dossierDto = await lastValueFrom(this.resourceService.getDossierUsingGET(this.dossierDto.id));
+	protected override reloadFromEvent(event: AgalEvent) {
+		if(event.data === "dossier") this.reloadPage();
+	}
+
+	override async reloadPage() {
+		this.dossierDto = await lastValueFrom(this.resourceService.getDossierUsingGET(this.id));
 	}
 
 	editDossier(dossier: MbsDossierDto) {

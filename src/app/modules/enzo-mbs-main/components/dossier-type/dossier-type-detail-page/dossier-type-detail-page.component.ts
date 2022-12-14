@@ -1,11 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { Component } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
+import { AgalEvent, AgalEventerService } from "@agal-core/modules/eventer/services/eventer.service";
 import { TabManagerService } from "@tabler/services/tab-manager.service";
 
+import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
 import { MbsDossierTypeDto, MbsDossierTypeResourceService} from '@mbs-main';
 import { EnzoDossierTypeDialogComponent } from '../dossier-type-dialog/dossier-type-dialog.component';
 
@@ -14,40 +16,28 @@ import { EnzoDossierTypeDialogComponent } from '../dossier-type-dialog/dossier-t
 	templateUrl: './dossier-type-detail-page.component.html',
 	styleUrls: ['./dossier-type-detail-page.component.scss']
 })
-export class EnzoDossierTypeDetailPageComponent implements OnInit {
-	id: number;
-
+export class EnzoDossierTypeDetailPageComponent extends EnzoGenericDetailPageComponent {
 	constructor(
-		private resourceService: MbsDossierTypeResourceService,
-		private route: ActivatedRoute,
-		private router: Router,
-		private dialogService: DialogService,
+		route: ActivatedRoute,
+		router: Router,
+		eventer: AgalEventerService,
 		public tabManagerService: TabManagerService,
-	) {
-		var id = route.snapshot.paramMap.get('id');
-		if(id === null) throw new Error('Not valid Id');
-		this.id = +id;
-		this.onLoad();
-	}
-
-	ngOnInit(): void {
-		this.router.events
-			.subscribe((e: any) => {
-				if (e instanceof NavigationEnd) {
-					this.onLoad();
-				}
-			});
-	}
+		private dialogService: DialogService,
+		private resourceService: MbsDossierTypeResourceService,
+	) { super(route, router, eventer); }
 
 	dossierTypeDto: MbsDossierTypeDto;
 
-	onLoad() {
+	override onLoad() {
 		this.dossierTypeDto = this.route.snapshot.data['dossierType'];
-	} 
+	}
 
-	async reloadPage() {
-		if(this.dossierTypeDto.id === undefined) return;
-		this.dossierTypeDto = await lastValueFrom(this.resourceService.getDossierTypeUsingGET(this.dossierTypeDto.id));
+	protected override reloadFromEvent(event: AgalEvent) {
+		if(event.data === "dossierType") this.reloadPage();
+	}
+
+	override async reloadPage() {
+		this.dossierTypeDto = await lastValueFrom(this.resourceService.getDossierTypeUsingGET(this.id));
 	}
 
 	editDossierType(dossierType: MbsDossierTypeDto) {

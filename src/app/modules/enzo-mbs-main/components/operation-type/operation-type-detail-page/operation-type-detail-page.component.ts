@@ -1,11 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { Component } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
+import { AgalEvent, AgalEventerService } from "@agal-core/modules/eventer/services/eventer.service";
 import { TabManagerService } from "@tabler/services/tab-manager.service";
 
+import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
 import { MbsOperationTypeDto, MbsOperationTypeResourceService} from '@mbs-main';
 import { EnzoOperationTypeDialogComponent } from '../operation-type-dialog/operation-type-dialog.component';
 
@@ -14,40 +16,28 @@ import { EnzoOperationTypeDialogComponent } from '../operation-type-dialog/opera
 	templateUrl: './operation-type-detail-page.component.html',
 	styleUrls: ['./operation-type-detail-page.component.scss']
 })
-export class EnzoOperationTypeDetailPageComponent implements OnInit {
-	id: number;
-
+export class EnzoOperationTypeDetailPageComponent extends EnzoGenericDetailPageComponent {
 	constructor(
-		private resourceService: MbsOperationTypeResourceService,
-		private route: ActivatedRoute,
-		private router: Router,
-		private dialogService: DialogService,
+		route: ActivatedRoute,
+		router: Router,
+		eventer: AgalEventerService,
 		public tabManagerService: TabManagerService,
-	) {
-		var id = route.snapshot.paramMap.get('id');
-		if(id === null) throw new Error('Not valid Id');
-		this.id = +id;
-		this.onLoad();
-	}
-
-	ngOnInit(): void {
-		this.router.events
-			.subscribe((e: any) => {
-				if (e instanceof NavigationEnd) {
-					this.onLoad();
-				}
-			});
-	}
+		private dialogService: DialogService,
+		private resourceService: MbsOperationTypeResourceService,
+	) { super(route, router, eventer); }
 
 	operationTypeDto: MbsOperationTypeDto;
 
-	onLoad() {
+	override onLoad() {
 		this.operationTypeDto = this.route.snapshot.data['operationType'];
-	} 
+	}
 
-	async reloadPage() {
-		if(this.operationTypeDto.id === undefined) return;
-		this.operationTypeDto = await lastValueFrom(this.resourceService.getOperationTypeUsingGET(this.operationTypeDto.id));
+	protected override reloadFromEvent(event: AgalEvent) {
+		if(event.data === "operationType") this.reloadPage();
+	}
+
+	override async reloadPage() {
+		this.operationTypeDto = await lastValueFrom(this.resourceService.getOperationTypeUsingGET(this.id));
 	}
 
 	editOperationType(operationType: MbsOperationTypeDto) {

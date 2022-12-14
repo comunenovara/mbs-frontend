@@ -1,11 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { Component } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
+import { AgalEvent, AgalEventerService } from "@agal-core/modules/eventer/services/eventer.service";
 import { TabManagerService } from "@tabler/services/tab-manager.service";
 
+import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
 import { MbsOperationDto, MbsOperationResourceService} from '@mbs-main';
 import { EnzoOperationDialogComponent } from '../operation-dialog/operation-dialog.component';
 
@@ -14,42 +16,28 @@ import { EnzoOperationDialogComponent } from '../operation-dialog/operation-dial
 	templateUrl: './operation-detail-page.component.html',
 	styleUrls: ['./operation-detail-page.component.scss']
 })
-export class EnzoOperationDetailPageComponent implements OnInit {
-	id: number;
-
+export class EnzoOperationDetailPageComponent extends EnzoGenericDetailPageComponent {
 	constructor(
-		private resourceService: MbsOperationResourceService,
-		private route: ActivatedRoute,
-		private router: Router,
-		private dialogService: DialogService,
+		route: ActivatedRoute,
+		router: Router,
+		eventer: AgalEventerService,
 		public tabManagerService: TabManagerService,
-	) {
-		var id = route.snapshot.paramMap.get('id');
-		if(id === null) throw new Error('Not valid Id');
-		this.id = +id;
-		this.onLoad();
-	}
-
-	ngOnInit(): void {
-/*
-		this.router.events
-			.subscribe((e: any) => {
-				if (e instanceof NavigationEnd) {
-					this.onLoad();
-				}
-			});
-			*/
-	}
+		private dialogService: DialogService,
+		private resourceService: MbsOperationResourceService,
+	) { super(route, router, eventer); }
 
 	operationDto: MbsOperationDto;
 
-	onLoad() {
+	override onLoad() {
 		this.operationDto = this.route.snapshot.data['operation'];
-	} 
+	}
 
-	async reloadPage() {
-		if(this.operationDto.id === undefined) return;
-		this.operationDto = await lastValueFrom(this.resourceService.getOperationUsingGET(this.operationDto.id));
+	protected override reloadFromEvent(event: AgalEvent) {
+		if(event.data === "operation") this.reloadPage();
+	}
+
+	override async reloadPage() {
+		this.operationDto = await lastValueFrom(this.resourceService.getOperationUsingGET(this.id));
 	}
 
 	editOperation(operation: MbsOperationDto) {

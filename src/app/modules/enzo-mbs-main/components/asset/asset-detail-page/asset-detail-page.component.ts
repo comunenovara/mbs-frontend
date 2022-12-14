@@ -7,9 +7,8 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { AgalEvent, AgalEventerService } from "@agal-core/modules/eventer/services/eventer.service";
 import { TabManagerService } from "@tabler/services/tab-manager.service";
 
-import { MbsAssetDto, MbsAssetResourceService} from '@mbs-main';
-
 import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
+import { MbsAssetDto, MbsAssetResourceService } from '@mbs-main';
 import { EnzoAssetDialogComponent } from '../asset-dialog/asset-dialog.component';
 
 @Component({
@@ -22,8 +21,8 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 		route: ActivatedRoute,
 		router: Router,
 		eventer: AgalEventerService,
+		public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
-		private tabManagerService: TabManagerService,
 		private resourceService: MbsAssetResourceService,
 	) { super(route, router, eventer); }
 
@@ -34,7 +33,7 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 	}
 
 	protected override reloadFromEvent(event: AgalEvent) {
-		if(event.data === "asset") this.reloadPage();
+		if (event.data === "asset") this.reloadPage();
 	}
 
 	override async reloadPage() {
@@ -50,11 +49,11 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 	}
 
 	async deleteAsset(asset: MbsAssetDto) {
-		if(asset.id === undefined) return;
+		if (asset.id === undefined) return;
 		await lastValueFrom(this.resourceService.deleteAssetUsingDELETE(asset.id));
 	}
 
-	dossierTableButtons: any[] = [
+	protected dossierTableButtons: any[] = [
 		{
 			label: "Dettagli",
 			hideLabel: true,
@@ -64,9 +63,9 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 			link: "../../../dossier/detail",
 			command: (e: any) => this.tabManagerService.openInCard(),
 		}
-	]
+	];
 
-	operationTableButtons: any[] = [
+	protected operationTableButtons: any[] = [
 		{
 			label: "Dettagli",
 			hideLabel: true,
@@ -76,9 +75,9 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 			link: "../../../operation/detail",
 			command: (e: any) => this.tabManagerService.openInCard(),
 		}
-	]
-
-	relifTableButtons: any[] = [
+	];
+	
+	protected relifTableButtons: any[] = [
 		{
 			label: "Dettagli",
 			hideLabel: true,

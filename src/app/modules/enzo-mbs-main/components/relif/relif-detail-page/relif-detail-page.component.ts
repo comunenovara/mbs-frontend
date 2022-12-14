@@ -1,11 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { Component } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
+import { AgalEvent, AgalEventerService } from "@agal-core/modules/eventer/services/eventer.service";
 import { TabManagerService } from "@tabler/services/tab-manager.service";
 
+import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
 import { MbsRelifDto, MbsRelifResourceService} from '@mbs-main';
 import { EnzoRelifDialogComponent } from '../relif-dialog/relif-dialog.component';
 
@@ -14,40 +16,28 @@ import { EnzoRelifDialogComponent } from '../relif-dialog/relif-dialog.component
 	templateUrl: './relif-detail-page.component.html',
 	styleUrls: ['./relif-detail-page.component.scss']
 })
-export class EnzoRelifDetailPageComponent implements OnInit {
-	id: number;
-
+export class EnzoRelifDetailPageComponent extends EnzoGenericDetailPageComponent {
 	constructor(
-		private resourceService: MbsRelifResourceService,
-		private route: ActivatedRoute,
-		private router: Router,
-		private dialogService: DialogService,
+		route: ActivatedRoute,
+		router: Router,
+		eventer: AgalEventerService,
 		public tabManagerService: TabManagerService,
-	) {
-		var id = route.snapshot.paramMap.get('id');
-		if(id === null) throw new Error('Not valid Id');
-		this.id = +id;
-		this.onLoad();
-	}
-
-	ngOnInit(): void {
-		this.router.events
-			.subscribe((e: any) => {
-				if (e instanceof NavigationEnd) {
-					this.onLoad();
-				}
-			});
-	}
+		private dialogService: DialogService,
+		private resourceService: MbsRelifResourceService,
+	) { super(route, router, eventer); }
 
 	relifDto: MbsRelifDto;
 
-	onLoad() {
+	override onLoad() {
 		this.relifDto = this.route.snapshot.data['relif'];
-	} 
+	}
 
-	async reloadPage() {
-		if(this.relifDto.id === undefined) return;
-		this.relifDto = await lastValueFrom(this.resourceService.getRelifUsingGET(this.relifDto.id));
+	protected override reloadFromEvent(event: AgalEvent) {
+		if(event.data === "relif") this.reloadPage();
+	}
+
+	override async reloadPage() {
+		this.relifDto = await lastValueFrom(this.resourceService.getRelifUsingGET(this.id));
 	}
 
 	editRelif(relif: MbsRelifDto) {

@@ -1,11 +1,12 @@
-import { AgalPaginator } from '@agal-core/modules/paginator/components/paginator/paginator.component';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 
 import { DialogService } from 'primeng/dynamicdialog';
 
+import { AgalPaginator } from '@agal-core/modules/paginator/components/paginator/paginator.component';
 import { TabManagerService } from '@tabler/services/tab-manager.service';
+
 import { MbsDossierResourceService } from '@mbs-main';
 import { EnzoDossierDialogComponent } from '../dossier-dialog/dossier-dialog.component';
 
