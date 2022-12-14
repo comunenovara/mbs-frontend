@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
 
+import { AgalCoreModule } from '@agal-core/agal-core.module';
 import { MbsMainModule } from '@mbs-main/main.module';
 
 import { enzoMbsMainRoutes } from './mbs-main.route';
@@ -32,6 +33,7 @@ import { EnzoRelifDialogComponent } from './components/relif/relif-dialog/relif-
 	imports: [ 
 		CommonModule,
 		RouterModule.forChild(enzoMbsMainRoutes),
+		AgalCoreModule,
 		MbsMainModule,
 
 		DynamicDialogModule,

@@ -2,3 +2,5 @@
 	[dcs]="dossierTypeListDc" [buttons]="tableButtons" 
 	[paginator]="dossierTypeListPaginator" (resultCount)="dossierTypeCount=$event"> 
 </mbs-dossier-type-list-loader>
+
+<agal-paginator [totalRecords]="300" [(pageable)]="dossierTypeListPaginator"></agal-paginator>

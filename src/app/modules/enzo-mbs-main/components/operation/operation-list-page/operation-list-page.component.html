@@ -2,3 +2,5 @@
 	[dcs]="operationListDc" [buttons]="tableButtons" 
 	[paginator]="operationListPaginator" (resultCount)="operationCount=$event"> 
 </mbs-operation-list-loader>
+
+<agal-paginator [totalRecords]="300" [(pageable)]="operationListPaginator"></agal-paginator>

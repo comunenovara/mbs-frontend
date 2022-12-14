@@ -8,7 +8,7 @@ import { AgalEvent, AgalEventerService } from "@agal-core/modules/eventer/servic
 import { TabManagerService } from "@tabler/services/tab-manager.service";
 
 import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
-import { MbsAssetDto, MbsAssetResourceService } from '@mbs-main';
+import { MbsAssetDto, MbsAssetResourceService} from '@mbs-main';
 import { EnzoAssetDialogComponent } from '../asset-dialog/asset-dialog.component';
 import { EnzoOperationDialogComponent } from "../../operation/operation-dialog/operation-dialog.component";
 
@@ -34,7 +34,7 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 	}
 
 	protected override reloadFromEvent(event: AgalEvent) {
-		if (event.data === "asset") this.reloadPage();
+		if(event.data === "asset") this.reloadPage();
 	}
 
 	override async reloadPage() {
@@ -50,7 +50,7 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 	}
 
 	async deleteAsset(asset: MbsAssetDto) {
-		if (asset.id === undefined) return;
+		if(asset.id === undefined) return;
 		await lastValueFrom(this.resourceService.deleteAssetUsingDELETE(asset.id));
 	}
 
