@@ -78,7 +78,7 @@ export class MbsDossierNewUpdateFormComponent extends AgalGenericForm {
 			}
 			this._result = request;
 
-			this.agcs.eventer.launchReloadContent(this._result);
+			this.agcs.eventer.launchReloadContent("dossier");
 			this.setStep(FormStep.COMPLETE);
 
 		} catch (e: any) {

@@ -65,7 +65,7 @@ export class MbsRelifNewUpdateFormComponent extends AgalGenericForm {
 			}
 			this._result = request;
 
-			this.agcs.eventer.launchReloadContent(this._result);
+			this.agcs.eventer.launchReloadContent("relif");
 			this.setStep(FormStep.COMPLETE);
 
 		} catch (e: any) {

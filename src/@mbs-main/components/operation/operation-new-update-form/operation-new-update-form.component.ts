@@ -32,12 +32,6 @@ export class MbsOperationNewUpdateFormComponent extends AgalGenericForm {
 		this.output = this.operationOutput;
 	}
 
-/* VIEW VARIABLES*/
-displayFn: Function = (selectedElement: any) => {
-	return selectedElement.description;
-};
-/* */ 
-
 	_filteredType: Observable<MbsOperationTypeDto[]>;
 	_filteredAsset: Observable<MbsAssetDto[]>;
 
@@ -59,6 +53,7 @@ displayFn: Function = (selectedElement: any) => {
 	override prepareResult(): MbsOperationDto {
 		let result: MbsOperationDto = this._newUpdateForm.value;
 		{
+			result.value = +result.value;
 			result.typeId = result.type.id;
 			result.assetId = result.asset.id;
 		}
@@ -77,7 +72,7 @@ displayFn: Function = (selectedElement: any) => {
 			}
 			this._result = request;
 
-			this.agcs.eventer.launchReloadContent(this._result);
+			this.agcs.eventer.launchReloadContent("operation");
 			this.setStep(FormStep.COMPLETE);
 
 		} catch (e: any) {

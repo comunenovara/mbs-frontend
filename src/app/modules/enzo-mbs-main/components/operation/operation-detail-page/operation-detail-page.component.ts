@@ -31,12 +31,14 @@ export class EnzoOperationDetailPageComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+/*
 		this.router.events
 			.subscribe((e: any) => {
 				if (e instanceof NavigationEnd) {
 					this.onLoad();
 				}
 			});
+			*/
 	}
 
 	operationDto: MbsOperationDto;

@@ -1,12 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { Component } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
+import { AgalEvent, AgalEventerService } from "@agal-core/modules/eventer/services/eventer.service";
 import { TabManagerService } from "@tabler/services/tab-manager.service";
 
 import { MbsAssetDto, MbsAssetResourceService} from '@mbs-main';
+
+import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
 import { EnzoAssetDialogComponent } from '../asset-dialog/asset-dialog.component';
 
 @Component({
@@ -14,40 +17,28 @@ import { EnzoAssetDialogComponent } from '../asset-dialog/asset-dialog.component
 	templateUrl: './asset-detail-page.component.html',
 	styleUrls: ['./asset-detail-page.component.scss']
 })
-export class EnzoAssetDetailPageComponent implements OnInit {
-	id: number;
-
+export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent {
 	constructor(
-		private resourceService: MbsAssetResourceService,
-		private route: ActivatedRoute,
-		private router: Router,
+		route: ActivatedRoute,
+		router: Router,
+		eventer: AgalEventerService,
 		private dialogService: DialogService,
-		public tabManagerService: TabManagerService,
-	) {
-		var id = route.snapshot.paramMap.get('id');
-		if(id === null) throw new Error('Not valid Id');
-		this.id = +id;
-		this.onLoad();
-	}
-
-	ngOnInit(): void {
-		this.router.events
-			.subscribe((e: any) => {
-				if (e instanceof NavigationEnd) {
-					this.onLoad();
-				}
-			});
-	}
+		private tabManagerService: TabManagerService,
+		private resourceService: MbsAssetResourceService,
+	) { super(route, router, eventer); }
 
 	assetDto: MbsAssetDto;
 
-	onLoad() {
+	override onLoad() {
 		this.assetDto = this.route.snapshot.data['asset'];
-	} 
+	}
 
-	async reloadPage() {
-		if(this.assetDto.id === undefined) return;
-		this.assetDto = await lastValueFrom(this.resourceService.getAssetUsingGET(this.assetDto.id));
+	protected override reloadFromEvent(event: AgalEvent) {
+		if(event.data === "asset") this.reloadPage();
+	}
+
+	override async reloadPage() {
+		this.assetDto = await lastValueFrom(this.resourceService.getAssetUsingGET(this.id));
 	}
 
 	editAsset(asset: MbsAssetDto) {

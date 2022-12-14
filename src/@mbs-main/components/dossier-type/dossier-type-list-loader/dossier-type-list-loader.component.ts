@@ -3,6 +3,7 @@ import { lastValueFrom } from 'rxjs';
 
 import { AgalCommonService } from '@agal-core/services/common.service';
 import { AgalGenericTable2 } from '@agal-core/components/agal-generic-table2';
+import { AgalEvent } from '@agal-core/modules/eventer/services/eventer.service';
 
 import { MbsDossierTypeDto } from '../../../class/dossier-type-dto.class';
 import { MbsDossierTypeResourceService } from '../../../services/dossier-type.service';
@@ -26,5 +27,9 @@ export class MbsDossierTypeListLoaderComponent extends AgalGenericTable2 {
 		} catch(e) {
 			console.log(e);
 		}
+	}
+
+	protected override reloadFromEvent(event: AgalEvent) {
+		if(event.data === "dossierType") this.loadData();
 	}
 }
