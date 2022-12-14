@@ -32,6 +32,12 @@ export class MbsOperationNewUpdateFormComponent extends AgalGenericForm {
 		this.output = this.operationOutput;
 	}
 
+/* VIEW VARIABLES*/
+displayFn: Function = (selectedElement: any) => {
+	return selectedElement.description;
+};
+/* */ 
+
 	_filteredType: Observable<MbsOperationTypeDto[]>;
 	_filteredAsset: Observable<MbsAssetDto[]>;
 

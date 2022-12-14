@@ -20,12 +20,12 @@
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'type' }}</span>
-				<input type="text" pInputText formControlName="type" [agalAutocomplete]="typeAutocomplete">
+				<input type="text" pInputText formControlName="type" [agalAutocomplete]="typeAutocomplete" [displayFn]="displayFn">
 				<agal-autocomplete #typeAutocomplete [filteredElements]="_filteredType"></agal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'asset' }}</span>
-				<input type="text" pInputText formControlName="asset" [agalAutocomplete]="assetAutocomplete">
+				<input type="text" pInputText formControlName="asset" [agalAutocomplete]="assetAutocomplete" [displayFn]="displayFn">
 				<agal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></agal-autocomplete>
 			</div>
 
