@@ -7,6 +7,7 @@ export class MbsRelifDto {
 	startDate: Date;
 	endDate: Date;
 
+	assetId: number;
 	asset: MbsAssetDto;
 
 }

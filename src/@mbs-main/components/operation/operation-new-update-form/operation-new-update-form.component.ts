@@ -18,7 +18,7 @@ export class MbsOperationNewUpdateFormComponent implements OnInit {
 	@Input() returnToParent: boolean = false; 
 
 	@Output() operationOutput = new EventEmitter<MbsOperationDto>();
-
+    
     constructor(
 		private _formBuilder: FormBuilder,
 		private operationResourceService: MbsOperationResourceService,
@@ -115,7 +115,4 @@ export class MbsOperationNewUpdateFormComponent implements OnInit {
 		this.step.complete = false;
 		this.step[stepToShow] = true;
 	}
-
-
-
 }
