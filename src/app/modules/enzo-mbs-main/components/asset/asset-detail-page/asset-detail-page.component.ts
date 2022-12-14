@@ -10,6 +10,7 @@ import { TabManagerService } from "@tabler/services/tab-manager.service";
 import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
 import { MbsAssetDto, MbsAssetResourceService } from '@mbs-main';
 import { EnzoAssetDialogComponent } from '../asset-dialog/asset-dialog.component';
+import { EnzoOperationDialogComponent } from "../../operation/operation-dialog/operation-dialog.component";
 
 @Component({
 	selector: 'enzo-asset-detail-page',
@@ -74,6 +75,19 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 			class: "p-button-sm p-button-outlined",
 			link: "../../../operation/detail",
 			command: (e: any) => this.tabManagerService.openInCard(),
+			childs: [
+				{
+					label: "Edit",
+					icon: "pi pi-pencil",
+					command: (e: any) => {
+						const ref = this.dialogService.open(EnzoOperationDialogComponent, {
+							data: e.item.data,
+							header: 'Update operation',
+							width: '70%'
+						});
+					}
+				}
+			]
 		}
 	];
 	
