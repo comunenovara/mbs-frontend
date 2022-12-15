@@ -3,4 +3,4 @@
 	[paginator]="assetListPaginator" (resultCount)="assetCount=$event"> 
 </mbs-asset-list-loader>
 
-<agal-paginator [totalRecords]="300" [(pageable)]="assetListPaginator"></agal-paginator>
+<agal-paginator [totalRecords]="assetCount" [(pageable)]="assetListPaginator"></agal-paginator>

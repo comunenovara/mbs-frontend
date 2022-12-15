@@ -3,4 +3,4 @@
 	[paginator]="dossierListPaginator" (resultCount)="dossierCount=$event"> 
 </mbs-dossier-list-loader>
 
-<agal-paginator [totalRecords]="300" [(pageable)]="dossierListPaginator"></agal-paginator>
+<agal-paginator [totalRecords]="dossierCount" [(pageable)]="dossierListPaginator"></agal-paginator>

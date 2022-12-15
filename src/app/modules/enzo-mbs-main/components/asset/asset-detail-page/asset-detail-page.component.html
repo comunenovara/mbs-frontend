@@ -15,8 +15,9 @@
 				[filters]="{assetId: assetDto.id}" 
 				[dcs]="['id', 'description']" 
 				[paginator]="dossierListPaginator"
-				[buttons]="dossierTableButtons"></mbs-dossier-list-loader>
-			<agal-paginator [totalRecords]="300" [(pageable)]="dossierListPaginator"></agal-paginator>
+				[buttons]="dossierTableButtons"
+				(resultCount)="dossierCount=$event"></mbs-dossier-list-loader>
+			<agal-paginator [totalRecords]="dossierCount" [(pageable)]="dossierListPaginator"></agal-paginator>
 		</div>
 	</div>
 	<div class="col-12 lg:col-12 xl:col-12">
@@ -26,8 +27,9 @@
 				[filters]="{assetId: assetDto.id}" 
 				[dcs]="['id', 'description']" 
 				[paginator]="operationListPaginator"
-				[buttons]="operationTableButtons"></mbs-operation-list-loader>
-			<agal-paginator [totalRecords]="300" [(pageable)]="operationListPaginator"></agal-paginator>
+				[buttons]="operationTableButtons"
+				(resultCount)="operationCount=$event"></mbs-operation-list-loader>
+			<agal-paginator [totalRecords]="operationCount" [(pageable)]="operationListPaginator"></agal-paginator>
 		</div>
 	</div>
 	<div class="col-12 lg:col-12 xl:col-12">
@@ -37,8 +39,9 @@
 				[filters]="{assetId: assetDto.id}" 
 				[dcs]="['id', 'description']" 
 				[paginator]="relifListPaginator"
-				[buttons]="relifTableButtons"></mbs-relif-list-loader>
-			<agal-paginator [totalRecords]="300" [(pageable)]="relifListPaginator"></agal-paginator>
+				[buttons]="relifTableButtons"
+				(resultCount)="relifCount=$event"></mbs-relif-list-loader>
+			<agal-paginator [totalRecords]="relifCount" [(pageable)]="relifListPaginator"></agal-paginator>
 		</div>
 	</div>
 </div>

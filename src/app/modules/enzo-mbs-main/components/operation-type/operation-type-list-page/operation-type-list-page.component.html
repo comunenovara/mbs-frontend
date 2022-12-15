@@ -3,4 +3,4 @@
 	[paginator]="operationTypeListPaginator" (resultCount)="operationTypeCount=$event"> 
 </mbs-operation-type-list-loader>
 
-<agal-paginator [totalRecords]="300" [(pageable)]="operationTypeListPaginator"></agal-paginator>
+<agal-paginator [totalRecords]="operationTypeCount" [(pageable)]="operationTypeListPaginator"></agal-paginator>

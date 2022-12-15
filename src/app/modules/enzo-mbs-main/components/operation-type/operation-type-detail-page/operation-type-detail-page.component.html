@@ -15,8 +15,9 @@
 				[filters]="{operationTypeId: operationTypeDto.id}" 
 				[dcs]="['id', 'description']" 
 				[paginator]="operationListPaginator"
-				[buttons]="operationTableButtons"></mbs-operation-list-loader>
-			<agal-paginator [totalRecords]="300" [(pageable)]="operationListPaginator"></agal-paginator>
+				[buttons]="operationTableButtons"
+				(resultCount)="operationCount=$event"></mbs-operation-list-loader>
+			<agal-paginator [totalRecords]="operationCount" [(pageable)]="operationListPaginator"></agal-paginator>
 		</div>
 	</div>
 </div>

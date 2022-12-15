@@ -3,4 +3,4 @@
 	[paginator]="relifListPaginator" (resultCount)="relifCount=$event"> 
 </mbs-relif-list-loader>
 
-<agal-paginator [totalRecords]="300" [(pageable)]="relifListPaginator"></agal-paginator>
+<agal-paginator [totalRecords]="relifCount" [(pageable)]="relifListPaginator"></agal-paginator>

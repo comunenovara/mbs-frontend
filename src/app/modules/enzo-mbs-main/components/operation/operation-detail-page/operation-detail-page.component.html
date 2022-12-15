@@ -29,8 +29,9 @@
 				[filters]="{operationId: operationDto.id}" 
 				[dcs]="['id', 'description']" 
 				[paginator]="dossierListPaginator"
-				[buttons]="dossierTableButtons"></mbs-dossier-list-loader>
-			<agal-paginator [totalRecords]="300" [(pageable)]="dossierListPaginator"></agal-paginator>
+				[buttons]="dossierTableButtons"
+				(resultCount)="dossierCount=$event"></mbs-dossier-list-loader>
+			<agal-paginator [totalRecords]="dossierCount" [(pageable)]="dossierListPaginator"></agal-paginator>
 		</div>
 	</div>
 </div>

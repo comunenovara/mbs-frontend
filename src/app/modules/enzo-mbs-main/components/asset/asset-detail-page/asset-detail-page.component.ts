@@ -69,6 +69,8 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 		page: 0,
 		size: 10
 	};
+	protected dossierCount: number;
+
 	protected operationTableButtons: any[] = [
 		{
 			label: "Dettagli",
@@ -84,6 +86,8 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 		page: 0,
 		size: 10
 	};
+	protected operationCount: number;
+
 	protected relifTableButtons: any[] = [
 		{
 			label: "Dettagli",
@@ -99,6 +103,8 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 		page: 0,
 		size: 10
 	};
+	protected relifCount: number;
+
 }
 
 

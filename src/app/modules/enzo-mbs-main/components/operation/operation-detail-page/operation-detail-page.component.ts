@@ -69,6 +69,8 @@ export class EnzoOperationDetailPageComponent extends EnzoGenericDetailPageCompo
 		page: 0,
 		size: 10
 	};
+	protected dossierCount: number;
+
 }
 
 

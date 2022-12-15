@@ -69,6 +69,8 @@ export class EnzoOperationTypeDetailPageComponent extends EnzoGenericDetailPageC
 		page: 0,
 		size: 10
 	};
+	protected operationCount: number;
+
 }
 
 
