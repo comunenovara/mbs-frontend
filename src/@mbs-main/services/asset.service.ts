@@ -23,7 +23,7 @@ export class MbsAssetResourceService {
 	}
 	
 	countAssetsUsingGET(filters: any): Observable<number> {
-		return this.http.get<number>("http://localhost:3000/mbs/main/assets?" + this.prepareQueryParams(filters).toString());
+		return this.http.get<number>("http://localhost:3000/mbs/main/assets/count?" + this.prepareQueryParams(filters).toString());
 	}
 
 	getAssetUsingGET(id: number): Observable<MbsAssetDto> {

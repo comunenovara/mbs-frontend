@@ -23,7 +23,7 @@ export class MbsDossierResourceService {
 	}
 	
 	countDossiersUsingGET(filters: any): Observable<number> {
-		return this.http.get<number>("http://localhost:3000/mbs/main/dossiers?" + this.prepareQueryParams(filters).toString());
+		return this.http.get<number>("http://localhost:3000/mbs/main/dossiers/count?" + this.prepareQueryParams(filters).toString());
 	}
 
 	getDossierUsingGET(id: number): Observable<MbsDossierDto> {

@@ -23,7 +23,7 @@ export class MbsDossierTypeResourceService {
 	}
 	
 	countDossierTypesUsingGET(filters: any): Observable<number> {
-		return this.http.get<number>("http://localhost:3000/mbs/main/dossierTypes?" + this.prepareQueryParams(filters).toString());
+		return this.http.get<number>("http://localhost:3000/mbs/main/dossierTypes/count?" + this.prepareQueryParams(filters).toString());
 	}
 
 	getDossierTypeUsingGET(id: number): Observable<MbsDossierTypeDto> {

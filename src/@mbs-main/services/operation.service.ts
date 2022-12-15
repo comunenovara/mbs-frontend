@@ -23,7 +23,7 @@ export class MbsOperationResourceService {
 	}
 	
 	countOperationsUsingGET(filters: any): Observable<number> {
-		return this.http.get<number>("http://localhost:3000/mbs/main/operations?" + this.prepareQueryParams(filters).toString());
+		return this.http.get<number>("http://localhost:3000/mbs/main/operations/count?" + this.prepareQueryParams(filters).toString());
 	}
 
 	getOperationUsingGET(id: number): Observable<MbsOperationDto> {
