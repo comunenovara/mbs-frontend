@@ -9,9 +9,14 @@
 
 
 	<div class="col-12 lg:col-12 xl:col-12">
-        <div class="card mb-0">
+		<div class="card mb-0">
 			<h3>dossier</h3>
-			<mbs-dossier-list-loader [filters]="{dossierTypeId: dossierTypeDto.id}" [dcs]="['id', 'description']"></mbs-dossier-list-loader>
+			<mbs-dossier-list-loader 
+				[filters]="{dossierTypeId: dossierTypeDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="dossierListPaginator"
+				[buttons]="dossierTableButtons"></mbs-dossier-list-loader>
+			<agal-paginator [totalRecords]="300" [(pageable)]="dossierListPaginator"></agal-paginator>
 		</div>
 	</div>
 </div>

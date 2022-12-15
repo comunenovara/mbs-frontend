@@ -9,9 +9,14 @@
 
 
 	<div class="col-12 lg:col-12 xl:col-12">
-        <div class="card mb-0">
+		<div class="card mb-0">
 			<h3>operation</h3>
-			<mbs-operation-list-loader [filters]="{operationTypeId: operationTypeDto.id}" [dcs]="['id', 'description']"></mbs-operation-list-loader>
+			<mbs-operation-list-loader 
+				[filters]="{operationTypeId: operationTypeDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="operationListPaginator"
+				[buttons]="operationTableButtons"></mbs-operation-list-loader>
+			<agal-paginator [totalRecords]="300" [(pageable)]="operationListPaginator"></agal-paginator>
 		</div>
 	</div>
 </div>

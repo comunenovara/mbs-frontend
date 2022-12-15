@@ -5,6 +5,7 @@ import { lastValueFrom } from "rxjs";
 import { DialogService } from 'primeng/dynamicdialog';
 
 import { AgalEvent, AgalEventerService } from "@agal-core/modules/eventer/services/eventer.service";
+import { AgalPaginator } from "@agal-core/modules/paginator/components/paginator/paginator.component";
 import { TabManagerService } from "@tabler/services/tab-manager.service";
 
 import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
@@ -52,6 +53,7 @@ export class EnzoDossierDetailPageComponent extends EnzoGenericDetailPageCompone
 		if(dossier.id === undefined) return;
 		await lastValueFrom(this.resourceService.deleteDossierUsingDELETE(dossier.id));
 	}
+
 }
 
 

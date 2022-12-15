@@ -5,12 +5,12 @@ import { lastValueFrom } from "rxjs";
 import { DialogService } from 'primeng/dynamicdialog';
 
 import { AgalEvent, AgalEventerService } from "@agal-core/modules/eventer/services/eventer.service";
+import { AgalPaginator } from "@agal-core/modules/paginator/components/paginator/paginator.component";
 import { TabManagerService } from "@tabler/services/tab-manager.service";
 
 import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
 import { MbsAssetDto, MbsAssetResourceService} from '@mbs-main';
 import { EnzoAssetDialogComponent } from '../asset-dialog/asset-dialog.component';
-import { EnzoOperationDialogComponent } from "../../operation/operation-dialog/operation-dialog.component";
 
 @Component({
 	selector: 'enzo-asset-detail-page',
@@ -65,7 +65,10 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 			command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
-
+	protected dossierListPaginator: AgalPaginator = {
+		page: 0,
+		size: 10
+	};
 	protected operationTableButtons: any[] = [
 		{
 			label: "Dettagli",
@@ -75,22 +78,12 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 			class: "p-button-sm p-button-outlined",
 			link: "../../../operation/detail",
 			command: (e: any) => this.tabManagerService.openInCard(),
-			childs: [
-				{
-					label: "Edit",
-					icon: "pi pi-pencil",
-					command: (e: any) => {
-						const ref = this.dialogService.open(EnzoOperationDialogComponent, {
-							data: e.item.data,
-							header: 'Update operation',
-							width: '70%'
-						});
-					}
-				}
-			]
 		}
 	];
-	
+	protected operationListPaginator: AgalPaginator = {
+		page: 0,
+		size: 10
+	};
 	protected relifTableButtons: any[] = [
 		{
 			label: "Dettagli",
@@ -101,7 +94,11 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 			link: "../../../relif/detail",
 			command: (e: any) => this.tabManagerService.openInCard(),
 		}
-	]
+	];
+	protected relifListPaginator: AgalPaginator = {
+		page: 0,
+		size: 10
+	};
 }
 
 

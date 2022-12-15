@@ -5,6 +5,7 @@ import { lastValueFrom } from "rxjs";
 import { DialogService } from 'primeng/dynamicdialog';
 
 import { AgalEvent, AgalEventerService } from "@agal-core/modules/eventer/services/eventer.service";
+import { AgalPaginator } from "@agal-core/modules/paginator/components/paginator/paginator.component";
 import { TabManagerService } from "@tabler/services/tab-manager.service";
 
 import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
@@ -52,6 +53,22 @@ export class EnzoDossierTypeDetailPageComponent extends EnzoGenericDetailPageCom
 		if(dossierType.id === undefined) return;
 		await lastValueFrom(this.resourceService.deleteDossierTypeUsingDELETE(dossierType.id));
 	}
+
+	protected dossierTableButtons: any[] = [
+		{
+			label: "Dettagli",
+			hideLabel: true,
+			icon: "pi pi-search",
+			severity: "secondary",
+			class: "p-button-sm p-button-outlined",
+			link: "../../../dossier/detail",
+			command: (e: any) => this.tabManagerService.openInCard(),
+		}
+	];
+	protected dossierListPaginator: AgalPaginator = {
+		page: 0,
+		size: 10
+	};
 }
 
 
