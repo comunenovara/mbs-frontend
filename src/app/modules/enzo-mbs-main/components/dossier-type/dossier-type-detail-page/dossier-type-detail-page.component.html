@@ -12,7 +12,7 @@
 		<div class="card mb-0">
 			<h3>dossier</h3>
 			<mbs-dossier-list-loader 
-				[filters]="{dossierTypeId: dossierTypeDto.id}" 
+				[filters]="{dossierTypeIdEquals: dossierTypeDto.id}" 
 				[dcs]="['id', 'description']" 
 				[paginator]="dossierListPaginator"
 				[buttons]="dossierTableButtons"

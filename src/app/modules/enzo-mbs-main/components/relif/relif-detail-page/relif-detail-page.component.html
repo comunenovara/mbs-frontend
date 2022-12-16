@@ -19,7 +19,7 @@
 		<div class="card mb-0">
 			<h3>dossier</h3>
 			<mbs-dossier-list-loader 
-				[filters]="{relifId: relifDto.id}" 
+				[filters]="{relifIdEquals: relifDto.id}" 
 				[dcs]="['id', 'description']" 
 				[paginator]="dossierListPaginator"
 				[buttons]="dossierTableButtons"

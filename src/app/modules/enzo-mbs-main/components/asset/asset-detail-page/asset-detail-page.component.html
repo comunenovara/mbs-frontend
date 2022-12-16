@@ -12,7 +12,7 @@
 		<div class="card mb-0">
 			<h3>dossier</h3>
 			<mbs-dossier-list-loader 
-				[filters]="{assetId: assetDto.id}" 
+				[filters]="{assetIdEquals: assetDto.id}" 
 				[dcs]="['id', 'description']" 
 				[paginator]="dossierListPaginator"
 				[buttons]="dossierTableButtons"
@@ -24,7 +24,7 @@
 		<div class="card mb-0">
 			<h3>operation</h3>
 			<mbs-operation-list-loader 
-				[filters]="{assetId: assetDto.id}" 
+				[filters]="{assetIdEquals: assetDto.id}" 
 				[dcs]="['id', 'description']" 
 				[paginator]="operationListPaginator"
 				[buttons]="operationTableButtons"
@@ -36,7 +36,7 @@
 		<div class="card mb-0">
 			<h3>relif</h3>
 			<mbs-relif-list-loader 
-				[filters]="{assetId: assetDto.id}" 
+				[filters]="{assetIdEquals: assetDto.id}" 
 				[dcs]="['id', 'description']" 
 				[paginator]="relifListPaginator"
 				[buttons]="relifTableButtons"
