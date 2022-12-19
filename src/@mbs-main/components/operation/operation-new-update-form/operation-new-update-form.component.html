@@ -4,19 +4,23 @@
 
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'description' }}</span>
-				<input type="text" pInputText formControlName="description" placeholder="">
+				String
+				<input type="text" pInputText formControlName="description" placeholder="Description">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'value' }}</span>
-				<input type="text" pInputText formControlName="value" placeholder="">
+				BigDecimal
+				<input type="number" pInputText formControlName="value" placeholder="Value">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'startDate' }}</span>
-				<input type="text" pInputText formControlName="startDate" placeholder="">
+				ZonedDateTime
+				<input type="text" pInputText formControlName="startDate" placeholder="StartDate">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'endDate' }}</span>
-				<input type="text" pInputText formControlName="endDate" placeholder="">
+				ZonedDateTime
+				<input type="text" pInputText formControlName="endDate" placeholder="EndDate">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="!(operation == null || operation.type == null) ">
 				<span>{{ 'type' }}</span>
