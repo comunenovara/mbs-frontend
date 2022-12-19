@@ -57,7 +57,7 @@ export class MbsOperationNewUpdateFormComponent extends AgalGenericForm {
 	override prepareResult(): MbsOperationDto {
 		let result: MbsOperationDto = this._newUpdateForm.value;
 		{
-			result.value = +result.value;
+			result.value = (result.value != null) ? +result.value : null;
 			result.typeId = (result.type != null) ? result.type.id : undefined;
 			result.assetId = (result.asset != null) ? result.asset.id : undefined;
 		}
