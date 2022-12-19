@@ -56,10 +56,11 @@ export class MbsRelifNewUpdateFormComponent extends AgalGenericForm {
 	override async sendToBackEnd(request: MbsRelifDto) {
 		try {
 			let postOrPut: string;
-			if (request.id != 0) {
+			if (request.id != null && request.id > 0) {
 				await lastValueFrom(this.relifResourceService.updateRelifUsingPUT(request));
 				postOrPut = "updated";
 			} else {
+				request.id = undefined;
 				await lastValueFrom(this.relifResourceService.createRelifUsingPOST(request));
 				postOrPut = "created";
 			}

@@ -63,10 +63,11 @@ export class MbsOperationNewUpdateFormComponent extends AgalGenericForm {
 	override async sendToBackEnd(request: MbsOperationDto) {
 		try {
 			let postOrPut: string;
-			if (request.id != 0) {
+			if (request.id != null && request.id > 0) {
 				await lastValueFrom(this.operationResourceService.updateOperationUsingPUT(request));
 				postOrPut = "updated";
 			} else {
+				request.id = undefined;
 				await lastValueFrom(this.operationResourceService.createOperationUsingPOST(request));
 				postOrPut = "created";
 			}

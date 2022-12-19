@@ -69,10 +69,11 @@ export class MbsDossierNewUpdateFormComponent extends AgalGenericForm {
 	override async sendToBackEnd(request: MbsDossierDto) {
 		try {
 			let postOrPut: string;
-			if (request.id != 0) {
+			if (request.id != null && request.id > 0) {
 				await lastValueFrom(this.dossierResourceService.updateDossierUsingPUT(request));
 				postOrPut = "updated";
 			} else {
+				request.id = undefined;
 				await lastValueFrom(this.dossierResourceService.createDossierUsingPOST(request));
 				postOrPut = "created";
 			}

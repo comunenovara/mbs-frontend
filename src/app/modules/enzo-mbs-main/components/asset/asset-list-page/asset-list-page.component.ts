@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs';
 
 import { DialogService } from 'primeng/dynamicdialog';
 
+import { AgalEventerService } from '@agal-core/modules/eventer/services/eventer.service';
 import { AgalPaginator } from '@agal-core/modules/paginator/components/paginator/paginator.component';
 import { TabManagerService } from '@tabler/services/tab-manager.service';
 
@@ -20,7 +21,16 @@ export class EnzoAssetListPageComponent {
 		public tabManagerService: TabManagerService,
 		private resourceService: MbsAssetResourceService,
 		private dialogService: DialogService,
+		public eventer: AgalEventerService,
+
 	) { }
+
+	createNewAsset() {
+		this.dialogService.open(EnzoAssetDialogComponent, {
+			header: 'Create asset',
+			width: '70%'
+		});
+	}
 
 	assetListPaginator: AgalPaginator = {
 		page: 0,
@@ -75,6 +85,7 @@ export class EnzoAssetListPageComponent {
 					icon: "pi pi-trash",
 					command: async (e: any) => {
 						await lastValueFrom(this.resourceService.deleteAssetUsingDELETE(e.item.data.id));
+						this.eventer.launchReloadContent("asset");
 					}
 				}
 			]

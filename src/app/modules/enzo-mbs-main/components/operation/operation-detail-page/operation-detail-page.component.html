@@ -7,14 +7,14 @@
 		</div>
 	</div>
 
-	<div class="col-12 lg:col-6 xl:col-3">
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="operationDto.type !== null">
         <div class="card mb-0">
 			<h3>operation-type</h3>
 			<mbs-operation-type-detail-box [operationType]="operationDto.type" ></mbs-operation-type-detail-box>
 			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" [routerLink]="['../../../operation-type/detail', operationDto.type.id]" (click)="tabManagerService.openInCard()"></button>
 		</div>
 	</div>
-	<div class="col-12 lg:col-6 xl:col-3">
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="operationDto.asset !== null">
         <div class="card mb-0">
 			<h3>asset</h3>
 			<mbs-asset-detail-box [asset]="operationDto.asset" ></mbs-asset-detail-box>

@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs';
 
 import { DialogService } from 'primeng/dynamicdialog';
 
+import { AgalEventerService } from '@agal-core/modules/eventer/services/eventer.service';
 import { AgalPaginator } from '@agal-core/modules/paginator/components/paginator/paginator.component';
 import { TabManagerService } from '@tabler/services/tab-manager.service';
 
@@ -20,7 +21,16 @@ export class EnzoOperationListPageComponent {
 		public tabManagerService: TabManagerService,
 		private resourceService: MbsOperationResourceService,
 		private dialogService: DialogService,
+		public eventer: AgalEventerService,
+
 	) { }
+
+	createNewOperation() {
+		this.dialogService.open(EnzoOperationDialogComponent, {
+			header: 'Create operation',
+			width: '70%'
+		});
+	}
 
 	operationListPaginator: AgalPaginator = {
 		page: 0,
@@ -75,6 +85,7 @@ export class EnzoOperationListPageComponent {
 					icon: "pi pi-trash",
 					command: async (e: any) => {
 						await lastValueFrom(this.resourceService.deleteOperationUsingDELETE(e.item.data.id));
+						this.eventer.launchReloadContent("operation");
 					}
 				}
 			]

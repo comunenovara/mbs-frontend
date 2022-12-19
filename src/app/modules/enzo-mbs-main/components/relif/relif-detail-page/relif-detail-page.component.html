@@ -7,7 +7,7 @@
 		</div>
 	</div>
 
-	<div class="col-12 lg:col-6 xl:col-3">
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="relifDto.asset !== null">
         <div class="card mb-0">
 			<h3>asset</h3>
 			<mbs-asset-detail-box [asset]="relifDto.asset" ></mbs-asset-detail-box>

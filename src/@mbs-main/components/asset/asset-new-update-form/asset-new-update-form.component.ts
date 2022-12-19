@@ -52,10 +52,11 @@ export class MbsAssetNewUpdateFormComponent extends AgalGenericForm {
 	override async sendToBackEnd(request: MbsAssetDto) {
 		try {
 			let postOrPut: string;
-			if (request.id != 0) {
+			if (request.id != null && request.id > 0) {
 				await lastValueFrom(this.assetResourceService.updateAssetUsingPUT(request));
 				postOrPut = "updated";
 			} else {
+				request.id = undefined;
 				await lastValueFrom(this.assetResourceService.createAssetUsingPOST(request));
 				postOrPut = "created";
 			}
