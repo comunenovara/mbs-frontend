@@ -1,6 +1,12 @@
-<mbs-dossier-type-list-loader 
-	[dcs]="dossierTypeListDc" [buttons]="tableButtons" 
-	[paginator]="dossierTypeListPaginator" (resultCount)="dossierTypeCount=$event"> 
-</mbs-dossier-type-list-loader>
+<div class="card mb-0 relative">
+	
+	<mbs-dossier-type-list-loader 
+		[dcs]="dossierTypeListDc" [buttons]="tableButtons" 
+		[paginator]="dossierTypeListPaginator" (resultCount)="dossierTypeCount=$event"> 
+	</mbs-dossier-type-list-loader>
 
-<agal-paginator [totalRecords]="dossierTypeCount" [(pageable)]="dossierTypeListPaginator"></agal-paginator>
+	<agal-paginator [totalRecords]="dossierTypeCount" [(pageable)]="dossierTypeListPaginator"></agal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewDossierType()"></button>
+
+</div>

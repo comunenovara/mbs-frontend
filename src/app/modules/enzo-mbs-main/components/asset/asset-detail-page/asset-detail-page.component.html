@@ -9,7 +9,7 @@
 
 
 	<div class="col-12 lg:col-12 xl:col-12">
-		<div class="card mb-0">
+		<div class="card mb-0 relative">
 			<h3>dossier</h3>
 			<mbs-dossier-list-loader 
 				[filters]="{assetIdEquals: assetDto.id}" 
@@ -18,10 +18,11 @@
 				[buttons]="dossierTableButtons"
 				(resultCount)="dossierCount=$event"></mbs-dossier-list-loader>
 			<agal-paginator [totalRecords]="dossierCount" [(pageable)]="dossierListPaginator"></agal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" ></button>
 		</div>
 	</div>
 	<div class="col-12 lg:col-12 xl:col-12">
-		<div class="card mb-0">
+		<div class="card mb-0 relative">
 			<h3>operation</h3>
 			<mbs-operation-list-loader 
 				[filters]="{assetIdEquals: assetDto.id}" 
@@ -30,10 +31,11 @@
 				[buttons]="operationTableButtons"
 				(resultCount)="operationCount=$event"></mbs-operation-list-loader>
 			<agal-paginator [totalRecords]="operationCount" [(pageable)]="operationListPaginator"></agal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" ></button>
 		</div>
 	</div>
 	<div class="col-12 lg:col-12 xl:col-12">
-		<div class="card mb-0">
+		<div class="card mb-0 relative">
 			<h3>relif</h3>
 			<mbs-relif-list-loader 
 				[filters]="{assetIdEquals: assetDto.id}" 
@@ -42,6 +44,7 @@
 				[buttons]="relifTableButtons"
 				(resultCount)="relifCount=$event"></mbs-relif-list-loader>
 			<agal-paginator [totalRecords]="relifCount" [(pageable)]="relifListPaginator"></agal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" ></button>
 		</div>
 	</div>
 </div>

@@ -1,6 +1,12 @@
-<mbs-operation-list-loader 
-	[dcs]="operationListDc" [buttons]="tableButtons" 
-	[paginator]="operationListPaginator" (resultCount)="operationCount=$event"> 
-</mbs-operation-list-loader>
+<div class="card mb-0 relative">
+	
+	<mbs-operation-list-loader 
+		[dcs]="operationListDc" [buttons]="tableButtons" 
+		[paginator]="operationListPaginator" (resultCount)="operationCount=$event"> 
+	</mbs-operation-list-loader>
 
-<agal-paginator [totalRecords]="operationCount" [(pageable)]="operationListPaginator"></agal-paginator>
+	<agal-paginator [totalRecords]="operationCount" [(pageable)]="operationListPaginator"></agal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewOperation()"></button>
+
+</div>

@@ -11,3 +11,14 @@ $gutter: 1rem; //for primeflex grid system
 /* Demos */
 @import "assets/demo/styles/flags/flags.css";
 @import "assets/demo/styles/badges.scss";
+
+.relative {
+    position: relative;
+    overflow: auto;
+}
+
+.create-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}

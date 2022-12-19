@@ -1,6 +1,12 @@
-<mbs-asset-list-loader 
-	[dcs]="assetListDc" [buttons]="tableButtons" 
-	[paginator]="assetListPaginator" (resultCount)="assetCount=$event"> 
-</mbs-asset-list-loader>
+<div class="card mb-0 relative">
+	
+	<mbs-asset-list-loader 
+		[dcs]="assetListDc" [buttons]="tableButtons" 
+		[paginator]="assetListPaginator" (resultCount)="assetCount=$event"> 
+	</mbs-asset-list-loader>
 
-<agal-paginator [totalRecords]="assetCount" [(pageable)]="assetListPaginator"></agal-paginator>
+	<agal-paginator [totalRecords]="assetCount" [(pageable)]="assetListPaginator"></agal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewAsset()"></button>
+
+</div>

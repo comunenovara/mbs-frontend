@@ -1,6 +1,12 @@
-<mbs-dossier-list-loader 
-	[dcs]="dossierListDc" [buttons]="tableButtons" 
-	[paginator]="dossierListPaginator" (resultCount)="dossierCount=$event"> 
-</mbs-dossier-list-loader>
+<div class="card mb-0 relative">
+	
+	<mbs-dossier-list-loader 
+		[dcs]="dossierListDc" [buttons]="tableButtons" 
+		[paginator]="dossierListPaginator" (resultCount)="dossierCount=$event"> 
+	</mbs-dossier-list-loader>
 
-<agal-paginator [totalRecords]="dossierCount" [(pageable)]="dossierListPaginator"></agal-paginator>
+	<agal-paginator [totalRecords]="dossierCount" [(pageable)]="dossierListPaginator"></agal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewDossier()"></button>
+
+</div>
