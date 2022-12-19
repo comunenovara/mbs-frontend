@@ -74,7 +74,7 @@ export class EnzoRelifListPageComponent {
 					icon: "pi pi-pencil",
 					command: (e: any) => {
 						const ref = this.dialogService.open(EnzoRelifDialogComponent, {
-							data: { ...e.item.data },
+							data: { relif: { ...e.item.data } },
 							header: 'Update relif',
 							width: '70%'
 						});

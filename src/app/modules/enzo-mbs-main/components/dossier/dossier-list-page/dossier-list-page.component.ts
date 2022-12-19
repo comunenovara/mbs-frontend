@@ -74,7 +74,7 @@ export class EnzoDossierListPageComponent {
 					icon: "pi pi-pencil",
 					command: (e: any) => {
 						const ref = this.dialogService.open(EnzoDossierDialogComponent, {
-							data: e.item.data,
+							data: { dossier: { ...e.item.data } },
 							header: 'Update dossier',
 							width: '70%'
 						});

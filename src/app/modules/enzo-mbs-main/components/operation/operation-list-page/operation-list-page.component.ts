@@ -38,7 +38,7 @@ export class EnzoOperationListPageComponent {
 	};
 	operationCount: number;
 
-	operationListDc = ['_ck', 'id', 'type.description', 'asset.description', 'description', 'value', 'startDate', 'endDate'];
+	operationListDc = ['_ck', 'id'];
 	paginatorEvent(paginator: any) {
 		let operationListPaginator = { ...paginator }
 		this.operationListPaginator = operationListPaginator;
@@ -74,7 +74,7 @@ export class EnzoOperationListPageComponent {
 					icon: "pi pi-pencil",
 					command: (e: any) => {
 						const ref = this.dialogService.open(EnzoOperationDialogComponent, {
-							data: { ...e.item.data },
+							data: { operation: { ...e.item.data } },
 							header: 'Update operation',
 							width: '70%'
 						});
