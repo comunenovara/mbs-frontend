@@ -11,6 +11,7 @@ import { TabManagerService } from "@tabler/services/tab-manager.service";
 import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
 import { MbsOperationTypeDto, MbsOperationTypeResourceService} from '@mbs-main';
 import { EnzoOperationTypeDialogComponent } from '../operation-type-dialog/operation-type-dialog.component';
+import { EnzoOperationDialogComponent } from "../../operation/operation-dialog/operation-dialog.component";
 
 @Component({
 	selector: 'enzo-operation-type-detail-page',
@@ -52,6 +53,16 @@ export class EnzoOperationTypeDetailPageComponent extends EnzoGenericDetailPageC
 	async deleteOperationType(operationType: MbsOperationTypeDto) {
 		if(operationType.id === undefined) return;
 		await lastValueFrom(this.resourceService.deleteOperationTypeUsingDELETE(operationType.id));
+	}
+
+	createNewOperation(operationTypeDto: MbsOperationTypeDto) {
+		this.dialogService.open(EnzoOperationDialogComponent, {
+			header: 'Create Operation',
+			width: '70%',
+			data: {
+				operationType: operationTypeDto
+			}
+		});
 	}
 
 	protected operationTableButtons: any[] = [

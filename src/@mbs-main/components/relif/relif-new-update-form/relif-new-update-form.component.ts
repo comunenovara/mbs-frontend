@@ -48,7 +48,7 @@ export class MbsRelifNewUpdateFormComponent extends AgalGenericForm {
 	override prepareResult(): MbsRelifDto {
 		let result: MbsRelifDto = this._newUpdateForm.value;
 		{
-			result.assetId = result.asset.id;
+			result.assetId = (result.asset != null) ? result.asset.id : undefined;
 		}
 		return result;
 	}

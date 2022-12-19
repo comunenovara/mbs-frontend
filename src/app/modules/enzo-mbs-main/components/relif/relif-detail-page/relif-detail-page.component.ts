@@ -11,6 +11,7 @@ import { TabManagerService } from "@tabler/services/tab-manager.service";
 import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
 import { MbsRelifDto, MbsRelifResourceService} from '@mbs-main';
 import { EnzoRelifDialogComponent } from '../relif-dialog/relif-dialog.component';
+import { EnzoDossierDialogComponent } from "../../dossier/dossier-dialog/dossier-dialog.component";
 
 @Component({
 	selector: 'enzo-relif-detail-page',
@@ -52,6 +53,16 @@ export class EnzoRelifDetailPageComponent extends EnzoGenericDetailPageComponent
 	async deleteRelif(relif: MbsRelifDto) {
 		if(relif.id === undefined) return;
 		await lastValueFrom(this.resourceService.deleteRelifUsingDELETE(relif.id));
+	}
+
+	createNewDossier(relifDto: MbsRelifDto) {
+		this.dialogService.open(EnzoDossierDialogComponent, {
+			header: 'Create Dossier',
+			width: '70%',
+			data: {
+				relif: relifDto
+			}
+		});
 	}
 
 	protected dossierTableButtons: any[] = [

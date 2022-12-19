@@ -11,6 +11,9 @@ import { TabManagerService } from "@tabler/services/tab-manager.service";
 import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
 import { MbsAssetDto, MbsAssetResourceService} from '@mbs-main';
 import { EnzoAssetDialogComponent } from '../asset-dialog/asset-dialog.component';
+import { EnzoDossierDialogComponent } from "../../dossier/dossier-dialog/dossier-dialog.component";
+import { EnzoOperationDialogComponent } from "../../operation/operation-dialog/operation-dialog.component";
+import { EnzoRelifDialogComponent } from "../../relif/relif-dialog/relif-dialog.component";
 
 @Component({
 	selector: 'enzo-asset-detail-page',
@@ -54,6 +57,16 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 		await lastValueFrom(this.resourceService.deleteAssetUsingDELETE(asset.id));
 	}
 
+	createNewDossier(assetDto: MbsAssetDto) {
+		this.dialogService.open(EnzoDossierDialogComponent, {
+			header: 'Create Dossier',
+			width: '70%',
+			data: {
+				asset: assetDto
+			}
+		});
+	}
+
 	protected dossierTableButtons: any[] = [
 		{
 			label: "Dettagli",
@@ -71,6 +84,16 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 	};
 	protected dossierCount: number;
 
+	createNewOperation(assetDto: MbsAssetDto) {
+		this.dialogService.open(EnzoOperationDialogComponent, {
+			header: 'Create Operation',
+			width: '70%',
+			data: {
+				asset: assetDto
+			}
+		});
+	}
+
 	protected operationTableButtons: any[] = [
 		{
 			label: "Dettagli",
@@ -87,6 +110,16 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 		size: 10
 	};
 	protected operationCount: number;
+
+	createNewRelif(assetDto: MbsAssetDto) {
+		this.dialogService.open(EnzoRelifDialogComponent, {
+			header: 'Create Relif',
+			width: '70%',
+			data: {
+				asset: assetDto
+			}
+		});
+	}
 
 	protected relifTableButtons: any[] = [
 		{

@@ -32,7 +32,7 @@
 				[buttons]="dossierTableButtons"
 				(resultCount)="dossierCount=$event"></mbs-dossier-list-loader>
 			<agal-paginator [totalRecords]="dossierCount" [(pageable)]="dossierListPaginator"></agal-paginator>
-			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" ></button>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewDossier(operationDto)"></button>
 		</div>
 	</div>
 </div>

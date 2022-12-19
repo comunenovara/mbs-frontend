@@ -11,6 +11,7 @@ import { TabManagerService } from "@tabler/services/tab-manager.service";
 import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
 import { MbsOperationDto, MbsOperationResourceService} from '@mbs-main';
 import { EnzoOperationDialogComponent } from '../operation-dialog/operation-dialog.component';
+import { EnzoDossierDialogComponent } from "../../dossier/dossier-dialog/dossier-dialog.component";
 
 @Component({
 	selector: 'enzo-operation-detail-page',
@@ -52,6 +53,16 @@ export class EnzoOperationDetailPageComponent extends EnzoGenericDetailPageCompo
 	async deleteOperation(operation: MbsOperationDto) {
 		if(operation.id === undefined) return;
 		await lastValueFrom(this.resourceService.deleteOperationUsingDELETE(operation.id));
+	}
+
+	createNewDossier(operationDto: MbsOperationDto) {
+		this.dialogService.open(EnzoDossierDialogComponent, {
+			header: 'Create Dossier',
+			width: '70%',
+			data: {
+				operation: operationDto
+			}
+		});
 	}
 
 	protected dossierTableButtons: any[] = [

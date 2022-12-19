@@ -11,6 +11,7 @@ import { TabManagerService } from "@tabler/services/tab-manager.service";
 import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
 import { MbsDossierTypeDto, MbsDossierTypeResourceService} from '@mbs-main';
 import { EnzoDossierTypeDialogComponent } from '../dossier-type-dialog/dossier-type-dialog.component';
+import { EnzoDossierDialogComponent } from "../../dossier/dossier-dialog/dossier-dialog.component";
 
 @Component({
 	selector: 'enzo-dossier-type-detail-page',
@@ -52,6 +53,16 @@ export class EnzoDossierTypeDetailPageComponent extends EnzoGenericDetailPageCom
 	async deleteDossierType(dossierType: MbsDossierTypeDto) {
 		if(dossierType.id === undefined) return;
 		await lastValueFrom(this.resourceService.deleteDossierTypeUsingDELETE(dossierType.id));
+	}
+
+	createNewDossier(dossierTypeDto: MbsDossierTypeDto) {
+		this.dialogService.open(EnzoDossierDialogComponent, {
+			header: 'Create Dossier',
+			width: '70%',
+			data: {
+				dossierType: dossierTypeDto
+			}
+		});
 	}
 
 	protected dossierTableButtons: any[] = [

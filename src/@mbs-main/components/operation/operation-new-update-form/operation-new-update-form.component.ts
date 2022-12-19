@@ -54,8 +54,8 @@ export class MbsOperationNewUpdateFormComponent extends AgalGenericForm {
 		let result: MbsOperationDto = this._newUpdateForm.value;
 		{
 			result.value = +result.value;
-			result.typeId = result.type.id;
-			result.assetId = result.asset.id;
+			result.typeId = (result.type != null) ? result.type.id : undefined;
+			result.assetId = (result.asset != null) ? result.asset.id : undefined;
 		}
 		return result;
 	}
