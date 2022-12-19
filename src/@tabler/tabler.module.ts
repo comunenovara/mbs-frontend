@@ -40,6 +40,7 @@ const dbConfig: DBConfig = {
         return {
             1: (db: any, transaction: any) => {
                 transaction.objectStore('card').createIndex('tab', 'tab', { unique: false });
+                transaction.objectStore('tab').createIndex('url', 'url', { unique: false });
                 transaction.objectStore('config').createIndex('name', 'name', { unique: true });
             }
         };

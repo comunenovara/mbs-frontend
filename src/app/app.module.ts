@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { TablerModule } from '@tabler/tabler.module';
 
@@ -18,9 +17,6 @@ import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { AgalCoreModule } from '@agal-core/agal-core.module';
-
-
 
 @NgModule({
     imports: [
@@ -35,11 +31,6 @@ import { AgalCoreModule } from '@agal-core/agal-core.module';
 
     ],
     providers: [
-        {
-            provide: LocationStrategy,
-            useClass: HashLocationStrategy
-        },
-
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService
     ],

@@ -6,7 +6,7 @@ import { ITablerCard, TablerCard } from '../class/card.class';
 import { TablerTab } from '../class/tab.class';
 
 export enum OpeningType {
-	Home, Tab, Card
+	Home = 0, Tab = 1, Card = 2
 }
 export interface TabTree {
 	home: string | undefined,
@@ -17,15 +17,21 @@ export interface TabTree {
 	tabs: TablerTab[],
 }
 
+export class CardUrlIsHomeError extends Error { }
+
 @Injectable({ providedIn: 'root' })
 export class TabManagerService {
 	private tabTree$ = new Subject<TabTree>();
 	private tabTree: TabTree;
 	
+	private firstLoading = true;
+
+	private firstOpening: OpeningType = OpeningType.Tab;
 	private default: OpeningType = OpeningType.Home;
-	private nextOpening: OpeningType = this.default;
+	private nextOpening: OpeningType = this.firstOpening;
 
 	private _cardActivation: TablerCard | undefined = undefined;
+	private _homeActivation: boolean = false;
 
 	constructor(
 		private router: Router,
@@ -34,10 +40,6 @@ export class TabManagerService {
 	) { }
 
 	async start() {
-		await this.init();
-
-		this.loadFromDb();
-
 		this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(
 			(event: any) => {
 				this.processOpening(event.urlAfterRedirects);
@@ -62,15 +64,25 @@ export class TabManagerService {
 		this.nextOpening = OpeningType.Card;
 	}
 
-	async closeTab(id: any) {
+	async closeTab(tab: TablerTab) {
 		this.updateConfig("activeTab", undefined);
 		this.updateConfig("activeCard", undefined);
 		
-		await lastValueFrom(this.dbService.bulkDelete('tab', [id]));
+		if(this.tabTree.activeTab !== undefined && this.tabTree.activeTab.id === tab.id) {
+			if(this.tabTree.home !== undefined) {
+				this._homeActivation = true;
+				this.router.navigateByUrl(this.tabTree.home);
+			}
+		}
 
+		let tabId: any = tab.id;
+		// Remove tab
+		await lastValueFrom(this.dbService.bulkDelete('tab', [tabId]));
+
+		// Clean cards
 		let cards = [];
 		{
-			let cardsDb = await lastValueFrom(this.dbService.getAllByIndex('card', 'tab', id));
+			let cardsDb = await lastValueFrom(this.dbService.getAllByIndex('card', 'tab', tabId));
 			if (cardsDb !== undefined) {
 				for await (const cardDb of cardsDb) {
 					let card = new TablerCard(cardDb);
@@ -84,8 +96,10 @@ export class TabManagerService {
 		this.loadFromDb();
 	}
 
-	async closeCard(id: number) {
-		await lastValueFrom(this.dbService.bulkDelete('card', [id]));
+	async closeCard(card: TablerCard) {
+		// TODO go to tabmain
+		
+		await lastValueFrom(this.dbService.bulkDelete('card', [card.id]));
 		this.loadFromDb();
 	}
 
@@ -95,6 +109,12 @@ export class TabManagerService {
 
 	tabActivation(tab: TablerTab) {
 		this._cardActivation = tab.mainCard;
+	}
+
+	homeActivation() {
+		this.updateConfig("activeTab", undefined);
+		this.updateConfig("activeCard", undefined);
+		this._homeActivation = true;
 	}
 
 
@@ -114,6 +134,7 @@ export class TabManagerService {
 			_loadedConfig.push(config['name']);
 		}
 
+		// Creale alla prima volta
 		if (!_loadedConfig.includes("activeTab")) {
 			await lastValueFrom(this.dbService.add('config', {
 				name: "activeTab",
@@ -146,6 +167,12 @@ export class TabManagerService {
 			cards: []
 		};
 
+		if(this.tabTree) {
+			newTabTree.activeTab = this.tabTree.activeTab;
+			newTabTree.activeCard = this.tabTree.activeCard;
+			newTabTree.home = this.tabTree.home;
+		}
+		
 		// Config
 		{
 			let configsDb = await lastValueFrom(this.dbService.getAll('config'));
@@ -202,24 +229,24 @@ export class TabManagerService {
 				newTabTree.cards = cards;
 			}
 		}
-
+		
 		this.tabTree = newTabTree;
 		this.tabTree$.next(this.tabTree);
 	}
 
 
 
-	private updateHome(url: string) {
-		this.updateConfig("activeTab", undefined);
-		this.updateConfig("activeCard", undefined);
-		this.updateConfig("home", url);
+	private async updateHome(url: string) {
+		await this.updateConfig("activeTab", undefined);
+		await this.updateConfig("activeCard", undefined);
+		await this.updateConfig("home", url);
 
 		this.loadFromDb();
 	}
 
-	private activateCard(card: TablerCard) {
-		this.updateConfig("activeTab", ""+card.tab.id);
-		this.updateConfig("activeCard", ""+card.id);
+	private async activateCard(card: TablerCard) {
+		await this.updateConfig("activeTab", ""+card.tab.id);
+		await this.updateConfig("activeCard", ""+card.id);
 
 		this.loadFromDb();
 	}
@@ -236,12 +263,46 @@ export class TabManagerService {
 
 
 
-
+	private async searchTab(url: string): Promise<TablerTab | undefined> {
+		let tabDb = await lastValueFrom(this.dbService.getByIndex('tab', 'url', url));
+		if(tabDb === undefined) return undefined;
+		return new TablerTab(tabDb);
+	}
 
 
 
 
 	private async processOpening(url: string) {
+		if(this.firstLoading) {
+			this.firstLoading = false;
+			
+			await this.init();
+			await this.loadFromDb();
+
+			// Se era ultima card in uso è un reload
+			if(this.tabTree.activeCard !== undefined && this.tabTree.activeCard.url == url) {
+				return;
+			}
+			
+			let loadedTab = await this.searchTab(url);
+			if(loadedTab !== undefined) {
+				let mainCard: TablerCard = new TablerCard(await lastValueFrom(this.dbService.getByIndex('card', 'tab', +loadedTab.id)));
+				mainCard.tab = loadedTab;
+				loadedTab.mainCard = mainCard;
+				this._cardActivation = mainCard;
+			}
+		}
+
+		if(this._homeActivation) {
+			this._homeActivation = false;
+			this.tabTree.activeTab = undefined;
+			this.tabTree.activeCard = undefined;
+			await this.updateConfig("activeTab", undefined);
+			await this.updateConfig("activeCard", undefined);
+			this.loadFromDb();
+			return;
+		}
+
 		if (this._cardActivation) {
 			this.activateCard(this._cardActivation);
 			this._cardActivation = undefined;
@@ -250,15 +311,16 @@ export class TabManagerService {
 
 		let openedCard: TablerCard;
 		{
-			let cardRequest: ITablerCard = { url: url }
+			let tab = (this.nextOpening == OpeningType.Card) ? this.tabTree.activeTab : undefined;
 			switch (this.nextOpening) {
-				case OpeningType.Tab:
-					openedCard = await this.newCard(cardRequest);
-					this.activateCard(openedCard);
-					break;
 				case OpeningType.Card:
-					openedCard = await this.newCard(cardRequest, this.tabTree.activeTab);
-					this.activateCard(openedCard);
+					// tab = this.tabTree.activeTab;  # è un fall-throuht quindi risolto con linea -3
+				case OpeningType.Tab:
+					try {
+						let cardRequest: ITablerCard = { url: url }
+						openedCard = await this.newCard(cardRequest, tab);
+						this.activateCard(openedCard);	
+					} catch (error) { }
 					break;
 				default:
 					this.updateHome(url);
@@ -271,6 +333,23 @@ export class TabManagerService {
 	async newCard(cardRequest: ITablerCard, tabParent: TablerTab | undefined = undefined): Promise<TablerCard> {
 		let isMain: boolean = false;
 		if (tabParent === undefined) {
+			// Controlla se la home ha quell'url
+			if(cardRequest.url == this.tabTree.home) {
+				this.homeActivation();
+				this.router.navigateByUrl(this.tabTree.home);
+				throw new CardUrlIsHomeError();
+			}
+
+			// Controlla se esiste già una tab con quell'url
+			let loadedTab = await this.searchTab(cardRequest.url);
+			if(loadedTab !== undefined) {
+				let mainCard: TablerCard = new TablerCard(await lastValueFrom(this.dbService.getByIndex('card', 'tab', +loadedTab.id)));
+				mainCard.tab = loadedTab;
+				loadedTab.mainCard = mainCard;
+				return mainCard;
+			}
+
+			// Crea nuova tab
 			tabParent = await this.createTab(cardRequest.url);
 			isMain = true;
 		}
@@ -287,6 +366,14 @@ export class TabManagerService {
 	}
 
 	private async createTab(url: string) {
+		if(url == this.tabTree.home) {
+			throw new Error('Creation tab request url is home');
+		}
+		
+		if(await this.searchTab(url) !== undefined) {
+			throw new Error('Creation tab request url exist');
+		}
+
 		let tab: TablerTab = new TablerTab(await lastValueFrom(this.dbService.add('tab', {
 			url: url
 		})));
