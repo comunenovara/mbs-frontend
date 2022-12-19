@@ -14,7 +14,7 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="dossier.description"> description </th>
+						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description"> description </th>
 						<th *ngSwitchCase="'type.description'" style="width:auto" pResizableColumn pSortableColumn="dossierType.description"> description</th>
 						<th *ngSwitchCase="'type.category'" style="width:auto" pResizableColumn pSortableColumn="dossierType.category"> category</th>
 						<th *ngSwitchCase="'asset.description'" style="width:auto" pResizableColumn pSortableColumn="asset.description"> description</th>

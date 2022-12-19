@@ -14,10 +14,10 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="operation.description"> description </th>
-						<th *ngSwitchCase="'value'" style="width:auto" pResizableColumn pSortableColumn="operation.value"> value </th>
-						<th *ngSwitchCase="'startDate'" style="width:auto" pResizableColumn pSortableColumn="operation.startDate"> startDate </th>
-						<th *ngSwitchCase="'endDate'" style="width:auto" pResizableColumn pSortableColumn="operation.endDate"> endDate </th>
+						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description"> description </th>
+						<th *ngSwitchCase="'value'" style="width:auto" pResizableColumn pSortableColumn="value"> value </th>
+						<th *ngSwitchCase="'startDate'" style="width:auto" pResizableColumn pSortableColumn="startDate"> startDate </th>
+						<th *ngSwitchCase="'endDate'" style="width:auto" pResizableColumn pSortableColumn="endDate"> endDate </th>
 						<th *ngSwitchCase="'type.description'" style="width:auto" pResizableColumn pSortableColumn="operationType.description"> description</th>
 						<th *ngSwitchCase="'asset.description'" style="width:auto" pResizableColumn pSortableColumn="asset.description"> description</th>
 						<th *ngSwitchCase="'asset.address'" style="width:auto" pResizableColumn pSortableColumn="asset.address"> address</th>

@@ -14,9 +14,9 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="relif.description"> description </th>
-						<th *ngSwitchCase="'startDate'" style="width:auto" pResizableColumn pSortableColumn="relif.startDate"> startDate </th>
-						<th *ngSwitchCase="'endDate'" style="width:auto" pResizableColumn pSortableColumn="relif.endDate"> endDate </th>
+						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description"> description </th>
+						<th *ngSwitchCase="'startDate'" style="width:auto" pResizableColumn pSortableColumn="startDate"> startDate </th>
+						<th *ngSwitchCase="'endDate'" style="width:auto" pResizableColumn pSortableColumn="endDate"> endDate </th>
 						<th *ngSwitchCase="'asset.description'" style="width:auto" pResizableColumn pSortableColumn="asset.description"> description</th>
 						<th *ngSwitchCase="'asset.address'" style="width:auto" pResizableColumn pSortableColumn="asset.address"> address</th>
 						<th *ngSwitchCase="'asset.mq'" style="width:auto" pResizableColumn pSortableColumn="asset.mq"> mq</th>
