@@ -22,3 +22,7 @@ $gutter: 1rem; //for primeflex grid system
     bottom: 20px;
     right: 20px;
 }
+
+.p-dialog-content {
+    overflow: initial !important;
+}

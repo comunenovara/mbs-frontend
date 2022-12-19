@@ -4,23 +4,19 @@
 
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'description' }}</span>
-				String
 				<input type="text" pInputText formControlName="description" placeholder="Description">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'value' }}</span>
-				BigDecimal
 				<input type="number" pInputText formControlName="value" placeholder="Value">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'startDate' }}</span>
-				ZonedDateTime
-				<input type="text" pInputText formControlName="startDate" placeholder="StartDate">
+				<p-calendar formControlName="startDate" dateFormat="dd/mm/yy" [showTime]="true"></p-calendar>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'endDate' }}</span>
-				ZonedDateTime
-				<input type="text" pInputText formControlName="endDate" placeholder="EndDate">
+				<p-calendar formControlName="endDate" dateFormat="dd/mm/yy" [showTime]="true"></p-calendar>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="!(operation == null || operation.type == null) ">
 				<span>{{ 'type' }}</span>

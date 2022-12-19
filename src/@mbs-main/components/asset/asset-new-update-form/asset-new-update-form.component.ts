@@ -27,6 +27,8 @@ export class MbsAssetNewUpdateFormComponent extends AgalGenericForm {
 
 	override loadVariables(): void {
 		this.input = this.asset;
+		{
+		}
 		this.output = this.assetOutput;
 	}
 

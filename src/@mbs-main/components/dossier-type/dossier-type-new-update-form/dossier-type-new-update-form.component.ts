@@ -27,6 +27,8 @@ export class MbsDossierTypeNewUpdateFormComponent extends AgalGenericForm {
 
 	override loadVariables(): void {
 		this.input = this.dossierType;
+		{
+		}
 		this.output = this.dossierTypeOutput;
 	}
 

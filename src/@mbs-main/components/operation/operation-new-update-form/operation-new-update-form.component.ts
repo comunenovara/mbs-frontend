@@ -29,6 +29,10 @@ export class MbsOperationNewUpdateFormComponent extends AgalGenericForm {
 
 	override loadVariables(): void {
 		this.input = this.operation;
+		{
+			if(this.input.startDate != null) this.input.startDate = new Date(this.input.startDate);
+			if(this.input.endDate != null) this.input.endDate = new Date(this.input.endDate);
+		}
 		this.output = this.operationOutput;
 	}
 

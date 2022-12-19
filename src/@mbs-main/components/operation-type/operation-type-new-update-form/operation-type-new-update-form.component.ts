@@ -27,6 +27,8 @@ export class MbsOperationTypeNewUpdateFormComponent extends AgalGenericForm {
 
 	override loadVariables(): void {
 		this.input = this.operationType;
+		{
+		}
 		this.output = this.operationTypeOutput;
 	}
 
