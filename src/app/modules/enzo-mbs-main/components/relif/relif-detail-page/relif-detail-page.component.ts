@@ -44,7 +44,7 @@ export class EnzoRelifDetailPageComponent extends EnzoGenericDetailPageComponent
 
 	editRelif(relif: MbsRelifDto) {
 		const ref = this.dialogService.open(EnzoRelifDialogComponent, {
-			data: relif,
+			data: { relif: relif },
 			header: 'Update relif',
 			width: '70%'
 		});

@@ -43,7 +43,7 @@ export class EnzoDossierDetailPageComponent extends EnzoGenericDetailPageCompone
 
 	editDossier(dossier: MbsDossierDto) {
 		const ref = this.dialogService.open(EnzoDossierDialogComponent, {
-			data: dossier,
+			data: { dossier: dossier },
 			header: 'Update dossier',
 			width: '70%'
 		});

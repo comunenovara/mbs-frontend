@@ -46,7 +46,7 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 
 	editAsset(asset: MbsAssetDto) {
 		const ref = this.dialogService.open(EnzoAssetDialogComponent, {
-			data: asset,
+			data: { asset: asset },
 			header: 'Update asset',
 			width: '70%'
 		});

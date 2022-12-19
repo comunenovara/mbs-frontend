@@ -44,7 +44,7 @@ export class EnzoOperationTypeDetailPageComponent extends EnzoGenericDetailPageC
 
 	editOperationType(operationType: MbsOperationTypeDto) {
 		const ref = this.dialogService.open(EnzoOperationTypeDialogComponent, {
-			data: operationType,
+			data: { operationType: operationType },
 			header: 'Update operationType',
 			width: '70%'
 		});

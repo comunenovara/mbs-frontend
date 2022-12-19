@@ -44,7 +44,7 @@ export class EnzoDossierTypeDetailPageComponent extends EnzoGenericDetailPageCom
 
 	editDossierType(dossierType: MbsDossierTypeDto) {
 		const ref = this.dialogService.open(EnzoDossierTypeDialogComponent, {
-			data: dossierType,
+			data: { dossierType: dossierType },
 			header: 'Update dossierType',
 			width: '70%'
 		});
