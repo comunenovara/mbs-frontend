@@ -6,22 +6,22 @@
 				<span>{{ 'description' }}</span>
 				<input type="text" pInputText formControlName="description" placeholder="Description">
 			</div>
-			<div class="col-12 md:col-6 lg:col-4" [hidden]="!(dossier == null || dossier.type == null) ">
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="type != null">
 				<span>{{ 'type' }}</span>
 				<input type="text" pInputText formControlName="type" [agalAutocomplete]="typeAutocomplete">
 				<agal-autocomplete #typeAutocomplete [filteredElements]="_filteredType"></agal-autocomplete>
 			</div>
-			<div class="col-12 md:col-6 lg:col-4" [hidden]="!(dossier == null || dossier.asset == null) ">
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null">
 				<span>{{ 'asset' }}</span>
 				<input type="text" pInputText formControlName="asset" [agalAutocomplete]="assetAutocomplete">
 				<agal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></agal-autocomplete>
 			</div>
-			<div class="col-12 md:col-6 lg:col-4" [hidden]="!(dossier == null || dossier.relif == null) ">
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="relif != null">
 				<span>{{ 'relif' }}</span>
 				<input type="text" pInputText formControlName="relif" [agalAutocomplete]="relifAutocomplete">
 				<agal-autocomplete #relifAutocomplete [filteredElements]="_filteredRelif"></agal-autocomplete>
 			</div>
-			<div class="col-12 md:col-6 lg:col-4" [hidden]="!(dossier == null || dossier.operation == null) ">
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="operation != null">
 				<span>{{ 'operation' }}</span>
 				<input type="text" pInputText formControlName="operation" [agalAutocomplete]="operationAutocomplete">
 				<agal-autocomplete #operationAutocomplete [filteredElements]="_filteredOperation"></agal-autocomplete>

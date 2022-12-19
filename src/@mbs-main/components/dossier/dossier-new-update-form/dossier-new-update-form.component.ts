@@ -19,9 +19,14 @@ import { MbsOperationDto } from '@mbs-main/class/operation-dto.class';
 	styleUrls: ['./dossier-new-update-form.component.scss']
 })
 export class MbsDossierNewUpdateFormComponent extends AgalGenericForm {
-	@Input() dossier: MbsDossierDto;
+	@Input() dossier: MbsDossierDto | undefined;
 	@Output() dossierOutput: EventEmitter<MbsDossierDto> = new EventEmitter<MbsDossierDto>();
 	
+	@Input() type: MbsDossierTypeDto | undefined;
+	@Input() asset: MbsAssetDto | undefined;
+	@Input() relif: MbsRelifDto | undefined;
+	@Input() operation: MbsOperationDto | undefined;
+
 	constructor(
 		agcs: AgalCommonService,
 		private _formBuilder: FormBuilder,
@@ -30,8 +35,10 @@ export class MbsDossierNewUpdateFormComponent extends AgalGenericForm {
 	) { super(agcs); }
 
 	override loadVariables(): void {
-		this.input = this.dossier;
-		{
+		if(this.dossier !== undefined) {
+			this.input = this.dossier;
+			{
+			}
 		}
 		this.output = this.dossierOutput;
 	}
@@ -45,10 +52,10 @@ export class MbsDossierNewUpdateFormComponent extends AgalGenericForm {
 		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
 			description: [null, []],
-			type: [null, []],
-			asset: [null, []],
-			relif: [null, []],
-			operation: [null, []],
+			type: [this.type, []],
+			asset: [this.asset, []],
+			relif: [this.relif, []],
+			operation: [this.operation, []],
 		});
 
 		this._filteredType = this.mbsMainAutocompleteService.filterDossierType(this._newUpdateForm.controls['type'].valueChanges);

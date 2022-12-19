@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { MbsOperationDto } from '@mbs-main';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
-    selector: 'operation-dialog',
-    templateUrl: 'operation-dialog.component.html'
+	selector: 'operation-dialog',
+	templateUrl: 'operation-dialog.component.html'
 })
 
 export class EnzoOperationDialogComponent {
-    operation: MbsOperationDto;
+	protected data: any = { };
 
-    constructor(
-        public ref: DynamicDialogRef,
-        public config: DynamicDialogConfig
-    ) {
-        this.operation = this.config.data;
-    }
+	constructor(
+		public ref: DynamicDialogRef,
+		public config: DynamicDialogConfig
+	) {
+		if(this.config.data !== undefined) {
+			this.data = this.config.data;
+		}
+	}
 
 }

@@ -14,7 +14,7 @@
 				<span>{{ 'endDate' }}</span>
 				<p-calendar formControlName="endDate" dateFormat="dd/mm/yy" [showTime]="true"></p-calendar>
 			</div>
-			<div class="col-12 md:col-6 lg:col-4" [hidden]="!(relif == null || relif.asset == null) ">
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null">
 				<span>{{ 'asset' }}</span>
 				<input type="text" pInputText formControlName="asset" [agalAutocomplete]="assetAutocomplete">
 				<agal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></agal-autocomplete>

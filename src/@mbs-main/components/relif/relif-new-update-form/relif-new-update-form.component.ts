@@ -16,9 +16,11 @@ import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 	styleUrls: ['./relif-new-update-form.component.scss']
 })
 export class MbsRelifNewUpdateFormComponent extends AgalGenericForm {
-	@Input() relif: MbsRelifDto;
+	@Input() relif: MbsRelifDto | undefined;
 	@Output() relifOutput: EventEmitter<MbsRelifDto> = new EventEmitter<MbsRelifDto>();
 	
+	@Input() asset: MbsAssetDto | undefined;
+
 	constructor(
 		agcs: AgalCommonService,
 		private _formBuilder: FormBuilder,
@@ -27,10 +29,12 @@ export class MbsRelifNewUpdateFormComponent extends AgalGenericForm {
 	) { super(agcs); }
 
 	override loadVariables(): void {
-		this.input = this.relif;
-		{
-			if(this.input.startDate != null) this.input.startDate = new Date(this.input.startDate);
-			if(this.input.endDate != null) this.input.endDate = new Date(this.input.endDate);
+		if(this.relif !== undefined) {
+			this.input = this.relif;
+			{
+				if(this.input.startDate != null) this.input.startDate = new Date(this.input.startDate);
+				if(this.input.endDate != null) this.input.endDate = new Date(this.input.endDate);
+			}
 		}
 		this.output = this.relifOutput;
 	}
@@ -43,7 +47,7 @@ export class MbsRelifNewUpdateFormComponent extends AgalGenericForm {
 			description: [null, []],
 			startDate: [null, []],
 			endDate: [null, []],
-			asset: [null, []],
+			asset: [this.asset, []],
 		});
 
 		this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._newUpdateForm.controls['asset'].valueChanges);

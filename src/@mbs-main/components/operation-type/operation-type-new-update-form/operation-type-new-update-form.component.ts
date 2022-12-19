@@ -15,9 +15,10 @@ import { MbsOperationTypeDto } from '@mbs-main/class/operation-type-dto.class';
 	styleUrls: ['./operation-type-new-update-form.component.scss']
 })
 export class MbsOperationTypeNewUpdateFormComponent extends AgalGenericForm {
-	@Input() operationType: MbsOperationTypeDto;
+	@Input() operationType: MbsOperationTypeDto | undefined;
 	@Output() operationTypeOutput: EventEmitter<MbsOperationTypeDto> = new EventEmitter<MbsOperationTypeDto>();
 	
+
 	constructor(
 		agcs: AgalCommonService,
 		private _formBuilder: FormBuilder,
@@ -26,8 +27,10 @@ export class MbsOperationTypeNewUpdateFormComponent extends AgalGenericForm {
 	) { super(agcs); }
 
 	override loadVariables(): void {
-		this.input = this.operationType;
-		{
+		if(this.operationType !== undefined) {
+			this.input = this.operationType;
+			{
+			}
 		}
 		this.output = this.operationTypeOutput;
 	}

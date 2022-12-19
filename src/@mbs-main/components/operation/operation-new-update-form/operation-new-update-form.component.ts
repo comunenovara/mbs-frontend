@@ -17,9 +17,12 @@ import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 	styleUrls: ['./operation-new-update-form.component.scss']
 })
 export class MbsOperationNewUpdateFormComponent extends AgalGenericForm {
-	@Input() operation: MbsOperationDto;
+	@Input() operation: MbsOperationDto | undefined;
 	@Output() operationOutput: EventEmitter<MbsOperationDto> = new EventEmitter<MbsOperationDto>();
 	
+	@Input() type: MbsOperationTypeDto | undefined;
+	@Input() asset: MbsAssetDto | undefined;
+
 	constructor(
 		agcs: AgalCommonService,
 		private _formBuilder: FormBuilder,
@@ -28,10 +31,12 @@ export class MbsOperationNewUpdateFormComponent extends AgalGenericForm {
 	) { super(agcs); }
 
 	override loadVariables(): void {
-		this.input = this.operation;
-		{
-			if(this.input.startDate != null) this.input.startDate = new Date(this.input.startDate);
-			if(this.input.endDate != null) this.input.endDate = new Date(this.input.endDate);
+		if(this.operation !== undefined) {
+			this.input = this.operation;
+			{
+				if(this.input.startDate != null) this.input.startDate = new Date(this.input.startDate);
+				if(this.input.endDate != null) this.input.endDate = new Date(this.input.endDate);
+			}
 		}
 		this.output = this.operationOutput;
 	}
@@ -46,8 +51,8 @@ export class MbsOperationNewUpdateFormComponent extends AgalGenericForm {
 			value: [null, []],
 			startDate: [null, []],
 			endDate: [null, []],
-			type: [null, []],
-			asset: [null, []],
+			type: [this.type, []],
+			asset: [this.asset, []],
 		});
 
 		this._filteredType = this.mbsMainAutocompleteService.filterOperationType(this._newUpdateForm.controls['type'].valueChanges);

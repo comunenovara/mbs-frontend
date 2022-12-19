@@ -15,9 +15,10 @@ import { MbsDossierTypeDto } from '@mbs-main/class/dossier-type-dto.class';
 	styleUrls: ['./dossier-type-new-update-form.component.scss']
 })
 export class MbsDossierTypeNewUpdateFormComponent extends AgalGenericForm {
-	@Input() dossierType: MbsDossierTypeDto;
+	@Input() dossierType: MbsDossierTypeDto | undefined;
 	@Output() dossierTypeOutput: EventEmitter<MbsDossierTypeDto> = new EventEmitter<MbsDossierTypeDto>();
 	
+
 	constructor(
 		agcs: AgalCommonService,
 		private _formBuilder: FormBuilder,
@@ -26,8 +27,10 @@ export class MbsDossierTypeNewUpdateFormComponent extends AgalGenericForm {
 	) { super(agcs); }
 
 	override loadVariables(): void {
-		this.input = this.dossierType;
-		{
+		if(this.dossierType !== undefined) {
+			this.input = this.dossierType;
+			{
+			}
 		}
 		this.output = this.dossierTypeOutput;
 	}

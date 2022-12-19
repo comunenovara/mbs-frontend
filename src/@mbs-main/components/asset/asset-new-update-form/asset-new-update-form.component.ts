@@ -15,9 +15,10 @@ import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 	styleUrls: ['./asset-new-update-form.component.scss']
 })
 export class MbsAssetNewUpdateFormComponent extends AgalGenericForm {
-	@Input() asset: MbsAssetDto;
+	@Input() asset: MbsAssetDto | undefined;
 	@Output() assetOutput: EventEmitter<MbsAssetDto> = new EventEmitter<MbsAssetDto>();
 	
+
 	constructor(
 		agcs: AgalCommonService,
 		private _formBuilder: FormBuilder,
@@ -26,8 +27,10 @@ export class MbsAssetNewUpdateFormComponent extends AgalGenericForm {
 	) { super(agcs); }
 
 	override loadVariables(): void {
-		this.input = this.asset;
-		{
+		if(this.asset !== undefined) {
+			this.input = this.asset;
+			{
+			}
 		}
 		this.output = this.assetOutput;
 	}

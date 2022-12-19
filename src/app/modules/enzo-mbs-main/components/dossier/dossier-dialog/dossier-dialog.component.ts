@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { MbsDossierDto } from '@mbs-main';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
-    selector: 'dossier-dialog',
-    templateUrl: 'dossier-dialog.component.html'
+	selector: 'dossier-dialog',
+	templateUrl: 'dossier-dialog.component.html'
 })
 
 export class EnzoDossierDialogComponent {
-    dossier: MbsDossierDto;
+	protected data: any = { };
 
-    constructor(
-        public ref: DynamicDialogRef,
-        public config: DynamicDialogConfig
-    ) {
-        this.dossier = this.config.data;
-    }
+	constructor(
+		public ref: DynamicDialogRef,
+		public config: DynamicDialogConfig
+	) {
+		if(this.config.data !== undefined) {
+			this.data = this.config.data;
+		}
+	}
 
 }
