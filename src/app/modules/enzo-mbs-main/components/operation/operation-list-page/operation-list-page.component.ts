@@ -74,7 +74,7 @@ export class EnzoOperationListPageComponent {
 					icon: "pi pi-pencil",
 					command: (e: any) => {
 						const ref = this.dialogService.open(EnzoOperationDialogComponent, {
-							data: e.item.data,
+							data: { ...e.item.data },
 							header: 'Update operation',
 							width: '70%'
 						});

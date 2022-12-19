@@ -74,7 +74,7 @@ export class EnzoAssetListPageComponent {
 					icon: "pi pi-pencil",
 					command: (e: any) => {
 						const ref = this.dialogService.open(EnzoAssetDialogComponent, {
-							data: e.item.data,
+							data: { ...e.item.data },
 							header: 'Update asset',
 							width: '70%'
 						});
