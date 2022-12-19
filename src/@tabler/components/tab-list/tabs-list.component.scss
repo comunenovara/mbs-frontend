@@ -15,7 +15,12 @@
     }
 
     .active {
-        color: pink;
+        color: red;
+        border-color: red !important;
+
+        span {
+            color: red;
+        }
     }
 
     .tb-box {
@@ -23,7 +28,7 @@
         float: left;
         
         padding: 3px;
-        border: solid 1px;
+        border: solid 1px blue;
 
     }
 
@@ -32,7 +37,7 @@
         
         i {
             margin-left: 10px;
-            color: red;
+            color: white;
         }
     }
 

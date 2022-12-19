@@ -3,18 +3,18 @@
         <a class="tb-box" [routerLink]="[tabler.home]" (click)="tabManagerService.homeActivation()" [ngClass]="{'active': (tabler.activeTab === undefined)}">
             <i class="pi pi-home"></i>
         </a>
-        <div *ngFor="let tab of tabler.tabs" class="tb-box tb-element tb-tab">
-            <a  [routerLink]="[tab.url]" (click)="tabManagerService.tabActivation(tab)"
-                [ngClass]="{'active': (tabler.activeTab !== undefined && tabler.activeTab.id == tab.id)}">
+        <div *ngFor="let tab of tabler.tabs" class="tb-box tb-element tb-tab"
+            [ngClass]="{'active': (tabler.activeTab !== undefined && tabler.activeTab.id == tab.id)}">
+            <a [routerLink]="[tab.url]" (click)="tabManagerService.tabActivation(tab)">
                 <span>{{ tab.url }}</span>
             </a>
             <i class="pi pi-trash" (click)="tabManagerService.closeTab(tab)"></i>
         </div>
     </div>
     <div id="tb-card-list" class="tb-list">
-        <div *ngFor="let card of tabler.cards | isChild: tabler.activeTab" class="tb-box tb-element tb-card" >
-            <a  [routerLink]="[card.url]" (click)="tabManagerService.cardActivation(card)"
-                [ngClass]="{'active': (tabler.activeCard !== undefined && tabler.activeCard.id == card.id)}">
+        <div *ngFor="let card of tabler.cards | isChild: tabler.activeTab" class="tb-box tb-element tb-card"
+            [ngClass]="{'active': (tabler.activeCard !== undefined && tabler.activeCard.id == card.id)}">
+            <a [routerLink]="[card.url]" (click)="tabManagerService.cardActivation(card)">
                 <span>{{ card.url }}</span>
             </a>
             <i class="pi pi-trash" (click)="tabManagerService.closeCard(card)"></i>
