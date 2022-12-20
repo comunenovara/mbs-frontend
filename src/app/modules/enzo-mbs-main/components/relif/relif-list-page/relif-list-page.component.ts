@@ -38,7 +38,7 @@ export class EnzoRelifListPageComponent {
 	};
 	relifCount: number;
 
-	relifListDc = ['_ck', 'id'];
+	relifListDc = ['_ck', 'id', 'asset.description', 'description', 'startDate', 'endDate'];
 	paginatorEvent(paginator: any) {
 		let relifListPaginator = { ...paginator }
 		this.relifListPaginator = relifListPaginator;

@@ -38,7 +38,7 @@ export class EnzoAssetListPageComponent {
 	};
 	assetCount: number;
 
-	assetListDc = ['_ck', 'id'];
+	assetListDc = ['_ck', 'id', 'description', 'address', 'mq'];
 	paginatorEvent(paginator: any) {
 		let assetListPaginator = { ...paginator }
 		this.assetListPaginator = assetListPaginator;

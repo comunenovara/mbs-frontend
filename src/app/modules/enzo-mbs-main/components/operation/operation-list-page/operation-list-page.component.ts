@@ -38,7 +38,7 @@ export class EnzoOperationListPageComponent {
 	};
 	operationCount: number;
 
-	operationListDc = ['_ck', 'id'];
+	operationListDc = ['_ck', 'id', 'type.description', 'asset.description', 'description', 'value', 'startDate', 'endDate'];
 	paginatorEvent(paginator: any) {
 		let operationListPaginator = { ...paginator }
 		this.operationListPaginator = operationListPaginator;
