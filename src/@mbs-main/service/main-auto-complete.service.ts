@@ -29,20 +29,11 @@ export class MbsMainAutocompleteService {
 		return observable.pipe(
             startWith(() => ''),
             switchMap((value: string) => {
-				let filter = {
-					contain: value
+				let filter: any = {};
+				if(value && value.length > 0)  {
+					filter.descriptionContains = value;
 				};
 				return this.assetResourceService.getAllAssetsUsingGET(filter);
-                /*
-				if (value && value.length > 0) {
-                    let filter = {
-						contain: value
-					};
-					return this.assetResourceService.getAllAssetsUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-				*/
             })
         );
 	}
@@ -51,20 +42,11 @@ export class MbsMainAutocompleteService {
 		return observable.pipe(
             startWith(() => ''),
             switchMap((value: string) => {
-				let filter = {
-					contain: value
+				let filter: any = {};
+				if(value && value.length > 0)  {
+					filter.descriptionContains = value;
 				};
 				return this.dossierResourceService.getAllDossiersUsingGET(filter);
-                /*
-				if (value && value.length > 0) {
-                    let filter = {
-						contain: value
-					};
-					return this.dossierResourceService.getAllDossiersUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-				*/
             })
         );
 	}
@@ -73,20 +55,11 @@ export class MbsMainAutocompleteService {
 		return observable.pipe(
             startWith(() => ''),
             switchMap((value: string) => {
-				let filter = {
-					contain: value
+				let filter: any = {};
+				if(value && value.length > 0)  {
+					filter.descriptionContains = value;
 				};
 				return this.dossierTypeResourceService.getAllDossierTypesUsingGET(filter);
-                /*
-				if (value && value.length > 0) {
-                    let filter = {
-						contain: value
-					};
-					return this.dossierTypeResourceService.getAllDossierTypesUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-				*/
             })
         );
 	}
@@ -95,20 +68,11 @@ export class MbsMainAutocompleteService {
 		return observable.pipe(
             startWith(() => ''),
             switchMap((value: string) => {
-				let filter = {
-					contain: value
+				let filter: any = {};
+				if(value && value.length > 0)  {
+					filter.descriptionContains = value;
 				};
 				return this.operationResourceService.getAllOperationsUsingGET(filter);
-                /*
-				if (value && value.length > 0) {
-                    let filter = {
-						contain: value
-					};
-					return this.operationResourceService.getAllOperationsUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-				*/
             })
         );
 	}
@@ -117,20 +81,11 @@ export class MbsMainAutocompleteService {
 		return observable.pipe(
             startWith(() => ''),
             switchMap((value: string) => {
-				let filter = {
-					contain: value
+				let filter: any = {};
+				if(value && value.length > 0)  {
+					filter.descriptionContains = value;
 				};
 				return this.operationTypeResourceService.getAllOperationTypesUsingGET(filter);
-                /*
-				if (value && value.length > 0) {
-                    let filter = {
-						contain: value
-					};
-					return this.operationTypeResourceService.getAllOperationTypesUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-				*/
             })
         );
 	}
@@ -139,20 +94,11 @@ export class MbsMainAutocompleteService {
 		return observable.pipe(
             startWith(() => ''),
             switchMap((value: string) => {
-				let filter = {
-					contain: value
+				let filter: any = {};
+				if(value && value.length > 0)  {
+					filter.descriptionContains = value;
 				};
 				return this.relifResourceService.getAllRelifsUsingGET(filter);
-                /*
-				if (value && value.length > 0) {
-                    let filter = {
-						contain: value
-					};
-					return this.relifResourceService.getAllRelifsUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-				*/
             })
         );
 	}
