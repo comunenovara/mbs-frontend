@@ -4,6 +4,7 @@ import { lastValueFrom, Observable } from 'rxjs';
 
 import { AgalCommonService } from '@agal-core/services/common.service';
 import { AgalGenericForm, FormStep } from '@agal-core/components/agal-generic-form';
+import { AgalValidator } from '@agal-core/class/form.validator';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsRelifResourceService } from '@mbs-main/services/relif.service';
@@ -47,7 +48,7 @@ export class MbsRelifNewUpdateFormComponent extends AgalGenericForm {
 			description: [null, [  ]],
 			startDate: [null, [ Validators.required,  ]],
 			endDate: [null, [  ]],
-			asset: [this.asset, []],
+			asset: [this.asset, [ AgalValidator.haveId,  ]],
 		});
 
 		this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._newUpdateForm.controls['asset'].valueChanges);

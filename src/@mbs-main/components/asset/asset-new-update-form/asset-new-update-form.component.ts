@@ -4,6 +4,7 @@ import { lastValueFrom, Observable } from 'rxjs';
 
 import { AgalCommonService } from '@agal-core/services/common.service';
 import { AgalGenericForm, FormStep } from '@agal-core/components/agal-generic-form';
+import { AgalValidator } from '@agal-core/class/form.validator';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsAssetResourceService } from '@mbs-main/services/asset.service';
