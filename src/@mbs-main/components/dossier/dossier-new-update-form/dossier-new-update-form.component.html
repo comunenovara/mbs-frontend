@@ -3,33 +3,33 @@
 		<div class="grid p-fluid" style="margin-top: 0px;">
 
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="type != null">
-				<span>{{ 'type' }}</span><span class="filed-required">*</span>
+				<span>{{ 'Tipo fascicolo' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="type" [agalAutocomplete]="typeAutocomplete">
 				<agal-autocomplete #typeAutocomplete [filteredElements]="_filteredType"></agal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['type'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['type'], 'validatorHaveId')">La type è richiesta.</span>
+					<span *ngIf="checkControlError(_newUpdateForm.controls['type'], 'validatorHaveId')">Il tipo fascicolo è richiesto.</span>
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null || relif != null || operation != null">
-				<span>{{ 'asset' }}</span>
+				<span>{{ 'Bene immobile' }}</span>
 				<input type="text" pInputText formControlName="asset" [agalAutocomplete]="assetAutocomplete">
 				<agal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></agal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null || relif != null || operation != null">
-				<span>{{ 'relif' }}</span>
+				<span>{{ 'Rilievo' }}</span>
 				<input type="text" pInputText formControlName="relif" [agalAutocomplete]="relifAutocomplete">
 				<agal-autocomplete #relifAutocomplete [filteredElements]="_filteredRelif"></agal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null || relif != null || operation != null">
-				<span>{{ 'operation' }}</span>
+				<span>{{ 'Intervento' }}</span>
 				<input type="text" pInputText formControlName="operation" [agalAutocomplete]="operationAutocomplete">
 				<agal-autocomplete #operationAutocomplete [filteredElements]="_filteredOperation"></agal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'description' }}</span><span class="filed-required">*</span>
-				<input type="text" pInputText formControlName="description" placeholder="Description">
+				<span>{{ 'Descrizione' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="description" placeholder="Descrizione">
 				<div *ngIf="!isValid(_newUpdateForm.controls['description'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La description è richiesta.</span>
+					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La descrizione è richiesta.</span>
 				</div>
 			</div>
 
@@ -44,7 +44,7 @@
 </div>
 
 <div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
-	loading
+	Caricamento
 </div>
 
 <div *ngIf="stepIs(formStep.COMPLETE)">
@@ -57,8 +57,8 @@
 
 	<div *ngIf="!_isUpdate">
 		<button pButton color="primary" (click)="newDossier()">
-			<span *ngIf="!returnToParent">{{ 'Crea_NEW' }}</span>
-			<span *ngIf="returnToParent">{{ 'MAIN.EDIT' }}</span>
+			<span *ngIf="!returnToParent">{{ 'Crea nuovo' }}</span>
+			<span *ngIf="returnToParent">{{ 'Modifica' }}</span>
 		</button>
 	</div>
 </div>

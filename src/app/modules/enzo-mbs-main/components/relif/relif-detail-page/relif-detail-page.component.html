@@ -9,7 +9,7 @@
 
 	<div class="col-12 lg:col-6 xl:col-3" *ngIf="relifDto.asset !== null">
         <div class="card mb-0">
-			<h3>asset</h3>
+			<h3>Bene immobile</h3>
 			<mbs-asset-detail-box [asset]="relifDto.asset" ></mbs-asset-detail-box>
 			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" [routerLink]="['../../../asset/detail', relifDto.asset.id]" (click)="tabManagerService.openInCard()"></button>
 		</div>
@@ -17,7 +17,7 @@
 
 	<div class="col-12 lg:col-12 xl:col-12">
 		<div class="card mb-0 relative">
-			<h3>dossier</h3>
+			<h3>Fascicoli</h3>
 			<mbs-dossier-list-loader 
 				[filters]="{relifIdEquals: relifDto.id}" 
 				[dcs]="['id', 'description']" 

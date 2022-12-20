@@ -27,7 +27,7 @@ export class EnzoOperationListPageComponent {
 
 	createNewOperation() {
 		this.dialogService.open(EnzoOperationDialogComponent, {
-			header: 'Create operation',
+			header: 'Crea intervento',
 			width: '70%'
 		});
 	}
@@ -70,18 +70,18 @@ export class EnzoOperationListPageComponent {
 			command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
-					label: "Edit",
+					label: "Modifica",
 					icon: "pi pi-pencil",
 					command: (e: any) => {
 						const ref = this.dialogService.open(EnzoOperationDialogComponent, {
 							data: { operation: { ...e.item.data } },
-							header: 'Update operation',
+							header: 'Modifica intervento',
 							width: '70%'
 						});
 					}
 				},
 				{
-					label: "Delete",
+					label: "Cancella",
 					icon: "pi pi-trash",
 					command: async (e: any) => {
 						await lastValueFrom(this.resourceService.deleteOperationUsingDELETE(e.item.data.id));

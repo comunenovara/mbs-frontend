@@ -3,38 +3,38 @@
 		<div class="grid p-fluid" style="margin-top: 0px;">
 
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="type != null">
-				<span>{{ 'type' }}</span><span class="filed-required">*</span>
+				<span>{{ 'Tipo intervento' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="type" [agalAutocomplete]="typeAutocomplete">
 				<agal-autocomplete #typeAutocomplete [filteredElements]="_filteredType"></agal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['type'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['type'], 'validatorHaveId')">La type è richiesta.</span>
+					<span *ngIf="checkControlError(_newUpdateForm.controls['type'], 'validatorHaveId')">Il tipo intervento è richiesto.</span>
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null">
-				<span>{{ 'asset' }}</span><span class="filed-required">*</span>
+				<span>{{ 'Bene immobile' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="asset" [agalAutocomplete]="assetAutocomplete">
 				<agal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></agal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['asset'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['asset'], 'validatorHaveId')">La asset è richiesta.</span>
+					<span *ngIf="checkControlError(_newUpdateForm.controls['asset'], 'validatorHaveId')">Il bene immobile è richiesta.</span>
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'description' }}</span><span class="filed-required">*</span>
+				<span>{{ 'Descrizione' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="description" placeholder="Description">
 				<div *ngIf="!isValid(_newUpdateForm.controls['description'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La description è richiesta.</span>
+					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La descrizione è richiesta.</span>
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'value' }}</span>
-				<input type="number" pInputText formControlName="value" placeholder="Value">
+				<span>{{ 'Valore intervento' }}</span>
+				<input type="number" pInputText formControlName="value" placeholder="Valore intervento">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'startDate' }}</span>
+				<span>{{ 'Inizio intervento' }}</span>
 				<p-calendar formControlName="startDate" dateFormat="dd/mm/yy" [showTime]="true"></p-calendar>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'endDate' }}</span>
+				<span>{{ 'Fine intervento' }}</span>
 				<p-calendar formControlName="endDate" dateFormat="dd/mm/yy" [showTime]="true"></p-calendar>
 			</div>
 
@@ -49,7 +49,7 @@
 </div>
 
 <div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
-	loading
+	Caricamento
 </div>
 
 <div *ngIf="stepIs(formStep.COMPLETE)">
@@ -62,8 +62,8 @@
 
 	<div *ngIf="!_isUpdate">
 		<button pButton color="primary" (click)="newOperation()">
-			<span *ngIf="!returnToParent">{{ 'Crea_NEW' }}</span>
-			<span *ngIf="returnToParent">{{ 'MAIN.EDIT' }}</span>
+			<span *ngIf="!returnToParent">{{ 'Crea nuovo' }}</span>
+			<span *ngIf="returnToParent">{{ 'Modifica' }}</span>
 		</button>
 	</div>
 </div>

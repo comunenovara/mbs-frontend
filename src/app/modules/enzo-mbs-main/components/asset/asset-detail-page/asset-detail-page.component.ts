@@ -47,7 +47,7 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 	editAsset(asset: MbsAssetDto) {
 		const ref = this.dialogService.open(EnzoAssetDialogComponent, {
 			data: { asset: asset },
-			header: 'Update asset',
+			header: 'Modifica bene immobile',
 			width: '70%'
 		});
 	}
@@ -59,7 +59,7 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 
 	createNewDossier(assetDto: MbsAssetDto) {
 		this.dialogService.open(EnzoDossierDialogComponent, {
-			header: 'Create Dossier',
+			header: 'Crea fascicolo',
 			width: '70%',
 			data: {
 				asset: assetDto
@@ -86,7 +86,7 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 
 	createNewOperation(assetDto: MbsAssetDto) {
 		this.dialogService.open(EnzoOperationDialogComponent, {
-			header: 'Create Operation',
+			header: 'Crea intervento',
 			width: '70%',
 			data: {
 				asset: assetDto
@@ -113,7 +113,7 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 
 	createNewRelif(assetDto: MbsAssetDto) {
 		this.dialogService.open(EnzoRelifDialogComponent, {
-			header: 'Create Relif',
+			header: 'Crea rilievo',
 			width: '70%',
 			data: {
 				asset: assetDto

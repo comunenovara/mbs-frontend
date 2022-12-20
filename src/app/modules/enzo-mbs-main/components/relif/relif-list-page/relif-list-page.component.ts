@@ -27,7 +27,7 @@ export class EnzoRelifListPageComponent {
 
 	createNewRelif() {
 		this.dialogService.open(EnzoRelifDialogComponent, {
-			header: 'Create relif',
+			header: 'Crea rilievo',
 			width: '70%'
 		});
 	}
@@ -70,18 +70,18 @@ export class EnzoRelifListPageComponent {
 			command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
-					label: "Edit",
+					label: "Modifica",
 					icon: "pi pi-pencil",
 					command: (e: any) => {
 						const ref = this.dialogService.open(EnzoRelifDialogComponent, {
 							data: { relif: { ...e.item.data } },
-							header: 'Update relif',
+							header: 'Modifica rilievo',
 							width: '70%'
 						});
 					}
 				},
 				{
-					label: "Delete",
+					label: "Cancella",
 					icon: "pi pi-trash",
 					command: async (e: any) => {
 						await lastValueFrom(this.resourceService.deleteRelifUsingDELETE(e.item.data.id));

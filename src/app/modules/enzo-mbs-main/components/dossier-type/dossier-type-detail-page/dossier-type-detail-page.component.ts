@@ -57,7 +57,7 @@ export class EnzoDossierTypeDetailPageComponent extends EnzoGenericDetailPageCom
 
 	createNewDossier(dossierTypeDto: MbsDossierTypeDto) {
 		this.dialogService.open(EnzoDossierDialogComponent, {
-			header: 'Create Dossier',
+			header: 'Crea fascicolo',
 			width: '70%',
 			data: {
 				dossierType: dossierTypeDto

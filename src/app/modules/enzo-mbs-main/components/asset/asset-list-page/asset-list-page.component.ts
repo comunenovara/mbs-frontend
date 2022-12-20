@@ -27,7 +27,7 @@ export class EnzoAssetListPageComponent {
 
 	createNewAsset() {
 		this.dialogService.open(EnzoAssetDialogComponent, {
-			header: 'Create asset',
+			header: 'Create bene immobile',
 			width: '70%'
 		});
 	}
@@ -70,18 +70,18 @@ export class EnzoAssetListPageComponent {
 			command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
-					label: "Edit",
+					label: "Modifica",
 					icon: "pi pi-pencil",
 					command: (e: any) => {
 						const ref = this.dialogService.open(EnzoAssetDialogComponent, {
 							data: { asset: { ...e.item.data } },
-							header: 'Update asset',
+							header: 'Modifica bene immobile',
 							width: '70%'
 						});
 					}
 				},
 				{
-					label: "Delete",
+					label: "Cancella",
 					icon: "pi pi-trash",
 					command: async (e: any) => {
 						await lastValueFrom(this.resourceService.deleteAssetUsingDELETE(e.item.data.id));

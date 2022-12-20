@@ -57,7 +57,7 @@ export class EnzoRelifDetailPageComponent extends EnzoGenericDetailPageComponent
 
 	createNewDossier(relifDto: MbsRelifDto) {
 		this.dialogService.open(EnzoDossierDialogComponent, {
-			header: 'Create Dossier',
+			header: 'Crea fascicolo',
 			width: '70%',
 			data: {
 				relif: relifDto

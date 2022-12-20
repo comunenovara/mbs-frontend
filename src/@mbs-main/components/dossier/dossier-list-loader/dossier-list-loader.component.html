@@ -14,19 +14,19 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description"> description </th>
-						<th *ngSwitchCase="'type.description'" style="width:auto" pResizableColumn commentpSortableColumn="dossierType.description" > description</th>
-						<th *ngSwitchCase="'type.category'" style="width:auto" pResizableColumn commentpSortableColumn="dossierType.category" > category</th>
-						<th *ngSwitchCase="'asset.description'" style="width:auto" pResizableColumn commentpSortableColumn="asset.description" > description</th>
-						<th *ngSwitchCase="'asset.address'" style="width:auto" pResizableColumn commentpSortableColumn="asset.address" > address</th>
-						<th *ngSwitchCase="'asset.mq'" style="width:auto" pResizableColumn commentpSortableColumn="asset.mq" > mq</th>
-						<th *ngSwitchCase="'relif.description'" style="width:auto" pResizableColumn commentpSortableColumn="relif.description" > description</th>
-						<th *ngSwitchCase="'relif.startDate'" style="width:auto" pResizableColumn commentpSortableColumn="relif.startDate" > startDate</th>
-						<th *ngSwitchCase="'relif.endDate'" style="width:auto" pResizableColumn commentpSortableColumn="relif.endDate" > endDate</th>
-						<th *ngSwitchCase="'operation.description'" style="width:auto" pResizableColumn commentpSortableColumn="operation.description" > description</th>
-						<th *ngSwitchCase="'operation.value'" style="width:auto" pResizableColumn commentpSortableColumn="operation.value" > value</th>
-						<th *ngSwitchCase="'operation.startDate'" style="width:auto" pResizableColumn commentpSortableColumn="operation.startDate" > startDate</th>
-						<th *ngSwitchCase="'operation.endDate'" style="width:auto" pResizableColumn commentpSortableColumn="operation.endDate" > endDate</th>
+						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description">Descrizione</th>
+						<th *ngSwitchCase="'type.description'" style="width:auto" pResizableColumn commentpSortableColumn="dossierType.description" >Tipo</th>
+						<th *ngSwitchCase="'type.category'" style="width:auto" pResizableColumn commentpSortableColumn="dossierType.category" >Categoria</th>
+						<th *ngSwitchCase="'asset.description'" style="width:auto" pResizableColumn commentpSortableColumn="asset.description" >Bene immobile</th>
+						<th *ngSwitchCase="'asset.address'" style="width:auto" pResizableColumn commentpSortableColumn="asset.address" >Indirizzo</th>
+						<th *ngSwitchCase="'asset.mq'" style="width:auto" pResizableColumn commentpSortableColumn="asset.mq" >Metri</th>
+						<th *ngSwitchCase="'relif.description'" style="width:auto" pResizableColumn commentpSortableColumn="relif.description" >Rilievo</th>
+						<th *ngSwitchCase="'relif.startDate'" style="width:auto" pResizableColumn commentpSortableColumn="relif.startDate" >Inizio rilievo</th>
+						<th *ngSwitchCase="'relif.endDate'" style="width:auto" pResizableColumn commentpSortableColumn="relif.endDate" > Fine rilievo</th>
+						<th *ngSwitchCase="'operation.description'" style="width:auto" pResizableColumn commentpSortableColumn="operation.description" >Intervento</th>
+						<th *ngSwitchCase="'operation.value'" style="width:auto" pResizableColumn commentpSortableColumn="operation.value" >Valore intervento</th>
+						<th *ngSwitchCase="'operation.startDate'" style="width:auto" pResizableColumn commentpSortableColumn="operation.startDate" >Inizio interventi</th>
+						<th *ngSwitchCase="'operation.endDate'" style="width:auto" pResizableColumn commentpSortableColumn="operation.endDate" >Fine intervento</th>
 					</ng-container>
 					<th *ngIf="buttons" style="width:150px"></th>
 				</tr>

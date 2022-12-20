@@ -57,7 +57,7 @@ export class EnzoOperationTypeDetailPageComponent extends EnzoGenericDetailPageC
 
 	createNewOperation(operationTypeDto: MbsOperationTypeDto) {
 		this.dialogService.open(EnzoOperationDialogComponent, {
-			header: 'Create Operation',
+			header: 'Crea intervento',
 			width: '70%',
 			data: {
 				operationType: operationTypeDto

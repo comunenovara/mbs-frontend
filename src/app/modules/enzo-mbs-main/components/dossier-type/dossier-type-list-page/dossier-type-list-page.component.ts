@@ -27,7 +27,7 @@ export class EnzoDossierTypeListPageComponent {
 
 	createNewDossierType() {
 		this.dialogService.open(EnzoDossierTypeDialogComponent, {
-			header: 'Create dossierType',
+			header: 'Crea tipo fascicolo',
 			width: '70%'
 		});
 	}
@@ -70,7 +70,7 @@ export class EnzoDossierTypeListPageComponent {
 			command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
-					label: "Edit",
+					label: "Modifica",
 					icon: "pi pi-pencil",
 					command: (e: any) => {
 						const ref = this.dialogService.open(EnzoDossierTypeDialogComponent, {
@@ -81,7 +81,7 @@ export class EnzoDossierTypeListPageComponent {
 					}
 				},
 				{
-					label: "Delete",
+					label: "Cancella",
 					icon: "pi pi-trash",
 					command: async (e: any) => {
 						await lastValueFrom(this.resourceService.deleteDossierTypeUsingDELETE(e.item.data.id));

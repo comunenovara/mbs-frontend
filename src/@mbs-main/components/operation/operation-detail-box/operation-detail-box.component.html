@@ -1,7 +1,7 @@
 <ng-container *ngIf="operation">
 	<div class="h4 ml-16">ID: <b>{{ operation.id }}</b></div>
-	<div class="h1 ml-16">description: <h3>{{ operation.description }}</h3></div>
-	<div class="h4 ml-16">value: <b>{{ operation.value | currency: "EUR" }}</b></div>
-	<div class="h4 ml-16">startDate: <b>{{ operation.startDate | date: "dd/MM/YYYY" }}</b></div>
-	<div class="h4 ml-16">endDate: <b>{{ operation.endDate | date: "dd/MM/YYYY" }}</b></div>
+	<div class="h1 ml-16">Descrizione: <h3>{{ operation.description }}</h3></div>
+	<div class="h4 ml-16">Valore intervento: <b>{{ operation.value | currency: "EUR" }}</b></div>
+	<div class="h4 ml-16">Inizio: <b>{{ operation.startDate | date: "dd/MM/YYYY" }}</b></div>
+	<div class="h4 ml-16">Fine: <b>{{ operation.endDate | date: "dd/MM/YYYY" }}</b></div>
 </ng-container>

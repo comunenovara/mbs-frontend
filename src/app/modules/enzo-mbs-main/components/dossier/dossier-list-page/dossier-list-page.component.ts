@@ -27,7 +27,7 @@ export class EnzoDossierListPageComponent {
 
 	createNewDossier() {
 		this.dialogService.open(EnzoDossierDialogComponent, {
-			header: 'Create dossier',
+			header: 'Crea fascicolo',
 			width: '70%'
 		});
 	}
@@ -70,7 +70,7 @@ export class EnzoDossierListPageComponent {
 			command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
-					label: "Edit",
+					label: "Modifica",
 					icon: "pi pi-pencil",
 					command: (e: any) => {
 						const ref = this.dialogService.open(EnzoDossierDialogComponent, {
@@ -81,7 +81,7 @@ export class EnzoDossierListPageComponent {
 					}
 				},
 				{
-					label: "Delete",
+					label: "Cancella",
 					icon: "pi pi-trash",
 					command: async (e: any) => {
 						await lastValueFrom(this.resourceService.deleteDossierUsingDELETE(e.item.data.id));

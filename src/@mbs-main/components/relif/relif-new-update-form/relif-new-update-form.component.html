@@ -3,26 +3,26 @@
 		<div class="grid p-fluid" style="margin-top: 0px;">
 
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null">
-				<span>{{ 'asset' }}</span><span class="filed-required">*</span>
+				<span>{{ 'Bene immobile' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="asset" [agalAutocomplete]="assetAutocomplete">
 				<agal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></agal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['asset'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['asset'], 'validatorHaveId')">La asset è richiesta.</span>
+					<span *ngIf="checkControlError(_newUpdateForm.controls['asset'], 'validatorHaveId')">Il bene immobile è richiesto.</span>
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'description' }}</span>
-				<input type="text" pInputText formControlName="description" placeholder="Description">
+				<span>{{ 'Descrizione' }}</span>
+				<input type="text" pInputText formControlName="description" placeholder="Descrizione">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'startDate' }}</span><span class="filed-required">*</span>
+				<span>{{ 'Inizio rilievo' }}</span><span class="filed-required">*</span>
 				<p-calendar formControlName="startDate" dateFormat="dd/mm/yy" [showTime]="true"></p-calendar>
 				<div *ngIf="!isValid(_newUpdateForm.controls['startDate'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['startDate'], 'required')">La startDate è richiesta.</span>
+					<span *ngIf="checkControlError(_newUpdateForm.controls['startDate'], 'required')">La data inizio rilievo è richiesta.</span>
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'endDate' }}</span>
+				<span>{{ 'Fine rilievo' }}</span>
 				<p-calendar formControlName="endDate" dateFormat="dd/mm/yy" [showTime]="true"></p-calendar>
 			</div>
 
@@ -37,7 +37,7 @@
 </div>
 
 <div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
-	loading
+	Caricamento
 </div>
 
 <div *ngIf="stepIs(formStep.COMPLETE)">
@@ -50,8 +50,8 @@
 
 	<div *ngIf="!_isUpdate">
 		<button pButton color="primary" (click)="newRelif()">
-			<span *ngIf="!returnToParent">{{ 'Crea_NEW' }}</span>
-			<span *ngIf="returnToParent">{{ 'MAIN.EDIT' }}</span>
+			<span *ngIf="!returnToParent">{{ 'Crea nuovo' }}</span>
+			<span *ngIf="returnToParent">{{ 'Modifica' }}</span>
 		</button>
 	</div>
 </div>

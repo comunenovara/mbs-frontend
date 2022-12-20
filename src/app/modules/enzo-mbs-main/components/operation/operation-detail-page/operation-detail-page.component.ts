@@ -57,7 +57,7 @@ export class EnzoOperationDetailPageComponent extends EnzoGenericDetailPageCompo
 
 	createNewDossier(operationDto: MbsOperationDto) {
 		this.dialogService.open(EnzoDossierDialogComponent, {
-			header: 'Create Dossier',
+			header: 'Crea fascicolo',
 			width: '70%',
 			data: {
 				operation: operationDto

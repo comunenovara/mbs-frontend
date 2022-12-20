@@ -27,7 +27,7 @@ export class EnzoOperationTypeListPageComponent {
 
 	createNewOperationType() {
 		this.dialogService.open(EnzoOperationTypeDialogComponent, {
-			header: 'Create operationType',
+			header: 'Crea tipo intervento',
 			width: '70%'
 		});
 	}
@@ -70,7 +70,7 @@ export class EnzoOperationTypeListPageComponent {
 			command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
-					label: "Edit",
+					label: "Modifica",
 					icon: "pi pi-pencil",
 					command: (e: any) => {
 						const ref = this.dialogService.open(EnzoOperationTypeDialogComponent, {
@@ -81,7 +81,7 @@ export class EnzoOperationTypeListPageComponent {
 					}
 				},
 				{
-					label: "Delete",
+					label: "Cancella",
 					icon: "pi pi-trash",
 					command: async (e: any) => {
 						await lastValueFrom(this.resourceService.deleteOperationTypeUsingDELETE(e.item.data.id));
