@@ -7,8 +7,11 @@
 				<input type="text" pInputText formControlName="description" placeholder="Description">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'startDate' }}</span>
+				<span>{{ 'startDate' }}</span><span class="filed-required">*</span>
 				<p-calendar formControlName="startDate" dateFormat="dd/mm/yy" [showTime]="true"></p-calendar>
+				<div *ngIf="!isValid(_newUpdateForm.controls['startDate'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['startDate'], 'required')">La startDate è richiesta.</span>
+				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'endDate' }}</span>

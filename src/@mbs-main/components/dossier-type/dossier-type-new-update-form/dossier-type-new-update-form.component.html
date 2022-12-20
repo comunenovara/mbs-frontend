@@ -3,12 +3,18 @@
 		<div class="grid p-fluid" style="margin-top: 0px;">
 
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'description' }}</span>
+				<span>{{ 'description' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="description" placeholder="Description">
+				<div *ngIf="!isValid(_newUpdateForm.controls['description'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La description è richiesta.</span>
+				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'category' }}</span>
+				<span>{{ 'category' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="category" placeholder="Category">
+				<div *ngIf="!isValid(_newUpdateForm.controls['category'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['category'], 'required')">La category è richiesta.</span>
+				</div>
 			</div>
 
 			<div class="col-12 md:col-6 lg:col-3">

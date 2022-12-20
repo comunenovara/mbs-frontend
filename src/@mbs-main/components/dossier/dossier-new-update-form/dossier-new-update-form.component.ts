@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
 import { AgalCommonService } from '@agal-core/services/common.service';
@@ -51,7 +51,7 @@ export class MbsDossierNewUpdateFormComponent extends AgalGenericForm {
 	override loadForm(): void {
 		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
-			description: [null, []],
+			description: [null, [ Validators.required,  ]],
 			type: [this.type, []],
 			asset: [this.asset, []],
 			relif: [this.relif, []],
