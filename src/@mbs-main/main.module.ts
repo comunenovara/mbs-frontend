@@ -46,7 +46,6 @@ import { MbsRelifResourceService } from './services/relif.service';
 import { MbsRelifResolver } from './resolvers/relif.resolver';
 
 
-
 @NgModule({
 	imports: [ 
 		AgalCoreModule,
