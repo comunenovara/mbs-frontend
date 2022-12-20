@@ -30,8 +30,8 @@
 						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
 						<td *ngSwitchCase="'description'">{{ e.description }}</td>
-						<td *ngSwitchCase="'startDate'">{{ e.startDate }}</td>
-						<td *ngSwitchCase="'endDate'">{{ e.endDate }}</td>
+						<td *ngSwitchCase="'startDate'">{{ e.startDate | date: "dd/MM/YYYY" }}</td>
+						<td *ngSwitchCase="'endDate'">{{ e.endDate | date: "dd/MM/YYYY" }}</td>
 						<td *ngSwitchCase="'asset.description'">{{ e.asset.description }}</td>
 						<td *ngSwitchCase="'asset.address'">{{ e.asset.address }}</td>
 						<td *ngSwitchCase="'asset.mq'">{{ e.asset.mq }}</td>
