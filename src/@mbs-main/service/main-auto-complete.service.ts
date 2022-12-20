@@ -27,96 +27,132 @@ export class MbsMainAutocompleteService {
 
 	filterAsset(observable: Observable<any>): Observable<MbsAssetDto[]> {
 		return observable.pipe(
-            startWith(''),
+            startWith(() => ''),
             switchMap((value: string) => {
-                if (value && value.length > 0) {
+				let filter = {
+					contain: value
+				};
+				return this.assetResourceService.getAllAssetsUsingGET(filter);
+                /*
+				if (value && value.length > 0) {
                     let filter = {
 						contain: value
-                    };
-                    return this.assetResourceService.getAllAssetsUsingGET(filter);
+					};
+					return this.assetResourceService.getAllAssetsUsingGET(filter);
                 } else {
                     return of([]);
                 }
+				*/
             })
         );
 	}
 
 	filterDossier(observable: Observable<any>): Observable<MbsDossierDto[]> {
 		return observable.pipe(
-            startWith(''),
+            startWith(() => ''),
             switchMap((value: string) => {
-                if (value && value.length > 0) {
+				let filter = {
+					contain: value
+				};
+				return this.dossierResourceService.getAllDossiersUsingGET(filter);
+                /*
+				if (value && value.length > 0) {
                     let filter = {
 						contain: value
-                    };
-                    return this.dossierResourceService.getAllDossiersUsingGET(filter);
+					};
+					return this.dossierResourceService.getAllDossiersUsingGET(filter);
                 } else {
                     return of([]);
                 }
+				*/
             })
         );
 	}
 
 	filterDossierType(observable: Observable<any>): Observable<MbsDossierTypeDto[]> {
 		return observable.pipe(
-            startWith(''),
+            startWith(() => ''),
             switchMap((value: string) => {
-                if (value && value.length > 0) {
+				let filter = {
+					contain: value
+				};
+				return this.dossierTypeResourceService.getAllDossierTypesUsingGET(filter);
+                /*
+				if (value && value.length > 0) {
                     let filter = {
 						contain: value
-                    };
-                    return this.dossierTypeResourceService.getAllDossierTypesUsingGET(filter);
+					};
+					return this.dossierTypeResourceService.getAllDossierTypesUsingGET(filter);
                 } else {
                     return of([]);
                 }
+				*/
             })
         );
 	}
 
 	filterOperation(observable: Observable<any>): Observable<MbsOperationDto[]> {
 		return observable.pipe(
-            startWith(''),
+            startWith(() => ''),
             switchMap((value: string) => {
-                if (value && value.length > 0) {
+				let filter = {
+					contain: value
+				};
+				return this.operationResourceService.getAllOperationsUsingGET(filter);
+                /*
+				if (value && value.length > 0) {
                     let filter = {
 						contain: value
-                    };
-                    return this.operationResourceService.getAllOperationsUsingGET(filter);
+					};
+					return this.operationResourceService.getAllOperationsUsingGET(filter);
                 } else {
                     return of([]);
                 }
+				*/
             })
         );
 	}
 
 	filterOperationType(observable: Observable<any>): Observable<MbsOperationTypeDto[]> {
 		return observable.pipe(
-            startWith(''),
+            startWith(() => ''),
             switchMap((value: string) => {
-                if (value && value.length > 0) {
+				let filter = {
+					contain: value
+				};
+				return this.operationTypeResourceService.getAllOperationTypesUsingGET(filter);
+                /*
+				if (value && value.length > 0) {
                     let filter = {
 						contain: value
-                    };
-                    return this.operationTypeResourceService.getAllOperationTypesUsingGET(filter);
+					};
+					return this.operationTypeResourceService.getAllOperationTypesUsingGET(filter);
                 } else {
                     return of([]);
                 }
+				*/
             })
         );
 	}
 
 	filterRelif(observable: Observable<any>): Observable<MbsRelifDto[]> {
 		return observable.pipe(
-            startWith(''),
+            startWith(() => ''),
             switchMap((value: string) => {
-                if (value && value.length > 0) {
+				let filter = {
+					contain: value
+				};
+				return this.relifResourceService.getAllRelifsUsingGET(filter);
+                /*
+				if (value && value.length > 0) {
                     let filter = {
 						contain: value
-                    };
-                    return this.relifResourceService.getAllRelifsUsingGET(filter);
+					};
+					return this.relifResourceService.getAllRelifsUsingGET(filter);
                 } else {
                     return of([]);
                 }
+				*/
             })
         );
 	}
