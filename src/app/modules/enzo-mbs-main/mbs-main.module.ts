@@ -1,11 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
 import { RouterModule } from '@angular/router';
-
-import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
-import { ButtonModule } from 'primeng/button';
-
-import { MbsMainModule } from '@mbs-main/main.module';
+import { MbsMainLibModule } from '@mbs-main/main.module';
 
 import { enzoMbsMainRoutes } from './mbs-main.route';
 
@@ -31,7 +26,7 @@ import { EnzoRelifDialogComponent } from './components/relif/relif-dialog/relif-
 @NgModule({
 	imports: [ 
 		RouterModule.forChild(enzoMbsMainRoutes),
-		MbsMainModule,
+		MbsMainLibModule,
 		
 	],
 	declarations: [

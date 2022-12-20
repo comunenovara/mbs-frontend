@@ -122,4 +122,4 @@ import { MbsRelifResolver } from './resolvers/relif.resolver';
 		MbsRelifNewUpdateFormComponent,
 	],
 })
-export class MbsMainModule {}
+export class MbsMainLibModule {}
