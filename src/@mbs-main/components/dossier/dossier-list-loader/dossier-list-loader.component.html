@@ -39,13 +39,13 @@
 						<td *ngSwitchCase="'description'">{{ e.description }}</td>
 						<td *ngSwitchCase="'type.description'">{{ e.type.description }}</td>
 						<td *ngSwitchCase="'type.category'">{{ e.type.category }}</td>
-						<td *ngSwitchCase="'asset.description'">{{ e.asset.description }}</td>
+						<td *ngSwitchCase="'asset.description'"><span *ngIf="e.asset">{{ e.asset.description }}</span></td>
 						<td *ngSwitchCase="'asset.address'">{{ e.asset.address }}</td>
 						<td *ngSwitchCase="'asset.mq'">{{ e.asset.mq }}</td>
-						<td *ngSwitchCase="'relif.description'">{{ e.relif.description }}</td>
+						<td *ngSwitchCase="'relif.description'"><span *ngIf="e.relif">{{ e.relif.description }}</span></td>
 						<td *ngSwitchCase="'relif.startDate'">{{ e.relif.startDate }}</td>
 						<td *ngSwitchCase="'relif.endDate'">{{ e.relif.endDate }}</td>
-						<td *ngSwitchCase="'operation.description'">{{ e.operation.description }}</td>
+						<td *ngSwitchCase="'operation.description'"><span *ngIf="e.operation">{{ e.operation.description }}</span></td>
 						<td *ngSwitchCase="'operation.value'">{{ e.operation.value }}</td>
 						<td *ngSwitchCase="'operation.startDate'">{{ e.operation.startDate }}</td>
 						<td *ngSwitchCase="'operation.endDate'">{{ e.operation.endDate }}</td>

@@ -38,7 +38,7 @@ export class EnzoDossierTypeListPageComponent {
 	};
 	dossierTypeCount: number;
 
-	dossierTypeListDc = ['_ck', 'id'];
+	dossierTypeListDc = ['_ck', 'id', 'description', 'category'];
 	paginatorEvent(paginator: any) {
 		let dossierTypeListPaginator = { ...paginator }
 		this.dossierTypeListPaginator = dossierTypeListPaginator;

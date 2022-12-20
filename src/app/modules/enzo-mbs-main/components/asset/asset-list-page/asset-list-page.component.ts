@@ -27,7 +27,7 @@ export class EnzoAssetListPageComponent {
 
 	createNewAsset() {
 		this.dialogService.open(EnzoAssetDialogComponent, {
-			header: 'Create bene immobile',
+			header: 'Crea bene immobile',
 			width: '70%'
 		});
 	}

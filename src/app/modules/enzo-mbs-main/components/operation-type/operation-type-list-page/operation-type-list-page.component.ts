@@ -38,7 +38,7 @@ export class EnzoOperationTypeListPageComponent {
 	};
 	operationTypeCount: number;
 
-	operationTypeListDc = ['_ck', 'id'];
+	operationTypeListDc = ['_ck', 'id', 'description'];
 	paginatorEvent(paginator: any) {
 		let operationTypeListPaginator = { ...paginator }
 		this.operationTypeListPaginator = operationTypeListPaginator;
