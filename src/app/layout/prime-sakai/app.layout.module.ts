@@ -21,7 +21,8 @@ import { AppMenuComponent } from './components/menu/app.menu.component';
 import { AppTopBarComponent } from './components/topbar/app.topbar.component';
 import { AppFooterComponent } from './components/footer/app.footer.component';
 import { AppSidebarComponent } from "./components/sidebar/app.sidebar.component";
-import { TablerModule } from '@tabler/tabler.module';
+import { StalCarderModule } from '@stal/carder'
+
 
 @NgModule({
     declarations: [
@@ -46,8 +47,9 @@ import { TablerModule } from '@tabler/tabler.module';
         RippleModule,
         RouterModule,
         AppConfigModule,
-
-        TablerModule,
+        
+        StalCarderModule,
+        
     ],
     exports: [AppLayoutComponent]
 })

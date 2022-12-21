@@ -4,26 +4,26 @@
 
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="type != null">
 				<span>{{ 'Tipo fascicolo' }}</span><span class="filed-required">*</span>
-				<input type="text" pInputText formControlName="type" [agalAutocomplete]="typeAutocomplete">
-				<agal-autocomplete #typeAutocomplete [filteredElements]="_filteredType"></agal-autocomplete>
+				<input type="text" pInputText formControlName="type" [stalAutocomplete]="typeAutocomplete">
+				<stal-autocomplete #typeAutocomplete [filteredElements]="_filteredType"></stal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['type'])" class="filed-required">
 					<span *ngIf="checkControlError(_newUpdateForm.controls['type'], 'validatorHaveId')">Il tipo fascicolo è richiesto.</span>
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null || relif != null || operation != null">
 				<span>{{ 'Bene immobile' }}</span>
-				<input type="text" pInputText formControlName="asset" [agalAutocomplete]="assetAutocomplete">
-				<agal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></agal-autocomplete>
+				<input type="text" pInputText formControlName="asset" [stalAutocomplete]="assetAutocomplete">
+				<stal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></stal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null || relif != null || operation != null">
 				<span>{{ 'Rilievo' }}</span>
-				<input type="text" pInputText formControlName="relif" [agalAutocomplete]="relifAutocomplete">
-				<agal-autocomplete #relifAutocomplete [filteredElements]="_filteredRelif"></agal-autocomplete>
+				<input type="text" pInputText formControlName="relif" [stalAutocomplete]="relifAutocomplete">
+				<stal-autocomplete #relifAutocomplete [filteredElements]="_filteredRelif"></stal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null || relif != null || operation != null">
 				<span>{{ 'Intervento' }}</span>
-				<input type="text" pInputText formControlName="operation" [agalAutocomplete]="operationAutocomplete">
-				<agal-autocomplete #operationAutocomplete [filteredElements]="_filteredOperation"></agal-autocomplete>
+				<input type="text" pInputText formControlName="operation" [stalAutocomplete]="operationAutocomplete">
+				<stal-autocomplete #operationAutocomplete [filteredElements]="_filteredOperation"></stal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'Descrizione' }}</span><span class="filed-required">*</span>

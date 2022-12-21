@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 
-import { TablerModule } from '@tabler/tabler.module';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -17,8 +15,6 @@ import { HttpClientModule } from '@angular/common/http';
 
         AppRoutingModule,
         
-        TablerModule,
-
         PrimeSakaiLayoutModule,
 
     ],

@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { AgalEventerService } from '@agal-core/modules/eventer/services/eventer.service';
 import { AgalPaginator } from '@agal-core/modules/paginator/components/paginator/paginator.component';
-import { TabManagerService } from '@tabler/services/tab-manager.service';
+import { TabManagerService } from '@stal/carder';
 
 import { MbsOperationTypeResourceService } from '@mbs-main';
 import { EnzoOperationTypeDialogComponent } from '../operation-type-dialog/operation-type-dialog.component';
