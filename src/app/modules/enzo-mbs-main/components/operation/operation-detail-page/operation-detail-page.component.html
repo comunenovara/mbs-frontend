@@ -27,7 +27,7 @@
 			<h3>Fascicoli</h3>
 			<mbs-dossier-list-loader 
 				[filters]="{operationIdEquals: operationDto.id}" 
-				[dcs]="['id', 'description']" 
+				[dcs]="['id', 'type.description', 'description']" 
 				[paginator]="dossierListPaginator"
 				[buttons]="dossierTableButtons"
 				(resultCount)="dossierCount=$event"></mbs-dossier-list-loader>
