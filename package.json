@@ -23,6 +23,8 @@
     "@angular/router": "~14.0.0",
     "@stal/autocomplete": "^0.0.2",
     "@stal/carder": "^0.0.1",
+    "@stal/eventer": "^0.0.1",
+    "@stal/paginator": "^0.0.3",
     "chart.js": "^3.3.2",
     "ngx-indexed-db": "^11.0.2",
     "primeflex": "^3.2.0",

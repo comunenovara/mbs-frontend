@@ -4,9 +4,10 @@ import { lastValueFrom } from 'rxjs';
 
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { AgalEventerService } from '@agal-core/modules/eventer/services/eventer.service';
-import { AgalPaginator } from '@agal-core/modules/paginator/components/paginator/paginator.component';
 import { TabManagerService } from '@stal/carder';
+import { StalPaginator } from '@stal/paginator';
+
+import { StalEventerService, StalEvent } from "@stal/eventer";
 
 import { MbsRelifResourceService } from '@mbs-main';
 import { EnzoRelifDialogComponent } from '../relif-dialog/relif-dialog.component';
@@ -21,7 +22,7 @@ export class EnzoRelifListPageComponent {
 		public tabManagerService: TabManagerService,
 		private resourceService: MbsRelifResourceService,
 		private dialogService: DialogService,
-		public eventer: AgalEventerService,
+		public eventer: StalEventerService,
 
 	) { }
 
@@ -32,7 +33,7 @@ export class EnzoRelifListPageComponent {
 		});
 	}
 
-	relifListPaginator: AgalPaginator = {
+	relifListPaginator: StalPaginator = {
 		page: 0,
 		size: 30
 	};

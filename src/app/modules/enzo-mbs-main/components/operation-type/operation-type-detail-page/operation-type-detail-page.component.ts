@@ -4,8 +4,8 @@ import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { AgalEvent, AgalEventerService } from "@agal-core/modules/eventer/services/eventer.service";
-import { AgalPaginator } from "@agal-core/modules/paginator/components/paginator/paginator.component";
+import { StalEventerService, StalEvent } from "@stal/eventer";
+import { StalPaginator } from '@stal/paginator';
 import { TabManagerService } from '@stal/carder';
 
 import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
@@ -22,7 +22,7 @@ export class EnzoOperationTypeDetailPageComponent extends EnzoGenericDetailPageC
 	constructor(
 		route: ActivatedRoute,
 		router: Router,
-		eventer: AgalEventerService,
+		eventer: StalEventerService,
 		public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsOperationTypeResourceService,
@@ -34,7 +34,7 @@ export class EnzoOperationTypeDetailPageComponent extends EnzoGenericDetailPageC
 		this.operationTypeDto = this.route.snapshot.data['operationType'];
 	}
 
-	protected override reloadFromEvent(event: AgalEvent) {
+	protected override reloadFromEvent(event: StalEvent) {
 		if(event.data === "operationType") this.reloadPage();
 	}
 
@@ -76,7 +76,7 @@ export class EnzoOperationTypeDetailPageComponent extends EnzoGenericDetailPageC
 			command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
-	protected operationListPaginator: AgalPaginator = {
+	protected operationListPaginator: StalPaginator = {
 		page: 0,
 		size: 10
 	};

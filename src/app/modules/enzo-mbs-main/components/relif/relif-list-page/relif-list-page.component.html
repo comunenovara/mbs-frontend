@@ -5,7 +5,7 @@
 		[paginator]="relifListPaginator" (resultCount)="relifCount=$event"> 
 	</mbs-relif-list-loader>
 
-	<agal-paginator [totalRecords]="relifCount" [(pageable)]="relifListPaginator"></agal-paginator>
+	<stal-paginator [totalRecords]="relifCount" [(pageable)]="relifListPaginator"></stal-paginator>
 
 	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewRelif()"></button>
 

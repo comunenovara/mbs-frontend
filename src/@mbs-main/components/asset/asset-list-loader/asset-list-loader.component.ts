@@ -3,7 +3,7 @@ import { lastValueFrom } from 'rxjs';
 
 import { AgalCommonService } from '@agal-core/services/common.service';
 import { AgalGenericTable2 } from '@agal-core/components/agal-generic-table2';
-import { AgalEvent } from '@agal-core/modules/eventer/services/eventer.service';
+import { StalEventerService, StalEvent } from "@stal/eventer";
 
 import { MbsAssetDto } from '../../../class/asset-dto.class';
 import { MbsAssetResourceService } from '../../../services/asset.service';
@@ -29,7 +29,7 @@ export class MbsAssetListLoaderComponent extends AgalGenericTable2 {
 		}
 	}
 
-	protected override reloadFromEvent(event: AgalEvent) {
+	protected override reloadFromEvent(event: StalEvent) {
 		if(event.data === "asset") this.loadData();
 	}
 }

@@ -4,8 +4,8 @@ import { lastValueFrom } from 'rxjs';
 
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { AgalEventerService } from '@agal-core/modules/eventer/services/eventer.service';
-import { AgalPaginator } from '@agal-core/modules/paginator/components/paginator/paginator.component';
+import { StalEventerService, StalEvent } from "@stal/eventer";
+import { StalPaginator } from '@stal/paginator';
 import { TabManagerService } from '@stal/carder';
 
 import { MbsDossierResourceService } from '@mbs-main';
@@ -21,7 +21,7 @@ export class EnzoDossierListPageComponent {
 		public tabManagerService: TabManagerService,
 		private resourceService: MbsDossierResourceService,
 		private dialogService: DialogService,
-		public eventer: AgalEventerService,
+		public eventer: StalEventerService,
 
 	) { }
 
@@ -32,7 +32,7 @@ export class EnzoDossierListPageComponent {
 		});
 	}
 
-	dossierListPaginator: AgalPaginator = {
+	dossierListPaginator: StalPaginator = {
 		page: 0,
 		size: 30
 	};

@@ -1,4 +1,4 @@
-import { AgalEvent, AgalEventerService, AgalEventType } from "@agal-core/modules/eventer/services/eventer.service";
+import { StalEventerService, StalEvent, StalEventType } from "@stal/eventer";
 import { Directive, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { filter, Subscription } from "rxjs";
@@ -8,7 +8,7 @@ export abstract class EnzoGenericDetailPageComponent implements OnInit, OnDestro
     constructor(
         protected route: ActivatedRoute,
         protected router: Router,
-        protected eventer: AgalEventerService,
+        protected eventer: StalEventerService,
     ) { }
 
     protected subscriptions: Subscription[] = [];
@@ -23,9 +23,9 @@ export abstract class EnzoGenericDetailPageComponent implements OnInit, OnDestro
         ));
 
         this.subscriptions.push(this.eventer.onEvent().subscribe(
-			(event: AgalEvent) => {
+			(event: StalEvent) => {
 				switch (event.type) {
-					case AgalEventType.RELOAD: this.reloadFromEvent(event); break;
+					case StalEventType.RELOAD: this.reloadFromEvent(event); break;
 					default: break;
 				}
 			}
@@ -41,7 +41,7 @@ export abstract class EnzoGenericDetailPageComponent implements OnInit, OnDestro
 
     protected onLoad() { }
     protected async reloadPage() { }
-    protected reloadFromEvent(event: AgalEvent) { }
+    protected reloadFromEvent(event: StalEvent) { }
 
     ngOnDestroy(): void {
         this.subscriptions.forEach(s => s.unsubscribe());

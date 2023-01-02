@@ -5,7 +5,7 @@
 		[paginator]="operationTypeListPaginator" (resultCount)="operationTypeCount=$event"> 
 	</mbs-operation-type-list-loader>
 
-	<agal-paginator [totalRecords]="operationTypeCount" [(pageable)]="operationTypeListPaginator"></agal-paginator>
+	<stal-paginator [totalRecords]="operationTypeCount" [(pageable)]="operationTypeListPaginator"></stal-paginator>
 
 	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewOperationType()"></button>
 

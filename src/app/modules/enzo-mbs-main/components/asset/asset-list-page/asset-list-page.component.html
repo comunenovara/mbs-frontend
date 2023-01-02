@@ -5,7 +5,7 @@
 		[paginator]="assetListPaginator" (resultCount)="assetCount=$event"> 
 	</mbs-asset-list-loader>
 
-	<agal-paginator [totalRecords]="assetCount" [(pageable)]="assetListPaginator"></agal-paginator>
+	<stal-paginator [totalRecords]="assetCount" [(pageable)]="assetListPaginator"></stal-paginator>
 
 	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewAsset()"></button>
 
