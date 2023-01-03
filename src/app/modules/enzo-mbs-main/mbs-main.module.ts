@@ -30,7 +30,6 @@ import { EnzoRelifDialogComponent } from './components/relif/relif-dialog/relif-
 		RouterModule.forChild(enzoMbsMainRoutes),
 		MbsMainLibModule,
 		EngeCommonAppModule,
-		
 	],
 	declarations: [
 		EnzoAssetListPageComponent,

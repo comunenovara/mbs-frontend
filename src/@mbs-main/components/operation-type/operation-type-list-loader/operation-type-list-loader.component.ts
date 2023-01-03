@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
+import { StalEvent } from "@stal/eventer";
 import { EngeCommonService, EngeLibGenericTable } from '@enge/common-lib';
-import { StalEventerService, StalEvent } from "@stal/eventer";
 
 import { MbsOperationTypeDto } from '../../../class/operation-type-dto.class';
 import { MbsOperationTypeResourceService } from '../../../services/operation-type.service';

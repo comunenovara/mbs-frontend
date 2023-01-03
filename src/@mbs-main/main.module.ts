@@ -50,6 +50,7 @@ import { MbsRelifResolver } from './resolvers/relif.resolver';
 @NgModule({
 	imports: [ 
 		EngeCommonLibModule,
+		
 	],
 	declarations: [
 		MbsAssetListLoaderComponent,

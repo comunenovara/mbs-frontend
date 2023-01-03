@@ -9,6 +9,7 @@ import { StalPaginator } from '@stal/paginator';
 import { TabManagerService } from '@stal/carder';
 
 import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+
 import { MbsAssetDto, MbsAssetResourceService} from '@mbs-main';
 import { EnzoAssetDialogComponent } from '../asset-dialog/asset-dialog.component';
 import { EnzoDossierDialogComponent } from "../../dossier/dossier-dialog/dossier-dialog.component";

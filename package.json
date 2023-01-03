@@ -21,7 +21,7 @@
     "@angular/platform-browser": "~14.0.0",
     "@angular/platform-browser-dynamic": "~14.0.0",
     "@angular/router": "~14.0.0",
-    "@enge/common-app": "^0.0.1",
+    "@enge/common-app": "^0.0.4",
     "@enge/common-lib": "^0.0.2",
     "@stal/autocomplete": "^0.0.3",
     "@stal/carder": "^0.0.1",

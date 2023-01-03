@@ -4,10 +4,9 @@ import { lastValueFrom } from 'rxjs';
 
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { TabManagerService } from '@stal/carder';
-import { StalPaginator } from '@stal/paginator';
-
 import { StalEventerService, StalEvent } from "@stal/eventer";
+import { StalPaginator } from '@stal/paginator';
+import { TabManagerService } from '@stal/carder';
 
 import { MbsRelifResourceService } from '@mbs-main';
 import { EnzoRelifDialogComponent } from '../relif-dialog/relif-dialog.component';
