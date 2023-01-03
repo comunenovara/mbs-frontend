@@ -8,19 +8,20 @@ import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 import { TabManagerService } from '@stal/carder';
 
-import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
+import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
 import { MbsAssetDto, MbsAssetResourceService} from '@mbs-main';
 import { EnzoAssetDialogComponent } from '../asset-dialog/asset-dialog.component';
 import { EnzoDossierDialogComponent } from "../../dossier/dossier-dialog/dossier-dialog.component";
 import { EnzoOperationDialogComponent } from "../../operation/operation-dialog/operation-dialog.component";
 import { EnzoRelifDialogComponent } from "../../relif/relif-dialog/relif-dialog.component";
 
+
 @Component({
 	selector: 'enzo-asset-detail-page',
 	templateUrl: './asset-detail-page.component.html',
 	styleUrls: ['./asset-detail-page.component.scss']
 })
-export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent {
+export class EnzoAssetDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
 		route: ActivatedRoute,
 		router: Router,

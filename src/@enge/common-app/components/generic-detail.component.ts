@@ -4,7 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { filter, Subscription } from "rxjs";
 
 @Directive()
-export abstract class EnzoGenericDetailPageComponent implements OnInit, OnDestroy {
+export abstract class EngeAppGenericDetailPageComponent implements OnInit, OnDestroy {
     constructor(
         protected route: ActivatedRoute,
         protected router: Router,

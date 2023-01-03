@@ -8,7 +8,7 @@ import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 import { TabManagerService } from '@stal/carder';
 
-import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
+import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
 import { MbsDossierDto, MbsDossierResourceService} from '@mbs-main';
 import { EnzoDossierDialogComponent } from '../dossier-dialog/dossier-dialog.component';
 
@@ -17,7 +17,7 @@ import { EnzoDossierDialogComponent } from '../dossier-dialog/dossier-dialog.com
 	templateUrl: './dossier-detail-page.component.html',
 	styleUrls: ['./dossier-detail-page.component.scss']
 })
-export class EnzoDossierDetailPageComponent extends EnzoGenericDetailPageComponent {
+export class EnzoDossierDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
 		route: ActivatedRoute,
 		router: Router,

@@ -23,11 +23,13 @@ import { EnzoOperationTypeDialogComponent } from './components/operation-type/op
 import { EnzoRelifListPageComponent } from './components/relif/relif-list-page/relif-list-page.component';
 import { EnzoRelifDetailPageComponent } from './components/relif/relif-detail-page/relif-detail-page.component';
 import { EnzoRelifDialogComponent } from './components/relif/relif-dialog/relif-dialog.component';
+import { EngeCommonAppModule } from '@enge/common-app/common-app.module';
 
 @NgModule({
 	imports: [ 
 		RouterModule.forChild(enzoMbsMainRoutes),
 		MbsMainLibModule,
+		EngeCommonAppModule,
 		
 	],
 	declarations: [
