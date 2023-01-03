@@ -2,9 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
-import { AgalCommonService } from '@agal-core/services/common.service';
-import { AgalGenericForm, FormStep } from '@agal-core/components/agal-generic-form';
-import { AgalValidator } from '@agal-core/class/form.validator';
+import { StalEventerService, StalEvent } from "@stal/eventer";
+import { EngeCommonService, EngeEngeFormStep, EngeLibGenericForm, EngeValidator } from '@enge/common-lib';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsDossierTypeResourceService } from '@mbs-main/services/dossier-type.service';
@@ -15,17 +14,17 @@ import { MbsDossierTypeDto } from '@mbs-main/class/dossier-type-dto.class';
 	templateUrl: './dossier-type-new-update-form.component.html',
 	styleUrls: ['./dossier-type-new-update-form.component.scss']
 })
-export class MbsDossierTypeNewUpdateFormComponent extends AgalGenericForm {
+export class MbsDossierTypeNewUpdateFormComponent extends EngeLibGenericForm {
 	@Input() dossierType: MbsDossierTypeDto | undefined;
 	@Output() dossierTypeOutput: EventEmitter<MbsDossierTypeDto> = new EventEmitter<MbsDossierTypeDto>();
 	
 
 	constructor(
-		agcs: AgalCommonService,
+		ecs: EngeCommonService,
 		private _formBuilder: FormBuilder,
 		private dossierTypeResourceService: MbsDossierTypeResourceService, 
 		private mbsMainAutocompleteService: MbsMainAutocompleteService,
-	) { super(agcs); }
+	) { super(ecs); }
 
 	override loadVariables(): void {
 		if(this.dossierType !== undefined) {
@@ -66,22 +65,22 @@ export class MbsDossierTypeNewUpdateFormComponent extends AgalGenericForm {
 			}
 			this._result = request;
 
-			this.agcs.eventer.launchReloadContent("dossierType");
-			this.setStep(FormStep.COMPLETE);
+			this.ecs.eventer.launchReloadContent("dossierType");
+			this.setStep(EngeEngeFormStep.COMPLETE);
 
 		} catch (e: any) {
-			this.agcs.eventer.launchMessage({
+			this.ecs.eventer.launchMessage({
 				severity: "error",
 				text: e.error.message,
 				duration: 5000
 			});
-			this.setStep(FormStep.FORM);
+			this.setStep(EngeEngeFormStep.FORM);
 		}
 	}
 
 	protected newDossierType() {
 		//this._dossierType = null;
 		this.dossierTypeOutput.emit(this.dossierType);
-		this.setStep(FormStep.FORM);
+		this.setStep(EngeEngeFormStep.FORM);
 	}
 }

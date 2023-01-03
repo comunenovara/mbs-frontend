@@ -4,11 +4,12 @@ import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { AgalEvent, AgalEventerService } from "@agal-core/modules/eventer/services/eventer.service";
-import { AgalPaginator } from "@agal-core/modules/paginator/components/paginator/paginator.component";
-import { TabManagerService } from "@tabler/services/tab-manager.service";
+import { StalEventerService, StalEvent } from "@stal/eventer";
+import { StalPaginator } from '@stal/paginator';
+import { TabManagerService } from '@stal/carder';
 
-import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
+import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+
 import { MbsDossierTypeDto, MbsDossierTypeResourceService} from '@mbs-main';
 import { EnzoDossierTypeDialogComponent } from '../dossier-type-dialog/dossier-type-dialog.component';
 import { EnzoDossierDialogComponent } from "../../dossier/dossier-dialog/dossier-dialog.component";
@@ -18,11 +19,11 @@ import { EnzoDossierDialogComponent } from "../../dossier/dossier-dialog/dossier
 	templateUrl: './dossier-type-detail-page.component.html',
 	styleUrls: ['./dossier-type-detail-page.component.scss']
 })
-export class EnzoDossierTypeDetailPageComponent extends EnzoGenericDetailPageComponent {
+export class EnzoDossierTypeDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
 		route: ActivatedRoute,
 		router: Router,
-		eventer: AgalEventerService,
+		eventer: StalEventerService,
 		public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsDossierTypeResourceService,
@@ -34,7 +35,7 @@ export class EnzoDossierTypeDetailPageComponent extends EnzoGenericDetailPageCom
 		this.dossierTypeDto = this.route.snapshot.data['dossierType'];
 	}
 
-	protected override reloadFromEvent(event: AgalEvent) {
+	protected override reloadFromEvent(event: StalEvent) {
 		if(event.data === "dossierType") this.reloadPage();
 	}
 
@@ -76,7 +77,7 @@ export class EnzoDossierTypeDetailPageComponent extends EnzoGenericDetailPageCom
 			command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
-	protected dossierListPaginator: AgalPaginator = {
+	protected dossierListPaginator: StalPaginator = {
 		page: 0,
 		size: 10
 	};

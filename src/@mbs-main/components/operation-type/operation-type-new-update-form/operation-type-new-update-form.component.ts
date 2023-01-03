@@ -2,9 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
-import { AgalCommonService } from '@agal-core/services/common.service';
-import { AgalGenericForm, FormStep } from '@agal-core/components/agal-generic-form';
-import { AgalValidator } from '@agal-core/class/form.validator';
+import { StalEventerService, StalEvent } from "@stal/eventer";
+import { EngeCommonService, EngeEngeFormStep, EngeLibGenericForm, EngeValidator } from '@enge/common-lib';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsOperationTypeResourceService } from '@mbs-main/services/operation-type.service';
@@ -15,17 +14,17 @@ import { MbsOperationTypeDto } from '@mbs-main/class/operation-type-dto.class';
 	templateUrl: './operation-type-new-update-form.component.html',
 	styleUrls: ['./operation-type-new-update-form.component.scss']
 })
-export class MbsOperationTypeNewUpdateFormComponent extends AgalGenericForm {
+export class MbsOperationTypeNewUpdateFormComponent extends EngeLibGenericForm {
 	@Input() operationType: MbsOperationTypeDto | undefined;
 	@Output() operationTypeOutput: EventEmitter<MbsOperationTypeDto> = new EventEmitter<MbsOperationTypeDto>();
 	
 
 	constructor(
-		agcs: AgalCommonService,
+		ecs: EngeCommonService,
 		private _formBuilder: FormBuilder,
 		private operationTypeResourceService: MbsOperationTypeResourceService, 
 		private mbsMainAutocompleteService: MbsMainAutocompleteService,
-	) { super(agcs); }
+	) { super(ecs); }
 
 	override loadVariables(): void {
 		if(this.operationType !== undefined) {
@@ -65,22 +64,22 @@ export class MbsOperationTypeNewUpdateFormComponent extends AgalGenericForm {
 			}
 			this._result = request;
 
-			this.agcs.eventer.launchReloadContent("operationType");
-			this.setStep(FormStep.COMPLETE);
+			this.ecs.eventer.launchReloadContent("operationType");
+			this.setStep(EngeEngeFormStep.COMPLETE);
 
 		} catch (e: any) {
-			this.agcs.eventer.launchMessage({
+			this.ecs.eventer.launchMessage({
 				severity: "error",
 				text: e.error.message,
 				duration: 5000
 			});
-			this.setStep(FormStep.FORM);
+			this.setStep(EngeEngeFormStep.FORM);
 		}
 	}
 
 	protected newOperationType() {
 		//this._operationType = null;
 		this.operationTypeOutput.emit(this.operationType);
-		this.setStep(FormStep.FORM);
+		this.setStep(EngeEngeFormStep.FORM);
 	}
 }

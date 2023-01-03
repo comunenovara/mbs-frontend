@@ -4,16 +4,16 @@
 
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="type != null">
 				<span>{{ 'type' }}</span><span class="filed-required">*</span>
-				<input type="text" pInputText formControlName="type" [agalAutocomplete]="typeAutocomplete">
-				<agal-autocomplete #typeAutocomplete [filteredElements]="_filteredType"></agal-autocomplete>
+				<input type="text" pInputText formControlName="type" [stalAutocomplete]="typeAutocomplete">
+				<stal-autocomplete #typeAutocomplete [filteredElements]="_filteredType"></stal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['type'])" class="filed-required">
 					<span *ngIf="checkControlError(_newUpdateForm.controls['type'], 'validatorHaveId')">La type è richiesta.</span>
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null">
 				<span>{{ 'asset' }}</span><span class="filed-required">*</span>
-				<input type="text" pInputText formControlName="asset" [agalAutocomplete]="assetAutocomplete">
-				<agal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></agal-autocomplete>
+				<input type="text" pInputText formControlName="asset" [stalAutocomplete]="assetAutocomplete">
+				<stal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></stal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['asset'])" class="filed-required">
 					<span *ngIf="checkControlError(_newUpdateForm.controls['asset'], 'validatorHaveId')">La asset è richiesta.</span>
 				</div>

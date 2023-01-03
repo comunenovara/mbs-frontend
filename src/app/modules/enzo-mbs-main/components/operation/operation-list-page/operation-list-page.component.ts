@@ -4,9 +4,9 @@ import { lastValueFrom } from 'rxjs';
 
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { AgalEventerService } from '@agal-core/modules/eventer/services/eventer.service';
-import { AgalPaginator } from '@agal-core/modules/paginator/components/paginator/paginator.component';
-import { TabManagerService } from '@tabler/services/tab-manager.service';
+import { StalEventerService, StalEvent } from "@stal/eventer";
+import { StalPaginator } from '@stal/paginator';
+import { TabManagerService } from '@stal/carder';
 
 import { MbsOperationResourceService } from '@mbs-main';
 import { EnzoOperationDialogComponent } from '../operation-dialog/operation-dialog.component';
@@ -21,7 +21,7 @@ export class EnzoOperationListPageComponent {
 		public tabManagerService: TabManagerService,
 		private resourceService: MbsOperationResourceService,
 		private dialogService: DialogService,
-		public eventer: AgalEventerService,
+		public eventer: StalEventerService,
 
 	) { }
 
@@ -32,7 +32,7 @@ export class EnzoOperationListPageComponent {
 		});
 	}
 
-	operationListPaginator: AgalPaginator = {
+	operationListPaginator: StalPaginator = {
 		page: 0,
 		size: 30
 	};

@@ -2,9 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
-import { AgalCommonService } from '@agal-core/services/common.service';
-import { AgalGenericForm, FormStep } from '@agal-core/components/agal-generic-form';
-import { AgalValidator } from '@agal-core/class/form.validator';
+import { StalEventerService, StalEvent } from "@stal/eventer";
+import { EngeCommonService, EngeEngeFormStep, EngeLibGenericForm, EngeValidator } from '@enge/common-lib';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsRelifResourceService } from '@mbs-main/services/relif.service';
@@ -16,18 +15,18 @@ import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 	templateUrl: './relif-new-update-form.component.html',
 	styleUrls: ['./relif-new-update-form.component.scss']
 })
-export class MbsRelifNewUpdateFormComponent extends AgalGenericForm {
+export class MbsRelifNewUpdateFormComponent extends EngeLibGenericForm {
 	@Input() relif: MbsRelifDto | undefined;
 	@Output() relifOutput: EventEmitter<MbsRelifDto> = new EventEmitter<MbsRelifDto>();
 	
 	@Input() asset: MbsAssetDto | undefined;
 
 	constructor(
-		agcs: AgalCommonService,
+		ecs: EngeCommonService,
 		private _formBuilder: FormBuilder,
 		private relifResourceService: MbsRelifResourceService, 
 		private mbsMainAutocompleteService: MbsMainAutocompleteService,
-	) { super(agcs); }
+	) { super(ecs); }
 
 	override loadVariables(): void {
 		if(this.relif !== undefined) {
@@ -48,7 +47,7 @@ export class MbsRelifNewUpdateFormComponent extends AgalGenericForm {
 			description: [null, [  ]],
 			startDate: [null, [ Validators.required,  ]],
 			endDate: [null, [  ]],
-			asset: [this.asset, [ AgalValidator.haveId,  ]],
+			asset: [this.asset, [ EngeValidator.haveId,  ]],
 		});
 
 		this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._newUpdateForm.controls['asset'].valueChanges);
@@ -75,22 +74,22 @@ export class MbsRelifNewUpdateFormComponent extends AgalGenericForm {
 			}
 			this._result = request;
 
-			this.agcs.eventer.launchReloadContent("relif");
-			this.setStep(FormStep.COMPLETE);
+			this.ecs.eventer.launchReloadContent("relif");
+			this.setStep(EngeEngeFormStep.COMPLETE);
 
 		} catch (e: any) {
-			this.agcs.eventer.launchMessage({
+			this.ecs.eventer.launchMessage({
 				severity: "error",
 				text: e.error.message,
 				duration: 5000
 			});
-			this.setStep(FormStep.FORM);
+			this.setStep(EngeEngeFormStep.FORM);
 		}
 	}
 
 	protected newRelif() {
 		//this._relif = null;
 		this.relifOutput.emit(this.relif);
-		this.setStep(FormStep.FORM);
+		this.setStep(EngeEngeFormStep.FORM);
 	}
 }

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
-import { AgalCommonService } from '@agal-core/services/common.service';
-import { AgalGenericTable2 } from '@agal-core/components/agal-generic-table2';
-import { AgalEvent } from '@agal-core/modules/eventer/services/eventer.service';
+import { StalEvent } from "@stal/eventer";
+import { EngeCommonService, EngeLibGenericTable } from '@enge/common-lib';
 
 import { MbsRelifDto } from '../../../class/relif-dto.class';
 import { MbsRelifResourceService } from '../../../services/relif.service';
@@ -13,12 +12,12 @@ import { MbsRelifResourceService } from '../../../services/relif.service';
 	templateUrl: './relif-list-loader.component.html',
 	styleUrls: ['./relif-list-loader.component.scss']
 })
-export class MbsRelifListLoaderComponent extends AgalGenericTable2 {
+export class MbsRelifListLoaderComponent extends EngeLibGenericTable {
 	constructor(
 		private resourceService: MbsRelifResourceService,
-		agcs: AgalCommonService,
+		ecs: EngeCommonService,
 
-	) { super(agcs); }
+	) { super(ecs); }
 
 	protected override async callApi(filters: any) {
 		try {
@@ -29,7 +28,7 @@ export class MbsRelifListLoaderComponent extends AgalGenericTable2 {
 		}
 	}
 
-	protected override reloadFromEvent(event: AgalEvent) {
+	protected override reloadFromEvent(event: StalEvent) {
 		if(event.data === "relif") this.loadData();
 	}
 }

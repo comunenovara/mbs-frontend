@@ -17,7 +17,7 @@
 				[paginator]="dossierListPaginator"
 				[buttons]="dossierTableButtons"
 				(resultCount)="dossierCount=$event"></mbs-dossier-list-loader>
-			<agal-paginator [totalRecords]="dossierCount" [(pageable)]="dossierListPaginator"></agal-paginator>
+			<stal-paginator [totalRecords]="dossierCount" [(pageable)]="dossierListPaginator"></stal-paginator>
 			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewDossier(assetDto)"></button>
 		</div>
 	</div>
@@ -30,7 +30,7 @@
 				[paginator]="operationListPaginator"
 				[buttons]="operationTableButtons"
 				(resultCount)="operationCount=$event"></mbs-operation-list-loader>
-			<agal-paginator [totalRecords]="operationCount" [(pageable)]="operationListPaginator"></agal-paginator>
+			<stal-paginator [totalRecords]="operationCount" [(pageable)]="operationListPaginator"></stal-paginator>
 			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewOperation(assetDto)"></button>
 		</div>
 	</div>
@@ -43,7 +43,7 @@
 				[paginator]="relifListPaginator"
 				[buttons]="relifTableButtons"
 				(resultCount)="relifCount=$event"></mbs-relif-list-loader>
-			<agal-paginator [totalRecords]="relifCount" [(pageable)]="relifListPaginator"></agal-paginator>
+			<stal-paginator [totalRecords]="relifCount" [(pageable)]="relifListPaginator"></stal-paginator>
 			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewRelif(assetDto)"></button>
 		</div>
 	</div>

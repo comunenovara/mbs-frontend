@@ -4,11 +4,12 @@ import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { AgalEvent, AgalEventerService } from "@agal-core/modules/eventer/services/eventer.service";
-import { AgalPaginator } from "@agal-core/modules/paginator/components/paginator/paginator.component";
-import { TabManagerService } from "@tabler/services/tab-manager.service";
+import { StalEventerService, StalEvent } from "@stal/eventer";
+import { StalPaginator } from '@stal/paginator';
+import { TabManagerService } from '@stal/carder';
 
-import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
+import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+
 import { MbsDossierDto, MbsDossierResourceService} from '@mbs-main';
 import { EnzoDossierDialogComponent } from '../dossier-dialog/dossier-dialog.component';
 
@@ -17,11 +18,11 @@ import { EnzoDossierDialogComponent } from '../dossier-dialog/dossier-dialog.com
 	templateUrl: './dossier-detail-page.component.html',
 	styleUrls: ['./dossier-detail-page.component.scss']
 })
-export class EnzoDossierDetailPageComponent extends EnzoGenericDetailPageComponent {
+export class EnzoDossierDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
 		route: ActivatedRoute,
 		router: Router,
-		eventer: AgalEventerService,
+		eventer: StalEventerService,
 		public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsDossierResourceService,
@@ -33,7 +34,7 @@ export class EnzoDossierDetailPageComponent extends EnzoGenericDetailPageCompone
 		this.dossierDto = this.route.snapshot.data['dossier'];
 	}
 
-	protected override reloadFromEvent(event: AgalEvent) {
+	protected override reloadFromEvent(event: StalEvent) {
 		if(event.data === "dossier") this.reloadPage();
 	}
 

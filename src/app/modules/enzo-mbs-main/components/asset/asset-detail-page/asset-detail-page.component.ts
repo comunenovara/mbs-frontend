@@ -4,11 +4,12 @@ import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { AgalEvent, AgalEventerService } from "@agal-core/modules/eventer/services/eventer.service";
-import { AgalPaginator } from "@agal-core/modules/paginator/components/paginator/paginator.component";
-import { TabManagerService } from "@tabler/services/tab-manager.service";
+import { StalEventerService, StalEvent } from "@stal/eventer";
+import { StalPaginator } from '@stal/paginator';
+import { TabManagerService } from '@stal/carder';
 
-import { EnzoGenericDetailPageComponent } from "app/components/enzo-generic-detail.component";
+import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+
 import { MbsAssetDto, MbsAssetResourceService} from '@mbs-main';
 import { EnzoAssetDialogComponent } from '../asset-dialog/asset-dialog.component';
 import { EnzoDossierDialogComponent } from "../../dossier/dossier-dialog/dossier-dialog.component";
@@ -20,11 +21,11 @@ import { EnzoRelifDialogComponent } from "../../relif/relif-dialog/relif-dialog.
 	templateUrl: './asset-detail-page.component.html',
 	styleUrls: ['./asset-detail-page.component.scss']
 })
-export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent {
+export class EnzoAssetDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
 		route: ActivatedRoute,
 		router: Router,
-		eventer: AgalEventerService,
+		eventer: StalEventerService,
 		public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsAssetResourceService,
@@ -36,7 +37,7 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 		this.assetDto = this.route.snapshot.data['asset'];
 	}
 
-	protected override reloadFromEvent(event: AgalEvent) {
+	protected override reloadFromEvent(event: StalEvent) {
 		if(event.data === "asset") this.reloadPage();
 	}
 
@@ -78,7 +79,7 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 			command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
-	protected dossierListPaginator: AgalPaginator = {
+	protected dossierListPaginator: StalPaginator = {
 		page: 0,
 		size: 10
 	};
@@ -105,7 +106,7 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 			command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
-	protected operationListPaginator: AgalPaginator = {
+	protected operationListPaginator: StalPaginator = {
 		page: 0,
 		size: 10
 	};
@@ -132,7 +133,7 @@ export class EnzoAssetDetailPageComponent extends EnzoGenericDetailPageComponent
 			command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
-	protected relifListPaginator: AgalPaginator = {
+	protected relifListPaginator: StalPaginator = {
 		page: 0,
 		size: 10
 	};
