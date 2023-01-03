@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
-import { StalEventerService, StalEvent } from "@stal/eventer";
 import { EngeCommonService, EngeEngeFormStep, EngeLibGenericForm, EngeValidator } from '@enge/common-lib';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
