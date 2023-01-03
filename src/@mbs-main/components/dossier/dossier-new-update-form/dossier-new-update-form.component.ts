@@ -2,9 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
-import { AgalCommonService } from '@agal-core/services/common.service';
-import { AgalGenericForm, FormStep } from '@agal-core/components/agal-generic-form';
-import { AgalValidator } from '@agal-core/class/form.validator';
+import { EngeCommonService, EngeEngeFormStep, EngeGenericForm, EngeValidator } from '@enge/common-lib';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsDossierResourceService } from '@mbs-main/services/dossier.service';
@@ -19,7 +17,7 @@ import { MbsOperationDto } from '@mbs-main/class/operation-dto.class';
 	templateUrl: './dossier-new-update-form.component.html',
 	styleUrls: ['./dossier-new-update-form.component.scss']
 })
-export class MbsDossierNewUpdateFormComponent extends AgalGenericForm {
+export class MbsDossierNewUpdateFormComponent extends EngeGenericForm {
 	@Input() dossier: MbsDossierDto | undefined;
 	@Output() dossierOutput: EventEmitter<MbsDossierDto> = new EventEmitter<MbsDossierDto>();
 	
@@ -29,11 +27,11 @@ export class MbsDossierNewUpdateFormComponent extends AgalGenericForm {
 	@Input() operation: MbsOperationDto | undefined;
 
 	constructor(
-		agcs: AgalCommonService,
+		ecs: EngeCommonService,
 		private _formBuilder: FormBuilder,
 		private dossierResourceService: MbsDossierResourceService, 
 		private mbsMainAutocompleteService: MbsMainAutocompleteService,
-	) { super(agcs); }
+	) { super(ecs); }
 
 	override loadVariables(): void {
 		if(this.dossier !== undefined) {
@@ -53,7 +51,7 @@ export class MbsDossierNewUpdateFormComponent extends AgalGenericForm {
 		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
 			description: [null, [ Validators.required,  ]],
-			type: [this.type, [ AgalValidator.haveId,  ]],
+			type: [this.type, [ EngeValidator.haveId,  ]],
 			asset: [this.asset, [  ]],
 			relif: [this.relif, [  ]],
 			operation: [this.operation, [  ]],
@@ -89,22 +87,22 @@ export class MbsDossierNewUpdateFormComponent extends AgalGenericForm {
 			}
 			this._result = request;
 
-			this.agcs.eventer.launchReloadContent("dossier");
-			this.setStep(FormStep.COMPLETE);
+			this.ecs.eventer.launchReloadContent("dossier");
+			this.setStep(EngeEngeFormStep.COMPLETE);
 
 		} catch (e: any) {
-			this.agcs.eventer.launchMessage({
+			this.ecs.eventer.launchMessage({
 				severity: "error",
 				text: e.error.message,
 				duration: 5000
 			});
-			this.setStep(FormStep.FORM);
+			this.setStep(EngeEngeFormStep.FORM);
 		}
 	}
 
 	protected newDossier() {
 		//this._dossier = null;
 		this.dossierOutput.emit(this.dossier);
-		this.setStep(FormStep.FORM);
+		this.setStep(EngeEngeFormStep.FORM);
 	}
 }

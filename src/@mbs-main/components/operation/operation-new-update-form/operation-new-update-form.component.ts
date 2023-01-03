@@ -2,9 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
-import { AgalCommonService } from '@agal-core/services/common.service';
-import { AgalGenericForm, FormStep } from '@agal-core/components/agal-generic-form';
-import { AgalValidator } from '@agal-core/class/form.validator';
+import { EngeCommonService, EngeEngeFormStep, EngeGenericForm, EngeValidator } from '@enge/common-lib';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsOperationResourceService } from '@mbs-main/services/operation.service';
@@ -17,7 +15,7 @@ import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 	templateUrl: './operation-new-update-form.component.html',
 	styleUrls: ['./operation-new-update-form.component.scss']
 })
-export class MbsOperationNewUpdateFormComponent extends AgalGenericForm {
+export class MbsOperationNewUpdateFormComponent extends EngeGenericForm {
 	@Input() operation: MbsOperationDto | undefined;
 	@Output() operationOutput: EventEmitter<MbsOperationDto> = new EventEmitter<MbsOperationDto>();
 	
@@ -25,11 +23,11 @@ export class MbsOperationNewUpdateFormComponent extends AgalGenericForm {
 	@Input() asset: MbsAssetDto | undefined;
 
 	constructor(
-		agcs: AgalCommonService,
+		ecs: EngeCommonService,
 		private _formBuilder: FormBuilder,
 		private operationResourceService: MbsOperationResourceService, 
 		private mbsMainAutocompleteService: MbsMainAutocompleteService,
-	) { super(agcs); }
+	) { super(ecs); }
 
 	override loadVariables(): void {
 		if(this.operation !== undefined) {
@@ -52,8 +50,8 @@ export class MbsOperationNewUpdateFormComponent extends AgalGenericForm {
 			value: [null, [  ]],
 			startDate: [null, [  ]],
 			endDate: [null, [  ]],
-			type: [this.type, [ AgalValidator.haveId,  ]],
-			asset: [this.asset, [ AgalValidator.haveId,  ]],
+			type: [this.type, [ EngeValidator.haveId,  ]],
+			asset: [this.asset, [ EngeValidator.haveId,  ]],
 		});
 
 		this._filteredType = this.mbsMainAutocompleteService.filterOperationType(this._newUpdateForm.controls['type'].valueChanges);
@@ -83,22 +81,22 @@ export class MbsOperationNewUpdateFormComponent extends AgalGenericForm {
 			}
 			this._result = request;
 
-			this.agcs.eventer.launchReloadContent("operation");
-			this.setStep(FormStep.COMPLETE);
+			this.ecs.eventer.launchReloadContent("operation");
+			this.setStep(EngeEngeFormStep.COMPLETE);
 
 		} catch (e: any) {
-			this.agcs.eventer.launchMessage({
+			this.ecs.eventer.launchMessage({
 				severity: "error",
 				text: e.error.message,
 				duration: 5000
 			});
-			this.setStep(FormStep.FORM);
+			this.setStep(EngeEngeFormStep.FORM);
 		}
 	}
 
 	protected newOperation() {
 		//this._operation = null;
 		this.operationOutput.emit(this.operation);
-		this.setStep(FormStep.FORM);
+		this.setStep(EngeEngeFormStep.FORM);
 	}
 }

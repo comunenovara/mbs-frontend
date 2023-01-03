@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AgalCoreModule } from '@agal-core/agal-core.module';
+import { EngeCommonLibModule } from '@enge/common-lib';
 
 import { MbsMainAutocompleteService } from './service/main-auto-complete.service';
 
@@ -46,9 +46,10 @@ import { MbsRelifResourceService } from './services/relif.service';
 import { MbsRelifResolver } from './resolvers/relif.resolver';
 
 
+
 @NgModule({
 	imports: [ 
-		AgalCoreModule,
+		EngeCommonLibModule,
 	],
 	declarations: [
 		MbsAssetListLoaderComponent,
@@ -93,7 +94,7 @@ import { MbsRelifResolver } from './resolvers/relif.resolver';
 
 	],
 	exports: [
-		AgalCoreModule,
+		EngeCommonLibModule,
 
 		MbsAssetListLoaderComponent,
 		MbsAssetDetailBoxComponent,

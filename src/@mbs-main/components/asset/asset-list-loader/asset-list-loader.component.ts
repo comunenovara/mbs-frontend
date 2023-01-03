@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
-import { AgalCommonService } from '@agal-core/services/common.service';
-import { AgalGenericTable2 } from '@agal-core/components/agal-generic-table2';
-import { StalEventerService, StalEvent } from "@stal/eventer";
+import { StalEvent } from "@stal/eventer";
+import { EngeCommonService, EngeGenericTable } from '@enge/common-lib';
 
-import { MbsAssetDto } from '../../../class/asset-dto.class';
 import { MbsAssetResourceService } from '../../../services/asset.service';
 
 @Component({
@@ -13,12 +11,11 @@ import { MbsAssetResourceService } from '../../../services/asset.service';
 	templateUrl: './asset-list-loader.component.html',
 	styleUrls: ['./asset-list-loader.component.scss']
 })
-export class MbsAssetListLoaderComponent extends AgalGenericTable2 {
+export class MbsAssetListLoaderComponent extends EngeGenericTable {
 	constructor(
 		private resourceService: MbsAssetResourceService,
-		agcs: AgalCommonService,
-
-	) { super(agcs); }
+		ecs: EngeCommonService,
+	) { super(ecs); }
 
 	protected override async callApi(filters: any) {
 		try {

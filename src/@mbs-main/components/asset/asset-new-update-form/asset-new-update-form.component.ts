@@ -2,9 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
-import { AgalCommonService } from '@agal-core/services/common.service';
-import { AgalGenericForm, FormStep } from '@agal-core/components/agal-generic-form';
-import { AgalValidator } from '@agal-core/class/form.validator';
+import { EngeCommonService, EngeEngeFormStep, EngeGenericForm, EngeValidator } from '@enge/common-lib';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsAssetResourceService } from '@mbs-main/services/asset.service';
@@ -15,17 +13,17 @@ import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 	templateUrl: './asset-new-update-form.component.html',
 	styleUrls: ['./asset-new-update-form.component.scss']
 })
-export class MbsAssetNewUpdateFormComponent extends AgalGenericForm {
+export class MbsAssetNewUpdateFormComponent extends EngeGenericForm {
 	@Input() asset: MbsAssetDto | undefined;
 	@Output() assetOutput: EventEmitter<MbsAssetDto> = new EventEmitter<MbsAssetDto>();
 	
 
 	constructor(
-		agcs: AgalCommonService,
+		ecs: EngeCommonService,
 		private _formBuilder: FormBuilder,
 		private assetResourceService: MbsAssetResourceService, 
 		private mbsMainAutocompleteService: MbsMainAutocompleteService,
-	) { super(agcs); }
+	) { super(ecs); }
 
 	override loadVariables(): void {
 		if(this.asset !== undefined) {
@@ -68,22 +66,22 @@ export class MbsAssetNewUpdateFormComponent extends AgalGenericForm {
 			}
 			this._result = request;
 
-			this.agcs.eventer.launchReloadContent("asset");
-			this.setStep(FormStep.COMPLETE);
+			this.ecs.eventer.launchReloadContent("asset");
+			this.setStep(EngeEngeFormStep.COMPLETE);
 
 		} catch (e: any) {
-			this.agcs.eventer.launchMessage({
+			this.ecs.eventer.launchMessage({
 				severity: "error",
 				text: e.error.message,
 				duration: 5000
 			});
-			this.setStep(FormStep.FORM);
+			this.setStep(EngeEngeFormStep.FORM);
 		}
 	}
 
 	protected newAsset() {
 		//this._asset = null;
 		this.assetOutput.emit(this.asset);
-		this.setStep(FormStep.FORM);
+		this.setStep(EngeEngeFormStep.FORM);
 	}
 }

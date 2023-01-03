@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
-import { AgalCommonService } from '@agal-core/services/common.service';
-import { AgalGenericTable2 } from '@agal-core/components/agal-generic-table2';
+import { EngeCommonService, EngeGenericTable } from '@enge/common-lib';
 import { StalEventerService, StalEvent } from "@stal/eventer";
 
 import { MbsOperationTypeDto } from '../../../class/operation-type-dto.class';
@@ -13,12 +12,12 @@ import { MbsOperationTypeResourceService } from '../../../services/operation-typ
 	templateUrl: './operation-type-list-loader.component.html',
 	styleUrls: ['./operation-type-list-loader.component.scss']
 })
-export class MbsOperationTypeListLoaderComponent extends AgalGenericTable2 {
+export class MbsOperationTypeListLoaderComponent extends EngeGenericTable {
 	constructor(
 		private resourceService: MbsOperationTypeResourceService,
-		agcs: AgalCommonService,
+		ecs: EngeCommonService,
 
-	) { super(agcs); }
+	) { super(ecs); }
 
 	protected override async callApi(filters: any) {
 		try {
