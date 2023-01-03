@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
-import { EngeCommonService, EngeEngeFormStep, EngeGenericForm, EngeValidator } from '@enge/common-lib';
+import { EngeCommonService, EngeEngeFormStep, EngeLibGenericForm, EngeValidator } from '@enge/common-lib';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsAssetResourceService } from '@mbs-main/services/asset.service';
@@ -13,7 +13,7 @@ import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 	templateUrl: './asset-new-update-form.component.html',
 	styleUrls: ['./asset-new-update-form.component.scss']
 })
-export class MbsAssetNewUpdateFormComponent extends EngeGenericForm {
+export class MbsAssetNewUpdateFormComponent extends EngeLibGenericForm {
 	@Input() asset: MbsAssetDto | undefined;
 	@Output() assetOutput: EventEmitter<MbsAssetDto> = new EventEmitter<MbsAssetDto>();
 	

@@ -2,7 +2,7 @@ import { Directive, EventEmitter, Input, Output, SimpleChanges } from "@angular/
 import { LazyLoadEvent } from "primeng/api";
 import { StalEvent, StalEventType } from "@stal/eventer";
 
-import { EngeGenericComponent } from "./generic.component";
+import { EngeLibGenericComponent } from "./generic.component";
 import { EngeCommonService } from "../services/common.service";
 
 export enum EngeListDisplayModality {
@@ -12,7 +12,7 @@ export enum EngeListDisplayModality {
 }
 
 @Directive()
-export abstract class EngeGenericTable extends EngeGenericComponent {
+export abstract class EngeLibGenericTable extends EngeLibGenericComponent {
 	_apiFilters: any = {};
 
 	@Input() filters: any;

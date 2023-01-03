@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
-import { EngeCommonService, EngeGenericTable } from '@enge/common-lib';
+import { EngeCommonService, EngeLibGenericTable } from '@enge/common-lib';
 import { StalEventerService, StalEvent } from "@stal/eventer";
 
 import { MbsRelifDto } from '../../../class/relif-dto.class';
@@ -12,7 +12,7 @@ import { MbsRelifResourceService } from '../../../services/relif.service';
 	templateUrl: './relif-list-loader.component.html',
 	styleUrls: ['./relif-list-loader.component.scss']
 })
-export class MbsRelifListLoaderComponent extends EngeGenericTable {
+export class MbsRelifListLoaderComponent extends EngeLibGenericTable {
 	constructor(
 		private resourceService: MbsRelifResourceService,
 		ecs: EngeCommonService,

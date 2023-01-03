@@ -2,7 +2,7 @@ import { Directive, Input, Output } from "@angular/core";
 import { EventEmitter } from '@angular/core';
 import { AbstractControl, FormGroup } from "@angular/forms";
 
-import { EngeGenericComponent } from "./generic.component";
+import { EngeLibGenericComponent } from "./generic.component";
 import { EngeCommonService } from "../services/common.service";
 
 export enum EngeEngeFormStep {
@@ -10,7 +10,7 @@ export enum EngeEngeFormStep {
 }
 
 @Directive()
-export abstract class EngeGenericForm extends EngeGenericComponent {
+export abstract class EngeLibGenericForm extends EngeLibGenericComponent {
 	@Input() returnToParent: boolean = false;
 	input: any;
 	output: EventEmitter<any>;

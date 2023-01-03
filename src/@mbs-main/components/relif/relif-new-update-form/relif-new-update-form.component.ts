@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
-import { EngeCommonService, EngeEngeFormStep, EngeGenericForm, EngeValidator } from '@enge/common-lib';
+import { EngeCommonService, EngeEngeFormStep, EngeLibGenericForm, EngeValidator } from '@enge/common-lib';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsRelifResourceService } from '@mbs-main/services/relif.service';
@@ -14,7 +14,7 @@ import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 	templateUrl: './relif-new-update-form.component.html',
 	styleUrls: ['./relif-new-update-form.component.scss']
 })
-export class MbsRelifNewUpdateFormComponent extends EngeGenericForm {
+export class MbsRelifNewUpdateFormComponent extends EngeLibGenericForm {
 	@Input() relif: MbsRelifDto | undefined;
 	@Output() relifOutput: EventEmitter<MbsRelifDto> = new EventEmitter<MbsRelifDto>();
 	

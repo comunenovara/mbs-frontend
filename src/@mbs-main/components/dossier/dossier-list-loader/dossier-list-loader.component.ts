@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
-import { EngeCommonService, EngeGenericTable } from '@enge/common-lib';
+import { EngeCommonService, EngeLibGenericTable } from '@enge/common-lib';
 import { StalEventerService, StalEvent } from "@stal/eventer";
 
 import { MbsDossierDto } from '../../../class/dossier-dto.class';
@@ -12,7 +12,7 @@ import { MbsDossierResourceService } from '../../../services/dossier.service';
 	templateUrl: './dossier-list-loader.component.html',
 	styleUrls: ['./dossier-list-loader.component.scss']
 })
-export class MbsDossierListLoaderComponent extends EngeGenericTable {
+export class MbsDossierListLoaderComponent extends EngeLibGenericTable {
 	constructor(
 		private resourceService: MbsDossierResourceService,
 		ecs: EngeCommonService,

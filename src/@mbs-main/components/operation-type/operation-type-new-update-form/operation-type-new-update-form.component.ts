@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
-import { EngeCommonService, EngeEngeFormStep, EngeGenericForm, EngeValidator } from '@enge/common-lib';
+import { EngeCommonService, EngeEngeFormStep, EngeLibGenericForm, EngeValidator } from '@enge/common-lib';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsOperationTypeResourceService } from '@mbs-main/services/operation-type.service';
@@ -13,7 +13,7 @@ import { MbsOperationTypeDto } from '@mbs-main/class/operation-type-dto.class';
 	templateUrl: './operation-type-new-update-form.component.html',
 	styleUrls: ['./operation-type-new-update-form.component.scss']
 })
-export class MbsOperationTypeNewUpdateFormComponent extends EngeGenericForm {
+export class MbsOperationTypeNewUpdateFormComponent extends EngeLibGenericForm {
 	@Input() operationType: MbsOperationTypeDto | undefined;
 	@Output() operationTypeOutput: EventEmitter<MbsOperationTypeDto> = new EventEmitter<MbsOperationTypeDto>();
 	

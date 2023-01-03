@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
 import { StalEvent } from "@stal/eventer";
-import { EngeCommonService, EngeGenericTable } from '@enge/common-lib';
+import { EngeCommonService, EngeLibGenericTable } from '@enge/common-lib';
 
 import { MbsAssetResourceService } from '../../../services/asset.service';
 
@@ -11,7 +11,7 @@ import { MbsAssetResourceService } from '../../../services/asset.service';
 	templateUrl: './asset-list-loader.component.html',
 	styleUrls: ['./asset-list-loader.component.scss']
 })
-export class MbsAssetListLoaderComponent extends EngeGenericTable {
+export class MbsAssetListLoaderComponent extends EngeLibGenericTable {
 	constructor(
 		private resourceService: MbsAssetResourceService,
 		ecs: EngeCommonService,

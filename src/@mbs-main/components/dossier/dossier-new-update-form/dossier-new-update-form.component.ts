@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
-import { EngeCommonService, EngeEngeFormStep, EngeGenericForm, EngeValidator } from '@enge/common-lib';
+import { EngeCommonService, EngeEngeFormStep, EngeLibGenericForm, EngeValidator } from '@enge/common-lib';
 
 import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete.service';
 import { MbsDossierResourceService } from '@mbs-main/services/dossier.service';
@@ -17,7 +17,7 @@ import { MbsOperationDto } from '@mbs-main/class/operation-dto.class';
 	templateUrl: './dossier-new-update-form.component.html',
 	styleUrls: ['./dossier-new-update-form.component.scss']
 })
-export class MbsDossierNewUpdateFormComponent extends EngeGenericForm {
+export class MbsDossierNewUpdateFormComponent extends EngeLibGenericForm {
 	@Input() dossier: MbsDossierDto | undefined;
 	@Output() dossierOutput: EventEmitter<MbsDossierDto> = new EventEmitter<MbsDossierDto>();
 	

@@ -3,7 +3,7 @@ import { Subscription } from "rxjs";
 import { EngeCommonService } from "../services/common.service";
 
 @Directive()
-export abstract class EngeGenericComponent implements OnInit, OnDestroy {
+export abstract class EngeLibGenericComponent implements OnInit, OnDestroy {
     constructor(
         public ecs: EngeCommonService,
     ) { }
