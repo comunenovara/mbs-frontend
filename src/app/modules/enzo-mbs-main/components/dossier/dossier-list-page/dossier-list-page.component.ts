@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-import { TabManagerService } from '@stal/carder';
+//import { TabManagerService } from '@stal/carder';
 
 import { MbsDossierResourceService } from '@mbs-main';
 import { EnzoDossierDialogComponent } from '../dossier-dialog/dossier-dialog.component';
@@ -18,7 +18,7 @@ import { EnzoDossierDialogComponent } from '../dossier-dialog/dossier-dialog.com
 export class EnzoDossierListPageComponent {
 	constructor(
 		private router: Router,
-		public tabManagerService: TabManagerService,
+		//public tabManagerService: TabManagerService,
 		private resourceService: MbsDossierResourceService,
 		private dialogService: DialogService,
 		public eventer: StalEventerService,
@@ -67,7 +67,7 @@ export class EnzoDossierListPageComponent {
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../detail",
-			command: (e: any) => this.tabManagerService.openInTab(),
+			//command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
 					label: "Edit",

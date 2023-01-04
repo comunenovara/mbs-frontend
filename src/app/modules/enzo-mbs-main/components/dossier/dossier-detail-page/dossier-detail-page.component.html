@@ -11,28 +11,52 @@
         <div class="card mb-0">
 			<h3>dossier-type</h3>
 			<mbs-dossier-type-detail-box [dossierType]="dossierDto.type" ></mbs-dossier-type-detail-box>
-			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" [routerLink]="['../../../dossier-type/detail', dossierDto.type.id]" (click)="tabManagerService.openInCard()"></button>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../dossier-type/detail', dossierDto.type.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../dossier-type/detail', dossierDto.type.id]"></button>
+			-->
 		</div>
 	</div>
 	<div class="col-12 lg:col-6 xl:col-3" *ngIf="dossierDto.asset !== null">
         <div class="card mb-0">
 			<h3>asset</h3>
 			<mbs-asset-detail-box [asset]="dossierDto.asset" ></mbs-asset-detail-box>
-			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" [routerLink]="['../../../asset/detail', dossierDto.asset.id]" (click)="tabManagerService.openInCard()"></button>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../asset/detail', dossierDto.asset.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../asset/detail', dossierDto.asset.id]"></button>
+			-->
 		</div>
 	</div>
 	<div class="col-12 lg:col-6 xl:col-3" *ngIf="dossierDto.relif !== null">
         <div class="card mb-0">
 			<h3>relif</h3>
 			<mbs-relif-detail-box [relif]="dossierDto.relif" ></mbs-relif-detail-box>
-			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" [routerLink]="['../../../relif/detail', dossierDto.relif.id]" (click)="tabManagerService.openInCard()"></button>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../relif/detail', dossierDto.relif.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../relif/detail', dossierDto.relif.id]"></button>
+			-->
 		</div>
 	</div>
 	<div class="col-12 lg:col-6 xl:col-3" *ngIf="dossierDto.operation !== null">
         <div class="card mb-0">
 			<h3>operation</h3>
 			<mbs-operation-detail-box [operation]="dossierDto.operation" ></mbs-operation-detail-box>
-			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" [routerLink]="['../../../operation/detail', dossierDto.operation.id]" (click)="tabManagerService.openInCard()"></button>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../operation/detail', dossierDto.operation.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../operation/detail', dossierDto.operation.id]"></button>
+			-->
 		</div>
 	</div>
 

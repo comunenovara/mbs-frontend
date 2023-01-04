@@ -10,3 +10,5 @@ export * from './class/operation-type-dto.class';
 export * from './services/operation-type.service';
 export * from './class/relif-dto.class';
 export * from './services/relif.service';
+export * from './main.variables';
+export * from './main.module';

@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-import { TabManagerService } from '@stal/carder';
+//import { TabManagerService } from '@stal/carder';
 
 import { MbsOperationResourceService } from '@mbs-main';
 import { EnzoOperationDialogComponent } from '../operation-dialog/operation-dialog.component';
@@ -18,7 +18,7 @@ import { EnzoOperationDialogComponent } from '../operation-dialog/operation-dial
 export class EnzoOperationListPageComponent {
 	constructor(
 		private router: Router,
-		public tabManagerService: TabManagerService,
+		//public tabManagerService: TabManagerService,
 		private resourceService: MbsOperationResourceService,
 		private dialogService: DialogService,
 		public eventer: StalEventerService,
@@ -67,7 +67,7 @@ export class EnzoOperationListPageComponent {
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../detail",
-			command: (e: any) => this.tabManagerService.openInTab(),
+			//command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
 					label: "Edit",
