@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { MbsMainLibModule } from '@mbs-main/main.module';
+import { MbsMainLibModule, MBS_MAIN_ENDPOINT } from '@mbs-main';
 import { EngeCommonAppModule } from '@enge/common-app';
 
 import { enzoMbsMainRoutes } from './mbs-main.route';
@@ -56,6 +56,12 @@ import { EnzoRelifDialogComponent } from './components/relif/relif-dialog/relif-
 		EnzoRelifDetailPageComponent,
 		EnzoRelifDialogComponent,
 		
+	],
+	providers: [
+		{
+			provide: MBS_MAIN_ENDPOINT,
+			useValue: 'http://localhost:3000/mbs/main'
+		}
 	]
 })
 export class EnzoMbsMainModule {}

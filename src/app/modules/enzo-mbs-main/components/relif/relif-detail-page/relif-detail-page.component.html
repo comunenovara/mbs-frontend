@@ -11,7 +11,13 @@
         <div class="card mb-0">
 			<h3>Bene immobile</h3>
 			<mbs-asset-detail-box [asset]="relifDto.asset" ></mbs-asset-detail-box>
-			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" [routerLink]="['../../../asset/detail', relifDto.asset.id]" (click)="tabManagerService.openInCard()"></button>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../asset/detail', relifDto.asset.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../asset/detail', relifDto.asset.id]"></button>
+			-->
 		</div>
 	</div>
 
