@@ -61,8 +61,8 @@ import { EnzoNominaDialogComponent } from './components/nomina/nomina-dialog/nom
 	providers: [
 		{
 			provide: MBS_WORK_ENDPOINT,
-			useValue: 'http://localhost:3000/mbs/work'
-		}
+			useValue: 'http://10.1.20.43:3000/mbs/work'
+		},
 	]
 })
 export class EnzoMbsWorkModule {}
