@@ -13,7 +13,7 @@
 			<h3>nomina</h3>
 			<mbs-nomina-list-loader 
 				[filters]="{progettoIdEquals: progettoDto.id}" 
-				[dcs]="['id', 'description']" 
+				[dcs]="['id', 'incarico.name', 'fase.name', 'ie', 'tecnico.name', 'azienda.name']" 
 				[paginator]="nominaListPaginator"
 				[buttons]="nominaTableButtons"
 				(resultCount)="nominaCount=$event"></mbs-nomina-list-loader>

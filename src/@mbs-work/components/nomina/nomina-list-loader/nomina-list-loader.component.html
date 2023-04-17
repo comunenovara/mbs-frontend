@@ -33,8 +33,8 @@
 						<td *ngSwitchCase="'incarico.name'">{{ e.incarico.name }}</td>
 						<td *ngSwitchCase="'fase.name'">{{ e.fase.name }}</td>
 						<td *ngSwitchCase="'progetto.name'">{{ e.progetto.name }}</td>
-						<td *ngSwitchCase="'tecnico.name'">{{ e.tecnico.name }}</td>
-						<td *ngSwitchCase="'azienda.name'">{{ e.azienda.name }}</td>
+						<td *ngSwitchCase="'tecnico.name'"><span *ngIf="e.tecnico">{{ e.tecnico.name }}</span></td>
+						<td *ngSwitchCase="'azienda.name'"><span *ngIf="e.azienda">{{ e.azienda.name }}</span></td>
 					</ng-container>
 					<td *ngIf="buttons" style="text-align:center">
 						<ng-container *ngFor="let b of buttons">

@@ -30,6 +30,21 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Tutti i fascicoli', icon: 'pi pi-fw pi-chart-line', routerLink: ['/enzo/dossier'] },
                 ]
             },
+            {
+                label: 'Work',
+                items: [
+                    { label: 'Progetti', icon: 'pi pi-fw pi-building', routerLink: ['/work/progetto'] },
+                    { label: 'Tecnici', icon: 'pi pi-fw pi-compass', routerLink: ['/work/tecnico'] },
+                    { label: 'Aziende', icon: 'pi pi-fw pi-chart-line', routerLink: ['/work/azienda'] },
+                ]
+            },
+            {
+                label: 'Config - Work',
+                items: [
+                    { label: 'Incarichi', icon: 'pi pi-fw pi-building', routerLink: ['/work/incarico'] },
+                    { label: 'Fasi', icon: 'pi pi-fw pi-compass', routerLink: ['/work/fase'] },
+                ]
+            },
         ];
     }
 }

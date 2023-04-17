@@ -38,7 +38,7 @@ export class EnzoTecnicoListPageComponent {
 	};
 	tecnicoCount: number;
 
-	tecnicoListDc = ['_ck', 'id'];
+	tecnicoListDc = ['_ck', 'id', 'name'];
 	paginatorEvent(paginator: any) {
 		let tecnicoListPaginator = { ...paginator }
 		this.tecnicoListPaginator = tecnicoListPaginator;

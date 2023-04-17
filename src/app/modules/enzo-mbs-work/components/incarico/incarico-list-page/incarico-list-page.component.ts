@@ -38,7 +38,7 @@ export class EnzoIncaricoListPageComponent {
 	};
 	incaricoCount: number;
 
-	incaricoListDc = ['_ck', 'id'];
+	incaricoListDc = ['_ck', 'id', 'name'];
 	paginatorEvent(paginator: any) {
 		let incaricoListPaginator = { ...paginator }
 		this.incaricoListPaginator = incaricoListPaginator;

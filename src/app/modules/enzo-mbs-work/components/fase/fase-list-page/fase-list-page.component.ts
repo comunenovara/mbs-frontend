@@ -38,7 +38,7 @@ export class EnzoFaseListPageComponent {
 	};
 	faseCount: number;
 
-	faseListDc = ['_ck', 'id'];
+	faseListDc = ['_ck', 'id', 'name'];
 	paginatorEvent(paginator: any) {
 		let faseListPaginator = { ...paginator }
 		this.faseListPaginator = faseListPaginator;

@@ -38,7 +38,7 @@ export class EnzoProgettoListPageComponent {
 	};
 	progettoCount: number;
 
-	progettoListDc = ['_ck', 'id'];
+	progettoListDc = ['_ck', 'id', 'name'];
 	paginatorEvent(paginator: any) {
 		let progettoListPaginator = { ...paginator }
 		this.progettoListPaginator = progettoListPaginator;

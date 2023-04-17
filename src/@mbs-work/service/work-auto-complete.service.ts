@@ -31,7 +31,7 @@ export class MbsWorkAutocompleteService {
 			switchMap((value: string) => {
 				let filter: any = {};
 				if(value && value.length > 0)  {
-					filter.descriptionContains = value;
+					filter.nameContains = value;
 				};
 				return this.incaricoResourceService.getAllIncaricosUsingGET(filter);
 		  })
@@ -39,7 +39,7 @@ export class MbsWorkAutocompleteService {
 	}
 
 	displayIncarico(selectedElement: any) {
-		return selectedElement.description;
+		return selectedElement.name;
 	}
 
 	filterFase(observable: Observable<any>): Observable<MbsFaseDto[]> {
@@ -48,7 +48,7 @@ export class MbsWorkAutocompleteService {
 			switchMap((value: string) => {
 				let filter: any = {};
 				if(value && value.length > 0)  {
-					filter.descriptionContains = value;
+					filter.nameContains = value;
 				};
 				return this.faseResourceService.getAllFasesUsingGET(filter);
 		  })
@@ -56,7 +56,7 @@ export class MbsWorkAutocompleteService {
 	}
 
 	displayFase(selectedElement: any) {
-		return selectedElement.description;
+		return selectedElement.name;
 	}
 
 	filterProgetto(observable: Observable<any>): Observable<MbsProgettoDto[]> {
@@ -65,7 +65,7 @@ export class MbsWorkAutocompleteService {
 			switchMap((value: string) => {
 				let filter: any = {};
 				if(value && value.length > 0)  {
-					filter.descriptionContains = value;
+					filter.nameContains = value;
 				};
 				return this.progettoResourceService.getAllProgettosUsingGET(filter);
 		  })
@@ -73,7 +73,7 @@ export class MbsWorkAutocompleteService {
 	}
 
 	displayProgetto(selectedElement: any) {
-		return selectedElement.description;
+		return selectedElement.name;
 	}
 
 	filterTecnico(observable: Observable<any>): Observable<MbsTecnicoDto[]> {
@@ -82,7 +82,7 @@ export class MbsWorkAutocompleteService {
 			switchMap((value: string) => {
 				let filter: any = {};
 				if(value && value.length > 0)  {
-					filter.descriptionContains = value;
+					filter.nameContains = value;
 				};
 				return this.tecnicoResourceService.getAllTecnicosUsingGET(filter);
 		  })
@@ -90,7 +90,7 @@ export class MbsWorkAutocompleteService {
 	}
 
 	displayTecnico(selectedElement: any) {
-		return selectedElement.description;
+		return selectedElement.name;
 	}
 
 	filterAzienda(observable: Observable<any>): Observable<MbsAziendaDto[]> {
@@ -99,7 +99,7 @@ export class MbsWorkAutocompleteService {
 			switchMap((value: string) => {
 				let filter: any = {};
 				if(value && value.length > 0)  {
-					filter.descriptionContains = value;
+					filter.nameContains = value;
 				};
 				return this.aziendaResourceService.getAllAziendasUsingGET(filter);
 		  })
@@ -107,7 +107,7 @@ export class MbsWorkAutocompleteService {
 	}
 
 	displayAzienda(selectedElement: any) {
-		return selectedElement.description;
+		return selectedElement.name;
 	}
 
 	filterNomina(observable: Observable<any>): Observable<MbsNominaDto[]> {
@@ -116,7 +116,7 @@ export class MbsWorkAutocompleteService {
 			switchMap((value: string) => {
 				let filter: any = {};
 				if(value && value.length > 0)  {
-					filter.descriptionContains = value;
+					filter.nameContains = value;
 				};
 				return this.nominaResourceService.getAllNominasUsingGET(filter);
 		  })
@@ -124,7 +124,7 @@ export class MbsWorkAutocompleteService {
 	}
 
 	displayNomina(selectedElement: any) {
-		return selectedElement.description;
+		return selectedElement.name;
 	}
 
 }

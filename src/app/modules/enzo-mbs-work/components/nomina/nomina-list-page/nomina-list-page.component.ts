@@ -38,7 +38,7 @@ export class EnzoNominaListPageComponent {
 	};
 	nominaCount: number;
 
-	nominaListDc = ['_ck', 'id'];
+	nominaListDc = ['_ck', 'id', 'name'];
 	paginatorEvent(paginator: any) {
 		let nominaListPaginator = { ...paginator }
 		this.nominaListPaginator = nominaListPaginator;
