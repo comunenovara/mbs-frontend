@@ -1,0 +1,24 @@
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-6">
+        <div class="card mb-0">
+			<mbs-fase-detail-box [fase]="faseDto"></mbs-fase-detail-box>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editFase(faseDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteFase(faseDto)"></button>
+		</div>
+	</div>
+
+
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>nomina</h3>
+			<mbs-nomina-list-loader 
+				[filters]="{faseIdEquals: faseDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="nominaListPaginator"
+				[buttons]="nominaTableButtons"
+				(resultCount)="nominaCount=$event"></mbs-nomina-list-loader>
+			<stal-paginator [totalRecords]="nominaCount" [(pageable)]="nominaListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewNomina(faseDto)"></button>
+		</div>
+	</div>
+</div>

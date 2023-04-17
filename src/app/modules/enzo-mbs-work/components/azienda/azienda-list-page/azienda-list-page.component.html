@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-azienda-list-loader 
+		[dcs]="aziendaListDc" [buttons]="tableButtons" 
+		[paginator]="aziendaListPaginator" (resultCount)="aziendaCount=$event"> 
+	</mbs-azienda-list-loader>
+
+	<stal-paginator [totalRecords]="aziendaCount" [(pageable)]="aziendaListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewAzienda()"></button>
+
+</div>

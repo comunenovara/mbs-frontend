@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-fase-list-loader 
+		[dcs]="faseListDc" [buttons]="tableButtons" 
+		[paginator]="faseListPaginator" (resultCount)="faseCount=$event"> 
+	</mbs-fase-list-loader>
+
+	<stal-paginator [totalRecords]="faseCount" [(pageable)]="faseListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewFase()"></button>
+
+</div>
