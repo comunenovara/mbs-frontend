@@ -10,8 +10,8 @@
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<label for="haveWorkCategoryLabel">{{ 'haveWorkCategory' }}</label>
-				<input type="checkbox" formControlName="haveWorkCategory" inputId="haveWorkCategoryLabel" />
+				<label for="haveWorkCategory">{{ 'haveWorkCategory' }}</label>
+				<input type="checkbox" formControlName="haveWorkCategory" inputId="haveWorkCategory" />
 				<div *ngIf="!isValid(_newUpdateForm.controls['haveWorkCategory'])" class="filed-required">
 					<span *ngIf="checkControlError(_newUpdateForm.controls['haveWorkCategory'], 'required')">La haveWorkCategory è richiesta.</span>
 				</div>
