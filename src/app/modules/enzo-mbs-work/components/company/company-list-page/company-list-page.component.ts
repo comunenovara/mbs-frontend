@@ -38,7 +38,7 @@ export class EnzoCompanyListPageComponent {
 	};
 	companyCount: number;
 
-	companyListDc = ['_ck', 'id'];
+	companyListDc = ['_ck', 'id', 'name'];
 	paginatorEvent(paginator: any) {
 		let companyListPaginator = { ...paginator }
 		this.companyListPaginator = companyListPaginator;

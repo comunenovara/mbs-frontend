@@ -38,7 +38,7 @@ export class EnzoRoleListPageComponent {
 	};
 	roleCount: number;
 
-	roleListDc = ['_ck', 'id'];
+	roleListDc = ['_ck', 'id', 'name', 'haveWorkCategory'];
 	paginatorEvent(paginator: any) {
 		let roleListPaginator = { ...paginator }
 		this.roleListPaginator = roleListPaginator;

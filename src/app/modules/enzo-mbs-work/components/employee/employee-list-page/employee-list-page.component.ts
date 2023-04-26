@@ -38,7 +38,7 @@ export class EnzoEmployeeListPageComponent {
 	};
 	employeeCount: number;
 
-	employeeListDc = ['_ck', 'id'];
+	employeeListDc = ['_ck', 'id', 'name'];
 	paginatorEvent(paginator: any) {
 		let employeeListPaginator = { ...paginator }
 		this.employeeListPaginator = employeeListPaginator;

@@ -38,7 +38,7 @@ export class EnzoWorkCategoryListPageComponent {
 	};
 	workCategoryCount: number;
 
-	workCategoryListDc = ['_ck', 'id'];
+	workCategoryListDc = ['_ck', 'id', 'name'];
 	paginatorEvent(paginator: any) {
 		let workCategoryListPaginator = { ...paginator }
 		this.workCategoryListPaginator = workCategoryListPaginator;
