@@ -46,7 +46,8 @@
 								[ngClass]="{'ui-button-icon-only': b.hideLabel}" 
 								label="{{ b.label }}" icon="{{ b.icon }}">
 							</button>
-							<a *ngIf="b.link !== undefined" (click)="checkClick(b.command, e)" [routerLink]="[b.link, e.id]">
+							<a *ngIf="b.link !== undefined"
+								(click)="checkClick(b.command, e)" [routerLink]="[b.link, e.id]">
 								<button pButton type="button"
 									class="{{ b.class }} p-button-{{ b.severity }}"
 									[ngClass]="{'ui-button-icon-only': b.hideLabel}" 
