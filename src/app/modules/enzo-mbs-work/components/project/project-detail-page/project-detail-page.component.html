@@ -13,7 +13,7 @@
 			<h3>assignement</h3>
 			<mbs-assignement-list-loader 
 				[filters]="{projectIdEquals: projectDto.id}" 
-				[dcs]="['id', 'description']" 
+				[dcs]="['id', 'role.name', 'workCategory.name', 'ie', 'employee.name', 'company.name']" 
 				[paginator]="assignementListPaginator"
 				[buttons]="assignementTableButtons"
 				(resultCount)="assignementCount=$event"></mbs-assignement-list-loader>
