@@ -65,7 +65,7 @@ export class EnzoProgettoDetailPageComponent extends EngeAppGenericDetailPageCom
 
 		this.nomine = {};
 		for(let nomina of nominaDtos) {
-			if(nomina.faseId === undefined || nomina.incaricoId === undefined) {
+			if(nomina.faseId === undefined || nomina.faseId === null || nomina.incaricoId === undefined  || nomina.incaricoId === null) {
 				continue;
 			}
 

@@ -9,9 +9,9 @@ export class MbsAssignementDto {
 
 	external: boolean;
 
-	projectId?: number;
+	projectId?: number | null;
 	project: MbsProjectDto;
-	roleId?: number;
+	roleId?: number | null;
 	role: MbsRoleDto;
 	workCategoryId?: number | null;
 	workCategory: MbsWorkCategoryDto;

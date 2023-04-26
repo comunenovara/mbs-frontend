@@ -9,15 +9,15 @@ export class MbsNominaDto {
 
 	ie: boolean;
 
-	progettoId?: number;
+	progettoId?: number | null;
 	progetto: MbsProgettoDto;
-	incaricoId?: number;
+	incaricoId?: number | null;
 	incarico: MbsIncaricoDto;
-	faseId?: number;
+	faseId?: number | null;
 	fase: MbsFaseDto;
-	tecnicoId?: number;
+	tecnicoId?: number | null;
 	tecnico: MbsTecnicoDto;
-	aziendaId?: number;
+	aziendaId?: number | null;
 	azienda: MbsAziendaDto;
 
 }
