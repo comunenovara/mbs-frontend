@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-company-list-loader 
+		[dcs]="companyListDc" [buttons]="tableButtons" 
+		[paginator]="companyListPaginator" (resultCount)="companyCount=$event"> 
+	</mbs-company-list-loader>
+
+	<stal-paginator [totalRecords]="companyCount" [(pageable)]="companyListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewCompany()"></button>
+
+</div>

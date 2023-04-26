@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-employee-list-loader 
+		[dcs]="employeeListDc" [buttons]="tableButtons" 
+		[paginator]="employeeListPaginator" (resultCount)="employeeCount=$event"> 
+	</mbs-employee-list-loader>
+
+	<stal-paginator [totalRecords]="employeeCount" [(pageable)]="employeeListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewEmployee()"></button>
+
+</div>
