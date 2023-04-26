@@ -81,6 +81,16 @@ export class MbsAssignementNewUpdateFormComponent extends EngeLibGenericForm {
 	}
 
 	override async sendToBackEnd(request: MbsAssignementDto) {
+		if(!request.role.haveWorkCategory) {
+			request.workCategoryId = null;
+		}
+		if(request.external) {
+			request.employeeId = null;
+		}
+		if(!request.external) {
+			request.companyId = null;
+		}
+		
 		try {
 			let postOrPut: string;
 			if (request.id != null && request.id > 0) {

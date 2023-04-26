@@ -21,23 +21,23 @@ export class MbsCompanyResourceService {
 	}
 
 	createCompanyUsingPOST(company: MbsCompanyDto): Observable<MbsCompanyDto> {
-		return this.http.post<MbsCompanyDto>(this.basePath + "/companies/", company);
+		return this.http.post<MbsCompanyDto>(this.basePath + "/companys/", company);
 	}
 
 	updateCompanyUsingPUT(company: MbsCompanyDto): Observable<MbsCompanyDto> {
-		return this.http.put<MbsCompanyDto>(this.basePath + "/companies/", company);
+		return this.http.put<MbsCompanyDto>(this.basePath + "/companys/", company);
 	}
 
 	getAllCompaniesUsingGET(filters: any): Observable<MbsCompanyDto[]> {
-		return this.http.get<MbsCompanyDto[]>(this.basePath + "/companies?" + this.prepareQueryParams(filters).toString());
+		return this.http.get<MbsCompanyDto[]>(this.basePath + "/companys?" + this.prepareQueryParams(filters).toString());
 	}
 	
 	countCompaniesUsingGET(filters: any): Observable<number> {
-		return this.http.get<number>(this.basePath + "/companies/count?" + this.prepareQueryParams(filters).toString());
+		return this.http.get<number>(this.basePath + "/companys/count?" + this.prepareQueryParams(filters).toString());
 	}
 
 	getCompanyUsingGET(id: number): Observable<MbsCompanyDto> {
-		return this.http.get<MbsCompanyDto>(this.basePath + "/companies/" + id);
+		return this.http.get<MbsCompanyDto>(this.basePath + "/companys/" + id);
 	}
 
 	deleteCompanyUsingDELETE(id: number): Observable<MbsCompanyDto> {

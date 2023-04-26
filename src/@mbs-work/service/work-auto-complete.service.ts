@@ -104,7 +104,7 @@ export class MbsWorkAutocompleteService {
 			switchMap((value: string) => {
 				let filter: any = {};
 				if(value && value.length > 0)  {
-					filter.descriptionContains = value;
+					filter.nameContains = value;
 				};
 				return this.employeeResourceService.getAllEmployeesUsingGET(filter);
 		  })
@@ -112,7 +112,7 @@ export class MbsWorkAutocompleteService {
 	}
 
 	displayEmployee(selectedElement: any) {
-		return selectedElement.description;
+		return selectedElement.name;
 	}
 
 	filterCompany(observable: Observable<any>): Observable<MbsCompanyDto[]> {
@@ -121,7 +121,7 @@ export class MbsWorkAutocompleteService {
 			switchMap((value: string) => {
 				let filter: any = {};
 				if(value && value.length > 0)  {
-					filter.descriptionContains = value;
+					filter.nameContains = value;
 				};
 				return this.companyResourceService.getAllCompaniesUsingGET(filter);
 		  })
@@ -129,7 +129,7 @@ export class MbsWorkAutocompleteService {
 	}
 
 	displayCompany(selectedElement: any) {
-		return selectedElement.description;
+		return selectedElement.name;
 	}
 
 	filterAssignement(observable: Observable<any>): Observable<MbsAssignementDto[]> {
@@ -138,7 +138,7 @@ export class MbsWorkAutocompleteService {
 			switchMap((value: string) => {
 				let filter: any = {};
 				if(value && value.length > 0)  {
-					filter.descriptionContains = value;
+					filter.nameContains = value;
 				};
 				return this.assignementResourceService.getAllAssignementsUsingGET(filter);
 		  })
@@ -146,7 +146,7 @@ export class MbsWorkAutocompleteService {
 	}
 
 	displayAssignement(selectedElement: any) {
-		return selectedElement.description;
+		return selectedElement.name;
 	}
 
 	filterIncarico(observable: Observable<any>): Observable<MbsIncaricoDto[]> {
@@ -155,7 +155,7 @@ export class MbsWorkAutocompleteService {
 			switchMap((value: string) => {
 				let filter: any = {};
 				if(value && value.length > 0)  {
-					filter.descriptionContains = value;
+					filter.nameContains = value;
 				};
 				return this.incaricoResourceService.getAllIncaricosUsingGET(filter);
 		  })
@@ -168,7 +168,7 @@ export class MbsWorkAutocompleteService {
 			switchMap((value: string) => {
 				let filter: any = {};
 				if(value && value.length > 0)  {
-					filter.descriptionContains = value;
+					filter.nameContains = value;
 				};
 				return this.faseResourceService.getAllFasesUsingGET(filter);
 		  })
@@ -176,7 +176,7 @@ export class MbsWorkAutocompleteService {
 	}
 
 	displayFase(selectedElement: any) {
-		return selectedElement.description;
+		return selectedElement.name;
 	}
 
 	filterTecnico(observable: Observable<any>): Observable<MbsTecnicoDto[]> {
@@ -219,7 +219,7 @@ export class MbsWorkAutocompleteService {
 			switchMap((value: string) => {
 				let filter: any = {};
 				if(value && value.length > 0)  {
-					filter.descriptionContains = value;
+					filter.nameContains = value;
 				};
 				return this.progettoResourceService.getAllProgettosUsingGET(filter);
 		  })
@@ -227,7 +227,7 @@ export class MbsWorkAutocompleteService {
 	}
 
 	displayProgetto(selectedElement: any) {
-		return selectedElement.description;
+		return selectedElement.name;
 	}
 
 	filterNomina(observable: Observable<any>): Observable<MbsNominaDto[]> {

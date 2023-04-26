@@ -21,23 +21,23 @@ export class MbsWorkCategoryResourceService {
 	}
 
 	createWorkCategoryUsingPOST(workCategory: MbsWorkCategoryDto): Observable<MbsWorkCategoryDto> {
-		return this.http.post<MbsWorkCategoryDto>(this.basePath + "/workCategories/", workCategory);
+		return this.http.post<MbsWorkCategoryDto>(this.basePath + "/workCategorys/", workCategory);
 	}
 
 	updateWorkCategoryUsingPUT(workCategory: MbsWorkCategoryDto): Observable<MbsWorkCategoryDto> {
-		return this.http.put<MbsWorkCategoryDto>(this.basePath + "/workCategories/", workCategory);
+		return this.http.put<MbsWorkCategoryDto>(this.basePath + "/workCategorys/", workCategory);
 	}
 
 	getAllWorkCategoriesUsingGET(filters: any): Observable<MbsWorkCategoryDto[]> {
-		return this.http.get<MbsWorkCategoryDto[]>(this.basePath + "/workCategories?" + this.prepareQueryParams(filters).toString());
+		return this.http.get<MbsWorkCategoryDto[]>(this.basePath + "/workCategorys?" + this.prepareQueryParams(filters).toString());
 	}
 	
 	countWorkCategoriesUsingGET(filters: any): Observable<number> {
-		return this.http.get<number>(this.basePath + "/workCategories/count?" + this.prepareQueryParams(filters).toString());
+		return this.http.get<number>(this.basePath + "/workCategorys/count?" + this.prepareQueryParams(filters).toString());
 	}
 
 	getWorkCategoryUsingGET(id: number): Observable<MbsWorkCategoryDto> {
-		return this.http.get<MbsWorkCategoryDto>(this.basePath + "/workCategories/" + id);
+		return this.http.get<MbsWorkCategoryDto>(this.basePath + "/workCategorys/" + id);
 	}
 
 	deleteWorkCategoryUsingDELETE(id: number): Observable<MbsWorkCategoryDto> {

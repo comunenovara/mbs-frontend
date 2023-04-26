@@ -13,11 +13,11 @@ export class MbsAssignementDto {
 	project: MbsProjectDto;
 	roleId?: number;
 	role: MbsRoleDto;
-	workCategoryId?: number;
+	workCategoryId?: number | null;
 	workCategory: MbsWorkCategoryDto;
-	employeeId?: number;
+	employeeId?: number | null;
 	employee: MbsEmployeeDto;
-	companyId?: number;
+	companyId?: number | null;
 	company: MbsCompanyDto;
 
 }

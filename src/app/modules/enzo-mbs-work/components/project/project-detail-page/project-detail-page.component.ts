@@ -10,7 +10,7 @@ import { StalPaginator } from '@stal/paginator';
 
 import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
-import { MbsProjectDto, MbsProjectResourceService} from '@mbs-work';
+import { MbsAssignementResourceService, MbsProjectDto, MbsProjectResourceService} from '@mbs-work';
 import { EnzoProjectDialogComponent } from '../project-dialog/project-dialog.component';
 import { EnzoAssignementDialogComponent } from "../../assignement/assignement-dialog/assignement-dialog.component";
 
@@ -27,6 +27,7 @@ export class EnzoProjectDetailPageComponent extends EngeAppGenericDetailPageComp
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsProjectResourceService,
+		private assignementResourceService: MbsAssignementResourceService,
 	) { super(route, router, eventer); }
 
 	projectDto: MbsProjectDto;
@@ -37,6 +38,7 @@ export class EnzoProjectDetailPageComponent extends EngeAppGenericDetailPageComp
 
 	protected override reloadFromEvent(event: StalEvent) {
 		if(event.data === "project") this.reloadPage();
+		if(event.data === "assignement") this.reloadPage();
 	}
 
 	override async reloadPage() {
@@ -68,13 +70,26 @@ export class EnzoProjectDetailPageComponent extends EngeAppGenericDetailPageComp
 
 	protected assignementTableButtons: any[] = [
 		{
-			label: "Dettagli",
-			hideLabel: true,
-			icon: "pi pi-search",
-			severity: "secondary",
+			label: "Edit",
+			icon: "pi pi-pencil",
 			class: "p-button-sm p-button-outlined",
-			link: "../../../assignement/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			command: (e: any) => {
+				const ref = this.dialogService.open(EnzoAssignementDialogComponent, {
+					data: { assignement: { ...e } },
+					header: 'Update assignement',
+					width: '70%'
+				});
+			},
+			childs: [
+				{
+					label: "Delete",
+					icon: "pi pi-trash",
+					command: async (e: any) => {
+						await lastValueFrom(this.assignementResourceService.deleteAssignementUsingDELETE(e.item.data.id));
+						this.eventer.launchReloadContent("assignement");
+					}
+				}
+			]
 		}
 	];
 	protected assignementListPaginator: StalPaginator = {

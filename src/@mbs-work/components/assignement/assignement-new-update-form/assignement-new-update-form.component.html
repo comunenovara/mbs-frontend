@@ -3,7 +3,7 @@
 		<div class="grid p-fluid" style="margin-top: 0px;">
 
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="project != null">
-				<span>{{ 'project' }}</span><span class="filed-required">*</span>
+				<span>{{ 'Progetto' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="project" [stalAutocomplete]="projectAutocomplete">
 				<stal-autocomplete #projectAutocomplete [filteredElements]="_filteredProject" [displayFn]="mbsWorkAutocompleteService.displayProject"></stal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['project'])" class="filed-required">
@@ -11,35 +11,42 @@
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="role != null">
-				<span>{{ 'role' }}</span><span class="filed-required">*</span>
+				<span>{{ 'Ruolo' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="role" [stalAutocomplete]="roleAutocomplete">
 				<stal-autocomplete #roleAutocomplete [filteredElements]="_filteredRole" [displayFn]="mbsWorkAutocompleteService.displayRole"></stal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['role'])" class="filed-required">
 					<span *ngIf="checkControlError(_newUpdateForm.controls['role'], 'validatorHaveId')">La role è richiesta.</span>
 				</div>
 			</div>
-			<div class="col-12 md:col-6 lg:col-4" [hidden]="workCategory != null">
-				<span>{{ 'workCategory' }}</span>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="workCategory != null" *ngIf="_newUpdateForm.value.role && _newUpdateForm.value.role.haveWorkCategory">
+				<span>{{ 'Categoria lavori' }}</span>
 				<input type="text" pInputText formControlName="workCategory" [stalAutocomplete]="workCategoryAutocomplete">
 				<stal-autocomplete #workCategoryAutocomplete [filteredElements]="_filteredWorkCategory" [displayFn]="mbsWorkAutocompleteService.displayWorkCategory"></stal-autocomplete>
 			</div>
-			<div class="col-12 md:col-6 lg:col-4" [hidden]="employee != null">
-				<span>{{ 'employee' }}</span>
-				<input type="text" pInputText formControlName="employee" [stalAutocomplete]="employeeAutocomplete">
-				<stal-autocomplete #employeeAutocomplete [filteredElements]="_filteredEmployee" [displayFn]="mbsWorkAutocompleteService.displayEmployee"></stal-autocomplete>
-			</div>
-			<div class="col-12 md:col-6 lg:col-4" [hidden]="company != null">
-				<span>{{ 'company' }}</span>
-				<input type="text" pInputText formControlName="company" [stalAutocomplete]="companyAutocomplete">
-				<stal-autocomplete #companyAutocomplete [filteredElements]="_filteredCompany" [displayFn]="mbsWorkAutocompleteService.displayCompany"></stal-autocomplete>
-			</div>
+
+		</div>
+		<div class="grid p-fluid" style="margin-top: 0px;">
+			
 			<div class="col-12 md:col-6 lg:col-4">
-				<label for="external">{{ 'external' }}</label>
+				<label for="external">{{ 'Esterno?' }}</label>
 				<input type="checkbox" formControlName="external" inputId="external" />
 				<div *ngIf="!isValid(_newUpdateForm.controls['external'])" class="filed-required">
 					<span *ngIf="checkControlError(_newUpdateForm.controls['external'], 'required')">La external è richiesta.</span>
 				</div>
 			</div>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="employee != null" *ngIf="!_newUpdateForm.value.external">
+				<span>{{ 'Dipendente' }}</span>
+				<input type="text" pInputText formControlName="employee" [stalAutocomplete]="employeeAutocomplete">
+				<stal-autocomplete #employeeAutocomplete [filteredElements]="_filteredEmployee" [displayFn]="mbsWorkAutocompleteService.displayEmployee"></stal-autocomplete>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="company != null" *ngIf="_newUpdateForm.value.external">
+				<span>{{ 'Azienda' }}</span>
+				<input type="text" pInputText formControlName="company" [stalAutocomplete]="companyAutocomplete">
+				<stal-autocomplete #companyAutocomplete [filteredElements]="_filteredCompany" [displayFn]="mbsWorkAutocompleteService.displayCompany"></stal-autocomplete>
+			</div>
+			
+		</div>
+		<div class="grid p-fluid" style="margin-top: 0px;">
 
 			<div class="col-12 md:col-6 lg:col-3">
 				<br>
