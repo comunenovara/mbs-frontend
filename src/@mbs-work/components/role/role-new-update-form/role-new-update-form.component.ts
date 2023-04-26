@@ -39,7 +39,7 @@ export class MbsRoleNewUpdateFormComponent extends EngeLibGenericForm {
 		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
 			name: [null, [ Validators.required,  ]],
-			haveWorkCategory: [null, [ Validators.required,  ]],
+			haveWorkCategory: [false, [  ]],
 		});
 
 	}

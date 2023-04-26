@@ -34,8 +34,8 @@
 				<stal-autocomplete #aziendaAutocomplete [filteredElements]="_filteredAzienda" [displayFn]="mbsWorkAutocompleteService.displayAzienda"></stal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'ie' }}</span><span class="filed-required">*</span>
-				<input type="checkbox" pInputText formControlName="ie" placeholder="Ie">
+				<p-checkbox formControlName="ie" inputId="ie"></p-checkbox>
+				<label for="ie">{{ 'ie' }}</label>
 				<div *ngIf="!isValid(_newUpdateForm.controls['ie'])" class="filed-required">
 					<span *ngIf="checkControlError(_newUpdateForm.controls['ie'], 'required')">La ie è richiesta.</span>
 				</div>

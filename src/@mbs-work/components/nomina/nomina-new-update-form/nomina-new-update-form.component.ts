@@ -53,7 +53,7 @@ export class MbsNominaNewUpdateFormComponent extends EngeLibGenericForm {
 	override loadForm(): void {
 		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
-			ie: [null, [ Validators.required,  ]],
+			ie: [false, [  ]],
 			progetto: [this.progetto, [ EngeValidator.haveId,  ]],
 			incarico: [this.incarico, [ EngeValidator.haveId,  ]],
 			fase: [this.fase, [  ]],

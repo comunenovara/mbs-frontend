@@ -53,7 +53,7 @@ export class MbsAssignementNewUpdateFormComponent extends EngeLibGenericForm {
 	override loadForm(): void {
 		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
-			external: [null, [ Validators.required,  ]],
+			external: [false, [  ]],
 			project: [this.project, [ EngeValidator.haveId,  ]],
 			role: [this.role, [ EngeValidator.haveId,  ]],
 			workCategory: [this.workCategory, [  ]],
