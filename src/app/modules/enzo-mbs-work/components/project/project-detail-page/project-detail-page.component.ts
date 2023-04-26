@@ -10,7 +10,7 @@ import { StalPaginator } from '@stal/paginator';
 
 import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
-import { MbsAssignementResourceService, MbsProjectDto, MbsProjectResourceService} from '@mbs-work';
+import { MbsAssignementDto, MbsAssignementResourceService, MbsProjectDto, MbsProjectResourceService, MbsRoleDto, MbsRoleResourceService, MbsWorkCategoryDto, MbsWorkCategoryResourceService} from '@mbs-work';
 import { EnzoProjectDialogComponent } from '../project-dialog/project-dialog.component';
 import { EnzoAssignementDialogComponent } from "../../assignement/assignement-dialog/assignement-dialog.component";
 
@@ -27,6 +27,8 @@ export class EnzoProjectDetailPageComponent extends EngeAppGenericDetailPageComp
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsProjectResourceService,
+		private workCategoryResourceService: MbsWorkCategoryResourceService,
+		private roleResourceService: MbsRoleResourceService,
 		private assignementResourceService: MbsAssignementResourceService,
 	) { super(route, router, eventer); }
 
@@ -34,6 +36,7 @@ export class EnzoProjectDetailPageComponent extends EngeAppGenericDetailPageComp
 
 	override onLoad() {
 		this.projectDto = this.route.snapshot.data['project'];
+		this.loadSidecar();
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {
@@ -43,6 +46,56 @@ export class EnzoProjectDetailPageComponent extends EngeAppGenericDetailPageComp
 
 	override async reloadPage() {
 		this.projectDto = await lastValueFrom(this.resourceService.getProjectUsingGET(this.id));
+		this.loadSidecar();
+	}
+
+	workCategoryDtos: MbsWorkCategoryDto[];
+	roleDtos: MbsRoleDto[];
+	
+	assignements: any = {};
+
+	async loadSidecar() {
+		this.workCategoryDtos = await lastValueFrom(this.workCategoryResourceService.getAllWorkCategoriesUsingGET({}));
+		this.roleDtos = await lastValueFrom(this.roleResourceService.getAllRolesUsingGET({}));
+		
+		let  assignementDtos = await lastValueFrom(this.assignementResourceService.getAllAssignementsUsingGET({
+			projectIdEquals: this.projectDto.id
+		}));
+
+		this.assignements = {};
+		for(let assignement of assignementDtos) {
+			if(assignement.workCategoryId === undefined || assignement.workCategoryId === null || assignement.roleId === undefined  || assignement.roleId === null) {
+				continue;
+			}
+
+			if(this.assignements[assignement.workCategoryId] === undefined) {
+				this.assignements[assignement.workCategoryId] = {}
+			}
+
+			this.assignements[assignement.workCategoryId][assignement.roleId] = assignement;
+		}
+
+		/*
+		this.incaricoDtos = await lastValueFrom(this.incaricoResourceService.getAllIncaricosUsingGET({}));
+		this.faseDtos = await lastValueFrom(this.faseResourceService.getAllFasesUsingGET({}));
+
+		let nominaDtos = await lastValueFrom(this.nominaResourceService.getAllNominasUsingGET({
+			progettoIdEquals: this.progettoDto.id
+		}));
+
+		this.nomine = {};
+		for(let nomina of nominaDtos) {
+			if(nomina.faseId === undefined || nomina.faseId === null || nomina.incaricoId === undefined  || nomina.incaricoId === null) {
+				continue;
+			}
+
+			if(this.nomine[nomina.faseId] === undefined) {
+				this.nomine[nomina.faseId] = {}
+			}
+
+			this.nomine[nomina.faseId][nomina.incaricoId] = nomina;
+		}
+		*/
 	}
 
 	editProject(project: MbsProjectDto) {
@@ -97,6 +150,25 @@ export class EnzoProjectDetailPageComponent extends EngeAppGenericDetailPageComp
 		size: 10
 	};
 	protected assignementCount: number;
+
+	createNewAssignementsComplex(project: MbsProjectDto, workCategory: MbsWorkCategoryDto, role: MbsRoleDto) {
+		this.dialogService.open(EnzoAssignementDialogComponent, {
+			header: 'Create Nomina',
+			width: '70%',
+			data: {
+				project: project,
+				workCategory: workCategory,
+				role: role
+			}
+		});
+	}
+
+	async deleteAssignement(assignement: MbsAssignementDto) {
+		if(assignement.id === undefined) return;
+		await lastValueFrom(this.assignementResourceService.deleteAssignementUsingDELETE(assignement.id));
+		this.reloadPage();
+	}
+
 
 }
 

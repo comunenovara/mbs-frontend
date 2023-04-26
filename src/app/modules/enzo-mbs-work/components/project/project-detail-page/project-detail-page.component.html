@@ -7,10 +7,35 @@
 		</div>
 	</div>
 
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>Nomine</h3>
+			<table id="assignements">
+				<tr>
+					<th></th>
+					<th *ngFor="let workCategory of workCategoryDtos">{{ workCategory.name }}</th>
+				</tr>
+				<ng-container *ngFor="let role of roleDtos">
+					<tr *ngIf="role.haveWorkCategory">
+						<td>{{ role.name }}</td>
+						<td *ngFor="let workCategory of workCategoryDtos">
+							<span *ngIf="workCategory.id !== undefined && role.id !== undefined && this.assignements[workCategory.id] !== undefined && this.assignements[workCategory.id][role.id] !== undefined">
+								<p-chip label="{{ this.assignements[workCategory.id][role.id].employee.name }}"></p-chip>
+								<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text" (click)="deleteAssignement(this.assignements[workCategory.id][role.id])"></button>
+							</span>
+							<span *ngIf="workCategory.id === undefined || role.id === undefined || this.assignements[workCategory.id] === undefined || this.assignements[workCategory.id][role.id] === undefined">
+								<button pButton pRipple type="button" icon="pi pi-user-edit" class="p-button-rounded p-button-text" (click)="createNewAssignementsComplex(projectDto, workCategory, role)"></button>
+							</span>
+						</td>
+					</tr>
+				</ng-container>
+			</table>
+		</div>
+	</div>
 
 	<div class="col-12 lg:col-12 xl:col-12">
 		<div class="card mb-0 relative">
-			<h3>assignement</h3>
+			<h3>Nomine</h3>
 			<mbs-assignement-list-loader 
 				[filters]="{projectIdEquals: projectDto.id}" 
 				[dcs]="['id', 'role.name', 'workCategory.name', 'ie', 'employee.name', 'company.name']" 
