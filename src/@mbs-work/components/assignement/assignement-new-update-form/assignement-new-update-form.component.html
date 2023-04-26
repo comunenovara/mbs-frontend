@@ -34,11 +34,8 @@
 				<stal-autocomplete #companyAutocomplete [filteredElements]="_filteredCompany" [displayFn]="mbsWorkAutocompleteService.displayCompany"></stal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'external' }}</span><span class="filed-required">*</span>
-				<input type="checkbox" pInputText formControlName="external" placeholder="External">
-				<div *ngIf="!isValid(_newUpdateForm.controls['external'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['external'], 'required')">La external è richiesta.</span>
-				</div>
+				<p-checkbox formControlName="external" value="External" inputId="external"></p-checkbox>
+				<label for="external">{{ 'external' }}</label>
 			</div>
 
 			<div class="col-12 md:col-6 lg:col-3">
