@@ -64,38 +64,26 @@ export class EnzoProjectDetailPageComponent extends EngeAppGenericDetailPageComp
 
 		this.assignements = {};
 		for(let assignement of assignementDtos) {
-			if(assignement.workCategoryId === undefined || assignement.workCategoryId === null || assignement.roleId === undefined  || assignement.roleId === null) {
+			if(assignement.roleId === undefined  || assignement.roleId === null) {
 				continue;
 			}
 
-			if(this.assignements[assignement.workCategoryId] === undefined) {
-				this.assignements[assignement.workCategoryId] = {}
+			if(this.assignements[assignement.roleId] === undefined) {
+				this.assignements[assignement.roleId] = {}
 			}
 
-			this.assignements[assignement.workCategoryId][assignement.roleId] = assignement;
+			if(assignement.role.haveWorkCategory) {
+				if(assignement.workCategoryId === undefined || assignement.workCategoryId === null) {
+					continue;
+				}
+				this.assignements[assignement.roleId][assignement.workCategoryId] = assignement;
+			} else {
+				this.assignements[assignement.roleId] = assignement;
+			}
+
+
+			
 		}
-
-		/*
-		this.incaricoDtos = await lastValueFrom(this.incaricoResourceService.getAllIncaricosUsingGET({}));
-		this.faseDtos = await lastValueFrom(this.faseResourceService.getAllFasesUsingGET({}));
-
-		let nominaDtos = await lastValueFrom(this.nominaResourceService.getAllNominasUsingGET({
-			progettoIdEquals: this.progettoDto.id
-		}));
-
-		this.nomine = {};
-		for(let nomina of nominaDtos) {
-			if(nomina.faseId === undefined || nomina.faseId === null || nomina.incaricoId === undefined  || nomina.incaricoId === null) {
-				continue;
-			}
-
-			if(this.nomine[nomina.faseId] === undefined) {
-				this.nomine[nomina.faseId] = {}
-			}
-
-			this.nomine[nomina.faseId][nomina.incaricoId] = nomina;
-		}
-		*/
 	}
 
 	editProject(project: MbsProjectDto) {
@@ -151,7 +139,7 @@ export class EnzoProjectDetailPageComponent extends EngeAppGenericDetailPageComp
 	};
 	protected assignementCount: number;
 
-	createNewAssignementsComplex(project: MbsProjectDto, workCategory: MbsWorkCategoryDto, role: MbsRoleDto) {
+	createNewAssignementsComplex(project: MbsProjectDto, role: MbsRoleDto, workCategory: MbsWorkCategoryDto | undefined = undefined) {
 		this.dialogService.open(EnzoAssignementDialogComponent, {
 			header: 'Create Nomina',
 			width: '70%',
@@ -166,7 +154,7 @@ export class EnzoProjectDetailPageComponent extends EngeAppGenericDetailPageComp
 	async deleteAssignement(assignement: MbsAssignementDto) {
 		if(assignement.id === undefined) return;
 		await lastValueFrom(this.assignementResourceService.deleteAssignementUsingDELETE(assignement.id));
-		this.reloadPage();
+		this.eventer.launchReloadContent("assignement");
 	}
 
 
