@@ -31,19 +31,52 @@
 						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
 						<td *ngSwitchCase="'external'">{{ e.external }}</td>
-						<td *ngSwitchCase="'project.name'">{{ e.project.name }}</td>
-						<td *ngSwitchCase="'role.name'">{{ e.role.name }}</td>
-						<td *ngSwitchCase="'role.haveWorkCategory'">{{ e.role.haveWorkCategory }}</td>
-						<td *ngSwitchCase="'workCategory.name'">{{ e.workCategory.name }}</td>
-						<td *ngSwitchCase="'employee.name'">{{ e.employee.name }}</td>
-						<td *ngSwitchCase="'company.name'">{{ e.company.name }}</td>
+						<td *ngSwitchCase="'project.name'">
+							<span *ngIf="e.project">
+								{{ e.project.name }}
+							</span>
+						</td>
+						<td *ngSwitchCase="'role.name'">
+							<span *ngIf="e.role">
+								{{ e.role.name }}
+							</span>
+						</td>
+						<td *ngSwitchCase="'role.haveWorkCategory'">
+							<span *ngIf="e.role">
+								{{ e.role.haveWorkCategory }}
+							</span>
+						</td>
+						<td *ngSwitchCase="'workCategory.name'">
+							<span *ngIf="e.workCategory">
+								{{ e.workCategory.name }}
+							</span>
+						</td>
+						<td *ngSwitchCase="'employee.name'">
+							<span *ngIf="e.employee">
+								{{ e.employee.name }}
+							</span>
+						</td>
+						<td *ngSwitchCase="'company.name'">
+							<span *ngIf="e.company">
+								{{ e.company.name }}
+							</span>
+						</td>
 					</ng-container>
 					<td *ngIf="buttons" style="text-align:center">
 						<ng-container *ngFor="let b of buttons">
-							<a (click)="checkClick(b.command, e)" [routerLink]="[b.link, e.id]"><button pButton type="button"
+							<button *ngIf="b.link === undefined"
+								(click)="b.command(e)"
+								pButton type="button"
 								class="{{ b.class }} p-button-{{ b.severity }}" [ngClass]="{'ui-button-icon-only': b.hideLabel}" 
 								label="{{ b.label }}" icon="{{ b.icon }}">
-							</button></a>
+							</button>
+							<a *ngIf="b.link !== undefined"
+								(click)="checkClick(b.command, e)" [routerLink]="[b.link, e.id]">
+								<button pButton type="button"
+									class="{{ b.class }} p-button-{{ b.severity }}" [ngClass]="{'ui-button-icon-only': b.hideLabel}" 
+									label="{{ b.label }}" icon="{{ b.icon }}">
+								</button>
+							</a>
 							<ng-container *ngIf="b.childs">
 								<button pButton type="button"
 									class="{{ b.class }} ml-0.5 p-button-{{ b.severity }}"
