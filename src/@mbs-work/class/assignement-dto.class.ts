@@ -9,15 +9,15 @@ export class MbsAssignementDto {
 
 	external: boolean;
 
-	projectId?: number;
+	projectId?: number | null;
 	project: MbsProjectDto;
-	roleId?: number;
+	roleId?: number | null;
 	role: MbsRoleDto;
-	workCategoryId?: number;
+	workCategoryId?: number | null;
 	workCategory: MbsWorkCategoryDto;
-	employeeId?: number;
+	employeeId?: number | null;
 	employee: MbsEmployeeDto;
-	companyId?: number;
+	companyId?: number | null;
 	company: MbsCompanyDto;
 
 }

@@ -22,6 +22,34 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Interventi', icon: 'pi pi-fw pi-chart-line', routerLink: ['/enzo/operation'] },
                 ]
             },
+			{
+                label: 'Config - Solo amministratori',
+                items: [
+                    { label: 'Tipi di intervento', icon: 'pi pi-fw pi-building', routerLink: ['/enzo/operation-type'] },
+                    { label: 'Tipi di fascicoli', icon: 'pi pi-fw pi-compass', routerLink: ['/enzo/dossier-type'] },
+                    { label: 'Tutti i fascicoli', icon: 'pi pi-fw pi-chart-line', routerLink: ['/enzo/dossier'] },
+                ]
+            },
+            {
+                label: 'Work',
+                items: [
+                    { label: 'Progetti', icon: 'pi pi-fw pi-building', routerLink: ['/work/progetto'] },
+                    { label: 'Progetti', icon: 'pi pi-fw pi-building', routerLink: ['/work/project'] },
+                    { label: 'Tecnici', icon: 'pi pi-fw pi-compass', routerLink: ['/work/tecnico'] },
+                    { label: 'Tecnici', icon: 'pi pi-fw pi-compass', routerLink: ['/work/employee'] },
+                    { label: 'Aziende', icon: 'pi pi-fw pi-chart-line', routerLink: ['/work/azienda'] },
+                    { label: 'Aziende', icon: 'pi pi-fw pi-chart-line', routerLink: ['/work/company'] },
+                ]
+            },
+            {
+                label: 'Config - Work',
+                items: [
+                    { label: 'Incarichi', icon: 'pi pi-fw pi-building', routerLink: ['/work/incarico'] },
+                    { label: 'Ruoli', icon: 'pi pi-fw pi-building', routerLink: ['/work/role'] },
+                    { label: 'Fasi', icon: 'pi pi-fw pi-compass', routerLink: ['/work/fase'] },
+                    { label: 'Categoria lavori', icon: 'pi pi-fw pi-compass', routerLink: ['/work/work-category'] },
+                ]
+            },
         ];
     }
 }
