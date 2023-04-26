@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { MbsWorkLibModule, MBS_WORK_ENDPOINT } from '@mbs-work';
 import { EngeCommonAppModule } from '@enge/common-app';
 
+import { ChipModule } from 'primeng/chip';
+
 import { enzoMbsWorkRoutes } from './mbs-work.route';
 
 import { EnzoIncaricoListPageComponent } from './components/incarico/incarico-list-page/incarico-list-page.component';
@@ -30,7 +32,8 @@ import { EnzoNominaDialogComponent } from './components/nomina/nomina-dialog/nom
 		RouterModule.forChild(enzoMbsWorkRoutes),
 		MbsWorkLibModule,
 		EngeCommonAppModule,
-
+		ChipModule,
+		
 	],
 	declarations: [
 		EnzoIncaricoListPageComponent,
@@ -61,7 +64,7 @@ import { EnzoNominaDialogComponent } from './components/nomina/nomina-dialog/nom
 	providers: [
 		{
 			provide: MBS_WORK_ENDPOINT,
-			useValue: 'http://10.1.20.43:3000/mbs/work'
+			useValue: 'http://10.1.20.20:82/mbs/work'
 		},
 	]
 })

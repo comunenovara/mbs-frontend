@@ -60,7 +60,7 @@ import { EnzoRelifDialogComponent } from './components/relif/relif-dialog/relif-
 	providers: [
 		{
 			provide: MBS_MAIN_ENDPOINT,
-			useValue: 'http://10.1.20.43:3000/mbs/main'
+			useValue: 'http://10.1.20.20:81/mbs/main'
 		}
 	]
 })

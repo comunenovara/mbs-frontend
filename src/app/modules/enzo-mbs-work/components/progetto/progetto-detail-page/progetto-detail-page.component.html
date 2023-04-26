@@ -7,6 +7,36 @@
 		</div>
 	</div>
 
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>Nomine</h3>
+			<table id="nomine">
+				<tr>
+					<th></th>
+					<th *ngFor="let fase of faseDtos">{{ fase.name }}</th>
+				</tr>
+				<!--
+				<tr>
+					<td></td>
+					<td *ngFor="let fase of faseDtos"></td>
+				</tr>
+				-->
+				<tr *ngFor="let incarico of incaricoDtos">
+					<td>{{ incarico.name }}</td>
+					<td *ngFor="let fase of faseDtos">
+						<span *ngIf="fase.id !== undefined && incarico.id !== undefined && this.nomine[fase.id] !== undefined && this.nomine[fase.id][incarico.id] !== undefined">
+							<p-chip label="{{ this.nomine[fase.id][incarico.id].tecnico.name }}"></p-chip>
+							<!-- <button pButton pRipple type="button" icon="pi pi-user-edit" class="p-button-rounded p-button-text" (click)="editNomina(this.nomine[fase.id][incarico.id], progettoDto, fase, incarico)"></button> -->
+							<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text" (click)="deleteNomina(this.nomine[fase.id][incarico.id])"></button>
+						</span>
+						<span *ngIf="fase.id === undefined || incarico.id === undefined || this.nomine[fase.id] === undefined || this.nomine[fase.id][incarico.id] === undefined">
+							<button pButton pRipple type="button" icon="pi pi-user-edit" class="p-button-rounded p-button-text" (click)="createNewNominaComplex(progettoDto, fase, incarico)"></button>
+						</span>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 
 	<div class="col-12 lg:col-12 xl:col-12">
 		<div class="card mb-0 relative">
