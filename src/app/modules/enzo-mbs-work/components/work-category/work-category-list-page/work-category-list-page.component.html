@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-work-category-list-loader 
+		[dcs]="workCategoryListDc" [buttons]="tableButtons" 
+		[paginator]="workCategoryListPaginator" (resultCount)="workCategoryCount=$event"> 
+	</mbs-work-category-list-loader>
+
+	<stal-paginator [totalRecords]="workCategoryCount" [(pageable)]="workCategoryListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewWorkCategory()"></button>
+
+</div>

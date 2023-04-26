@@ -1,0 +1,72 @@
+<div id="mbs-assignement-new-update-form" *ngIf="stepIs(formStep.FORM)">
+	<form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
+		<div class="grid p-fluid" style="margin-top: 0px;">
+
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="project != null">
+				<span>{{ 'project' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="project" [stalAutocomplete]="projectAutocomplete">
+				<stal-autocomplete #projectAutocomplete [filteredElements]="_filteredProject" [displayFn]="mbsWorkAutocompleteService.displayProject"></stal-autocomplete>
+				<div *ngIf="!isValid(_newUpdateForm.controls['project'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['project'], 'validatorHaveId')">La project è richiesta.</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="role != null">
+				<span>{{ 'role' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="role" [stalAutocomplete]="roleAutocomplete">
+				<stal-autocomplete #roleAutocomplete [filteredElements]="_filteredRole" [displayFn]="mbsWorkAutocompleteService.displayRole"></stal-autocomplete>
+				<div *ngIf="!isValid(_newUpdateForm.controls['role'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['role'], 'validatorHaveId')">La role è richiesta.</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="workCategory != null">
+				<span>{{ 'workCategory' }}</span>
+				<input type="text" pInputText formControlName="workCategory" [stalAutocomplete]="workCategoryAutocomplete">
+				<stal-autocomplete #workCategoryAutocomplete [filteredElements]="_filteredWorkCategory" [displayFn]="mbsWorkAutocompleteService.displayWorkCategory"></stal-autocomplete>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="employee != null">
+				<span>{{ 'employee' }}</span>
+				<input type="text" pInputText formControlName="employee" [stalAutocomplete]="employeeAutocomplete">
+				<stal-autocomplete #employeeAutocomplete [filteredElements]="_filteredEmployee" [displayFn]="mbsWorkAutocompleteService.displayEmployee"></stal-autocomplete>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="company != null">
+				<span>{{ 'company' }}</span>
+				<input type="text" pInputText formControlName="company" [stalAutocomplete]="companyAutocomplete">
+				<stal-autocomplete #companyAutocomplete [filteredElements]="_filteredCompany" [displayFn]="mbsWorkAutocompleteService.displayCompany"></stal-autocomplete>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'external' }}</span><span class="filed-required">*</span>
+				<input type="checkbox" pInputText formControlName="external" placeholder="External">
+				<div *ngIf="!isValid(_newUpdateForm.controls['external'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['external'], 'required')">La external è richiesta.</span>
+				</div>
+			</div>
+
+			<div class="col-12 md:col-6 lg:col-3">
+				<br>
+				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'Crea' }}</button>
+				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'Aggiorna' }}</button>
+			</div>
+
+		</div>
+	</form>
+</div>
+
+<div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
+	loading
+</div>
+
+<div *ngIf="stepIs(formStep.COMPLETE)">
+	<h1 *ngIf="!_isUpdate">{{ 'assignement' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'assignement' }} {{ 'aggiornato' }}</h1>
+
+	<hr>
+
+	<mbs-assignement-detail-box [assignement]="_result"></mbs-assignement-detail-box>
+
+	<div *ngIf="!_isUpdate">
+		<button pButton color="primary" (click)="newAssignement()">
+			<span *ngIf="!returnToParent">{{ 'Crea nuovo' }}</span>
+			<span *ngIf="returnToParent">{{ 'Modifica' }}</span>
+		</button>
+	</div>
+</div>

@@ -2,6 +2,14 @@
 	<form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
 		<div class="grid p-fluid" style="margin-top: 0px;">
 
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="progetto != null">
+				<span>{{ 'progetto' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="progetto" [stalAutocomplete]="progettoAutocomplete">
+				<stal-autocomplete #progettoAutocomplete [filteredElements]="_filteredProgetto" [displayFn]="mbsWorkAutocompleteService.displayProgetto"></stal-autocomplete>
+				<div *ngIf="!isValid(_newUpdateForm.controls['progetto'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['progetto'], 'validatorHaveId')">La progetto è richiesta.</span>
+				</div>
+			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="incarico != null">
 				<span>{{ 'incarico' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="incarico" [stalAutocomplete]="incaricoAutocomplete">
@@ -11,20 +19,9 @@
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="fase != null">
-				<span>{{ 'fase' }}</span><span class="filed-required">*</span>
+				<span>{{ 'fase' }}</span>
 				<input type="text" pInputText formControlName="fase" [stalAutocomplete]="faseAutocomplete">
 				<stal-autocomplete #faseAutocomplete [filteredElements]="_filteredFase" [displayFn]="mbsWorkAutocompleteService.displayFase"></stal-autocomplete>
-				<div *ngIf="!isValid(_newUpdateForm.controls['fase'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['fase'], 'validatorHaveId')">La fase è richiesta.</span>
-				</div>
-			</div>
-			<div class="col-12 md:col-6 lg:col-4" [hidden]="progetto != null">
-				<span>{{ 'progetto' }}</span><span class="filed-required">*</span>
-				<input type="text" pInputText formControlName="progetto" [stalAutocomplete]="progettoAutocomplete">
-				<stal-autocomplete #progettoAutocomplete [filteredElements]="_filteredProgetto" [displayFn]="mbsWorkAutocompleteService.displayProgetto"></stal-autocomplete>
-				<div *ngIf="!isValid(_newUpdateForm.controls['progetto'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['progetto'], 'validatorHaveId')">La progetto è richiesta.</span>
-				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="tecnico != null">
 				<span>{{ 'tecnico' }}</span>

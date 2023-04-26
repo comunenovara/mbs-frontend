@@ -1,0 +1,41 @@
+<div id="mbs-employee-new-update-form" *ngIf="stepIs(formStep.FORM)">
+	<form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
+		<div class="grid p-fluid" style="margin-top: 0px;">
+
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'name' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="name" placeholder="Name">
+				<div *ngIf="!isValid(_newUpdateForm.controls['name'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['name'], 'required')">La name è richiesta.</span>
+				</div>
+			</div>
+
+			<div class="col-12 md:col-6 lg:col-3">
+				<br>
+				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'Crea' }}</button>
+				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'Aggiorna' }}</button>
+			</div>
+
+		</div>
+	</form>
+</div>
+
+<div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
+	loading
+</div>
+
+<div *ngIf="stepIs(formStep.COMPLETE)">
+	<h1 *ngIf="!_isUpdate">{{ 'employee' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'employee' }} {{ 'aggiornato' }}</h1>
+
+	<hr>
+
+	<mbs-employee-detail-box [employee]="_result"></mbs-employee-detail-box>
+
+	<div *ngIf="!_isUpdate">
+		<button pButton color="primary" (click)="newEmployee()">
+			<span *ngIf="!returnToParent">{{ 'Crea nuovo' }}</span>
+			<span *ngIf="returnToParent">{{ 'Modifica' }}</span>
+		</button>
+	</div>
+</div>

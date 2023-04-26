@@ -1,0 +1,24 @@
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-6">
+        <div class="card mb-0">
+			<mbs-work-category-detail-box [workCategory]="workCategoryDto"></mbs-work-category-detail-box>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editWorkCategory(workCategoryDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteWorkCategory(workCategoryDto)"></button>
+		</div>
+	</div>
+
+
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>assignement</h3>
+			<mbs-assignement-list-loader 
+				[filters]="{workCategoryIdEquals: workCategoryDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="assignementListPaginator"
+				[buttons]="assignementTableButtons"
+				(resultCount)="assignementCount=$event"></mbs-assignement-list-loader>
+			<stal-paginator [totalRecords]="assignementCount" [(pageable)]="assignementListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewAssignement(workCategoryDto)"></button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-role-list-loader 
+		[dcs]="roleListDc" [buttons]="tableButtons" 
+		[paginator]="roleListPaginator" (resultCount)="roleCount=$event"> 
+	</mbs-role-list-loader>
+
+	<stal-paginator [totalRecords]="roleCount" [(pageable)]="roleListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewRole()"></button>
+
+</div>

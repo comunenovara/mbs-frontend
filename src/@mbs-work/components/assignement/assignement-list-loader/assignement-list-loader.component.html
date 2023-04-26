@@ -1,0 +1,61 @@
+<div *ngIf="loading">LOADING</div>
+<ng-container [ngSwitch]="view">
+	<div *ngSwitchCase="'NONE'"></div>
+	<div *ngSwitchCase="'CARD'">
+		<div *ngFor="let e of ds">
+			<pre>{{ e | json }}</pre>
+		</div>
+	</div>
+	<div *ngSwitchDefault>
+		<p-table styleClass="p-datatable-sm" [value]="ds" [lazy]="true" (onLazyLoad)="lazyLoad($event)"
+			[resizableColumns]="true" [selection]="selectedElements" (selectionChange)="selection($event)">
+			<ng-template pTemplate="header">
+				<tr>
+					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
+						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
+						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
+						<th *ngSwitchCase="'external'" style="width:auto" pResizableColumn pSortableColumn="external"> external </th>
+						<th *ngSwitchCase="'project.name'" style="width:auto" pResizableColumn commentpSortableColumn="project.name" > name</th>
+						<th *ngSwitchCase="'role.name'" style="width:auto" pResizableColumn commentpSortableColumn="role.name" > name</th>
+						<th *ngSwitchCase="'role.haveWorkCategory'" style="width:auto" pResizableColumn commentpSortableColumn="role.haveWorkCategory" > haveWorkCategory</th>
+						<th *ngSwitchCase="'workCategory.name'" style="width:auto" pResizableColumn commentpSortableColumn="workCategory.name" > name</th>
+						<th *ngSwitchCase="'employee.name'" style="width:auto" pResizableColumn commentpSortableColumn="employee.name" > name</th>
+						<th *ngSwitchCase="'company.name'" style="width:auto" pResizableColumn commentpSortableColumn="company.name" > name</th>
+					</ng-container>
+					<th *ngIf="buttons" style="width:150px"></th>
+				</tr>
+			</ng-template>
+			<ng-template pTemplate="body" let-e>
+				<tr>
+					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
+						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
+						<td *ngSwitchCase="'id'">{{ e.id }}</td>
+						<td *ngSwitchCase="'external'">{{ e.external }}</td>
+						<td *ngSwitchCase="'project.name'">{{ e.project.name }}</td>
+						<td *ngSwitchCase="'role.name'">{{ e.role.name }}</td>
+						<td *ngSwitchCase="'role.haveWorkCategory'">{{ e.role.haveWorkCategory }}</td>
+						<td *ngSwitchCase="'workCategory.name'">{{ e.workCategory.name }}</td>
+						<td *ngSwitchCase="'employee.name'">{{ e.employee.name }}</td>
+						<td *ngSwitchCase="'company.name'">{{ e.company.name }}</td>
+					</ng-container>
+					<td *ngIf="buttons" style="text-align:center">
+						<ng-container *ngFor="let b of buttons">
+							<a (click)="checkClick(b.command, e)" [routerLink]="[b.link, e.id]"><button pButton type="button"
+								class="{{ b.class }} p-button-{{ b.severity }}" [ngClass]="{'ui-button-icon-only': b.hideLabel}" 
+								label="{{ b.label }}" icon="{{ b.icon }}">
+							</button></a>
+							<ng-container *ngIf="b.childs">
+								<button pButton type="button"
+									class="{{ b.class }} ml-0.5 p-button-{{ b.severity }}"
+									pRipple icon="pi pi-chevron-down" (click)="menu.toggle($event)">
+								</button>
+								<p-menu #menu [popup]="true" [model]="decoreButtons(b.childs, e)" appendTo="body"></p-menu>
+							</ng-container>
+						</ng-container>
+					</td>
+				</tr>
+			</ng-template>
+		</p-table>
+	</div>
+</ng-container> 
+ 

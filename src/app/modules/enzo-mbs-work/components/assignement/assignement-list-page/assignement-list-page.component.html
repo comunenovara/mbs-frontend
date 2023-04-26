@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-assignement-list-loader 
+		[dcs]="assignementListDc" [buttons]="tableButtons" 
+		[paginator]="assignementListPaginator" (resultCount)="assignementCount=$event"> 
+	</mbs-assignement-list-loader>
+
+	<stal-paginator [totalRecords]="assignementCount" [(pageable)]="assignementListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewAssignement()"></button>
+
+</div>

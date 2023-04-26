@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-project-list-loader 
+		[dcs]="projectListDc" [buttons]="tableButtons" 
+		[paginator]="projectListPaginator" (resultCount)="projectCount=$event"> 
+	</mbs-project-list-loader>
+
+	<stal-paginator [totalRecords]="projectCount" [(pageable)]="projectListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewProject()"></button>
+
+</div>

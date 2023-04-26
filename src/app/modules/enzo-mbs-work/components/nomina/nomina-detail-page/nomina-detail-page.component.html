@@ -7,6 +7,19 @@
 		</div>
 	</div>
 
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="nominaDto.progetto !== null">
+        <div class="card mb-0">
+			<h3>progetto</h3>
+			<mbs-progetto-detail-box [progetto]="nominaDto.progetto" ></mbs-progetto-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../progetto/detail', nominaDto.progetto.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../progetto/detail', nominaDto.progetto.id]"></button>
+			-->
+		</div>
+	</div>
 	<div class="col-12 lg:col-6 xl:col-3" *ngIf="nominaDto.incarico !== null">
         <div class="card mb-0">
 			<h3>incarico</h3>
@@ -30,19 +43,6 @@
 			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
 				(click)="tabManagerService.openInCard()" 
 				[routerLink]="['../../../fase/detail', nominaDto.fase.id]"></button>
-			-->
-		</div>
-	</div>
-	<div class="col-12 lg:col-6 xl:col-3" *ngIf="nominaDto.progetto !== null">
-        <div class="card mb-0">
-			<h3>progetto</h3>
-			<mbs-progetto-detail-box [progetto]="nominaDto.progetto" ></mbs-progetto-detail-box>
-			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
-				[routerLink]="['../../../progetto/detail', nominaDto.progetto.id]"></button>
-			<!--
-			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
-				(click)="tabManagerService.openInCard()" 
-				[routerLink]="['../../../progetto/detail', nominaDto.progetto.id]"></button>
 			-->
 		</div>
 	</div>

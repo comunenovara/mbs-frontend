@@ -1,0 +1,76 @@
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-6">
+        <div class="card mb-0">
+			<mbs-assignement-detail-box [assignement]="assignementDto"></mbs-assignement-detail-box>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editAssignement(assignementDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteAssignement(assignementDto)"></button>
+		</div>
+	</div>
+
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="assignementDto.project !== null">
+        <div class="card mb-0">
+			<h3>project</h3>
+			<mbs-project-detail-box [project]="assignementDto.project" ></mbs-project-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../project/detail', assignementDto.project.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../project/detail', assignementDto.project.id]"></button>
+			-->
+		</div>
+	</div>
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="assignementDto.role !== null">
+        <div class="card mb-0">
+			<h3>role</h3>
+			<mbs-role-detail-box [role]="assignementDto.role" ></mbs-role-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../role/detail', assignementDto.role.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../role/detail', assignementDto.role.id]"></button>
+			-->
+		</div>
+	</div>
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="assignementDto.workCategory !== null">
+        <div class="card mb-0">
+			<h3>work-category</h3>
+			<mbs-work-category-detail-box [workCategory]="assignementDto.workCategory" ></mbs-work-category-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../work-category/detail', assignementDto.workCategory.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../work-category/detail', assignementDto.workCategory.id]"></button>
+			-->
+		</div>
+	</div>
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="assignementDto.employee !== null">
+        <div class="card mb-0">
+			<h3>employee</h3>
+			<mbs-employee-detail-box [employee]="assignementDto.employee" ></mbs-employee-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../employee/detail', assignementDto.employee.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../employee/detail', assignementDto.employee.id]"></button>
+			-->
+		</div>
+	</div>
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="assignementDto.company !== null">
+        <div class="card mb-0">
+			<h3>company</h3>
+			<mbs-company-detail-box [company]="assignementDto.company" ></mbs-company-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../company/detail', assignementDto.company.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../company/detail', assignementDto.company.id]"></button>
+			-->
+		</div>
+	</div>
+
+</div>

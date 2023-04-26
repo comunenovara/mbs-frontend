@@ -15,9 +15,9 @@
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
 						<th *ngSwitchCase="'ie'" style="width:auto" pResizableColumn pSortableColumn="ie"> ie </th>
+						<th *ngSwitchCase="'progetto.name'" style="width:auto" pResizableColumn commentpSortableColumn="progetto.name" > name</th>
 						<th *ngSwitchCase="'incarico.name'" style="width:auto" pResizableColumn commentpSortableColumn="incarico.name" > name</th>
 						<th *ngSwitchCase="'fase.name'" style="width:auto" pResizableColumn commentpSortableColumn="fase.name" > name</th>
-						<th *ngSwitchCase="'progetto.name'" style="width:auto" pResizableColumn commentpSortableColumn="progetto.name" > name</th>
 						<th *ngSwitchCase="'tecnico.name'" style="width:auto" pResizableColumn commentpSortableColumn="tecnico.name" > name</th>
 						<th *ngSwitchCase="'azienda.name'" style="width:auto" pResizableColumn commentpSortableColumn="azienda.name" > name</th>
 					</ng-container>
@@ -30,9 +30,9 @@
 						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
 						<td *ngSwitchCase="'ie'">{{ e.ie }}</td>
+						<td *ngSwitchCase="'progetto.name'">{{ e.progetto.name }}</td>
 						<td *ngSwitchCase="'incarico.name'">{{ e.incarico.name }}</td>
 						<td *ngSwitchCase="'fase.name'">{{ e.fase.name }}</td>
-						<td *ngSwitchCase="'progetto.name'">{{ e.progetto.name }}</td>
 						<td *ngSwitchCase="'tecnico.name'"><span *ngIf="e.tecnico">{{ e.tecnico.name }}</span></td>
 						<td *ngSwitchCase="'azienda.name'"><span *ngIf="e.azienda">{{ e.azienda.name }}</span></td>
 					</ng-container>

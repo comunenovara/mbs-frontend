@@ -7,9 +7,9 @@ import { EngeCommonService, EngeEngeFormStep, EngeLibGenericForm, EngeValidator 
 import { MbsWorkAutocompleteService } from '@mbs-work/service/work-auto-complete.service';
 import { MbsNominaResourceService } from '@mbs-work/services/nomina.service';
 import { MbsNominaDto } from '@mbs-work/class/nomina-dto.class';
+import { MbsProgettoDto } from '@mbs-work/class/progetto-dto.class';
 import { MbsIncaricoDto } from '@mbs-work/class/incarico-dto.class';
 import { MbsFaseDto } from '@mbs-work/class/fase-dto.class';
-import { MbsProgettoDto } from '@mbs-work/class/progetto-dto.class';
 import { MbsTecnicoDto } from '@mbs-work/class/tecnico-dto.class';
 import { MbsAziendaDto } from '@mbs-work/class/azienda-dto.class';
 
@@ -22,9 +22,9 @@ export class MbsNominaNewUpdateFormComponent extends EngeLibGenericForm {
 	@Input() nomina: MbsNominaDto | undefined;
 	@Output() nominaOutput: EventEmitter<MbsNominaDto> = new EventEmitter<MbsNominaDto>();
 	
+	@Input() progetto: MbsProgettoDto | undefined;
 	@Input() incarico: MbsIncaricoDto | undefined;
 	@Input() fase: MbsFaseDto | undefined;
-	@Input() progetto: MbsProgettoDto | undefined;
 	@Input() tecnico: MbsTecnicoDto | undefined;
 	@Input() azienda: MbsAziendaDto | undefined;
 
@@ -44,26 +44,26 @@ export class MbsNominaNewUpdateFormComponent extends EngeLibGenericForm {
 		this.output = this.nominaOutput;
 	}
 
+	_filteredProgetto: Observable<MbsProgettoDto[]>;
 	_filteredIncarico: Observable<MbsIncaricoDto[]>;
 	_filteredFase: Observable<MbsFaseDto[]>;
-	_filteredProgetto: Observable<MbsProgettoDto[]>;
 	_filteredTecnico: Observable<MbsTecnicoDto[]>;
 	_filteredAzienda: Observable<MbsAziendaDto[]>;
 
 	override loadForm(): void {
 		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
-			ie: [true, [  ]],
-			incarico: [this.incarico, [ EngeValidator.haveId,  ]],
-			fase: [this.fase, [ EngeValidator.haveId,  ]],
+			ie: [null, [ Validators.required,  ]],
 			progetto: [this.progetto, [ EngeValidator.haveId,  ]],
+			incarico: [this.incarico, [ EngeValidator.haveId,  ]],
+			fase: [this.fase, [  ]],
 			tecnico: [this.tecnico, [  ]],
 			azienda: [this.azienda, [  ]],
 		});
 
+		this._filteredProgetto = this.mbsWorkAutocompleteService.filterProgetto(this._newUpdateForm.controls['progetto'].valueChanges);
 		this._filteredIncarico = this.mbsWorkAutocompleteService.filterIncarico(this._newUpdateForm.controls['incarico'].valueChanges);
 		this._filteredFase = this.mbsWorkAutocompleteService.filterFase(this._newUpdateForm.controls['fase'].valueChanges);
-		this._filteredProgetto = this.mbsWorkAutocompleteService.filterProgetto(this._newUpdateForm.controls['progetto'].valueChanges);
 		this._filteredTecnico = this.mbsWorkAutocompleteService.filterTecnico(this._newUpdateForm.controls['tecnico'].valueChanges);
 		this._filteredAzienda = this.mbsWorkAutocompleteService.filterAzienda(this._newUpdateForm.controls['azienda'].valueChanges);
 	}
@@ -71,9 +71,9 @@ export class MbsNominaNewUpdateFormComponent extends EngeLibGenericForm {
 	override prepareResult(): MbsNominaDto {
 		let result: MbsNominaDto = this._newUpdateForm.value;
 		{
+			result.progettoId = (result.progetto != null) ? result.progetto.id : undefined;
 			result.incaricoId = (result.incarico != null) ? result.incarico.id : undefined;
 			result.faseId = (result.fase != null) ? result.fase.id : undefined;
-			result.progettoId = (result.progetto != null) ? result.progetto.id : undefined;
 			result.tecnicoId = (result.tecnico != null) ? result.tecnico.id : undefined;
 			result.aziendaId = (result.azienda != null) ? result.azienda.id : undefined;
 		}
