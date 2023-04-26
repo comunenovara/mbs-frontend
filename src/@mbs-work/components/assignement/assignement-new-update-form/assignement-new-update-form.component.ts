@@ -54,7 +54,7 @@ export class MbsAssignementNewUpdateFormComponent extends EngeLibGenericForm {
 		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
 			external: [false, [  ]],
-			project: [this.project, [ EngeValidator.haveId, ]],
+			project: [this.project, [ EngeValidator.haveId,  ]],
 			role: [this.role, [ EngeValidator.haveId,  ]],
 			workCategory: [this.workCategory, [  ]],
 			employee: [this.employee, [  ]],

@@ -28,7 +28,19 @@
 				<input type="text" pInputText formControlName="tecnico" [stalAutocomplete]="tecnicoAutocomplete">
 				<stal-autocomplete #tecnicoAutocomplete [filteredElements]="_filteredTecnico" [displayFn]="mbsWorkAutocompleteService.displayTecnico"></stal-autocomplete>
 			</div>
-			
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="azienda != null">
+				<span>{{ 'azienda' }}</span>
+				<input type="text" pInputText formControlName="azienda" [stalAutocomplete]="aziendaAutocomplete">
+				<stal-autocomplete #aziendaAutocomplete [filteredElements]="_filteredAzienda" [displayFn]="mbsWorkAutocompleteService.displayAzienda"></stal-autocomplete>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<p-checkbox formControlName="ie" inputId="ie"></p-checkbox>
+				<label for="ie">{{ 'ie' }}</label>
+				<div *ngIf="!isValid(_newUpdateForm.controls['ie'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['ie'], 'required')">La ie è richiesta.</span>
+				</div>
+			</div>
+
 			<div class="col-12 md:col-6 lg:col-3">
 				<br>
 				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'Crea' }}</button>
