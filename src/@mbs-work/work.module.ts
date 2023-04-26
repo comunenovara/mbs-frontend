@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 
 import { EngeCommonLibModule } from '@enge/common-lib';
-import { CheckboxModule } from 'primeng/checkbox';
 
 import { MbsWorkAutocompleteService } from './service/work-auto-complete.service';
 
@@ -93,7 +92,6 @@ import { MbsNominaResolver } from './resolvers/nomina.resolver';
 @NgModule({
 	imports: [ 
 		EngeCommonLibModule,
-		CheckboxModule,
 
 	],
 	declarations: [
