@@ -13,7 +13,7 @@ const routes: Route[] = [
                 pathMatch : 'full',
                 redirectTo: 'work',
             },
-            { path: 'enzo', loadChildren: () => import('./modules/enzo-mbs-main/mbs-main.module').then(m => m.EnzoMbsMainModule) },
+            { path: 'main', loadChildren: () => import('./modules/enzo-mbs-main/mbs-main.module').then(m => m.EnzoMbsMainModule) },
             { path: 'work', loadChildren: () => import('./modules/enzo-mbs-work/mbs-work.module').then(m => m.EnzoMbsWorkModule) },
         ]
     },

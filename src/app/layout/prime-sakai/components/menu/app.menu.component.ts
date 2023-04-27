@@ -17,17 +17,17 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'MBS',
                 items: [
-                    { label: 'Beni immobili', icon: 'pi pi-fw pi-building', routerLink: ['/enzo/asset'] },
-                    { label: 'Rilievi', icon: 'pi pi-fw pi-compass', routerLink: ['/enzo/relif'] },
-                    { label: 'Interventi', icon: 'pi pi-fw pi-chart-line', routerLink: ['/enzo/operation'] },
+                    { label: 'Beni immobili', icon: 'pi pi-fw pi-building', routerLink: ['/main/asset'] },
+                    { label: 'Rilievi', icon: 'pi pi-fw pi-compass', routerLink: ['/main/relif'] },
+                    { label: 'Interventi', icon: 'pi pi-fw pi-chart-line', routerLink: ['/main/operation'] },
                 ]
             },
 			{
                 label: 'Config - Solo amministratori',
                 items: [
-                    { label: 'Tipi di intervento', icon: 'pi pi-fw pi-building', routerLink: ['/enzo/operation-type'] },
-                    { label: 'Tipi di fascicoli', icon: 'pi pi-fw pi-compass', routerLink: ['/enzo/dossier-type'] },
-                    { label: 'Tutti i fascicoli', icon: 'pi pi-fw pi-chart-line', routerLink: ['/enzo/dossier'] },
+                    { label: 'Tipi di intervento', icon: 'pi pi-fw pi-building', routerLink: ['/main/operation-type'] },
+                    { label: 'Tipi di fascicoli', icon: 'pi pi-fw pi-compass', routerLink: ['/main/dossier-type'] },
+                    { label: 'Tutti i fascicoli', icon: 'pi pi-fw pi-chart-line', routerLink: ['/main/dossier'] },
                 ]
             },
             {
