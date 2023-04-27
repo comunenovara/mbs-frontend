@@ -10,10 +10,10 @@
 
 	<div class="col-12 lg:col-12 xl:col-12">
 		<div class="card mb-0 relative">
-			<h3>assignement</h3>
+			<h3>Nomine</h3>
 			<mbs-assignement-list-loader 
 				[filters]="{employeeIdEquals: employeeDto.id}" 
-				[dcs]="['id', 'description']" 
+				[dcs]="['id', 'project.name', 'role.name']" 
 				[paginator]="assignementListPaginator"
 				[buttons]="assignementTableButtons"
 				(resultCount)="assignementCount=$event"></mbs-assignement-list-loader>
