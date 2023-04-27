@@ -33,7 +33,6 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Work',
                 items: [
-                    { label: 'Progetti Old', icon: 'pi pi-fw pi-building', routerLink: ['/work/progetto'] },
                     { label: 'Progetti', icon: 'pi pi-fw pi-building', routerLink: ['/work/project'] },
                     { label: 'Tecnici', icon: 'pi pi-fw pi-compass', routerLink: ['/work/employee'] },
                     { label: 'Aziende', icon: 'pi pi-fw pi-chart-line', routerLink: ['/work/company'] },
