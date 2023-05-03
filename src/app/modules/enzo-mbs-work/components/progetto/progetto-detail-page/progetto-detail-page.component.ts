@@ -8,7 +8,7 @@ import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 //import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
 
 import { MbsFaseDto, MbsFaseResourceService, MbsIncaricoDto, MbsIncaricoResourceService, MbsNominaDto, MbsNominaResourceService, MbsProgettoDto, MbsProgettoResourceService} from '@mbs-work';
 import { EnzoProgettoDialogComponent } from '../progetto-dialog/progetto-dialog.component';
@@ -21,16 +21,14 @@ import { EnzoNominaDialogComponent } from "../../nomina/nomina-dialog/nomina-dia
 })
 export class EnzoProgettoDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
-		route: ActivatedRoute,
-		router: Router,
-		eventer: StalEventerService,
+		eacs: EngeAppCommonService,
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsProgettoResourceService,
 		private incaricoResourceService: MbsIncaricoResourceService,
 		private faseResourceService: MbsFaseResourceService,
 		private nominaResourceService: MbsNominaResourceService,
-	) { super(route, router, eventer); }
+	) { super(eacs); }
 
 	progettoDto: MbsProgettoDto;
 
@@ -40,7 +38,7 @@ export class EnzoProgettoDetailPageComponent extends EngeAppGenericDetailPageCom
 
 
 	override onLoad() {
-		this.progettoDto = this.route.snapshot.data['progetto'];
+		this.progettoDto = this.eacs.route.snapshot.data['progetto'];
 		this.loadSidecar();
 	}
 

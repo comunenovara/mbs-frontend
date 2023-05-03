@@ -8,7 +8,7 @@ import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 //import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
 
 import { MbsRoleDto, MbsRoleResourceService} from '@mbs-work';
 import { EnzoRoleDialogComponent } from '../role-dialog/role-dialog.component';
@@ -21,18 +21,16 @@ import { EnzoAssignementDialogComponent } from "../../assignement/assignement-di
 })
 export class EnzoRoleDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
-		route: ActivatedRoute,
-		router: Router,
-		eventer: StalEventerService,
+		eacs: EngeAppCommonService,
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsRoleResourceService,
-	) { super(route, router, eventer); }
+	) { super(eacs); }
 
 	roleDto: MbsRoleDto;
 
 	override onLoad() {
-		this.roleDto = this.route.snapshot.data['role'];
+		this.roleDto = this.eacs.route.snapshot.data['role'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {

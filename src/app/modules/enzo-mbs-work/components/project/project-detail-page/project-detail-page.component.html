@@ -11,41 +11,7 @@
 	<div class="col-12 lg:col-12 xl:col-12">
 		<div class="card mb-0 relative">
 			<h3>Nomine</h3>
-			<table id="assignements">
-				<tr>
-					<th class="first top"></th>
-					<th class="first"></th>
-					<th class="top" *ngFor="let workCategory of workCategoryDtos">{{ workCategory.name }}</th>
-				</tr>
-				<tr *ngFor="let role of roleDtos">
-					<td class="first">{{ role.name }}</td>
-					<td>
-						<ng-container *ngIf="!role.haveWorkCategory">
-							<ng-container *ngIf="role.id !== undefined && assignements[role.id] !== undefined">
-								<p-chip *ngIf="assignements[role.id].employee !== null" label="{{ assignements[role.id].employee.name }}"></p-chip>
-								<p-chip *ngIf="assignements[role.id].company !== null" label="{{ assignements[role.id].company.name }}"></p-chip>
-								<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text" (click)="deleteAssignement(assignements[role.id])"></button>
-							</ng-container>
-							<ng-container *ngIf="role.id === undefined || assignements[role.id] === undefined">
-								<button pButton pRipple type="button" icon="pi pi-user-edit" class="p-button-rounded p-button-text" (click)="createNewAssignementsComplex(projectDto, role)"></button>
-							</ng-container>
-						</ng-container>
-					</td>
-					<ng-container *ngIf="role.haveWorkCategory">
-						<td *ngFor="let workCategory of workCategoryDtos">
-							<ng-container *ngIf="role.id !== undefined && workCategory.id !== undefined && assignements[role.id] !== undefined && assignements[role.id][workCategory.id] !== undefined">
-								<p-chip *ngIf="assignements[role.id][workCategory.id].employee !== null" label="{{ assignements[role.id][workCategory.id].employee.name }}"></p-chip>
-								<p-chip *ngIf="assignements[role.id][workCategory.id].company !== null" label="{{ assignements[role.id][workCategory.id].company.name }}"></p-chip>
-								<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text" (click)="deleteAssignement(assignements[role.id][workCategory.id])"></button>
-							</ng-container>
-							<ng-container *ngIf="role.id === undefined || workCategory.id === undefined || assignements[role.id] === undefined || assignements[role.id][workCategory.id] === undefined">
-								<button pButton pRipple type="button" icon="pi pi-user-edit" class="p-button-rounded p-button-text" (click)="createNewAssignementsComplex(projectDto, role, workCategory)"></button>
-							</ng-container>
-						</td>
-					</ng-container>
-					
-				</tr>
-			</table>
+			<assignement-table [projectDto]="projectDto"></assignement-table>
 		</div>
 	</div>
 

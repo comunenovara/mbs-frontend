@@ -8,7 +8,7 @@ import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 //import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
 
 import { MbsAssignementDto, MbsAssignementResourceService} from '@mbs-work';
 import { EnzoAssignementDialogComponent } from '../assignement-dialog/assignement-dialog.component';
@@ -20,18 +20,16 @@ import { EnzoAssignementDialogComponent } from '../assignement-dialog/assignemen
 })
 export class EnzoAssignementDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
-		route: ActivatedRoute,
-		router: Router,
-		eventer: StalEventerService,
+		eacs: EngeAppCommonService,
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsAssignementResourceService,
-	) { super(route, router, eventer); }
+	) { super(eacs); }
 
 	assignementDto: MbsAssignementDto;
 
 	override onLoad() {
-		this.assignementDto = this.route.snapshot.data['assignement'];
+		this.assignementDto = this.eacs.route.snapshot.data['assignement'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {

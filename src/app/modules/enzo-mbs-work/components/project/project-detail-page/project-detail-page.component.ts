@@ -8,7 +8,7 @@ import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 //import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
 
 import { MbsAssignementDto, MbsAssignementResourceService, MbsProjectDto, MbsProjectResourceService, MbsRoleDto, MbsRoleResourceService, MbsWorkCategoryDto, MbsWorkCategoryResourceService} from '@mbs-work';
 import { EnzoProjectDialogComponent } from '../project-dialog/project-dialog.component';
@@ -21,22 +21,17 @@ import { EnzoAssignementDialogComponent } from "../../assignement/assignement-di
 })
 export class EnzoProjectDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
-		route: ActivatedRoute,
-		router: Router,
-		eventer: StalEventerService,
+		eacs: EngeAppCommonService,
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsProjectResourceService,
-		private workCategoryResourceService: MbsWorkCategoryResourceService,
-		private roleResourceService: MbsRoleResourceService,
 		private assignementResourceService: MbsAssignementResourceService,
-	) { super(route, router, eventer); }
+	) { super(eacs); }
 
 	projectDto: MbsProjectDto;
 
 	override onLoad() {
-		this.projectDto = this.route.snapshot.data['project'];
-		this.loadSidecar();
+		this.projectDto = this.eacs.route.snapshot.data['project'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {
@@ -46,45 +41,9 @@ export class EnzoProjectDetailPageComponent extends EngeAppGenericDetailPageComp
 
 	override async reloadPage() {
 		this.projectDto = await lastValueFrom(this.resourceService.getProjectUsingGET(this.id));
-		this.loadSidecar();
 	}
 
-	workCategoryDtos: MbsWorkCategoryDto[];
-	roleDtos: MbsRoleDto[];
 	
-	assignements: any = {};
-
-	async loadSidecar() {
-		this.workCategoryDtos = await lastValueFrom(this.workCategoryResourceService.getAllWorkCategoriesUsingGET({}));
-		this.roleDtos = await lastValueFrom(this.roleResourceService.getAllRolesUsingGET({}));
-		
-		let  assignementDtos = await lastValueFrom(this.assignementResourceService.getAllAssignementsUsingGET({
-			projectIdEquals: this.projectDto.id
-		}));
-
-		this.assignements = {};
-		for(let assignement of assignementDtos) {
-			if(assignement.roleId === undefined  || assignement.roleId === null) {
-				continue;
-			}
-
-			if(this.assignements[assignement.roleId] === undefined) {
-				this.assignements[assignement.roleId] = {}
-			}
-
-			if(assignement.role.haveWorkCategory) {
-				if(assignement.workCategoryId === undefined || assignement.workCategoryId === null) {
-					continue;
-				}
-				this.assignements[assignement.roleId][assignement.workCategoryId] = assignement;
-			} else {
-				this.assignements[assignement.roleId] = assignement;
-			}
-
-
-			
-		}
-	}
 
 	editProject(project: MbsProjectDto) {
 		const ref = this.dialogService.open(EnzoProjectDialogComponent, {
@@ -127,7 +86,7 @@ export class EnzoProjectDetailPageComponent extends EngeAppGenericDetailPageComp
 					icon: "pi pi-trash",
 					command: async (e: any) => {
 						await lastValueFrom(this.assignementResourceService.deleteAssignementUsingDELETE(e.item.data.id));
-						this.eventer.launchReloadContent("assignement");
+						this.eacs.eventer.launchReloadContent("assignement");
 					}
 				}
 			]
@@ -138,25 +97,6 @@ export class EnzoProjectDetailPageComponent extends EngeAppGenericDetailPageComp
 		size: 10
 	};
 	protected assignementCount: number;
-
-	createNewAssignementsComplex(project: MbsProjectDto, role: MbsRoleDto, workCategory: MbsWorkCategoryDto | undefined = undefined) {
-		this.dialogService.open(EnzoAssignementDialogComponent, {
-			header: 'Create Nomina',
-			width: '70%',
-			data: {
-				project: project,
-				workCategory: workCategory,
-				role: role
-			}
-		});
-	}
-
-	async deleteAssignement(assignement: MbsAssignementDto) {
-		if(assignement.id === undefined) return;
-		await lastValueFrom(this.assignementResourceService.deleteAssignementUsingDELETE(assignement.id));
-		this.eventer.launchReloadContent("assignement");
-	}
-
 
 }
 

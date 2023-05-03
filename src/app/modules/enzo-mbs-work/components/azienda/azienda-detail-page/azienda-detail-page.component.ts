@@ -8,7 +8,7 @@ import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 //import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
 
 import { MbsAziendaDto, MbsAziendaResourceService} from '@mbs-work';
 import { EnzoAziendaDialogComponent } from '../azienda-dialog/azienda-dialog.component';
@@ -21,18 +21,16 @@ import { EnzoNominaDialogComponent } from "../../nomina/nomina-dialog/nomina-dia
 })
 export class EnzoAziendaDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
-		route: ActivatedRoute,
-		router: Router,
-		eventer: StalEventerService,
+		eacs: EngeAppCommonService,
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsAziendaResourceService,
-	) { super(route, router, eventer); }
+	) { super(eacs); }
 
 	aziendaDto: MbsAziendaDto;
 
 	override onLoad() {
-		this.aziendaDto = this.route.snapshot.data['azienda'];
+		this.aziendaDto = this.eacs.route.snapshot.data['azienda'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {

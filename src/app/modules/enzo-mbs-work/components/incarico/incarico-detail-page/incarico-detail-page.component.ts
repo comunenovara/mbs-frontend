@@ -8,7 +8,7 @@ import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 //import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
 
 import { MbsIncaricoDto, MbsIncaricoResourceService} from '@mbs-work';
 import { EnzoIncaricoDialogComponent } from '../incarico-dialog/incarico-dialog.component';
@@ -21,18 +21,16 @@ import { EnzoNominaDialogComponent } from "../../nomina/nomina-dialog/nomina-dia
 })
 export class EnzoIncaricoDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
-		route: ActivatedRoute,
-		router: Router,
-		eventer: StalEventerService,
+		eacs: EngeAppCommonService,
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsIncaricoResourceService,
-	) { super(route, router, eventer); }
+	) { super(eacs); }
 
 	incaricoDto: MbsIncaricoDto;
 
 	override onLoad() {
-		this.incaricoDto = this.route.snapshot.data['incarico'];
+		this.incaricoDto = this.eacs.route.snapshot.data['incarico'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {

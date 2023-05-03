@@ -8,7 +8,7 @@ import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 //import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
 
 import { MbsFaseDto, MbsFaseResourceService} from '@mbs-work';
 import { EnzoFaseDialogComponent } from '../fase-dialog/fase-dialog.component';
@@ -21,18 +21,16 @@ import { EnzoNominaDialogComponent } from "../../nomina/nomina-dialog/nomina-dia
 })
 export class EnzoFaseDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
-		route: ActivatedRoute,
-		router: Router,
-		eventer: StalEventerService,
+		eacs: EngeAppCommonService,
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsFaseResourceService,
-	) { super(route, router, eventer); }
+	) { super(eacs); }
 
 	faseDto: MbsFaseDto;
 
 	override onLoad() {
-		this.faseDto = this.route.snapshot.data['fase'];
+		this.faseDto = this.eacs.route.snapshot.data['fase'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {

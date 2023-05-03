@@ -44,6 +44,8 @@ import { EnzoProgettoDialogComponent } from './components/progetto/progetto-dial
 import { EnzoNominaListPageComponent } from './components/nomina/nomina-list-page/nomina-list-page.component';
 import { EnzoNominaDetailPageComponent } from './components/nomina/nomina-detail-page/nomina-detail-page.component';
 import { EnzoNominaDialogComponent } from './components/nomina/nomina-dialog/nomina-dialog.component';
+import { AssignementTableComponent } from './components/assignement/assignement-table/assignement-table.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
 	imports: [ 
@@ -77,6 +79,7 @@ import { EnzoNominaDialogComponent } from './components/nomina/nomina-dialog/nom
 		EnzoAssignementListPageComponent,
 		EnzoAssignementDetailPageComponent,
 		EnzoAssignementDialogComponent,
+		AssignementTableComponent,
 		
 		EnzoIncaricoListPageComponent,
 		EnzoIncaricoDetailPageComponent,
@@ -101,6 +104,8 @@ import { EnzoNominaDialogComponent } from './components/nomina/nomina-dialog/nom
 		EnzoNominaListPageComponent,
 		EnzoNominaDetailPageComponent,
 		EnzoNominaDialogComponent,
+
+		DashboardComponent,
 		
 	],
 	providers: [

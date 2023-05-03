@@ -8,7 +8,7 @@ import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 //import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
 
 import { MbsTecnicoDto, MbsTecnicoResourceService} from '@mbs-work';
 import { EnzoTecnicoDialogComponent } from '../tecnico-dialog/tecnico-dialog.component';
@@ -21,18 +21,16 @@ import { EnzoNominaDialogComponent } from "../../nomina/nomina-dialog/nomina-dia
 })
 export class EnzoTecnicoDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
-		route: ActivatedRoute,
-		router: Router,
-		eventer: StalEventerService,
+		eacs: EngeAppCommonService,
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsTecnicoResourceService,
-	) { super(route, router, eventer); }
+	) { super(eacs); }
 
 	tecnicoDto: MbsTecnicoDto;
 
 	override onLoad() {
-		this.tecnicoDto = this.route.snapshot.data['tecnico'];
+		this.tecnicoDto = this.eacs.route.snapshot.data['tecnico'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {

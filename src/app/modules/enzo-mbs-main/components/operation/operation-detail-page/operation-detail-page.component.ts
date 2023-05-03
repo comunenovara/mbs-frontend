@@ -8,7 +8,7 @@ import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
 
 import { MbsOperationDto, MbsOperationResourceService} from '@mbs-main';
 import { EnzoOperationDialogComponent } from '../operation-dialog/operation-dialog.component';
@@ -21,18 +21,16 @@ import { EnzoDossierDialogComponent } from "../../dossier/dossier-dialog/dossier
 })
 export class EnzoOperationDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
-		route: ActivatedRoute,
-		router: Router,
-		eventer: StalEventerService,
+		eacs: EngeAppCommonService,
 		public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsOperationResourceService,
-	) { super(route, router, eventer); }
+	) { super(eacs); }
 
 	operationDto: MbsOperationDto;
 
 	override onLoad() {
-		this.operationDto = this.route.snapshot.data['operation'];
+		this.operationDto = this.eacs.route.snapshot.data['operation'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {

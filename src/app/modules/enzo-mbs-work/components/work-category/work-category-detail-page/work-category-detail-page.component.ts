@@ -8,7 +8,7 @@ import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 //import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
 
 import { MbsWorkCategoryDto, MbsWorkCategoryResourceService} from '@mbs-work';
 import { EnzoWorkCategoryDialogComponent } from '../work-category-dialog/work-category-dialog.component';
@@ -21,18 +21,16 @@ import { EnzoAssignementDialogComponent } from "../../assignement/assignement-di
 })
 export class EnzoWorkCategoryDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
-		route: ActivatedRoute,
-		router: Router,
-		eventer: StalEventerService,
+		eacs: EngeAppCommonService,
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsWorkCategoryResourceService,
-	) { super(route, router, eventer); }
+	) { super(eacs); }
 
 	workCategoryDto: MbsWorkCategoryDto;
 
 	override onLoad() {
-		this.workCategoryDto = this.route.snapshot.data['workCategory'];
+		this.workCategoryDto = this.eacs.route.snapshot.data['workCategory'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {

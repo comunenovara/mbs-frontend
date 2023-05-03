@@ -36,12 +36,17 @@ import { EnzoProgettoDetailPageComponent } from './components/progetto/progetto-
 import { MbsNominaResolver } from '@mbs-work/resolvers/nomina.resolver';
 import { EnzoNominaListPageComponent } from './components/nomina/nomina-list-page/nomina-list-page.component';
 import { EnzoNominaDetailPageComponent } from './components/nomina/nomina-detail-page/nomina-detail-page.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export const enzoMbsWorkRoutes: Route[] = [
 	{
 		path: '', 
 		pathMatch : 'full',
-		redirectTo: 'progetto'
+		redirectTo: 'dashboard'
+	},
+	{
+		path: 'dashboard',
+		component: DashboardComponent,
 	},
 	{
 		path: 'project',

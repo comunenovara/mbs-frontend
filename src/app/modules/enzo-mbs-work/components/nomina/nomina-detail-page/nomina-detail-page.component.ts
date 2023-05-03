@@ -8,7 +8,7 @@ import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 //import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
 
 import { MbsNominaDto, MbsNominaResourceService} from '@mbs-work';
 import { EnzoNominaDialogComponent } from '../nomina-dialog/nomina-dialog.component';
@@ -20,18 +20,16 @@ import { EnzoNominaDialogComponent } from '../nomina-dialog/nomina-dialog.compon
 })
 export class EnzoNominaDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
-		route: ActivatedRoute,
-		router: Router,
-		eventer: StalEventerService,
+		eacs: EngeAppCommonService,
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsNominaResourceService,
-	) { super(route, router, eventer); }
+	) { super(eacs); }
 
 	nominaDto: MbsNominaDto;
 
 	override onLoad() {
-		this.nominaDto = this.route.snapshot.data['nomina'];
+		this.nominaDto = this.eacs.route.snapshot.data['nomina'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {
