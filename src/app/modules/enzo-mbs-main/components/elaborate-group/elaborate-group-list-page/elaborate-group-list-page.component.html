@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-elaborate-group-list-loader 
+		[dcs]="elaborateGroupListDc" [buttons]="tableButtons" 
+		[paginator]="elaborateGroupListPaginator" (resultCount)="elaborateGroupCount=$event"> 
+	</mbs-elaborate-group-list-loader>
+
+	<stal-paginator [totalRecords]="elaborateGroupCount" [(pageable)]="elaborateGroupListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewElaborateGroup()"></button>
+
+</div>

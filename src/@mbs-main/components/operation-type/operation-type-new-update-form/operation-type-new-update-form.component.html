@@ -12,8 +12,8 @@
 
 			<div class="col-12 md:col-6 lg:col-3">
 				<br>
-				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'MAIN.CREATE' }}</button>
-				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'MAIN.UPDATE' }}</button>
+				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'Crea' }}</button>
+				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'Aggiorna' }}</button>
 			</div>
 
 		</div>
@@ -25,8 +25,8 @@
 </div>
 
 <div *ngIf="stepIs(formStep.COMPLETE)">
-	<h1 *ngIf="!_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.CREATION_OK' }}</h1>
-	<h1 *ngIf="_isUpdate">{{ 'COMMERCE.SELLER' }} {{ 'MAIN.UPDATE_OK' }}</h1>
+	<h1 *ngIf="!_isUpdate">{{ 'operation-type' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'operation-type' }} {{ 'aggiornato' }}</h1>
 
 	<hr>
 
@@ -34,8 +34,8 @@
 
 	<div *ngIf="!_isUpdate">
 		<button pButton color="primary" (click)="newOperationType()">
-			<span *ngIf="!returnToParent">{{ 'MAIN.CREATE_NEW' }}</span>
-			<span *ngIf="returnToParent">{{ 'MAIN.EDIT' }}</span>
+			<span *ngIf="!returnToParent">{{ 'Crea nuovo' }}</span>
+			<span *ngIf="returnToParent">{{ 'Modifica' }}</span>
 		</button>
 	</div>
 </div>

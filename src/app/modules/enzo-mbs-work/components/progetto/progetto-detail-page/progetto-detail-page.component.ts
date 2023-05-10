@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { StalEventerService, StalEvent } from "@stal/eventer";
+import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 //import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
 import { MbsProgettoDto, MbsProgettoResourceService} from '@mbs-work';
 import { EnzoProgettoDialogComponent } from '../progetto-dialog/progetto-dialog.component';
@@ -21,13 +21,12 @@ import { EnzoNominaDialogComponent } from "../../nomina/nomina-dialog/nomina-dia
 })
 export class EnzoProgettoDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
+		eacs: EngeAppCommonService,
 		route: ActivatedRoute,
-		router: Router,
-		eventer: StalEventerService,
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsProgettoResourceService,
-	) { super(route, router, eventer); }
+	) { super(eacs, route); }
 
 	progettoDto: MbsProgettoDto;
 

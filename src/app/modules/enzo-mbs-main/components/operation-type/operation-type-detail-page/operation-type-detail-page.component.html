@@ -12,7 +12,7 @@
 		<div class="card mb-0 relative">
 			<h3>operation</h3>
 			<mbs-operation-list-loader 
-				[filters]="{operationTypeIdEquals: operationTypeDto.id}" 
+				[filters]="{typeIdEquals: operationTypeDto.id}" 
 				[dcs]="['id', 'description']" 
 				[paginator]="operationListPaginator"
 				[buttons]="operationTableButtons"

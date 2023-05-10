@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { StalEventerService, StalEvent } from "@stal/eventer";
+import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 //import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent } from "@enge/common-app";
+import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
 import { MbsTecnicoDto, MbsTecnicoResourceService} from '@mbs-work';
 import { EnzoTecnicoDialogComponent } from '../tecnico-dialog/tecnico-dialog.component';
@@ -21,13 +21,12 @@ import { EnzoNominaDialogComponent } from "../../nomina/nomina-dialog/nomina-dia
 })
 export class EnzoTecnicoDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
+		eacs: EngeAppCommonService,
 		route: ActivatedRoute,
-		router: Router,
-		eventer: StalEventerService,
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsTecnicoResourceService,
-	) { super(route, router, eventer); }
+	) { super(eacs, route); }
 
 	tecnicoDto: MbsTecnicoDto;
 

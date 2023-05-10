@@ -32,16 +32,31 @@
 						<td *ngSwitchCase="'description'">{{ e.description }}</td>
 						<td *ngSwitchCase="'startDate'">{{ e.startDate }}</td>
 						<td *ngSwitchCase="'endDate'">{{ e.endDate }}</td>
-						<td *ngSwitchCase="'asset.description'">{{ e.asset.description }}</td>
-						<td *ngSwitchCase="'asset.address'">{{ e.asset.address }}</td>
-						<td *ngSwitchCase="'asset.mq'">{{ e.asset.mq }}</td>
+						<td *ngSwitchCase="'asset.description'">
+							<span *ngIf="e.asset">{{ e.asset.description }}</span>
+						</td>
+						<td *ngSwitchCase="'asset.address'">
+							<span *ngIf="e.asset">{{ e.asset.address }}</span>
+						</td>
+						<td *ngSwitchCase="'asset.mq'">
+							<span *ngIf="e.asset">{{ e.asset.mq }}</span>
+						</td>
 					</ng-container>
 					<td *ngIf="buttons" style="text-align:center">
 						<ng-container *ngFor="let b of buttons">
-							<a (click)="checkClick(b.command, e)" [routerLink]="[b.link, e.id]"><button pButton type="button"
+							<button *ngIf="b.link === undefined"
+								(click)="b.command(e)"
+								pButton type="button"
 								class="{{ b.class }} p-button-{{ b.severity }}" [ngClass]="{'ui-button-icon-only': b.hideLabel}" 
 								label="{{ b.label }}" icon="{{ b.icon }}">
-							</button></a>
+							</button>
+							<a *ngIf="b.link !== undefined"
+								(click)="checkClick(b.command, e)" [routerLink]="[b.link, e.id]">
+								<button pButton type="button"
+									class="{{ b.class }} p-button-{{ b.severity }}" [ngClass]="{'ui-button-icon-only': b.hideLabel}" 
+									label="{{ b.label }}" icon="{{ b.icon }}">
+								</button>
+							</a>
 							<ng-container *ngIf="b.childs">
 								<button pButton type="button"
 									class="{{ b.class }} ml-0.5 p-button-{{ b.severity }}"
