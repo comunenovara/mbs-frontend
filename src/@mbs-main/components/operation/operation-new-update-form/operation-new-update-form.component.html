@@ -5,7 +5,7 @@
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="type != null">
 				<span>{{ 'Tipo intervento' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="type" [stalAutocomplete]="typeAutocomplete">
-				<stal-autocomplete #typeAutocomplete [filteredElements]="_filteredType"></stal-autocomplete>
+				<stal-autocomplete #typeAutocomplete [filteredElements]="_filteredType" [displayFn]="mbsMainAutocompleteService.displayOperationType"></stal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['type'])" class="filed-required">
 					<span *ngIf="checkControlError(_newUpdateForm.controls['type'], 'validatorHaveId')">Il tipo intervento è richiesto.</span>
 				</div>
@@ -13,7 +13,7 @@
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null">
 				<span>{{ 'Bene immobile' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="asset" [stalAutocomplete]="assetAutocomplete">
-				<stal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></stal-autocomplete>
+				<stal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset" [displayFn]="mbsMainAutocompleteService.displayAsset"></stal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['asset'])" class="filed-required">
 					<span *ngIf="checkControlError(_newUpdateForm.controls['asset'], 'validatorHaveId')">Il bene immobile è richiesta.</span>
 				</div>

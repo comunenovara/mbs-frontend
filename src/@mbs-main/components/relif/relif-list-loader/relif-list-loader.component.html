@@ -38,10 +38,19 @@
 					</ng-container>
 					<td *ngIf="buttons" style="text-align:center">
 						<ng-container *ngFor="let b of buttons">
-							<a (click)="checkClick(b.command, e)" [routerLink]="[b.link, e.id]"><button pButton type="button"
+							<button *ngIf="b.link === undefined"
+								(click)="b.command(e)"
+								pButton type="button"
 								class="{{ b.class }} p-button-{{ b.severity }}" [ngClass]="{'ui-button-icon-only': b.hideLabel}" 
 								label="{{ b.label }}" icon="{{ b.icon }}">
-							</button></a>
+							</button>
+							<a *ngIf="b.link !== undefined"
+								(click)="checkClick(b.command, e)" [routerLink]="[b.link, e.id]">
+								<button pButton type="button"
+									class="{{ b.class }} p-button-{{ b.severity }}" [ngClass]="{'ui-button-icon-only': b.hideLabel}" 
+									label="{{ b.label }}" icon="{{ b.icon }}">
+								</button>
+							</a>
 							<ng-container *ngIf="b.childs">
 								<button pButton type="button"
 									class="{{ b.class }} ml-0.5 p-button-{{ b.severity }}"

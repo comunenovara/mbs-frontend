@@ -5,25 +5,30 @@
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="type != null">
 				<span>{{ 'Tipo fascicolo' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="type" [stalAutocomplete]="typeAutocomplete">
-				<stal-autocomplete #typeAutocomplete [filteredElements]="_filteredType"></stal-autocomplete>
+				<stal-autocomplete #typeAutocomplete [filteredElements]="_filteredType" [displayFn]="mbsMainAutocompleteService.displayDossierType"></stal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['type'])" class="filed-required">
 					<span *ngIf="checkControlError(_newUpdateForm.controls['type'], 'validatorHaveId')">Il tipo fascicolo è richiesto.</span>
 				</div>
 			</div>
-			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null || relif != null || operation != null">
-				<span>{{ 'Bene immobile' }}</span>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="elaborateGroup != null">
+				<span>{{ 'elaborateGroup' }}</span>
+				<input type="text" pInputText formControlName="elaborateGroup" [stalAutocomplete]="elaborateGroupAutocomplete">
+				<stal-autocomplete #elaborateGroupAutocomplete [filteredElements]="_filteredElaborateGroup" [displayFn]="mbsMainAutocompleteService.displayElaborateGroup"></stal-autocomplete>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null">
+				<span>{{ 'asset' }}</span>
 				<input type="text" pInputText formControlName="asset" [stalAutocomplete]="assetAutocomplete">
-				<stal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></stal-autocomplete>
+				<stal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset" [displayFn]="mbsMainAutocompleteService.displayAsset"></stal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null || relif != null || operation != null">
 				<span>{{ 'Rilievo' }}</span>
 				<input type="text" pInputText formControlName="relif" [stalAutocomplete]="relifAutocomplete">
-				<stal-autocomplete #relifAutocomplete [filteredElements]="_filteredRelif"></stal-autocomplete>
+				<stal-autocomplete #relifAutocomplete [filteredElements]="_filteredRelif" [displayFn]="mbsMainAutocompleteService.displayRelif"></stal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null || relif != null || operation != null">
 				<span>{{ 'Intervento' }}</span>
 				<input type="text" pInputText formControlName="operation" [stalAutocomplete]="operationAutocomplete">
-				<stal-autocomplete #operationAutocomplete [filteredElements]="_filteredOperation"></stal-autocomplete>
+				<stal-autocomplete #operationAutocomplete [filteredElements]="_filteredOperation" [displayFn]="mbsMainAutocompleteService.displayOperation"></stal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'Descrizione' }}</span><span class="filed-required">*</span>
@@ -48,8 +53,8 @@
 </div>
 
 <div *ngIf="stepIs(formStep.COMPLETE)">
-	<h1 *ngIf="!_isUpdate">{{ 'Fascicolo' }} {{ 'creato' }}</h1>
-	<h1 *ngIf="_isUpdate">{{ 'Fascicolo' }} {{ 'aggiornato' }}</h1>
+	<h1 *ngIf="!_isUpdate">{{ 'dossier' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'dossier' }} {{ 'aggiornato' }}</h1>
 
 	<hr>
 

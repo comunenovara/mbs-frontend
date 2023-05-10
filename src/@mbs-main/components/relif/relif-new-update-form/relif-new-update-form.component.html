@@ -5,7 +5,7 @@
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null">
 				<span>{{ 'Bene immobile' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="asset" [stalAutocomplete]="assetAutocomplete">
-				<stal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset"></stal-autocomplete>
+				<stal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset" [displayFn]="mbsMainAutocompleteService.displayAsset"></stal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['asset'])" class="filed-required">
 					<span *ngIf="checkControlError(_newUpdateForm.controls['asset'], 'validatorHaveId')">Il bene immobile è richiesto.</span>
 				</div>
@@ -41,8 +41,8 @@
 </div>
 
 <div *ngIf="stepIs(formStep.COMPLETE)">
-	<h1 *ngIf="!_isUpdate">{{ 'Rilievo' }} {{ 'creato' }}</h1>
-	<h1 *ngIf="_isUpdate">{{ 'Rilievo' }} {{ 'aggiornato' }}</h1>
+	<h1 *ngIf="!_isUpdate">{{ 'relif' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'relif' }} {{ 'aggiornato' }}</h1>
 
 	<hr>
 

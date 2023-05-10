@@ -8,6 +8,7 @@ import { MbsMainAutocompleteService } from '@mbs-main/service/main-auto-complete
 import { MbsDossierResourceService } from '@mbs-main/services/dossier.service';
 import { MbsDossierDto } from '@mbs-main/class/dossier-dto.class';
 import { MbsDossierTypeDto } from '@mbs-main/class/dossier-type-dto.class';
+import { MbsElaborateGroupDto } from '@mbs-main/class/elaborate-group-dto.class';
 import { MbsAssetDto } from '@mbs-main/class/asset-dto.class';
 import { MbsRelifDto } from '@mbs-main/class/relif-dto.class';
 import { MbsOperationDto } from '@mbs-main/class/operation-dto.class';
@@ -22,6 +23,7 @@ export class MbsDossierNewUpdateFormComponent extends EngeLibGenericForm {
 	@Output() dossierOutput: EventEmitter<MbsDossierDto> = new EventEmitter<MbsDossierDto>();
 	
 	@Input() type: MbsDossierTypeDto | undefined;
+	@Input() elaborateGroup: MbsElaborateGroupDto | undefined;
 	@Input() asset: MbsAssetDto | undefined;
 	@Input() relif: MbsRelifDto | undefined;
 	@Input() operation: MbsOperationDto | undefined;
@@ -30,7 +32,7 @@ export class MbsDossierNewUpdateFormComponent extends EngeLibGenericForm {
 		ecs: EngeCommonService,
 		private _formBuilder: FormBuilder,
 		private dossierResourceService: MbsDossierResourceService, 
-		private mbsMainAutocompleteService: MbsMainAutocompleteService,
+		protected mbsMainAutocompleteService: MbsMainAutocompleteService,
 	) { super(ecs); }
 
 	override loadVariables(): void {
@@ -43,6 +45,7 @@ export class MbsDossierNewUpdateFormComponent extends EngeLibGenericForm {
 	}
 
 	_filteredType: Observable<MbsDossierTypeDto[]>;
+	_filteredElaborateGroup: Observable<MbsElaborateGroupDto[]>;
 	_filteredAsset: Observable<MbsAssetDto[]>;
 	_filteredRelif: Observable<MbsRelifDto[]>;
 	_filteredOperation: Observable<MbsOperationDto[]>;
@@ -52,12 +55,14 @@ export class MbsDossierNewUpdateFormComponent extends EngeLibGenericForm {
 			id: [null],
 			description: [null, [ Validators.required,  ]],
 			type: [this.type, [ EngeValidator.haveId,  ]],
+			elaborateGroup: [this.elaborateGroup, [  ]],
 			asset: [this.asset, [  ]],
 			relif: [this.relif, [  ]],
 			operation: [this.operation, [  ]],
 		});
 
 		this._filteredType = this.mbsMainAutocompleteService.filterDossierType(this._newUpdateForm.controls['type'].valueChanges);
+		this._filteredElaborateGroup = this.mbsMainAutocompleteService.filterElaborateGroup(this._newUpdateForm.controls['elaborateGroup'].valueChanges);
 		this._filteredAsset = this.mbsMainAutocompleteService.filterAsset(this._newUpdateForm.controls['asset'].valueChanges);
 		this._filteredRelif = this.mbsMainAutocompleteService.filterRelif(this._newUpdateForm.controls['relif'].valueChanges);
 		this._filteredOperation = this.mbsMainAutocompleteService.filterOperation(this._newUpdateForm.controls['operation'].valueChanges);
@@ -67,6 +72,7 @@ export class MbsDossierNewUpdateFormComponent extends EngeLibGenericForm {
 		let result: MbsDossierDto = this._newUpdateForm.value;
 		{
 			result.typeId = (result.type != null) ? result.type.id : undefined;
+			result.elaborateGroupId = (result.elaborateGroup != null) ? result.elaborateGroup.id : undefined;
 			result.assetId = (result.asset != null) ? result.asset.id : undefined;
 			result.relifId = (result.relif != null) ? result.relif.id : undefined;
 			result.operationId = (result.operation != null) ? result.operation.id : undefined;

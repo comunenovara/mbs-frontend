@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { StalEventerService, StalEvent } from "@stal/eventer";
+import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-//import { TabManagerService } from '@stal/carder';
+import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
+import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
 import { MbsAssignementDto, MbsAssignementResourceService} from '@mbs-work';
 import { EnzoAssignementDialogComponent } from '../assignement-dialog/assignement-dialog.component';
@@ -21,15 +21,16 @@ import { EnzoAssignementDialogComponent } from '../assignement-dialog/assignemen
 export class EnzoAssignementDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
 		eacs: EngeAppCommonService,
-		//public tabManagerService: TabManagerService,
+		route: ActivatedRoute,
+		public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsAssignementResourceService,
-	) { super(eacs); }
+	) { super(eacs, route); }
 
 	assignementDto: MbsAssignementDto;
 
 	override onLoad() {
-		this.assignementDto = this.eacs.route.snapshot.data['assignement'];
+		this.assignementDto = this.route.snapshot.data['assignement'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {

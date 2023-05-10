@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { StalEventerService, StalEvent } from "@stal/eventer";
+import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 import { TabManagerService } from '@stal/carder';
 
@@ -12,9 +12,9 @@ import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/c
 
 import { MbsAssetDto, MbsAssetResourceService} from '@mbs-main';
 import { EnzoAssetDialogComponent } from '../asset-dialog/asset-dialog.component';
-import { EnzoDossierDialogComponent } from "../../dossier/dossier-dialog/dossier-dialog.component";
-import { EnzoOperationDialogComponent } from "../../operation/operation-dialog/operation-dialog.component";
 import { EnzoRelifDialogComponent } from "../../relif/relif-dialog/relif-dialog.component";
+import { EnzoOperationDialogComponent } from "../../operation/operation-dialog/operation-dialog.component";
+import { EnzoDossierDialogComponent } from "../../dossier/dossier-dialog/dossier-dialog.component";
 
 
 @Component({
@@ -25,15 +25,16 @@ import { EnzoRelifDialogComponent } from "../../relif/relif-dialog/relif-dialog.
 export class EnzoAssetDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
 		eacs: EngeAppCommonService,
-		public tabManagerService: TabManagerService,
+		route: ActivatedRoute,
+		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsAssetResourceService,
-	) { super(eacs); }
+	) { super(eacs, route); }
 
 	assetDto: MbsAssetDto;
 
 	override onLoad() {
-		this.assetDto = this.eacs.route.snapshot.data['asset'];
+		this.assetDto = this.route.snapshot.data['asset'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {
@@ -57,9 +58,9 @@ export class EnzoAssetDetailPageComponent extends EngeAppGenericDetailPageCompon
 		await lastValueFrom(this.resourceService.deleteAssetUsingDELETE(asset.id));
 	}
 
-	createNewDossier(assetDto: MbsAssetDto) {
-		this.dialogService.open(EnzoDossierDialogComponent, {
-			header: 'Crea fascicolo',
+	createNewRelif(assetDto: MbsAssetDto) {
+		this.dialogService.open(EnzoRelifDialogComponent, {
+			header: 'Create Relif',
 			width: '70%',
 			data: {
 				asset: assetDto
@@ -67,22 +68,22 @@ export class EnzoAssetDetailPageComponent extends EngeAppGenericDetailPageCompon
 		});
 	}
 
-	protected dossierTableButtons: any[] = [
+	protected relifTableButtons: any[] = [
 		{
 			label: "Dettagli",
 			hideLabel: true,
 			icon: "pi pi-search",
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
-			link: "../../../dossier/detail",
-			command: (e: any) => this.tabManagerService.openInCard(),
+			link: "../../../relif/detail",
+			//command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
-	protected dossierListPaginator: StalPaginator = {
+	protected relifListPaginator: StalPaginator = {
 		page: 0,
 		size: 10
 	};
-	protected dossierCount: number;
+	protected relifCount: number;
 
 	createNewOperation(assetDto: MbsAssetDto) {
 		this.dialogService.open(EnzoOperationDialogComponent, {
@@ -102,7 +103,7 @@ export class EnzoAssetDetailPageComponent extends EngeAppGenericDetailPageCompon
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../../../operation/detail",
-			command: (e: any) => this.tabManagerService.openInCard(),
+			//command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
 	protected operationListPaginator: StalPaginator = {
@@ -111,9 +112,9 @@ export class EnzoAssetDetailPageComponent extends EngeAppGenericDetailPageCompon
 	};
 	protected operationCount: number;
 
-	createNewRelif(assetDto: MbsAssetDto) {
-		this.dialogService.open(EnzoRelifDialogComponent, {
-			header: 'Crea rilievo',
+	createNewDossier(assetDto: MbsAssetDto) {
+		this.dialogService.open(EnzoDossierDialogComponent, {
+			header: 'Create Dossier',
 			width: '70%',
 			data: {
 				asset: assetDto
@@ -121,22 +122,22 @@ export class EnzoAssetDetailPageComponent extends EngeAppGenericDetailPageCompon
 		});
 	}
 
-	protected relifTableButtons: any[] = [
+	protected dossierTableButtons: any[] = [
 		{
 			label: "Dettagli",
 			hideLabel: true,
 			icon: "pi pi-search",
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
-			link: "../../../relif/detail",
-			command: (e: any) => this.tabManagerService.openInCard(),
+			link: "../../../dossier/detail",
+			//command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
-	protected relifListPaginator: StalPaginator = {
+	protected dossierListPaginator: StalPaginator = {
 		page: 0,
 		size: 10
 	};
-	protected relifCount: number;
+	protected dossierCount: number;
 
 }
 

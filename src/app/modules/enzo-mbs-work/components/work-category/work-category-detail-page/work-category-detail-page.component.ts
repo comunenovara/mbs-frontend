@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { StalEventerService, StalEvent } from "@stal/eventer";
+import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 //import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
+import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
 import { MbsWorkCategoryDto, MbsWorkCategoryResourceService} from '@mbs-work';
 import { EnzoWorkCategoryDialogComponent } from '../work-category-dialog/work-category-dialog.component';
@@ -22,15 +22,16 @@ import { EnzoAssignementDialogComponent } from "../../assignement/assignement-di
 export class EnzoWorkCategoryDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
 		eacs: EngeAppCommonService,
+		route: ActivatedRoute,
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsWorkCategoryResourceService,
-	) { super(eacs); }
+	) { super(eacs, route); }
 
 	workCategoryDto: MbsWorkCategoryDto;
 
 	override onLoad() {
-		this.workCategoryDto = this.eacs.route.snapshot.data['workCategory'];
+		this.workCategoryDto = this.route.snapshot.data['workCategory'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {

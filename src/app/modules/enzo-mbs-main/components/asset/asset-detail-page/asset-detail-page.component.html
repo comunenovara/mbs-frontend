@@ -14,11 +14,11 @@
 			<mbs-dossier-list-loader 
 				[filters]="{assetIdEquals: assetDto.id}" 
 				[dcs]="['id', 'description']" 
-				[paginator]="dossierListPaginator"
-				[buttons]="dossierTableButtons"
-				(resultCount)="dossierCount=$event"></mbs-dossier-list-loader>
-			<stal-paginator [totalRecords]="dossierCount" [(pageable)]="dossierListPaginator"></stal-paginator>
-			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewDossier(assetDto)"></button>
+				[paginator]="relifListPaginator"
+				[buttons]="relifTableButtons"
+				(resultCount)="relifCount=$event"></mbs-dossier-list-loader>
+			<stal-paginator [totalRecords]="relifCount" [(pageable)]="relifListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewRelif(assetDto)"></button>
 		</div>
 	</div>
 	<div class="col-12 lg:col-6 xl:col-6">
@@ -40,11 +40,11 @@
 			<mbs-relif-list-loader 
 				[filters]="{assetIdEquals: assetDto.id}" 
 				[dcs]="['id', 'description']" 
-				[paginator]="relifListPaginator"
-				[buttons]="relifTableButtons"
-				(resultCount)="relifCount=$event"></mbs-relif-list-loader>
-			<stal-paginator [totalRecords]="relifCount" [(pageable)]="relifListPaginator"></stal-paginator>
-			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewRelif(assetDto)"></button>
+				[paginator]="dossierListPaginator"
+				[buttons]="dossierTableButtons"
+				(resultCount)="dossierCount=$event"></mbs-relif-list-loader>
+			<stal-paginator [totalRecords]="dossierCount" [(pageable)]="dossierListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewDossier(assetDto)"></button>
 		</div>
 	</div>
 </div>

@@ -22,7 +22,7 @@ export class MbsDossierTypeNewUpdateFormComponent extends EngeLibGenericForm {
 		ecs: EngeCommonService,
 		private _formBuilder: FormBuilder,
 		private dossierTypeResourceService: MbsDossierTypeResourceService, 
-		private mbsMainAutocompleteService: MbsMainAutocompleteService,
+		protected mbsMainAutocompleteService: MbsMainAutocompleteService,
 	) { super(ecs); }
 
 	override loadVariables(): void {

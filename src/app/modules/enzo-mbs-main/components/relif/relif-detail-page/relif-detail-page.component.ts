@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { StalEventerService, StalEvent } from "@stal/eventer";
+import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
+import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
 import { MbsRelifDto, MbsRelifResourceService} from '@mbs-main';
 import { EnzoRelifDialogComponent } from '../relif-dialog/relif-dialog.component';
@@ -22,15 +22,16 @@ import { EnzoDossierDialogComponent } from "../../dossier/dossier-dialog/dossier
 export class EnzoRelifDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
 		eacs: EngeAppCommonService,
+		route: ActivatedRoute,
 		public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsRelifResourceService,
-	) { super(eacs); }
+	) { super(eacs, route); }
 
 	relifDto: MbsRelifDto;
 
 	override onLoad() {
-		this.relifDto = this.eacs.route.snapshot.data['relif'];
+		this.relifDto = this.route.snapshot.data['relif'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {

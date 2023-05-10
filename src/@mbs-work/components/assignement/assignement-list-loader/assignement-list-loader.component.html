@@ -32,34 +32,22 @@
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
 						<td *ngSwitchCase="'external'">{{ e.external }}</td>
 						<td *ngSwitchCase="'project.name'">
-							<span *ngIf="e.project">
-								{{ e.project.name }}
-							</span>
+							<span *ngIf="e.project">{{ e.project.name }}</span>
 						</td>
 						<td *ngSwitchCase="'role.name'">
-							<span *ngIf="e.role">
-								{{ e.role.name }}
-							</span>
+							<span *ngIf="e.role">{{ e.role.name }}</span>
 						</td>
 						<td *ngSwitchCase="'role.haveWorkCategory'">
-							<span *ngIf="e.role">
-								{{ e.role.haveWorkCategory }}
-							</span>
+							<span *ngIf="e.role">{{ e.role.haveWorkCategory }}</span>
 						</td>
 						<td *ngSwitchCase="'workCategory.name'">
-							<span *ngIf="e.workCategory">
-								{{ e.workCategory.name }}
-							</span>
+							<span *ngIf="e.workCategory">{{ e.workCategory.name }}</span>
 						</td>
 						<td *ngSwitchCase="'employee.name'">
-							<span *ngIf="e.employee">
-								{{ e.employee.name }}
-							</span>
+							<span *ngIf="e.employee">{{ e.employee.name }}</span>
 						</td>
 						<td *ngSwitchCase="'company.name'">
-							<span *ngIf="e.company">
-								{{ e.company.name }}
-							</span>
+							<span *ngIf="e.company">{{ e.company.name }}</span>
 						</td>
 					</ng-container>
 					<td *ngIf="buttons" style="text-align:center">

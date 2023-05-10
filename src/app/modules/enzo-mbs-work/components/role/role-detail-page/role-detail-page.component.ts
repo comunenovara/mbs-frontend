@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { StalEventerService, StalEvent } from "@stal/eventer";
+import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 //import { TabManagerService } from '@stal/carder';
 
-import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
+import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
 import { MbsRoleDto, MbsRoleResourceService} from '@mbs-work';
 import { EnzoRoleDialogComponent } from '../role-dialog/role-dialog.component';
@@ -22,15 +22,16 @@ import { EnzoAssignementDialogComponent } from "../../assignement/assignement-di
 export class EnzoRoleDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
 		eacs: EngeAppCommonService,
+		route: ActivatedRoute,
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsRoleResourceService,
-	) { super(eacs); }
+	) { super(eacs, route); }
 
 	roleDto: MbsRoleDto;
 
 	override onLoad() {
-		this.roleDto = this.eacs.route.snapshot.data['role'];
+		this.roleDto = this.route.snapshot.data['role'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {
