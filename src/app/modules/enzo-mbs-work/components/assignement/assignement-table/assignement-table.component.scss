@@ -1,5 +1,6 @@
+
+
 #assignements {
-    
     border-spacing: 0px;
 
     .top {
@@ -7,6 +8,10 @@
     }
     .first {
         border-left: 1px solid;
+    }
+
+    .bold {
+        font-weight: bold;
     }
 
     td, th {
@@ -17,4 +22,6 @@
         padding: 8px;
     }
 
+    
 }
+

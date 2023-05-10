@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
 import { DialogService } from 'primeng/dynamicdialog';
@@ -22,16 +22,17 @@ import { EnzoAssignementDialogComponent } from "../../assignement/assignement-di
 export class EnzoProjectDetailPageComponent extends EngeAppGenericDetailPageComponent {
 	constructor(
 		eacs: EngeAppCommonService,
+		route: ActivatedRoute,
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsProjectResourceService,
 		private assignementResourceService: MbsAssignementResourceService,
-	) { super(eacs); }
+	) { super(eacs, route); }
 
 	projectDto: MbsProjectDto;
 
 	override onLoad() {
-		this.projectDto = this.eacs.route.snapshot.data['project'];
+		this.projectDto = this.route.snapshot.data['project'];
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {

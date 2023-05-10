@@ -14,7 +14,6 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
 
-import { AppConfigModule } from './config/config.module';
 import { AppMenuitemComponent } from './components/menu/app.menuitem.component';
 import { AppLayoutComponent } from "./components/main/app.layout.component";
 import { AppMenuComponent } from './components/menu/app.menu.component';
@@ -46,7 +45,6 @@ import { StalCarderModule } from '@stal/carder'
         InputSwitchModule,
         RippleModule,
         RouterModule,
-        AppConfigModule,
         
         StalCarderModule,
         

@@ -61,7 +61,7 @@ export const enzoMbsWorkRoutes: Route[] = [
 				component: EnzoProjectListPageComponent,
 			},
 			{
-				path: 'detail/:id', 
+				path: 'detail/:id',
 				component: EnzoProjectDetailPageComponent,
 				resolve: {
 					project: MbsProjectResolver,

@@ -1,11 +1,11 @@
 <table id="assignements">
     <tr>
         <th class="first top"></th>
-        <th class="first"></th>
+        <th class="top"></th>
         <th class="top" *ngFor="let workCategory of workCategoryDtos">{{ workCategory.name }}</th>
     </tr>
     <tr *ngFor="let role of roleDtos">
-        <td class="first">{{ role.name }}</td>
+        <td class="first bold">{{ role.name }}</td>
         <td>
             <ng-container *ngIf="!role.haveWorkCategory">
                 <ng-container *ngIf="role.id !== undefined && assignements[role.id] !== undefined">
@@ -19,7 +19,7 @@
             </ng-container>
         </td>
         <ng-container *ngIf="role.haveWorkCategory">
-            <td *ngFor="let workCategory of workCategoryDtos">
+            <td *ngFor="let workCategory of workCategoryDtos" class="top">
                 <ng-container *ngIf="role.id !== undefined && workCategory.id !== undefined && assignements[role.id] !== undefined && assignements[role.id][workCategory.id] !== undefined">
                     <p-chip *ngIf="assignements[role.id][workCategory.id].employee !== null" label="{{ assignements[role.id][workCategory.id].employee.name }}"></p-chip>
                     <p-chip *ngIf="assignements[role.id][workCategory.id].company !== null" label="{{ assignements[role.id][workCategory.id].company.name }}"></p-chip>

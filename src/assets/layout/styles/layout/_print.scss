@@ -1,0 +1,38 @@
+@media print {
+    body {
+        background-color: white;
+    }
+    
+    .no-print, .no-print * {
+        display: none !important;
+    }
+
+    .layout-main-container {
+        margin-top: 0px !important;
+        padding-top: 0px !important;
+        margin-left: 0px !important;
+        padding-left: 0px !important;
+        
+        color: black !important;
+    }
+    
+}
+
+@media print {
+    button {
+        display: none !important;
+    }
+
+    h1 {
+        color: black !important;
+    }
+
+    .p-chip {
+        background-color: white;
+    }
+
+    .p-chip-text {
+        color: black !important;
+        font-size: 16px;
+    }    
+}

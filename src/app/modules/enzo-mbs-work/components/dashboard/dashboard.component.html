@@ -1,4 +1,6 @@
-<div *ngFor="let projectDto of projectDtos">
-    <h1>{{ projectDto.name }}</h1>
-    <assignement-table [projectDto]="projectDto"></assignement-table>
+<div id="content">
+    <div *ngFor="let projectDto of projectDtos" class="element">
+        <h1>{{ projectDto.id }} - {{ projectDto.name }}</h1>
+        <assignement-table [projectDto]="projectDto"></assignement-table>
+    </div>
 </div>
