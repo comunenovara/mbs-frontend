@@ -13,7 +13,7 @@
 			<h3>Nomine</h3>
 			<mbs-assignement-list-loader 
 				[filters]="{employeeIdEquals: employeeDto.id}" 
-				[dcs]="['id', 'project.name', 'role.name']" 
+				[dcs]="['id', 'project.name', 'role.name', 'workCategory.name']" 
 				[paginator]="assignementListPaginator"
 				[buttons]="assignementTableButtons"
 				(resultCount)="assignementCount=$event"></mbs-assignement-list-loader>

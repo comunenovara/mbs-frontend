@@ -19,6 +19,7 @@ import { MbsAssignementResolver } from '@mbs-work/resolvers/assignement.resolver
 import { EnzoAssignementListPageComponent } from './components/assignement/assignement-list-page/assignement-list-page.component';
 import { EnzoAssignementDetailPageComponent } from './components/assignement/assignement-detail-page/assignement-detail-page.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { Report2Component } from './components/report-2/report-2.component';
 
 export const enzoMbsWorkRoutes: Route[] = [
 	{
@@ -29,6 +30,10 @@ export const enzoMbsWorkRoutes: Route[] = [
 	{
 		path: 'dashboard',
 		component: DashboardComponent,
+	},
+	{
+		path: 'report2',
+		component: Report2Component,
 	},
 	{
 		path: 'project',

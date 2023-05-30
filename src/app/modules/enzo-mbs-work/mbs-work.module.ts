@@ -28,6 +28,7 @@ import { EnzoAssignementDetailPageComponent } from './components/assignement/ass
 import { EnzoAssignementDialogComponent } from './components/assignement/assignement-dialog/assignement-dialog.component';
 import { AssignementTableComponent } from './components/assignement/assignement-table/assignement-table.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { Report2Component } from './components/report-2/report-2.component';
 
 @NgModule({
 	imports: [ 
@@ -65,6 +66,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 		
 
 		DashboardComponent,
+		Report2Component,
 		
 	],
 	providers: [

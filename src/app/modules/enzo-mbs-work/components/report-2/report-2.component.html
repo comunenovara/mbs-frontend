@@ -1,0 +1,11 @@
+<div *ngFor="let employeeDto of employeeDtos" class="element">
+    <hr>
+    <h1>{{ employeeDto.name }}</h1>
+    <mbs-assignement-list-loader 
+        [filters]="{employeeIdEquals: employeeDto.id}" 
+        [dcs]="['id', 'project.name', 'role.name', 'workCategory.name']" 
+        ></mbs-assignement-list-loader>
+</div>
+
+
+			
