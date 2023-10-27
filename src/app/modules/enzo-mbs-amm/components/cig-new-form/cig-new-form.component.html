@@ -1,0 +1,55 @@
+<div id="mbs-new-cig-form" *ngIf="stepIs(formStep.FORM)">
+	<form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
+		<div class="grid p-fluid" style="margin-top: 0px;">
+
+			<div class="col-12 md:col-6 lg:col-2">
+				<span>{{ 'Anno' }}</span><span class="filed-required">*</span>
+				<input type="number" pInputText formControlName="year" placeholder="Anno">
+				<div *ngIf="!isValid(_newUpdateForm.controls['year'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['year'], 'required')">L'anno è richiesto.</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-2">
+				<span>{{ 'CIG' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="cig" placeholder="CIG">
+				<div *ngIf="!isValid(_newUpdateForm.controls['cig'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['cig'], 'required')">Il CIG è richiesto.</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-8">
+				<span>{{ 'Oggetto' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="description" placeholder="Oggetto">
+				<div *ngIf="!isValid(_newUpdateForm.controls['description'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">L'oggetto è richiesto.</span>
+				</div>
+			</div>
+
+			<div class="col-12 md:col-6 lg:col-3">
+				<br>
+				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'Crea' }}</button>
+				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'Aggiorna' }}</button>
+			</div>
+
+		</div>
+	</form>
+</div>
+
+<div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
+	loading
+</div>
+
+<div *ngIf="stepIs(formStep.COMPLETE)">
+	<h1 *ngIf="!_isUpdate">Cartella del {{ 'CIG' }} {{ 'creata' }}</h1>
+	<h1 *ngIf="_isUpdate">Cartella del {{ 'CIG' }} {{ 'aggiornata' }}</h1>
+
+	<hr>
+
+	<h4>La cartella è disponibile al percorso R:\Gestione CIG\{{ _result.year }}\X_{{ _result.cig }}_ {{ _result.description }}</h4>
+
+	<div *ngIf="!_isUpdate">
+		<button pButton color="primary" (click)="newCig()">
+			<span *ngIf="!returnToParent">{{ 'Crea nuovo' }}</span>
+			<span *ngIf="returnToParent">{{ 'Modifica' }}</span>
+		</button>
+	</div>
+</div>

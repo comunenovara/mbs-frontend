@@ -25,7 +25,7 @@ export const enzoMbsWorkRoutes: Route[] = [
 	{
 		path: '', 
 		pathMatch : 'full',
-		redirectTo: 'dashboard'
+		redirectTo: 'project'
 	},
 	{
 		path: 'dashboard',
