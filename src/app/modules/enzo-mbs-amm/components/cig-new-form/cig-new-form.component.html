@@ -44,7 +44,7 @@
 
 	<hr>
 
-	<h4>La cartella è disponibile al percorso R:\Gestione CIG\{{ _result.year }}\X_{{ _result.cig }}_ {{ _result.description }}</h4>
+	<h4>La cartella è disponibile al percorso R:\Gestione CIG\{{ _result.year }}\{{ _result.yearIndex }}_{{ _result.cig }}_ {{ _result.description }}</h4>
 
 	<div *ngIf="!_isUpdate">
 		<button pButton color="primary" (click)="newCig()">

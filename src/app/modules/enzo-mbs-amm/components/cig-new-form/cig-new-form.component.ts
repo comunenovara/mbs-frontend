@@ -3,8 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
 
 import { EngeCommonService, EngeEngeFormStep, EngeLibGenericForm, EngeValidator } from '@enge/common-lib';
-
-import { MbsEmployeeDto } from '@mbs-work/class/employee-dto.class';
+import { CreateCigService } from '../../create-cig.service';
 
 @Component({
 	selector: 'mbs-cig-new-form',
@@ -14,6 +13,7 @@ export class MbsCigNewFormComponent extends EngeLibGenericForm {
 	constructor(
 		ecs: EngeCommonService,
 		private _formBuilder: FormBuilder,
+		private createCigService: CreateCigService,
 	) { super(ecs); }
 
 	override loadForm(): void {
@@ -33,7 +33,6 @@ export class MbsCigNewFormComponent extends EngeLibGenericForm {
 	}
 
 	override async sendToBackEnd(request: any) {
-		console.log(request);
 		try {
 			let postOrPut: string;
 			if (request.id != null && request.id > 0) {
@@ -41,10 +40,9 @@ export class MbsCigNewFormComponent extends EngeLibGenericForm {
 				postOrPut = "updated";
 			} else {
 				request.id = undefined;
-				//await lastValueFrom(this.employeeResourceService.createEmployeeUsingPOST(request));
+				this._result = await lastValueFrom(this.createCigService.createCigUsingGET(request.year, request.cig, request.description));
 				postOrPut = "created";
 			}
-			this._result = request;
 			this.setStep(EngeEngeFormStep.COMPLETE);
 		} catch (e: any) {
 			this.ecs.eventer.launchMessage({

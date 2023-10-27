@@ -5,6 +5,7 @@ import { EngeCommonLibModule } from '@enge/common-lib';
 
 import { enzoMbsAmmRoutes } from './mbs-amm.route';
 import { MbsCigNewFormComponent } from './components/cig-new-form/cig-new-form.component';
+import { CreateCigService } from './create-cig.service';
 
 @NgModule({
 	imports: [ 
@@ -16,9 +17,10 @@ import { MbsCigNewFormComponent } from './components/cig-new-form/cig-new-form.c
 	],
 	declarations: [
 		MbsCigNewFormComponent,
-
+		
 	],
 	providers: [
+		CreateCigService,
 		
 	]
 })
