@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 @Injectable({providedIn: 'root'})
 export class CreateCigService {
 	
-	protected basePath = 'http://localhost:3002';
-	//protected basePath = 'http://10.1.20.20:84';
+	//protected basePath = 'http://localhost:3002';
+	protected basePath = 'http://10.1.20.20:84';
 
 	constructor(private http: HttpClient) { }
 
