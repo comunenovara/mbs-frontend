@@ -1,0 +1,51 @@
+<div id="mbs-calculation-factor-new-update-form" *ngIf="stepIs(formStep.FORM)">
+	<form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
+		<div class="grid p-fluid" style="margin-top: 0px;">
+
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="method != null">
+				<span>{{ 'method' }}</span>
+				<input type="text" pInputText formControlName="method" [stalAutocomplete]="methodAutocomplete">
+				<stal-autocomplete #methodAutocomplete [filteredElements]="_filteredMethod" [displayFn]="mbsIncentiveAutocompleteService.displayCalculationMethod"></stal-autocomplete>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'min' }}</span>
+				<input type="number" pInputText formControlName="min" placeholder="Min">
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'maax' }}</span>
+				<input type="number" pInputText formControlName="maax" placeholder="Maax">
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'value' }}</span>
+				<input type="number" pInputText formControlName="value" placeholder="Value">
+			</div>
+
+			<div class="col-12 md:col-6 lg:col-3">
+				<br>
+				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'Crea' }}</button>
+				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'Aggiorna' }}</button>
+			</div>
+
+		</div>
+	</form>
+</div>
+
+<div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
+	loading
+</div>
+
+<div *ngIf="stepIs(formStep.COMPLETE)">
+	<h1 *ngIf="!_isUpdate">{{ 'calculation-factor' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'calculation-factor' }} {{ 'aggiornato' }}</h1>
+
+	<hr>
+
+	<mbs-calculation-factor-detail-box [calculationFactor]="_result"></mbs-calculation-factor-detail-box>
+
+	<div *ngIf="!_isUpdate">
+		<button pButton color="primary" (click)="newCalculationFactor()">
+			<span *ngIf="!returnToParent">{{ 'Crea nuovo' }}</span>
+			<span *ngIf="returnToParent">{{ 'Modifica' }}</span>
+		</button>
+	</div>
+</div>

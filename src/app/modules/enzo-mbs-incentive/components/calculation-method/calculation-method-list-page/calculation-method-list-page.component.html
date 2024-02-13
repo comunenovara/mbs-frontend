@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-calculation-method-list-loader 
+		[dcs]="calculationMethodListDc" [buttons]="tableButtons" 
+		[paginator]="calculationMethodListPaginator" (resultCount)="calculationMethodCount=$event"> 
+	</mbs-calculation-method-list-loader>
+
+	<stal-paginator [totalRecords]="calculationMethodCount" [(pageable)]="calculationMethodListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewCalculationMethod()"></button>
+
+</div>

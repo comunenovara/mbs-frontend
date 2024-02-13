@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-stage-list-loader 
+		[dcs]="stageListDc" [buttons]="tableButtons" 
+		[paginator]="stageListPaginator" (resultCount)="stageCount=$event"> 
+	</mbs-stage-list-loader>
+
+	<stal-paginator [totalRecords]="stageCount" [(pageable)]="stageListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewStage()"></button>
+
+</div>

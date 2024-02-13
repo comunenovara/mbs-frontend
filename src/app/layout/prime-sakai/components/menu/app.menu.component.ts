@@ -27,6 +27,19 @@ export class AppMenuComponent implements OnInit {
                 label: 'Gestione amministrativa',
                 items: [
                     { label: 'Cig', icon: 'pi pi-fw pi-building', routerLink: ['/amm/cig'] },
+					
+                ]
+            },
+			{
+                label: 'Incentivi',
+                items: [
+					{ label: 'Regolamento incentivi', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/incentive-regulation'] },
+                    { label: 'Metodo di calcolo', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/calculation-method'] },
+					{ label: 'Fattore di calcolo', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/calculation-factor'] },
+					{ label: 'Trattenute', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/withheld'] },
+					{ label: 'Fase', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/stage'] },
+					{ label: 'Ruolo', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/role'] },
+					{ label: 'Valori', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/role-value'] },
                 ]
             },
 			{
@@ -45,6 +58,7 @@ export class AppMenuComponent implements OnInit {
 					{ label: 'Tipi di intervento', icon: 'pi pi-fw pi-building', routerLink: ['/main/operation-type'] },
 					{ label: 'Tipi di fascicoli', icon: 'pi pi-fw pi-compass', routerLink: ['/main/dossier-type'] },
 					{ label: 'Tutti i fascicoli', icon: 'pi pi-fw pi-chart-line', routerLink: ['/main/dossier'] },
+					{ label: 'Tipo appalti', icon: 'pi pi-fw pi-chart-line', routerLink: ['/i7e/procurement-type'] },
                 ]
             },
         ];

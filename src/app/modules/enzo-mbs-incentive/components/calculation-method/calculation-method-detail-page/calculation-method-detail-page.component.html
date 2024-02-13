@@ -1,0 +1,50 @@
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-6">
+        <div class="card mb-0">
+			<mbs-calculation-method-detail-box [calculationMethod]="calculationMethodDto"></mbs-calculation-method-detail-box>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editCalculationMethod(calculationMethodDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteCalculationMethod(calculationMethodDto)"></button>
+		</div>
+	</div>
+
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="calculationMethodDto.regulation !== null">
+        <div class="card mb-0">
+			<h3>incentive-regulation</h3>
+			<mbs-incentive-regulation-detail-box [incentiveRegulation]="calculationMethodDto.regulation" ></mbs-incentive-regulation-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../incentive-regulation/detail', calculationMethodDto.regulation.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../incentive-regulation/detail', calculationMethodDto.regulation.id]"></button>
+			-->
+		</div>
+	</div>
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="calculationMethodDto.procurementType !== null">
+        <div class="card mb-0">
+			<h3>procurement-type</h3>
+			<mbs-procurement-type-detail-box [procurementType]="calculationMethodDto.procurementType" ></mbs-procurement-type-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../procurement-type/detail', calculationMethodDto.procurementType.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../procurement-type/detail', calculationMethodDto.procurementType.id]"></button>
+			-->
+		</div>
+	</div>
+
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>calculation-factor</h3>
+			<mbs-calculation-factor-list-loader 
+				[filters]="{methodIdEquals: calculationMethodDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="calculationFactorListPaginator"
+				[buttons]="calculationFactorTableButtons"
+				(resultCount)="calculationFactorCount=$event"></mbs-calculation-factor-list-loader>
+			<stal-paginator [totalRecords]="calculationFactorCount" [(pageable)]="calculationFactorListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewCalculationFactor(calculationMethodDto)"></button>
+		</div>
+	</div>
+</div>
