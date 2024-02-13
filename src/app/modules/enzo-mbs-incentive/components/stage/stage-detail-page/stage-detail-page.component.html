@@ -1,0 +1,37 @@
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-6">
+        <div class="card mb-0">
+			<mbs-stage-detail-box [stage]="stageDto"></mbs-stage-detail-box>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editStage(stageDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteStage(stageDto)"></button>
+		</div>
+	</div>
+
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="stageDto.regulation !== null">
+        <div class="card mb-0">
+			<h3>incentive-regulation</h3>
+			<mbs-incentive-regulation-detail-box [incentiveRegulation]="stageDto.regulation" ></mbs-incentive-regulation-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../incentive-regulation/detail', stageDto.regulation.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../incentive-regulation/detail', stageDto.regulation.id]"></button>
+			-->
+		</div>
+	</div>
+
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>role-value</h3>
+			<mbs-role-value-list-loader 
+				[filters]="{stageIdEquals: stageDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="roleValueListPaginator"
+				[buttons]="roleValueTableButtons"
+				(resultCount)="roleValueCount=$event"></mbs-role-value-list-loader>
+			<stal-paginator [totalRecords]="roleValueCount" [(pageable)]="roleValueListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewRoleValue(stageDto)"></button>
+		</div>
+	</div>
+</div>

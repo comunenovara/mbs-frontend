@@ -1,0 +1,62 @@
+<div *ngIf="loading">LOADING</div>
+<ng-container [ngSwitch]="view">
+	<div *ngSwitchCase="'NONE'"></div>
+	<div *ngSwitchCase="'CARD'">
+		<div *ngFor="let e of ds">
+			<pre>{{ e | json }}</pre>
+		</div>
+	</div>
+	<div *ngSwitchDefault>
+		<p-table styleClass="p-datatable-sm" [value]="ds" [lazy]="true" (onLazyLoad)="lazyLoad($event)"
+			[resizableColumns]="true" [selection]="selectedElements" (selectionChange)="selection($event)">
+			<ng-template pTemplate="header">
+				<tr>
+					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
+						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
+						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
+						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description"> description </th>
+						<th *ngSwitchCase="'regulation.description'" style="width:auto" pResizableColumn commentpSortableColumn="incentiveRegulation.description" > description</th>
+					</ng-container>
+					<th *ngIf="buttons" style="width:150px"></th>
+				</tr>
+			</ng-template>
+			<ng-template pTemplate="body" let-e>
+				<tr>
+					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
+						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
+						<td *ngSwitchCase="'id'">{{ e.id }}</td>
+						<td *ngSwitchCase="'description'">{{ e.description }}</td>
+						<td *ngSwitchCase="'regulation.description'">
+							<span *ngIf="e.regulation">{{ e.regulation.description }}</span>
+						</td>
+					</ng-container>
+					<td *ngIf="buttons" style="text-align:center">
+						<ng-container *ngFor="let b of buttons">
+							<button *ngIf="b.link === undefined"
+								(click)="b.command(e)"
+								pButton type="button"
+								class="{{ b.class }} p-button-{{ b.severity }}" [ngClass]="{'ui-button-icon-only': b.hideLabel}" 
+								label="{{ b.label }}" icon="{{ b.icon }}">
+							</button>
+							<a *ngIf="b.link !== undefined"
+								(click)="checkClick(b.command, e)" [routerLink]="[b.link, e.id]">
+								<button pButton type="button"
+									class="{{ b.class }} p-button-{{ b.severity }}" [ngClass]="{'ui-button-icon-only': b.hideLabel}" 
+									label="{{ b.label }}" icon="{{ b.icon }}">
+								</button>
+							</a>
+							<ng-container *ngIf="b.childs">
+								<button pButton type="button"
+									class="{{ b.class }} ml-0.5 p-button-{{ b.severity }}"
+									pRipple icon="pi pi-chevron-down" (click)="menu.toggle($event)">
+								</button>
+								<p-menu #menu [popup]="true" [model]="decoreButtons(b.childs, e)" appendTo="body"></p-menu>
+							</ng-container>
+						</ng-container>
+					</td>
+				</tr>
+			</ng-template>
+		</p-table>
+	</div>
+</ng-container> 
+ 

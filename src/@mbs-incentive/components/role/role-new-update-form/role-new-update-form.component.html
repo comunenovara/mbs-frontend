@@ -1,0 +1,46 @@
+<div id="mbs-role-new-update-form" *ngIf="stepIs(formStep.FORM)">
+	<form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
+		<div class="grid p-fluid" style="margin-top: 0px;">
+
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="regulation != null">
+				<span>{{ 'regulation' }}</span>
+				<input type="text" pInputText formControlName="regulation" [stalAutocomplete]="regulationAutocomplete">
+				<stal-autocomplete #regulationAutocomplete [filteredElements]="_filteredRegulation" [displayFn]="mbsIncentiveAutocompleteService.displayIncentiveRegulation"></stal-autocomplete>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'description' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="description" placeholder="Description">
+				<div *ngIf="!isValid(_newUpdateForm.controls['description'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La description è richiesta.</span>
+				</div>
+			</div>
+
+			<div class="col-12 md:col-6 lg:col-3">
+				<br>
+				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'Crea' }}</button>
+				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'Aggiorna' }}</button>
+			</div>
+
+		</div>
+	</form>
+</div>
+
+<div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
+	loading
+</div>
+
+<div *ngIf="stepIs(formStep.COMPLETE)">
+	<h1 *ngIf="!_isUpdate">{{ 'role' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'role' }} {{ 'aggiornato' }}</h1>
+
+	<hr>
+
+	<mbs-role-detail-box [role]="_result"></mbs-role-detail-box>
+
+	<div *ngIf="!_isUpdate">
+		<button pButton color="primary" (click)="newRole()">
+			<span *ngIf="!returnToParent">{{ 'Crea nuovo' }}</span>
+			<span *ngIf="returnToParent">{{ 'Modifica' }}</span>
+		</button>
+	</div>
+</div>

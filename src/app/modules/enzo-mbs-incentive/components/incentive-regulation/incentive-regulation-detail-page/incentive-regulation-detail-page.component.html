@@ -1,0 +1,63 @@
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-6">
+        <div class="card mb-0">
+			<mbs-incentive-regulation-detail-box [incentiveRegulation]="incentiveRegulationDto"></mbs-incentive-regulation-detail-box>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editIncentiveRegulation(incentiveRegulationDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteIncentiveRegulation(incentiveRegulationDto)"></button>
+		</div>
+	</div>
+
+
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>calculation-method</h3>
+			<mbs-calculation-method-list-loader 
+				[filters]="{regulationIdEquals: incentiveRegulationDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="calculationMethodListPaginator"
+				[buttons]="calculationMethodTableButtons"
+				(resultCount)="calculationMethodCount=$event"></mbs-calculation-method-list-loader>
+			<stal-paginator [totalRecords]="calculationMethodCount" [(pageable)]="calculationMethodListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewCalculationMethod(incentiveRegulationDto)"></button>
+		</div>
+	</div>
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>withheld</h3>
+			<mbs-withheld-list-loader 
+				[filters]="{regulationIdEquals: incentiveRegulationDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="withheldListPaginator"
+				[buttons]="withheldTableButtons"
+				(resultCount)="withheldCount=$event"></mbs-withheld-list-loader>
+			<stal-paginator [totalRecords]="withheldCount" [(pageable)]="withheldListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewWithheld(incentiveRegulationDto)"></button>
+		</div>
+	</div>
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>stage</h3>
+			<mbs-stage-list-loader 
+				[filters]="{regulationIdEquals: incentiveRegulationDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="stageListPaginator"
+				[buttons]="stageTableButtons"
+				(resultCount)="stageCount=$event"></mbs-stage-list-loader>
+			<stal-paginator [totalRecords]="stageCount" [(pageable)]="stageListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewStage(incentiveRegulationDto)"></button>
+		</div>
+	</div>
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>role</h3>
+			<mbs-role-list-loader 
+				[filters]="{regulationIdEquals: incentiveRegulationDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="roleListPaginator"
+				[buttons]="roleTableButtons"
+				(resultCount)="roleCount=$event"></mbs-role-list-loader>
+			<stal-paginator [totalRecords]="roleCount" [(pageable)]="roleListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewRole(incentiveRegulationDto)"></button>
+		</div>
+	</div>
+</div>

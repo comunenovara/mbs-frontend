@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-withheld-list-loader 
+		[dcs]="withheldListDc" [buttons]="tableButtons" 
+		[paginator]="withheldListPaginator" (resultCount)="withheldCount=$event"> 
+	</mbs-withheld-list-loader>
+
+	<stal-paginator [totalRecords]="withheldCount" [(pageable)]="withheldListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewWithheld()"></button>
+
+</div>
