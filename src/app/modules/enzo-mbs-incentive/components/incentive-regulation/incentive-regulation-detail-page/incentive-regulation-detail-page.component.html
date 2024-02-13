@@ -13,7 +13,7 @@
 			<h3>calculation-method</h3>
 			<mbs-calculation-method-list-loader 
 				[filters]="{regulationIdEquals: incentiveRegulationDto.id}" 
-				[dcs]="['id', 'description']" 
+				[dcs]="['id', 'procurementType.description', 'code']" 
 				[paginator]="calculationMethodListPaginator"
 				[buttons]="calculationMethodTableButtons"
 				(resultCount)="calculationMethodCount=$event"></mbs-calculation-method-list-loader>
@@ -26,7 +26,7 @@
 			<h3>withheld</h3>
 			<mbs-withheld-list-loader 
 				[filters]="{regulationIdEquals: incentiveRegulationDto.id}" 
-				[dcs]="['id', 'description']" 
+				[dcs]="['id', 'description', 'amount', 'percentage']" 
 				[paginator]="withheldListPaginator"
 				[buttons]="withheldTableButtons"
 				(resultCount)="withheldCount=$event"></mbs-withheld-list-loader>

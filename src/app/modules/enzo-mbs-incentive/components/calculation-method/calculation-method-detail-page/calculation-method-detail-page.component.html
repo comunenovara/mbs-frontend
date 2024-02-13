@@ -39,7 +39,7 @@
 			<h3>calculation-factor</h3>
 			<mbs-calculation-factor-list-loader 
 				[filters]="{methodIdEquals: calculationMethodDto.id}" 
-				[dcs]="['id', 'description']" 
+				[dcs]="['min', 'maax', 'value']" 
 				[paginator]="calculationFactorListPaginator"
 				[buttons]="calculationFactorTableButtons"
 				(resultCount)="calculationFactorCount=$event"></mbs-calculation-factor-list-loader>
