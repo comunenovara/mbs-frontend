@@ -75,7 +75,7 @@ import { EnzoRoleValueDialogComponent } from './components/role-value/role-value
 	providers: [
 		{
 			provide: MBS_INCENTIVE_ENDPOINT,
-			useValue: 'http://localhost:3000/mbs/incentive'
+			useValue: 'http://localhost:3001/mbs/incentive'
 		}
 	]
 })

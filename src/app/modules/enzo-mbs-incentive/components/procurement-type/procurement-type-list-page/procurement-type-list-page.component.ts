@@ -38,7 +38,7 @@ export class EnzoProcurementTypeListPageComponent {
 	};
 	procurementTypeCount: number;
 
-	procurementTypeListDc = ['_ck', 'id'];
+	procurementTypeListDc = ['_ck', 'id', 'description'];
 	paginatorEvent(paginator: any) {
 		let procurementTypeListPaginator = { ...paginator }
 		this.procurementTypeListPaginator = procurementTypeListPaginator;
