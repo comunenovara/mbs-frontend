@@ -47,7 +47,7 @@ export class AssignementTableComponent extends EngeAppGenericPageComponent {
 		this.workCategoryDtos = await lastValueFrom(this.workCategoryResourceService.getAllWorkCategoriesUsingGET({}));
 		this.roleDtos = await lastValueFrom(this.roleResourceService.getAllRolesUsingGET({}));
 		
-		let  assignementDtos = await lastValueFrom(this.assignementResourceService.getAllAssignementsUsingGET({
+		let assignementDtos = await lastValueFrom(this.assignementResourceService.getAllAssignementsUsingGET({
 			projectIdEquals: this.projectDto.id
 		}));
 

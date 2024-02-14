@@ -10,7 +10,7 @@ import { StalPaginator } from '@stal/paginator';
 
 import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
-import { MbsIncentiveRegulationDto, MbsIncentiveRegulationResourceService} from '@mbs-incentive';
+import { MbsIncentiveRegulationDto, MbsIncentiveRegulationResourceService, MbsRoleResourceService, MbsStageResourceService } from '@mbs-incentive';
 import { EnzoIncentiveRegulationDialogComponent } from '../incentive-regulation-dialog/incentive-regulation-dialog.component';
 import { EnzoCalculationMethodDialogComponent } from "../../calculation-method/calculation-method-dialog/calculation-method-dialog.component";
 import { EnzoWithheldDialogComponent } from "../../withheld/withheld-dialog/withheld-dialog.component";
@@ -29,6 +29,8 @@ export class EnzoIncentiveRegulationDetailPageComponent extends EngeAppGenericDe
 		//public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsIncentiveRegulationResourceService,
+		private stageResourceService: MbsStageResourceService,
+		private roleResourceService: MbsRoleResourceService,
 	) { super(eacs, route); }
 
 	incentiveRegulationDto: MbsIncentiveRegulationDto;
@@ -38,7 +40,8 @@ export class EnzoIncentiveRegulationDetailPageComponent extends EngeAppGenericDe
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {
-		if(event.data === "incentiveRegulation") this.reloadPage();
+		if (event.data === "incentiveRegulation") this.reloadPage();
+		if (event.data === "stage") this.reloadPage();
 	}
 
 	override async reloadPage() {
@@ -54,7 +57,7 @@ export class EnzoIncentiveRegulationDetailPageComponent extends EngeAppGenericDe
 	}
 
 	async deleteIncentiveRegulation(incentiveRegulation: MbsIncentiveRegulationDto) {
-		if(incentiveRegulation.id === undefined) return;
+		if (incentiveRegulation.id === undefined) return;
 		await lastValueFrom(this.resourceService.deleteIncentiveRegulationUsingDELETE(incentiveRegulation.id));
 	}
 
@@ -124,13 +127,32 @@ export class EnzoIncentiveRegulationDetailPageComponent extends EngeAppGenericDe
 
 	protected stageTableButtons: any[] = [
 		{
-			label: "Dettagli",
+			label: "Modifica",
 			hideLabel: true,
-			icon: "pi pi-search",
+			icon: "pi pi-pencil",
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
-			link: "../../../stage/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			command: (e: any) => {
+				const ref = this.dialogService.open(EnzoStageDialogComponent, {
+					data: { regulation: e.regulation, stage: { ...e } },
+					header: 'Modifica fase',
+					width: '70%'
+				});
+			},
+			childs: [
+				{
+					label: "Cancella",
+					hideLabel: true,
+					icon: "pi pi-trash",
+					severity: "secondary",
+					class: "p-button-sm p-button-outlined",
+					command: async (e: any) => {
+						await lastValueFrom(this.stageResourceService.deleteStageUsingDELETE(e.item.data.id));
+						this.eacs.eventer.launchReloadContent("stage");
+					}
+				}
+			]
+
 		}
 	];
 	protected stageListPaginator: StalPaginator = {
@@ -151,13 +173,31 @@ export class EnzoIncentiveRegulationDetailPageComponent extends EngeAppGenericDe
 
 	protected roleTableButtons: any[] = [
 		{
-			label: "Dettagli",
+			label: "Modifica",
 			hideLabel: true,
-			icon: "pi pi-search",
+			icon: "pi pi-pencil",
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
-			link: "../../../role/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			command: (e: any) => {
+				const ref = this.dialogService.open(EnzoRoleDialogComponent, {
+					data: { regulation: e.regulation, role: { ...e } },
+					header: 'Modifica ruolo',
+					width: '70%'
+				});
+			},
+			childs: [
+				{
+					label: "Cancella",
+					hideLabel: true,
+					icon: "pi pi-trash",
+					severity: "secondary",
+					class: "p-button-sm p-button-outlined",
+					command: async (e: any) => {
+						await lastValueFrom(this.roleResourceService.deleteRoleUsingDELETE(e.item.data.id));
+						this.eacs.eventer.launchReloadContent("role");
+					}
+				}
+			]
 		}
 	];
 	protected roleListPaginator: StalPaginator = {

@@ -1,0 +1,25 @@
+<table id="role-stage-value">
+	<tr>
+		<th class="first top"></th>
+		<th *ngFor="let stage of stages" class="top">{{ stage.description }}</th>
+	</tr>
+	<tr *ngFor="let role of roles">
+		<td class="first bold">{{ role.description }}</td>
+		<td *ngFor="let stage of stages">
+			<span *ngIf="role.id !== undefined && stage.id !== undefined && valueMatrix !== undefined">
+				<span *ngIf="valueMatrix[role.id] !== undefined && valueMatrix[role.id][stage.id] !== undefined">
+					<p-chip *ngIf="valueMatrix[role.id][stage.id].min == valueMatrix[role.id][stage.id].maax" 
+						label="{{ valueMatrix[role.id][stage.id].min }} %"></p-chip>
+					<p-chip *ngIf="valueMatrix[role.id][stage.id].min != valueMatrix[role.id][stage.id].maax" 
+						label="{{ valueMatrix[role.id][stage.id].min }} % - {{ valueMatrix[role.id][stage.id].maax }} % ({{ valueMatrix[role.id][stage.id].defaul }} %)"></p-chip>
+
+						<button pButton pRipple type="button" icon="pi pi-user-edit" class="p-button-rounded p-button-text" (click)="updateRoleValue(stage, role, valueMatrix[role.id][stage.id])"></button>
+						<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text" (click)="deleteRoleValue(valueMatrix[role.id][stage.id])"></button>
+				</span>
+				<span *ngIf="valueMatrix[role.id] === undefined || valueMatrix[role.id][stage.id] === undefined">
+					<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-text" (click)="createNewRoleValue(stage, role)"></button>	
+				</span>
+			</span>
+		</td>
+	</tr>
+</table>

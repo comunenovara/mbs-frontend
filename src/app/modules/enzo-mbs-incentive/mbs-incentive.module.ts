@@ -30,12 +30,16 @@ import { EnzoRoleDialogComponent } from './components/role/role-dialog/role-dial
 import { EnzoRoleValueListPageComponent } from './components/role-value/role-value-list-page/role-value-list-page.component';
 import { EnzoRoleValueDetailPageComponent } from './components/role-value/role-value-detail-page/role-value-detail-page.component';
 import { EnzoRoleValueDialogComponent } from './components/role-value/role-value-dialog/role-value-dialog.component';
+import { MbsIncentireRegulationComponent } from './components/incentive-regulation/incentive-regulation-table/incentive-regulation-table.component';
+import { ChipModule } from 'primeng/chip';
 
 @NgModule({
 	imports: [ 
 		RouterModule.forChild(enzoMbsIncentiveRoutes),
 		MbsIncentiveLibModule,
 		EngeCommonAppModule,
+
+		ChipModule,
 
 	],
 	declarations: [
@@ -71,6 +75,8 @@ import { EnzoRoleValueDialogComponent } from './components/role-value/role-value
 		EnzoRoleValueDetailPageComponent,
 		EnzoRoleValueDialogComponent,
 		
+		MbsIncentireRegulationComponent
+
 	],
 	providers: [
 		{
