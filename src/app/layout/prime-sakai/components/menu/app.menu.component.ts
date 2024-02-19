@@ -15,31 +15,24 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.model = [
             {
-                label: 'Work',
+                label: 'Main',
                 items: [
                     { label: 'Dashboard', icon: 'pi pi-fw pi-building', routerLink: ['/work/dashboard'] },
-                    { label: 'Progetti', icon: 'pi pi-fw pi-building', routerLink: ['/work/project'] },
-                    { label: 'Tecnici', icon: 'pi pi-fw pi-compass', routerLink: ['/work/employee'] },
-                    { label: 'Aziende', icon: 'pi pi-fw pi-chart-line', routerLink: ['/work/company'] },
+                    { label: 'Cig', icon: 'pi pi-fw pi-building', routerLink: ['/amm/cig'] },
                 ]
             },
 			{
-                label: 'Gestione amministrativa',
+                label: 'Carico lavoro',
                 items: [
-                    { label: 'Cig', icon: 'pi pi-fw pi-building', routerLink: ['/amm/cig'] },
-					
+					{ label: 'Progetti', icon: 'pi pi-fw pi-building', routerLink: ['/work/project'] },
+                    { label: 'Tecnici', icon: 'pi pi-fw pi-compass', routerLink: ['/work/employee'] },
+                    { label: 'Aziende', icon: 'pi pi-fw pi-chart-line', routerLink: ['/work/company'] },
                 ]
             },
 			{
                 label: 'Incentivi',
                 items: [
 					{ label: 'Regolamento incentivi', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/incentive-regulation'] },
-                    { label: 'Metodo di calcolo', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/calculation-method'] },
-					{ label: 'Fattore di calcolo', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/calculation-factor'] },
-					{ label: 'Trattenute', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/withheld'] },
-					{ label: 'Fase', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/stage'] },
-					{ label: 'Ruolo', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/role'] },
-					{ label: 'Valori', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/role-value'] },
                 ]
             },
 			{
@@ -53,8 +46,8 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Config - Work',
                 items: [
-                    { label: 'Ruoli', icon: 'pi pi-fw pi-building', routerLink: ['/work/role'] },
-                    { label: 'Categoria lavori', icon: 'pi pi-fw pi-compass', routerLink: ['/work/work-category'] },
+                    { label: 'Lavori Ruoli', icon: 'pi pi-fw pi-building', routerLink: ['/work/role'] },
+                    { label: 'Lavori Categoria lavori', icon: 'pi pi-fw pi-compass', routerLink: ['/work/work-category'] },
 					{ label: 'Tipi di intervento', icon: 'pi pi-fw pi-building', routerLink: ['/main/operation-type'] },
 					{ label: 'Tipi di fascicoli', icon: 'pi pi-fw pi-compass', routerLink: ['/main/dossier-type'] },
 					{ label: 'Tutti i fascicoli', icon: 'pi pi-fw pi-chart-line', routerLink: ['/main/dossier'] },

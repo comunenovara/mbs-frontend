@@ -81,7 +81,7 @@ import { ChipModule } from 'primeng/chip';
 	providers: [
 		{
 			provide: MBS_INCENTIVE_ENDPOINT,
-			useValue: 'http://localhost:3001/mbs/incentive'
+			useValue: 'http://localhost:3000/mbs/incentive'
 		}
 	]
 })
