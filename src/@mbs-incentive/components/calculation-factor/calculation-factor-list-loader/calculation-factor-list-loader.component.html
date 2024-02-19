@@ -14,10 +14,10 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
-						<th *ngSwitchCase="'min'" style="width:auto" pResizableColumn pSortableColumn="min"> min </th>
-						<th *ngSwitchCase="'maax'" style="width:auto" pResizableColumn pSortableColumn="maax"> maax </th>
-						<th *ngSwitchCase="'value'" style="width:auto" pResizableColumn pSortableColumn="value"> value </th>
-						<th *ngSwitchCase="'method.code'" style="width:auto" pResizableColumn commentpSortableColumn="calculationMethod.code" > code</th>
+						<th *ngSwitchCase="'min'" style="width:auto" pResizableColumn pSortableColumn="min">Min</th>
+						<th *ngSwitchCase="'maax'" style="width:auto" pResizableColumn pSortableColumn="maax">Max</th>
+						<th *ngSwitchCase="'value'" style="width:auto" pResizableColumn pSortableColumn="value">Valore</th>
+						<th *ngSwitchCase="'method.code'" style="width:auto" pResizableColumn commentpSortableColumn="calculationMethod.code" >Codice</th>
 					</ng-container>
 					<th *ngIf="buttons" style="width:150px"></th>
 				</tr>
@@ -27,9 +27,9 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
-						<td *ngSwitchCase="'min'">{{ e.min }}</td>
-						<td *ngSwitchCase="'maax'">{{ e.maax }}</td>
-						<td *ngSwitchCase="'value'">{{ e.value }}</td>
+						<td *ngSwitchCase="'min'">{{ e.min | currency: 'EUR' }}</td>
+						<td *ngSwitchCase="'maax'">{{ e.maax | currency: 'EUR' }}</td>
+						<td *ngSwitchCase="'value'">{{ e.value/100 | percent: '0.2' }}</td>
 						<td *ngSwitchCase="'method.code'">
 							<span *ngIf="e.method">{{ e.method.code }}</span>
 						</td>

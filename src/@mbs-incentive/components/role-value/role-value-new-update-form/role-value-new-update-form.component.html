@@ -3,25 +3,25 @@
 		<div class="grid p-fluid" style="margin-top: 0px;">
 
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="stage != null">
-				<span>{{ 'stage' }}</span>
+				<span>{{ 'Fase' }}</span>
 				<input type="text" pInputText formControlName="stage" [stalAutocomplete]="stageAutocomplete">
 				<stal-autocomplete #stageAutocomplete [filteredElements]="_filteredStage" [displayFn]="mbsIncentiveAutocompleteService.displayStage"></stal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="role != null">
-				<span>{{ 'role' }}</span>
+				<span>{{ 'Ruolo' }}</span>
 				<input type="text" pInputText formControlName="role" [stalAutocomplete]="roleAutocomplete">
 				<stal-autocomplete #roleAutocomplete [filteredElements]="_filteredRole" [displayFn]="mbsIncentiveAutocompleteService.displayRole"></stal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'min' }}</span>
+				<span>{{ 'Min' }}</span>
 				<input type="number" pInputText formControlName="min" placeholder="Min">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'maax' }}</span>
+				<span>{{ 'Max' }}</span>
 				<input type="number" pInputText formControlName="maax" placeholder="Maax">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'defaul' }}</span>
+				<span>{{ 'Predefinito' }}</span>
 				<input type="number" pInputText formControlName="defaul" placeholder="Defaul">
 			</div>
 

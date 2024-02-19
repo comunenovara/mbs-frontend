@@ -3,17 +3,17 @@
 		<div class="grid p-fluid" style="margin-top: 0px;">
 
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="regulation != null">
-				<span>{{ 'regulation' }}</span>
+				<span>{{ 'Regolamento' }}</span>
 				<input type="text" pInputText formControlName="regulation" [stalAutocomplete]="regulationAutocomplete">
 				<stal-autocomplete #regulationAutocomplete [filteredElements]="_filteredRegulation" [displayFn]="mbsIncentiveAutocompleteService.displayIncentiveRegulation"></stal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="procurementType != null">
-				<span>{{ 'procurementType' }}</span>
+				<span>{{ 'Tipo appalto' }}</span>
 				<input type="text" pInputText formControlName="procurementType" [stalAutocomplete]="procurementTypeAutocomplete">
 				<stal-autocomplete #procurementTypeAutocomplete [filteredElements]="_filteredProcurementType" [displayFn]="mbsIncentiveAutocompleteService.displayProcurementType"></stal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'code' }}</span>
+				<span>{{ 'Codice calcolo' }}</span>
 				<input type="text" pInputText formControlName="code" placeholder="Code">
 			</div>
 

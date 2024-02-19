@@ -15,6 +15,8 @@ import { EnzoIncentiveRegulationDialogComponent } from './components/incentive-r
 import { EnzoCalculationMethodListPageComponent } from './components/calculation-method/calculation-method-list-page/calculation-method-list-page.component';
 import { EnzoCalculationMethodDetailPageComponent } from './components/calculation-method/calculation-method-detail-page/calculation-method-detail-page.component';
 import { EnzoCalculationMethodDialogComponent } from './components/calculation-method/calculation-method-dialog/calculation-method-dialog.component';
+import { EnzoCalculationMethodDetailDialogComponent } from './components/calculation-method/calculation-method-detail-dialog/calculation-method-detail-dialog.component';
+import { EnzoCalculationMethodDetail2Component } from './components/calculation-method/calculation-method-detail2/calculation-method-detail2.component';
 import { EnzoCalculationFactorListPageComponent } from './components/calculation-factor/calculation-factor-list-page/calculation-factor-list-page.component';
 import { EnzoCalculationFactorDetailPageComponent } from './components/calculation-factor/calculation-factor-detail-page/calculation-factor-detail-page.component';
 import { EnzoCalculationFactorDialogComponent } from './components/calculation-factor/calculation-factor-dialog/calculation-factor-dialog.component';
@@ -75,7 +77,10 @@ import { ChipModule } from 'primeng/chip';
 		EnzoRoleValueDetailPageComponent,
 		EnzoRoleValueDialogComponent,
 		
-		MbsIncentireRegulationComponent
+		MbsIncentireRegulationComponent,
+		EnzoCalculationMethodDetailDialogComponent,
+		EnzoCalculationMethodDetail2Component,
+
 
 	],
 	providers: [

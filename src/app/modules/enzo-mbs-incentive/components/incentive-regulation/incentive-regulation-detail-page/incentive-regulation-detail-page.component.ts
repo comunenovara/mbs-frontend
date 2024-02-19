@@ -10,12 +10,14 @@ import { StalPaginator } from '@stal/paginator';
 
 import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
-import { MbsIncentiveRegulationDto, MbsIncentiveRegulationResourceService, MbsRoleResourceService, MbsStageResourceService } from '@mbs-incentive';
+import { MbsCalculationMethodResourceService, MbsIncentiveRegulationDto, MbsIncentiveRegulationResourceService, MbsRoleResourceService, MbsStageResourceService, MbsWithheldResourceService } from '@mbs-incentive';
 import { EnzoIncentiveRegulationDialogComponent } from '../incentive-regulation-dialog/incentive-regulation-dialog.component';
 import { EnzoCalculationMethodDialogComponent } from "../../calculation-method/calculation-method-dialog/calculation-method-dialog.component";
 import { EnzoWithheldDialogComponent } from "../../withheld/withheld-dialog/withheld-dialog.component";
 import { EnzoStageDialogComponent } from "../../stage/stage-dialog/stage-dialog.component";
 import { EnzoRoleDialogComponent } from "../../role/role-dialog/role-dialog.component";
+import { EnzoCalculationMethodDetailDialogComponent } from "../../calculation-method/calculation-method-detail-dialog/calculation-method-detail-dialog.component";
+import { EnzoWithheldDetailPageComponent } from "../../withheld/withheld-detail-page/withheld-detail-page.component";
 
 @Component({
 	selector: 'enzo-incentive-regulation-detail-page',
@@ -31,6 +33,8 @@ export class EnzoIncentiveRegulationDetailPageComponent extends EngeAppGenericDe
 		private resourceService: MbsIncentiveRegulationResourceService,
 		private stageResourceService: MbsStageResourceService,
 		private roleResourceService: MbsRoleResourceService,
+		private calculationMethodResourceService: MbsCalculationMethodResourceService,
+		private withheldResourceService: MbsWithheldResourceService,
 	) { super(eacs, route); }
 
 	incentiveRegulationDto: MbsIncentiveRegulationDto;
@@ -40,8 +44,10 @@ export class EnzoIncentiveRegulationDetailPageComponent extends EngeAppGenericDe
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {
+		if (event.data === "calculationMethod") this.reloadPage();
 		if (event.data === "incentiveRegulation") this.reloadPage();
 		if (event.data === "stage") this.reloadPage();
+		if (event.data === "withheld") this.reloadPage();
 	}
 
 	override async reloadPage() {
@@ -71,6 +77,16 @@ export class EnzoIncentiveRegulationDetailPageComponent extends EngeAppGenericDe
 		});
 	}
 
+	editCalculationMethodDetail(incentiveRegulationDto: MbsIncentiveRegulationDto) {
+		this.dialogService.open(EnzoCalculationMethodDialogComponent, {
+			header: 'Modifica fasce di calcolo',
+			width: '70%',
+			data: {
+				regulation: incentiveRegulationDto
+			}
+		});
+	}
+
 	protected calculationMethodTableButtons: any[] = [
 		{
 			label: "Dettagli",
@@ -78,8 +94,38 @@ export class EnzoIncentiveRegulationDetailPageComponent extends EngeAppGenericDe
 			icon: "pi pi-search",
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
-			link: "../../../calculation-method/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			command: (e: any) => this.dialogService.open(EnzoCalculationMethodDetailDialogComponent, {
+				header: 'Modifica fasce di calcolo',
+				width: '70%',
+				data: e
+			}),
+			childs: [
+				{
+					label: "Modifica",
+					hideLabel: true,
+					icon: "pi pi-pencil",
+					severity: "secondary",
+					class: "p-button-sm p-button-outlined",
+					command: (e: any) => {
+						const ref = this.dialogService.open(EnzoCalculationMethodDialogComponent, {
+							data: { regulation: e.item.data.regulation, calculationMethod: { ...e.item.data } },
+							header: 'Modifica fascia di calcolo',
+							width: '70%'
+						});
+					},
+				},
+				{
+					label: "Cancella",
+					hideLabel: true,
+					icon: "pi pi-trash",
+					severity: "secondary",
+					class: "p-button-sm p-button-outlined",
+					command: async (e: any) => {
+						await lastValueFrom(this.calculationMethodResourceService.deleteCalculationMethodUsingDELETE(e.item.data.id));
+						this.eacs.eventer.launchReloadContent("calculationMethod");
+					}
+				}
+			]
 		}
 	];
 	protected calculationMethodListPaginator: StalPaginator = {
@@ -100,13 +146,31 @@ export class EnzoIncentiveRegulationDetailPageComponent extends EngeAppGenericDe
 
 	protected withheldTableButtons: any[] = [
 		{
-			label: "Dettagli",
+			label: "Modifica",
 			hideLabel: true,
-			icon: "pi pi-search",
+			icon: "pi pi-pencil",
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
-			link: "../../../withheld/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			command: (e: any) => {
+				const ref = this.dialogService.open(EnzoWithheldDialogComponent, {
+					data: { regulation: e.regulation, withheld: { ...e } },
+					header: 'Modifica trattenute',
+					width: '70%'
+				});
+			},
+			childs: [
+				{
+					label: "Cancella",
+					hideLabel: true,
+					icon: "pi pi-trash",
+					severity: "secondary",
+					class: "p-button-sm p-button-outlined",
+					command: async (e: any) => {
+						await lastValueFrom(this.withheldResourceService.deleteWithheldUsingDELETE(e.item.data.id));
+						this.eacs.eventer.launchReloadContent("withheld");
+					}
+				}
+			]
 		}
 	];
 	protected withheldListPaginator: StalPaginator = {

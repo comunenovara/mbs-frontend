@@ -1,0 +1,12 @@
+<div class="grid">
+	<div class="col-12 lg:col-12 xl:col-12">
+		<mbs-calculation-factor-list-loader 
+			[filters]="{methodIdEquals: calculationMethod.id}" 
+			[dcs]="['min', 'maax', 'value']" 
+			[paginator]="calculationFactorListPaginator"
+			[buttons]="calculationFactorTableButtons"
+			(resultCount)="calculationFactorCount=$event"></mbs-calculation-factor-list-loader>
+		<stal-paginator [totalRecords]="calculationFactorCount" [(pageable)]="calculationFactorListPaginator"></stal-paginator>
+		<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewCalculationFactor(calculationMethod)"></button>
+	</div>
+</div>

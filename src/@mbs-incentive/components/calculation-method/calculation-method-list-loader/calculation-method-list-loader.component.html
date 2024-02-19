@@ -14,9 +14,9 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
-						<th *ngSwitchCase="'code'" style="width:auto" pResizableColumn pSortableColumn="code"> code </th>
-						<th *ngSwitchCase="'regulation.description'" style="width:auto" pResizableColumn commentpSortableColumn="incentiveRegulation.description" > description</th>
-						<th *ngSwitchCase="'procurementType.description'" style="width:auto" pResizableColumn commentpSortableColumn="procurementType.description" > description</th>
+						<th *ngSwitchCase="'code'" style="width:auto" pResizableColumn pSortableColumn="code"> Codice </th>
+						<th *ngSwitchCase="'regulation.description'" style="width:auto" pResizableColumn commentpSortableColumn="incentiveRegulation.description" > Regolamento</th>
+						<th *ngSwitchCase="'procurementType.description'" style="width:auto" pResizableColumn commentpSortableColumn="procurementType.description" > Tipo appalto</th>
 					</ng-container>
 					<th *ngIf="buttons" style="width:150px"></th>
 				</tr>
