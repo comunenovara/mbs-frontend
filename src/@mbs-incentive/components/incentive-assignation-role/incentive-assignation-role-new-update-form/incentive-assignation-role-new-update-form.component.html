@@ -10,10 +10,13 @@
 					<span *ngIf="checkControlError(_newUpdateForm.controls['beneficiary'], 'validatorHaveId')">La beneficiary è richiesta.</span>
 				</div>
 			</div>
-			<div class="col-12 md:col-6 lg:col-4" [hidden]="governativeProcurementLotrequired != null">
-				<span>{{ 'governativeProcurementLotrequired' }}</span>
-				<input type="text" pInputText formControlName="governativeProcurementLotrequired" [stalAutocomplete]="governativeProcurementLotrequiredAutocomplete">
-				<stal-autocomplete #governativeProcurementLotrequiredAutocomplete [filteredElements]="_filteredGovernativeProcurementLotrequired" [displayFn]="mbsIncentiveAutocompleteService.displayGovernativeProcurementLot"></stal-autocomplete>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="procurementLot != null">
+				<span>{{ 'procurementLot' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="procurementLot" [stalAutocomplete]="procurementLotAutocomplete">
+				<stal-autocomplete #procurementLotAutocomplete [filteredElements]="_filteredProcurementLot" [displayFn]="mbsIncentiveAutocompleteService.displayGovernativeProcurementLot"></stal-autocomplete>
+				<div *ngIf="!isValid(_newUpdateForm.controls['procurementLot'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['procurementLot'], 'validatorHaveId')">La procurementLot è richiesta.</span>
+				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="assignationRole != null">
 				<span>{{ 'assignationRole' }}</span><span class="filed-required">*</span>

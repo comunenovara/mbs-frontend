@@ -21,7 +21,7 @@ export class MbsIncentiveAssignationRoleNewUpdateFormComponent extends EngeLibGe
 	@Output() incentiveAssignationRoleOutput: EventEmitter<MbsIncentiveAssignationRoleDto> = new EventEmitter<MbsIncentiveAssignationRoleDto>();
 	
 	@Input() beneficiary: MbsBeneficiaryDto | undefined;
-	@Input() governativeProcurementLotrequired: MbsGovernativeProcurementLotDto | undefined;
+	@Input() procurementLot: MbsGovernativeProcurementLotDto | undefined;
 	@Input() assignationRole: MbsRoleDto | undefined;
 
 	constructor(
@@ -41,19 +41,19 @@ export class MbsIncentiveAssignationRoleNewUpdateFormComponent extends EngeLibGe
 	}
 
 	_filteredBeneficiary: Observable<MbsBeneficiaryDto[]>;
-	_filteredGovernativeProcurementLotrequired: Observable<MbsGovernativeProcurementLotDto[]>;
+	_filteredProcurementLot: Observable<MbsGovernativeProcurementLotDto[]>;
 	_filteredAssignationRole: Observable<MbsRoleDto[]>;
 
 	override loadForm(): void {
 		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
 			beneficiary: [this.beneficiary, [ EngeValidator.haveId,  ]],
-			governativeProcurementLotrequired: [this.governativeProcurementLotrequired, [  ]],
+			procurementLot: [this.procurementLot, [ EngeValidator.haveId,  ]],
 			assignationRole: [this.assignationRole, [ EngeValidator.haveId,  ]],
 		});
 
 		this._filteredBeneficiary = this.mbsIncentiveAutocompleteService.filterBeneficiary(this._newUpdateForm.controls['beneficiary'].valueChanges);
-		this._filteredGovernativeProcurementLotrequired = this.mbsIncentiveAutocompleteService.filterGovernativeProcurementLot(this._newUpdateForm.controls['governativeProcurementLotrequired'].valueChanges);
+		this._filteredProcurementLot = this.mbsIncentiveAutocompleteService.filterGovernativeProcurementLot(this._newUpdateForm.controls['procurementLot'].valueChanges);
 		this._filteredAssignationRole = this.mbsIncentiveAutocompleteService.filterRole(this._newUpdateForm.controls['assignationRole'].valueChanges);
 	}
 
@@ -61,7 +61,7 @@ export class MbsIncentiveAssignationRoleNewUpdateFormComponent extends EngeLibGe
 		let result: MbsIncentiveAssignationRoleDto = this._newUpdateForm.value;
 		{
 			result.beneficiaryId = (result.beneficiary != null) ? result.beneficiary.id : undefined;
-			result.governativeProcurementLotrequiredId = (result.governativeProcurementLotrequired != null) ? result.governativeProcurementLotrequired.id : undefined;
+			result.procurementLotId = (result.procurementLot != null) ? result.procurementLot.id : undefined;
 			result.assignationRoleId = (result.assignationRole != null) ? result.assignationRole.id : undefined;
 		}
 		return result;

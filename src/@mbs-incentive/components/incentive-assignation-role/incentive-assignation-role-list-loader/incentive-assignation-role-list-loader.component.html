@@ -15,9 +15,9 @@
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
 						<th *ngSwitchCase="'beneficiary.name'" style="width:auto" pResizableColumn commentpSortableColumn="beneficiary.name" > name</th>
-						<th *ngSwitchCase="'governativeProcurementLotrequired.code'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.code" > code</th>
-						<th *ngSwitchCase="'governativeProcurementLotrequired.description'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.description" > description</th>
-						<th *ngSwitchCase="'governativeProcurementLotrequired.amount'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.amount" > amount</th>
+						<th *ngSwitchCase="'procurementLot.code'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.code" > code</th>
+						<th *ngSwitchCase="'procurementLot.description'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.description" > description</th>
+						<th *ngSwitchCase="'procurementLot.amount'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.amount" > amount</th>
 						<th *ngSwitchCase="'assignationRole.description'" style="width:auto" pResizableColumn commentpSortableColumn="role.description" > description</th>
 					</ng-container>
 					<th *ngIf="buttons" style="width:150px"></th>
@@ -31,14 +31,14 @@
 						<td *ngSwitchCase="'beneficiary.name'">
 							<span *ngIf="e.beneficiary">{{ e.beneficiary.name }}</span>
 						</td>
-						<td *ngSwitchCase="'governativeProcurementLotrequired.code'">
-							<span *ngIf="e.governativeProcurementLotrequired">{{ e.governativeProcurementLotrequired.code }}</span>
+						<td *ngSwitchCase="'procurementLot.code'">
+							<span *ngIf="e.procurementLot">{{ e.procurementLot.code }}</span>
 						</td>
-						<td *ngSwitchCase="'governativeProcurementLotrequired.description'">
-							<span *ngIf="e.governativeProcurementLotrequired">{{ e.governativeProcurementLotrequired.description }}</span>
+						<td *ngSwitchCase="'procurementLot.description'">
+							<span *ngIf="e.procurementLot">{{ e.procurementLot.description }}</span>
 						</td>
-						<td *ngSwitchCase="'governativeProcurementLotrequired.amount'">
-							<span *ngIf="e.governativeProcurementLotrequired">{{ e.governativeProcurementLotrequired.amount }}</span>
+						<td *ngSwitchCase="'procurementLot.amount'">
+							<span *ngIf="e.procurementLot">{{ e.procurementLot.amount }}</span>
 						</td>
 						<td *ngSwitchCase="'assignationRole.description'">
 							<span *ngIf="e.assignationRole">{{ e.assignationRole.description }}</span>
