@@ -20,6 +20,10 @@
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
 				<span>{{ 'value' }}</span><span class="filed-required">*</span>
+				<span *ngIf="roleValue">
+					Min: {{ roleValue.min  }}
+					Max: {{ roleValue.maax  }}
+				</span>
 				<input type="number" pInputText formControlName="value" placeholder="Value">
 				<div *ngIf="!isValid(_newUpdateForm.controls['value'])" class="filed-required">
 					<span *ngIf="checkControlError(_newUpdateForm.controls['value'], 'required')">La value è richiesta.</span>

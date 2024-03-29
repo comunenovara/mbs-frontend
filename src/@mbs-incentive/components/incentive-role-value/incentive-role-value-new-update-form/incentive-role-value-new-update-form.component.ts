@@ -44,7 +44,7 @@ export class MbsIncentiveRoleValueNewUpdateFormComponent extends EngeLibGenericF
 	override loadForm(): void {
 		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
-			value: [null, [ Validators.required,  ]],
+			value: [this.roleValue?.defaul, [ Validators.required,  ]],
 			incentiveCalculation: [this.incentiveCalculation, [ EngeValidator.haveId,  ]],
 			roleValue: [this.roleValue, [ EngeValidator.haveId,  ]],
 		});

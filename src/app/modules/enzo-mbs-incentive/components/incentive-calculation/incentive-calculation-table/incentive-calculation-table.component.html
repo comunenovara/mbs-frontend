@@ -1,25 +1,37 @@
+<ul>
+    <li *ngFor="let stage of stages">
 
+        <span>{{ stage.description }}</span>
 
+        <ul *ngIf="stage.id">
+            <li *ngFor="let roleValue of rolesByStage[stage.id]">
 
+                <span>{{ roleValue.role.description }}</span>
 
+                <span *ngIf="incetiveRoleValueByRoleValue[roleValue.id]">
+                    {{ incetiveRoleValueByRoleValue[roleValue.id][0].value }}
+                    edit
+                </span>
+                <span *ngIf="!incetiveRoleValueByRoleValue[roleValue.id]">
+                    <span (click)="createNewIncentiveRoleValue(incentiveCalculation, roleValue)">ADD</span>
+                </span>
+            
+                <ul>
+                    <li *ngFor="let incentiveAssignationRole of assignationsByRole[roleValue.roleId]">
 
-<div *ngFor="let stage of stages">
+                        <span>{{ incentiveAssignationRole.beneficiary.name }}</span>
 
-    <h1>{{ stage.description }}</h1>
-
-    <div *ngIf="stage.id">
-        <div *ngFor="let roleValue of lote[stage.id]">
-
-            <h3>{{ roleValue.role.description }}</h3>
-            <span>Min: {{ roleValue.min }}</span>
-            <span>Max: {{ roleValue.maax }}</span>
-            <span>Default: {{ roleValue.defaul }}</span>
-        
-            <pre>{{ assignationsByRole[roleValue.roleId] | json}}</pre>
-
-        </div>
-    </div>
-
-    <hr>
-
-</div>
+                        <span *ngIf="assignationStagesByRoleValue[roleValue.id]">
+                            {{ assignationStagesByRoleValue[roleValue.id][0].value }}
+                            edit
+                        </span>
+                        <span *ngIf="!assignationStagesByRoleValue[roleValue.id]">
+                            <span (click)="createNewIncentiveAssignationStage(incentiveAssignationRole, roleValue)">ADD</span>
+                        </span>
+                        
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>

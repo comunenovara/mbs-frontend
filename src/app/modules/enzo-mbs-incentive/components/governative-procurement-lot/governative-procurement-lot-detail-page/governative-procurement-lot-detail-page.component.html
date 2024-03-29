@@ -39,7 +39,7 @@
 		<div class="card mb-0 relative">
 			<h3>Ruoli incentivati</h3>
 			<mbs-incentive-assignation-role-list-loader 
-				[filters]="{governativeProcurementLotrequiredIdEquals: governativeProcurementLotDto.id}" 
+				[filters]="{procurementLotIdEquals: governativeProcurementLotDto.id}" 
 				[dcs]="['id', 'assignationRole.description', 'beneficiary.name']" 
 				[paginator]="incentiveAssignationRoleListPaginator"
 				[buttons]="incentiveAssignationRoleTableButtons"
