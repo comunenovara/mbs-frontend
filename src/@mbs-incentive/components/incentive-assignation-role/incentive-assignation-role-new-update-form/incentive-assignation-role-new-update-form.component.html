@@ -10,20 +10,17 @@
 					<span *ngIf="checkControlError(_newUpdateForm.controls['beneficiary'], 'validatorHaveId')">La beneficiary è richiesta.</span>
 				</div>
 			</div>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="governativeProcurementLotrequired != null">
+				<span>{{ 'governativeProcurementLotrequired' }}</span>
+				<input type="text" pInputText formControlName="governativeProcurementLotrequired" [stalAutocomplete]="governativeProcurementLotrequiredAutocomplete">
+				<stal-autocomplete #governativeProcurementLotrequiredAutocomplete [filteredElements]="_filteredGovernativeProcurementLotrequired" [displayFn]="mbsIncentiveAutocompleteService.displayGovernativeProcurementLot"></stal-autocomplete>
+			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="assignationRole != null">
 				<span>{{ 'assignationRole' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="assignationRole" [stalAutocomplete]="assignationRoleAutocomplete">
 				<stal-autocomplete #assignationRoleAutocomplete [filteredElements]="_filteredAssignationRole" [displayFn]="mbsIncentiveAutocompleteService.displayRole"></stal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['assignationRole'])" class="filed-required">
 					<span *ngIf="checkControlError(_newUpdateForm.controls['assignationRole'], 'validatorHaveId')">La assignationRole è richiesta.</span>
-				</div>
-			</div>
-			<div class="col-12 md:col-6 lg:col-4" [hidden]="assignationStage != null">
-				<span>{{ 'assignationStage' }}</span><span class="filed-required">*</span>
-				<input type="text" pInputText formControlName="assignationStage" [stalAutocomplete]="assignationStageAutocomplete">
-				<stal-autocomplete #assignationStageAutocomplete [filteredElements]="_filteredAssignationStage" [displayFn]="mbsIncentiveAutocompleteService.displayIncentiveAssignationStage"></stal-autocomplete>
-				<div *ngIf="!isValid(_newUpdateForm.controls['assignationStage'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['assignationStage'], 'validatorHaveId')">La assignationStage è richiesta.</span>
 				</div>
 			</div>
 

@@ -20,6 +20,19 @@
 			-->
 		</div>
 	</div>
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="incentiveAssignationRoleDto.governativeProcurementLotrequired !== null">
+        <div class="card mb-0">
+			<h3>governative-procurement-lot</h3>
+			<mbs-governative-procurement-lot-detail-box [governativeProcurementLot]="incentiveAssignationRoleDto.governativeProcurementLotrequired" ></mbs-governative-procurement-lot-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../governative-procurement-lot/detail', incentiveAssignationRoleDto.governativeProcurementLotrequired.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../governative-procurement-lot/detail', incentiveAssignationRoleDto.governativeProcurementLotrequired.id]"></button>
+			-->
+		</div>
+	</div>
 	<div class="col-12 lg:col-6 xl:col-3" *ngIf="incentiveAssignationRoleDto.assignationRole !== null">
         <div class="card mb-0">
 			<h3>role</h3>
@@ -33,18 +46,18 @@
 			-->
 		</div>
 	</div>
-	<div class="col-12 lg:col-6 xl:col-3" *ngIf="incentiveAssignationRoleDto.assignationStage !== null">
-        <div class="card mb-0">
+
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
 			<h3>incentive-assignation-stage</h3>
-			<mbs-incentive-assignation-stage-detail-box [incentiveAssignationStage]="incentiveAssignationRoleDto.assignationStage" ></mbs-incentive-assignation-stage-detail-box>
-			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
-				[routerLink]="['../../../incentive-assignation-stage/detail', incentiveAssignationRoleDto.assignationStage.id]"></button>
-			<!--
-			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
-				(click)="tabManagerService.openInCard()" 
-				[routerLink]="['../../../incentive-assignation-stage/detail', incentiveAssignationRoleDto.assignationStage.id]"></button>
-			-->
+			<mbs-incentive-assignation-stage-list-loader 
+				[filters]="{assignationRoleIdEquals: incentiveAssignationRoleDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="incentiveAssignationStageListPaginator"
+				[buttons]="incentiveAssignationStageTableButtons"
+				(resultCount)="incentiveAssignationStageCount=$event"></mbs-incentive-assignation-stage-list-loader>
+			<stal-paginator [totalRecords]="incentiveAssignationStageCount" [(pageable)]="incentiveAssignationStageListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveAssignationStage(incentiveAssignationRoleDto)"></button>
 		</div>
 	</div>
-
 </div>

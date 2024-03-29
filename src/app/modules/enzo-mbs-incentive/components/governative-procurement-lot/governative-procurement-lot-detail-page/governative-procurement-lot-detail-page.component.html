@@ -36,6 +36,19 @@
 	</div>
 	<div class="col-12 lg:col-12 xl:col-12">
 		<div class="card mb-0 relative">
+			<h3>incentive-assignation-role</h3>
+			<mbs-incentive-assignation-role-list-loader 
+				[filters]="{governativeProcurementLotrequiredIdEquals: governativeProcurementLotDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="incentiveAssignationRoleListPaginator"
+				[buttons]="incentiveAssignationRoleTableButtons"
+				(resultCount)="incentiveAssignationRoleCount=$event"></mbs-incentive-assignation-role-list-loader>
+			<stal-paginator [totalRecords]="incentiveAssignationRoleCount" [(pageable)]="incentiveAssignationRoleListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveAssignationRole(governativeProcurementLotDto)"></button>
+		</div>
+	</div>
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
 			<h3>governative-project-and-procurement-lot</h3>
 			<mbs-governative-project-and-procurement-lot-list-loader 
 				[filters]="{governativeProcurementLotIdEquals: governativeProcurementLotDto.id}" 

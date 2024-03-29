@@ -53,7 +53,7 @@ export const enzoMbsIncentiveRoutes: Route[] = [
 	{
 		path: '', 
 		pathMatch : 'full',
-		redirectTo: 'procurement-type'
+		redirectTo: 'page'
 	},
 	{
 		path: 'procurement-type',

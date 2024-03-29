@@ -13,6 +13,7 @@ import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/c
 import { MbsGovernativeProcurementLotDto, MbsGovernativeProcurementLotResourceService} from '@mbs-incentive';
 import { EnzoGovernativeProcurementLotDialogComponent } from '../governative-procurement-lot-dialog/governative-procurement-lot-dialog.component';
 import { EnzoIncentiveCalculationDialogComponent } from "../../incentive-calculation/incentive-calculation-dialog/incentive-calculation-dialog.component";
+import { EnzoIncentiveAssignationRoleDialogComponent } from "../../incentive-assignation-role/incentive-assignation-role-dialog/incentive-assignation-role-dialog.component";
 import { EnzoGovernativeProjectAndProcurementLotDialogComponent } from "../../governative-project-and-procurement-lot/governative-project-and-procurement-lot-dialog/governative-project-and-procurement-lot-dialog.component";
 
 @Component({
@@ -82,6 +83,33 @@ export class EnzoGovernativeProcurementLotDetailPageComponent extends EngeAppGen
 		size: 10
 	};
 	protected incentiveCalculationCount: number;
+
+	createNewIncentiveAssignationRole(governativeProcurementLotDto: MbsGovernativeProcurementLotDto) {
+		this.dialogService.open(EnzoIncentiveAssignationRoleDialogComponent, {
+			header: 'Create IncentiveAssignationRole',
+			width: '70%',
+			data: {
+				governativeProcurementLotrequired: governativeProcurementLotDto
+			}
+		});
+	}
+
+	protected incentiveAssignationRoleTableButtons: any[] = [
+		{
+			label: "Dettagli",
+			hideLabel: true,
+			icon: "pi pi-search",
+			severity: "secondary",
+			class: "p-button-sm p-button-outlined",
+			link: "../../../incentive-assignation-role/detail",
+			//command: (e: any) => this.tabManagerService.openInCard(),
+		}
+	];
+	protected incentiveAssignationRoleListPaginator: StalPaginator = {
+		page: 0,
+		size: 10
+	};
+	protected incentiveAssignationRoleCount: number;
 
 	createNewGovernativeProjectAndProcurementLot(governativeProcurementLotDto: MbsGovernativeProcurementLotDto) {
 		this.dialogService.open(EnzoGovernativeProjectAndProcurementLotDialogComponent, {
