@@ -62,7 +62,6 @@
 			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewRole(incentiveRegulationDto)"></button>
 		</div>
 	</div>
-<<<<<<< HEAD
 
 
 	<div class="col-12 lg:col-12 xl:col-12">
@@ -72,19 +71,4 @@
 		</div>
 	</div>
 
-=======
-	<div class="col-12 lg:col-12 xl:col-12">
-		<div class="card mb-0 relative">
-			<h3>incentive-calculation</h3>
-			<mbs-incentive-calculation-list-loader 
-				[filters]="{regulationIdEquals: incentiveRegulationDto.id}" 
-				[dcs]="['id', 'description']" 
-				[paginator]="incentiveCalculationListPaginator"
-				[buttons]="incentiveCalculationTableButtons"
-				(resultCount)="incentiveCalculationCount=$event"></mbs-incentive-calculation-list-loader>
-			<stal-paginator [totalRecords]="incentiveCalculationCount" [(pageable)]="incentiveCalculationListPaginator"></stal-paginator>
-			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveCalculation(incentiveRegulationDto)"></button>
-		</div>
-	</div>
->>>>>>> code_generation
 </div>
