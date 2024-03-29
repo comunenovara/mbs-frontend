@@ -8,8 +8,8 @@ import { MbsIncentiveAutocompleteService } from '@mbs-incentive/service/incentiv
 import { MbsIncentiveAssignationRoleResourceService } from '@mbs-incentive/services/incentive-assignation-role.service';
 import { MbsIncentiveAssignationRoleDto } from '@mbs-incentive/class/incentive-assignation-role-dto.class';
 import { MbsBeneficiaryDto } from '@mbs-incentive/class/beneficiary-dto.class';
+import { MbsGovernativeProcurementLotDto } from '@mbs-incentive/class/governative-procurement-lot-dto.class';
 import { MbsRoleDto } from '@mbs-incentive/class/role-dto.class';
-import { MbsIncentiveAssignationStageDto } from '@mbs-incentive/class/incentive-assignation-stage-dto.class';
 
 @Component({
 	selector: 'mbs-incentive-assignation-role-new-update-form',
@@ -21,8 +21,8 @@ export class MbsIncentiveAssignationRoleNewUpdateFormComponent extends EngeLibGe
 	@Output() incentiveAssignationRoleOutput: EventEmitter<MbsIncentiveAssignationRoleDto> = new EventEmitter<MbsIncentiveAssignationRoleDto>();
 	
 	@Input() beneficiary: MbsBeneficiaryDto | undefined;
+	@Input() governativeProcurementLotrequired: MbsGovernativeProcurementLotDto | undefined;
 	@Input() assignationRole: MbsRoleDto | undefined;
-	@Input() assignationStage: MbsIncentiveAssignationStageDto | undefined;
 
 	constructor(
 		ecs: EngeCommonService,
@@ -41,28 +41,28 @@ export class MbsIncentiveAssignationRoleNewUpdateFormComponent extends EngeLibGe
 	}
 
 	_filteredBeneficiary: Observable<MbsBeneficiaryDto[]>;
+	_filteredGovernativeProcurementLotrequired: Observable<MbsGovernativeProcurementLotDto[]>;
 	_filteredAssignationRole: Observable<MbsRoleDto[]>;
-	_filteredAssignationStage: Observable<MbsIncentiveAssignationStageDto[]>;
 
 	override loadForm(): void {
 		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
 			beneficiary: [this.beneficiary, [ EngeValidator.haveId,  ]],
+			governativeProcurementLotrequired: [this.governativeProcurementLotrequired, [  ]],
 			assignationRole: [this.assignationRole, [ EngeValidator.haveId,  ]],
-			assignationStage: [this.assignationStage, [ EngeValidator.haveId,  ]],
 		});
 
 		this._filteredBeneficiary = this.mbsIncentiveAutocompleteService.filterBeneficiary(this._newUpdateForm.controls['beneficiary'].valueChanges);
+		this._filteredGovernativeProcurementLotrequired = this.mbsIncentiveAutocompleteService.filterGovernativeProcurementLot(this._newUpdateForm.controls['governativeProcurementLotrequired'].valueChanges);
 		this._filteredAssignationRole = this.mbsIncentiveAutocompleteService.filterRole(this._newUpdateForm.controls['assignationRole'].valueChanges);
-		this._filteredAssignationStage = this.mbsIncentiveAutocompleteService.filterIncentiveAssignationStage(this._newUpdateForm.controls['assignationStage'].valueChanges);
 	}
 
 	override prepareResult(): MbsIncentiveAssignationRoleDto {
 		let result: MbsIncentiveAssignationRoleDto = this._newUpdateForm.value;
 		{
 			result.beneficiaryId = (result.beneficiary != null) ? result.beneficiary.id : undefined;
+			result.governativeProcurementLotrequiredId = (result.governativeProcurementLotrequired != null) ? result.governativeProcurementLotrequired.id : undefined;
 			result.assignationRoleId = (result.assignationRole != null) ? result.assignationRole.id : undefined;
-			result.assignationStageId = (result.assignationStage != null) ? result.assignationStage.id : undefined;
 		}
 		return result;
 	}

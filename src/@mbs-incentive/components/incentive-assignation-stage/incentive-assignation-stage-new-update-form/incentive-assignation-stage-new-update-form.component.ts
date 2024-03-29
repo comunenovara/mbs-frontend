@@ -7,6 +7,7 @@ import { EngeCommonService, EngeEngeFormStep, EngeLibGenericForm, EngeValidator 
 import { MbsIncentiveAutocompleteService } from '@mbs-incentive/service/incentive-auto-complete.service';
 import { MbsIncentiveAssignationStageResourceService } from '@mbs-incentive/services/incentive-assignation-stage.service';
 import { MbsIncentiveAssignationStageDto } from '@mbs-incentive/class/incentive-assignation-stage-dto.class';
+import { MbsIncentiveAssignationRoleDto } from '@mbs-incentive/class/incentive-assignation-role-dto.class';
 import { MbsIncentiveRoleValueDto } from '@mbs-incentive/class/incentive-role-value-dto.class';
 
 @Component({
@@ -18,6 +19,7 @@ export class MbsIncentiveAssignationStageNewUpdateFormComponent extends EngeLibG
 	@Input() incentiveAssignationStage: MbsIncentiveAssignationStageDto | undefined;
 	@Output() incentiveAssignationStageOutput: EventEmitter<MbsIncentiveAssignationStageDto> = new EventEmitter<MbsIncentiveAssignationStageDto>();
 	
+	@Input() assignationRole: MbsIncentiveAssignationRoleDto | undefined;
 	@Input() assignationRoleValue: MbsIncentiveRoleValueDto | undefined;
 
 	constructor(
@@ -36,15 +38,18 @@ export class MbsIncentiveAssignationStageNewUpdateFormComponent extends EngeLibG
 		this.output = this.incentiveAssignationStageOutput;
 	}
 
+	_filteredAssignationRole: Observable<MbsIncentiveAssignationRoleDto[]>;
 	_filteredAssignationRoleValue: Observable<MbsIncentiveRoleValueDto[]>;
 
 	override loadForm(): void {
 		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
 			value: [null, [ Validators.required,  ]],
+			assignationRole: [this.assignationRole, [ EngeValidator.haveId,  ]],
 			assignationRoleValue: [this.assignationRoleValue, [ EngeValidator.haveId,  ]],
 		});
 
+		this._filteredAssignationRole = this.mbsIncentiveAutocompleteService.filterIncentiveAssignationRole(this._newUpdateForm.controls['assignationRole'].valueChanges);
 		this._filteredAssignationRoleValue = this.mbsIncentiveAutocompleteService.filterIncentiveRoleValue(this._newUpdateForm.controls['assignationRoleValue'].valueChanges);
 	}
 
@@ -52,6 +57,7 @@ export class MbsIncentiveAssignationStageNewUpdateFormComponent extends EngeLibG
 		let result: MbsIncentiveAssignationStageDto = this._newUpdateForm.value;
 		{
 			result.value = (result.value != null) ? +result.value : null;
+			result.assignationRoleId = (result.assignationRole != null) ? result.assignationRole.id : undefined;
 			result.assignationRoleValueId = (result.assignationRoleValue != null) ? result.assignationRoleValue.id : undefined;
 		}
 		return result;

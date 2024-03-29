@@ -1,6 +1,6 @@
 import { MbsBeneficiaryDto } from "./beneficiary-dto.class";
+import { MbsGovernativeProcurementLotDto } from "./governative-procurement-lot-dto.class";
 import { MbsRoleDto } from "./role-dto.class";
-import { MbsIncentiveAssignationStageDto } from "./incentive-assignation-stage-dto.class";
 
 export class MbsIncentiveAssignationRoleDto {
 	id?: number;
@@ -8,9 +8,9 @@ export class MbsIncentiveAssignationRoleDto {
 
 	beneficiaryId?: number | null;
 	beneficiary: MbsBeneficiaryDto;
+	governativeProcurementLotrequiredId?: number | null;
+	governativeProcurementLotrequired: MbsGovernativeProcurementLotDto;
 	assignationRoleId?: number | null;
 	assignationRole: MbsRoleDto;
-	assignationStageId?: number | null;
-	assignationStage: MbsIncentiveAssignationStageDto;
 
 }
