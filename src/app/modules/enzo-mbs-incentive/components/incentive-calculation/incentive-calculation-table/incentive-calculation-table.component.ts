@@ -42,11 +42,11 @@ export class EnzoIncentiveCalculationTableComponent extends EngeAppGenericDetail
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {
-		if(event.data === "incentiveCalculation") this.reloadPage();
+		if(event.data === "incentiveRoleValue") this.reloadPage();
 	}
 
 	override async reloadPage() {
-		
+		this.loadTable();
 	}
 
 	stages: MbsStageDto[];
