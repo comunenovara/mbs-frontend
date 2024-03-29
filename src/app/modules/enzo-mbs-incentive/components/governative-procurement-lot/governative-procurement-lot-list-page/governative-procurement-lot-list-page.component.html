@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-governative-procurement-lot-list-loader 
+		[dcs]="governativeProcurementLotListDc" [buttons]="tableButtons" 
+		[paginator]="governativeProcurementLotListPaginator" (resultCount)="governativeProcurementLotCount=$event"> 
+	</mbs-governative-procurement-lot-list-loader>
+
+	<stal-paginator [totalRecords]="governativeProcurementLotCount" [(pageable)]="governativeProcurementLotListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewGovernativeProcurementLot()"></button>
+
+</div>

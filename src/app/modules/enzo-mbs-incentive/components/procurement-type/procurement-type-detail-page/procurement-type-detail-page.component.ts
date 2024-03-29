@@ -13,6 +13,7 @@ import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/c
 import { MbsProcurementTypeDto, MbsProcurementTypeResourceService} from '@mbs-incentive';
 import { EnzoProcurementTypeDialogComponent } from '../procurement-type-dialog/procurement-type-dialog.component';
 import { EnzoCalculationMethodDialogComponent } from "../../calculation-method/calculation-method-dialog/calculation-method-dialog.component";
+import { EnzoGovernativeProcurementLotDialogComponent } from "../../governative-procurement-lot/governative-procurement-lot-dialog/governative-procurement-lot-dialog.component";
 
 @Component({
 	selector: 'enzo-procurement-type-detail-page',
@@ -81,6 +82,33 @@ export class EnzoProcurementTypeDetailPageComponent extends EngeAppGenericDetail
 		size: 10
 	};
 	protected calculationMethodCount: number;
+
+	createNewGovernativeProcurementLot(procurementTypeDto: MbsProcurementTypeDto) {
+		this.dialogService.open(EnzoGovernativeProcurementLotDialogComponent, {
+			header: 'Create GovernativeProcurementLot',
+			width: '70%',
+			data: {
+				type: procurementTypeDto
+			}
+		});
+	}
+
+	protected governativeProcurementLotTableButtons: any[] = [
+		{
+			label: "Dettagli",
+			hideLabel: true,
+			icon: "pi pi-search",
+			severity: "secondary",
+			class: "p-button-sm p-button-outlined",
+			link: "../../../governative-procurement-lot/detail",
+			//command: (e: any) => this.tabManagerService.openInCard(),
+		}
+	];
+	protected governativeProcurementLotListPaginator: StalPaginator = {
+		page: 0,
+		size: 10
+	};
+	protected governativeProcurementLotCount: number;
 
 }
 

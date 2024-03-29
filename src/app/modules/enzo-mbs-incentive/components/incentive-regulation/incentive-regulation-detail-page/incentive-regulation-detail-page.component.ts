@@ -18,6 +18,7 @@ import { EnzoStageDialogComponent } from "../../stage/stage-dialog/stage-dialog.
 import { EnzoRoleDialogComponent } from "../../role/role-dialog/role-dialog.component";
 import { EnzoCalculationMethodDetailDialogComponent } from "../../calculation-method/calculation-method-detail-dialog/calculation-method-detail-dialog.component";
 import { EnzoWithheldDetailPageComponent } from "../../withheld/withheld-detail-page/withheld-detail-page.component";
+import { EnzoIncentiveCalculationDialogComponent } from "../../incentive-calculation/incentive-calculation-dialog/incentive-calculation-dialog.component";
 
 @Component({
 	selector: 'enzo-incentive-regulation-detail-page',
@@ -269,6 +270,33 @@ export class EnzoIncentiveRegulationDetailPageComponent extends EngeAppGenericDe
 		size: 10
 	};
 	protected roleCount: number;
+
+	createNewIncentiveCalculation(incentiveRegulationDto: MbsIncentiveRegulationDto) {
+		this.dialogService.open(EnzoIncentiveCalculationDialogComponent, {
+			header: 'Create IncentiveCalculation',
+			width: '70%',
+			data: {
+				regulation: incentiveRegulationDto
+			}
+		});
+	}
+
+	protected incentiveCalculationTableButtons: any[] = [
+		{
+			label: "Dettagli",
+			hideLabel: true,
+			icon: "pi pi-search",
+			severity: "secondary",
+			class: "p-button-sm p-button-outlined",
+			link: "../../../incentive-calculation/detail",
+			//command: (e: any) => this.tabManagerService.openInCard(),
+		}
+	];
+	protected incentiveCalculationListPaginator: StalPaginator = {
+		page: 0,
+		size: 10
+	};
+	protected incentiveCalculationCount: number;
 
 }
 

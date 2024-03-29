@@ -21,4 +21,17 @@
 			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewCalculationMethod(procurementTypeDto)"></button>
 		</div>
 	</div>
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>governative-procurement-lot</h3>
+			<mbs-governative-procurement-lot-list-loader 
+				[filters]="{typeIdEquals: procurementTypeDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="governativeProcurementLotListPaginator"
+				[buttons]="governativeProcurementLotTableButtons"
+				(resultCount)="governativeProcurementLotCount=$event"></mbs-governative-procurement-lot-list-loader>
+			<stal-paginator [totalRecords]="governativeProcurementLotCount" [(pageable)]="governativeProcurementLotListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewGovernativeProcurementLot(procurementTypeDto)"></button>
+		</div>
+	</div>
 </div>

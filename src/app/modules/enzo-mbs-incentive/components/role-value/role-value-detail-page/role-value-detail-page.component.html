@@ -34,4 +34,17 @@
 		</div>
 	</div>
 
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>incentive-role-value</h3>
+			<mbs-incentive-role-value-list-loader 
+				[filters]="{roleValueIdEquals: roleValueDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="incentiveRoleValueListPaginator"
+				[buttons]="incentiveRoleValueTableButtons"
+				(resultCount)="incentiveRoleValueCount=$event"></mbs-incentive-role-value-list-loader>
+			<stal-paginator [totalRecords]="incentiveRoleValueCount" [(pageable)]="incentiveRoleValueListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveRoleValue(roleValueDto)"></button>
+		</div>
+	</div>
 </div>

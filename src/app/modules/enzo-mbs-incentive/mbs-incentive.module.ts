@@ -32,6 +32,31 @@ import { EnzoRoleDialogComponent } from './components/role/role-dialog/role-dial
 import { EnzoRoleValueListPageComponent } from './components/role-value/role-value-list-page/role-value-list-page.component';
 import { EnzoRoleValueDetailPageComponent } from './components/role-value/role-value-detail-page/role-value-detail-page.component';
 import { EnzoRoleValueDialogComponent } from './components/role-value/role-value-dialog/role-value-dialog.component';
+import { EnzoGovernativeProcurementLotListPageComponent } from './components/governative-procurement-lot/governative-procurement-lot-list-page/governative-procurement-lot-list-page.component';
+import { EnzoGovernativeProcurementLotDetailPageComponent } from './components/governative-procurement-lot/governative-procurement-lot-detail-page/governative-procurement-lot-detail-page.component';
+import { EnzoGovernativeProcurementLotDialogComponent } from './components/governative-procurement-lot/governative-procurement-lot-dialog/governative-procurement-lot-dialog.component';
+import { EnzoIncentiveCalculationListPageComponent } from './components/incentive-calculation/incentive-calculation-list-page/incentive-calculation-list-page.component';
+import { EnzoIncentiveCalculationDetailPageComponent } from './components/incentive-calculation/incentive-calculation-detail-page/incentive-calculation-detail-page.component';
+import { EnzoIncentiveCalculationDialogComponent } from './components/incentive-calculation/incentive-calculation-dialog/incentive-calculation-dialog.component';
+import { EnzoBeneficiaryListPageComponent } from './components/beneficiary/beneficiary-list-page/beneficiary-list-page.component';
+import { EnzoBeneficiaryDetailPageComponent } from './components/beneficiary/beneficiary-detail-page/beneficiary-detail-page.component';
+import { EnzoBeneficiaryDialogComponent } from './components/beneficiary/beneficiary-dialog/beneficiary-dialog.component';
+import { EnzoIncentiveRoleValueListPageComponent } from './components/incentive-role-value/incentive-role-value-list-page/incentive-role-value-list-page.component';
+import { EnzoIncentiveRoleValueDetailPageComponent } from './components/incentive-role-value/incentive-role-value-detail-page/incentive-role-value-detail-page.component';
+import { EnzoIncentiveRoleValueDialogComponent } from './components/incentive-role-value/incentive-role-value-dialog/incentive-role-value-dialog.component';
+import { EnzoIncentiveAssignationRoleListPageComponent } from './components/incentive-assignation-role/incentive-assignation-role-list-page/incentive-assignation-role-list-page.component';
+import { EnzoIncentiveAssignationRoleDetailPageComponent } from './components/incentive-assignation-role/incentive-assignation-role-detail-page/incentive-assignation-role-detail-page.component';
+import { EnzoIncentiveAssignationRoleDialogComponent } from './components/incentive-assignation-role/incentive-assignation-role-dialog/incentive-assignation-role-dialog.component';
+import { EnzoIncentiveAssignationStageListPageComponent } from './components/incentive-assignation-stage/incentive-assignation-stage-list-page/incentive-assignation-stage-list-page.component';
+import { EnzoIncentiveAssignationStageDetailPageComponent } from './components/incentive-assignation-stage/incentive-assignation-stage-detail-page/incentive-assignation-stage-detail-page.component';
+import { EnzoIncentiveAssignationStageDialogComponent } from './components/incentive-assignation-stage/incentive-assignation-stage-dialog/incentive-assignation-stage-dialog.component';
+import { EnzoGovernativeProjectListPageComponent } from './components/governative-project/governative-project-list-page/governative-project-list-page.component';
+import { EnzoGovernativeProjectDetailPageComponent } from './components/governative-project/governative-project-detail-page/governative-project-detail-page.component';
+import { EnzoGovernativeProjectDialogComponent } from './components/governative-project/governative-project-dialog/governative-project-dialog.component';
+import { EnzoGovernativeProjectAndProcurementLotListPageComponent } from './components/governative-project-and-procurement-lot/governative-project-and-procurement-lot-list-page/governative-project-and-procurement-lot-list-page.component';
+import { EnzoGovernativeProjectAndProcurementLotDetailPageComponent } from './components/governative-project-and-procurement-lot/governative-project-and-procurement-lot-detail-page/governative-project-and-procurement-lot-detail-page.component';
+import { EnzoGovernativeProjectAndProcurementLotDialogComponent } from './components/governative-project-and-procurement-lot/governative-project-and-procurement-lot-dialog/governative-project-and-procurement-lot-dialog.component';
+
 import { MbsIncentireRegulationComponent } from './components/incentive-regulation/incentive-regulation-table/incentive-regulation-table.component';
 import { ChipModule } from 'primeng/chip';
 
@@ -45,6 +70,10 @@ import { ChipModule } from 'primeng/chip';
 
 	],
 	declarations: [
+		MbsIncentireRegulationComponent,
+		EnzoCalculationMethodDetailDialogComponent,
+		EnzoCalculationMethodDetail2Component,
+
 		EnzoProcurementTypeListPageComponent,
 		EnzoProcurementTypeDetailPageComponent,
 		EnzoProcurementTypeDialogComponent,
@@ -77,11 +106,38 @@ import { ChipModule } from 'primeng/chip';
 		EnzoRoleValueDetailPageComponent,
 		EnzoRoleValueDialogComponent,
 		
-		MbsIncentireRegulationComponent,
-		EnzoCalculationMethodDetailDialogComponent,
-		EnzoCalculationMethodDetail2Component,
-
-
+		EnzoGovernativeProcurementLotListPageComponent,
+		EnzoGovernativeProcurementLotDetailPageComponent,
+		EnzoGovernativeProcurementLotDialogComponent,
+		
+		EnzoIncentiveCalculationListPageComponent,
+		EnzoIncentiveCalculationDetailPageComponent,
+		EnzoIncentiveCalculationDialogComponent,
+		
+		EnzoBeneficiaryListPageComponent,
+		EnzoBeneficiaryDetailPageComponent,
+		EnzoBeneficiaryDialogComponent,
+		
+		EnzoIncentiveRoleValueListPageComponent,
+		EnzoIncentiveRoleValueDetailPageComponent,
+		EnzoIncentiveRoleValueDialogComponent,
+		
+		EnzoIncentiveAssignationRoleListPageComponent,
+		EnzoIncentiveAssignationRoleDetailPageComponent,
+		EnzoIncentiveAssignationRoleDialogComponent,
+		
+		EnzoIncentiveAssignationStageListPageComponent,
+		EnzoIncentiveAssignationStageDetailPageComponent,
+		EnzoIncentiveAssignationStageDialogComponent,
+		
+		EnzoGovernativeProjectListPageComponent,
+		EnzoGovernativeProjectDetailPageComponent,
+		EnzoGovernativeProjectDialogComponent,
+		
+		EnzoGovernativeProjectAndProcurementLotListPageComponent,
+		EnzoGovernativeProjectAndProcurementLotDetailPageComponent,
+		EnzoGovernativeProjectAndProcurementLotDialogComponent,
+		
 	],
 	providers: [
 		{
