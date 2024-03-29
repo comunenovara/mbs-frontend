@@ -8,8 +8,8 @@ export class MbsIncentiveAssignationRoleDto {
 
 	beneficiaryId?: number | null;
 	beneficiary: MbsBeneficiaryDto;
-	governativeProcurementLotrequiredId?: number | null;
-	governativeProcurementLotrequired: MbsGovernativeProcurementLotDto;
+	procurementLotId?: number | null;
+	procurementLot: MbsGovernativeProcurementLotDto;
 	assignationRoleId?: number | null;
 	assignationRole: MbsRoleDto;
 

@@ -89,7 +89,7 @@ export class EnzoGovernativeProcurementLotDetailPageComponent extends EngeAppGen
 			header: 'Create IncentiveAssignationRole',
 			width: '70%',
 			data: {
-				governativeProcurementLotrequired: governativeProcurementLotDto
+				procurementLot: governativeProcurementLotDto
 			}
 		});
 	}
