@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-incentive-role-value-list-loader 
+		[dcs]="incentiveRoleValueListDc" [buttons]="tableButtons" 
+		[paginator]="incentiveRoleValueListPaginator" (resultCount)="incentiveRoleValueCount=$event"> 
+	</mbs-incentive-role-value-list-loader>
+
+	<stal-paginator [totalRecords]="incentiveRoleValueCount" [(pageable)]="incentiveRoleValueListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveRoleValue()"></button>
+
+</div>

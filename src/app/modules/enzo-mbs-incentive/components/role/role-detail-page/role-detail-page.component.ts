@@ -13,6 +13,7 @@ import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/c
 import { MbsRoleDto, MbsRoleResourceService} from '@mbs-incentive';
 import { EnzoRoleDialogComponent } from '../role-dialog/role-dialog.component';
 import { EnzoRoleValueDialogComponent } from "../../role-value/role-value-dialog/role-value-dialog.component";
+import { EnzoIncentiveAssignationRoleDialogComponent } from "../../incentive-assignation-role/incentive-assignation-role-dialog/incentive-assignation-role-dialog.component";
 
 @Component({
 	selector: 'enzo-role-detail-page',
@@ -81,6 +82,33 @@ export class EnzoRoleDetailPageComponent extends EngeAppGenericDetailPageCompone
 		size: 10
 	};
 	protected roleValueCount: number;
+
+	createNewIncentiveAssignationRole(roleDto: MbsRoleDto) {
+		this.dialogService.open(EnzoIncentiveAssignationRoleDialogComponent, {
+			header: 'Create IncentiveAssignationRole',
+			width: '70%',
+			data: {
+				assignationRole: roleDto
+			}
+		});
+	}
+
+	protected incentiveAssignationRoleTableButtons: any[] = [
+		{
+			label: "Dettagli",
+			hideLabel: true,
+			icon: "pi pi-search",
+			severity: "secondary",
+			class: "p-button-sm p-button-outlined",
+			link: "../../../incentive-assignation-role/detail",
+			//command: (e: any) => this.tabManagerService.openInCard(),
+		}
+	];
+	protected incentiveAssignationRoleListPaginator: StalPaginator = {
+		page: 0,
+		size: 10
+	};
+	protected incentiveAssignationRoleCount: number;
 
 }
 

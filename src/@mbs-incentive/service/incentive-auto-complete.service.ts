@@ -17,6 +17,22 @@ import { MbsRoleResourceService } from '@mbs-incentive/services/role.service';
 import { MbsRoleDto } from '@mbs-incentive/class/role-dto.class';
 import { MbsRoleValueResourceService } from '@mbs-incentive/services/role-value.service';
 import { MbsRoleValueDto } from '@mbs-incentive/class/role-value-dto.class';
+import { MbsGovernativeProcurementLotResourceService } from '@mbs-incentive/services/governative-procurement-lot.service';
+import { MbsGovernativeProcurementLotDto } from '@mbs-incentive/class/governative-procurement-lot-dto.class';
+import { MbsIncentiveCalculationResourceService } from '@mbs-incentive/services/incentive-calculation.service';
+import { MbsIncentiveCalculationDto } from '@mbs-incentive/class/incentive-calculation-dto.class';
+import { MbsBeneficiaryResourceService } from '@mbs-incentive/services/beneficiary.service';
+import { MbsBeneficiaryDto } from '@mbs-incentive/class/beneficiary-dto.class';
+import { MbsIncentiveRoleValueResourceService } from '@mbs-incentive/services/incentive-role-value.service';
+import { MbsIncentiveRoleValueDto } from '@mbs-incentive/class/incentive-role-value-dto.class';
+import { MbsIncentiveAssignationRoleResourceService } from '@mbs-incentive/services/incentive-assignation-role.service';
+import { MbsIncentiveAssignationRoleDto } from '@mbs-incentive/class/incentive-assignation-role-dto.class';
+import { MbsIncentiveAssignationStageResourceService } from '@mbs-incentive/services/incentive-assignation-stage.service';
+import { MbsIncentiveAssignationStageDto } from '@mbs-incentive/class/incentive-assignation-stage-dto.class';
+import { MbsGovernativeProjectResourceService } from '@mbs-incentive/services/governative-project.service';
+import { MbsGovernativeProjectDto } from '@mbs-incentive/class/governative-project-dto.class';
+import { MbsGovernativeProjectAndProcurementLotResourceService } from '@mbs-incentive/services/governative-project-and-procurement-lot.service';
+import { MbsGovernativeProjectAndProcurementLotDto } from '@mbs-incentive/class/governative-project-and-procurement-lot-dto.class';
 
 @Injectable({providedIn: 'root'})
 export class MbsIncentiveAutocompleteService {
@@ -29,6 +45,14 @@ export class MbsIncentiveAutocompleteService {
 		private stageResourceService: MbsStageResourceService,
 		private roleResourceService: MbsRoleResourceService,
 		private roleValueResourceService: MbsRoleValueResourceService,
+		private governativeProcurementLotResourceService: MbsGovernativeProcurementLotResourceService,
+		private incentiveCalculationResourceService: MbsIncentiveCalculationResourceService,
+		private beneficiaryResourceService: MbsBeneficiaryResourceService,
+		private incentiveRoleValueResourceService: MbsIncentiveRoleValueResourceService,
+		private incentiveAssignationRoleResourceService: MbsIncentiveAssignationRoleResourceService,
+		private incentiveAssignationStageResourceService: MbsIncentiveAssignationStageResourceService,
+		private governativeProjectResourceService: MbsGovernativeProjectResourceService,
+		private governativeProjectAndProcurementLotResourceService: MbsGovernativeProjectAndProcurementLotResourceService,
 	) { }
 
 	filterProcurementType(observable: Observable<any>): Observable<MbsProcurementTypeDto[]> {
@@ -164,6 +188,142 @@ export class MbsIncentiveAutocompleteService {
 	}
 
 	displayRoleValue(selectedElement: any) {
+		return selectedElement.description;
+	}
+
+	filterGovernativeProcurementLot(observable: Observable<any>): Observable<MbsGovernativeProcurementLotDto[]> {
+		return observable.pipe(
+			startWith(() => ''),
+			switchMap((value: string) => {
+				let filter: any = {};
+				if(value && value.length > 0)  {
+					filter.descriptionContains = value;
+				};
+				return this.governativeProcurementLotResourceService.getAllGovernativeProcurementLotsUsingGET(filter);
+		  })
+	   );
+	}
+
+	displayGovernativeProcurementLot(selectedElement: any) {
+		return selectedElement.description;
+	}
+
+	filterIncentiveCalculation(observable: Observable<any>): Observable<MbsIncentiveCalculationDto[]> {
+		return observable.pipe(
+			startWith(() => ''),
+			switchMap((value: string) => {
+				let filter: any = {};
+				if(value && value.length > 0)  {
+					filter.descriptionContains = value;
+				};
+				return this.incentiveCalculationResourceService.getAllIncentiveCalculationsUsingGET(filter);
+		  })
+	   );
+	}
+
+	displayIncentiveCalculation(selectedElement: any) {
+		return selectedElement.description;
+	}
+
+	filterBeneficiary(observable: Observable<any>): Observable<MbsBeneficiaryDto[]> {
+		return observable.pipe(
+			startWith(() => ''),
+			switchMap((value: string) => {
+				let filter: any = {};
+				if(value && value.length > 0)  {
+					filter.descriptionContains = value;
+				};
+				return this.beneficiaryResourceService.getAllBeneficiariesUsingGET(filter);
+		  })
+	   );
+	}
+
+	displayBeneficiary(selectedElement: any) {
+		return selectedElement.description;
+	}
+
+	filterIncentiveRoleValue(observable: Observable<any>): Observable<MbsIncentiveRoleValueDto[]> {
+		return observable.pipe(
+			startWith(() => ''),
+			switchMap((value: string) => {
+				let filter: any = {};
+				if(value && value.length > 0)  {
+					filter.descriptionContains = value;
+				};
+				return this.incentiveRoleValueResourceService.getAllIncentiveRoleValuesUsingGET(filter);
+		  })
+	   );
+	}
+
+	displayIncentiveRoleValue(selectedElement: any) {
+		return selectedElement.description;
+	}
+
+	filterIncentiveAssignationRole(observable: Observable<any>): Observable<MbsIncentiveAssignationRoleDto[]> {
+		return observable.pipe(
+			startWith(() => ''),
+			switchMap((value: string) => {
+				let filter: any = {};
+				if(value && value.length > 0)  {
+					filter.descriptionContains = value;
+				};
+				return this.incentiveAssignationRoleResourceService.getAllIncentiveAssignationRolesUsingGET(filter);
+		  })
+	   );
+	}
+
+	displayIncentiveAssignationRole(selectedElement: any) {
+		return selectedElement.description;
+	}
+
+	filterIncentiveAssignationStage(observable: Observable<any>): Observable<MbsIncentiveAssignationStageDto[]> {
+		return observable.pipe(
+			startWith(() => ''),
+			switchMap((value: string) => {
+				let filter: any = {};
+				if(value && value.length > 0)  {
+					filter.descriptionContains = value;
+				};
+				return this.incentiveAssignationStageResourceService.getAllIncentiveAssignationStagesUsingGET(filter);
+		  })
+	   );
+	}
+
+	displayIncentiveAssignationStage(selectedElement: any) {
+		return selectedElement.description;
+	}
+
+	filterGovernativeProject(observable: Observable<any>): Observable<MbsGovernativeProjectDto[]> {
+		return observable.pipe(
+			startWith(() => ''),
+			switchMap((value: string) => {
+				let filter: any = {};
+				if(value && value.length > 0)  {
+					filter.descriptionContains = value;
+				};
+				return this.governativeProjectResourceService.getAllGovernativeProjectsUsingGET(filter);
+		  })
+	   );
+	}
+
+	displayGovernativeProject(selectedElement: any) {
+		return selectedElement.description;
+	}
+
+	filterGovernativeProjectAndProcurementLot(observable: Observable<any>): Observable<MbsGovernativeProjectAndProcurementLotDto[]> {
+		return observable.pipe(
+			startWith(() => ''),
+			switchMap((value: string) => {
+				let filter: any = {};
+				if(value && value.length > 0)  {
+					filter.descriptionContains = value;
+				};
+				return this.governativeProjectAndProcurementLotResourceService.getAllGovernativeProjectAndProcurementLotsUsingGET(filter);
+		  })
+	   );
+	}
+
+	displayGovernativeProjectAndProcurementLot(selectedElement: any) {
 		return selectedElement.description;
 	}
 

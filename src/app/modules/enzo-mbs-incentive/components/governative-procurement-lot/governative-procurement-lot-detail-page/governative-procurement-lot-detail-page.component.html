@@ -1,0 +1,50 @@
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-6">
+        <div class="card mb-0">
+			<mbs-governative-procurement-lot-detail-box [governativeProcurementLot]="governativeProcurementLotDto"></mbs-governative-procurement-lot-detail-box>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editGovernativeProcurementLot(governativeProcurementLotDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteGovernativeProcurementLot(governativeProcurementLotDto)"></button>
+		</div>
+	</div>
+
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="governativeProcurementLotDto.type !== null">
+        <div class="card mb-0">
+			<h3>procurement-type</h3>
+			<mbs-procurement-type-detail-box [procurementType]="governativeProcurementLotDto.type" ></mbs-procurement-type-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../procurement-type/detail', governativeProcurementLotDto.type.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../procurement-type/detail', governativeProcurementLotDto.type.id]"></button>
+			-->
+		</div>
+	</div>
+
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>incentive-calculation</h3>
+			<mbs-incentive-calculation-list-loader 
+				[filters]="{procurementIdEquals: governativeProcurementLotDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="incentiveCalculationListPaginator"
+				[buttons]="incentiveCalculationTableButtons"
+				(resultCount)="incentiveCalculationCount=$event"></mbs-incentive-calculation-list-loader>
+			<stal-paginator [totalRecords]="incentiveCalculationCount" [(pageable)]="incentiveCalculationListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveCalculation(governativeProcurementLotDto)"></button>
+		</div>
+	</div>
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>governative-project-and-procurement-lot</h3>
+			<mbs-governative-project-and-procurement-lot-list-loader 
+				[filters]="{governativeProcurementLotIdEquals: governativeProcurementLotDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="governativeProjectAndProcurementLotListPaginator"
+				[buttons]="governativeProjectAndProcurementLotTableButtons"
+				(resultCount)="governativeProjectAndProcurementLotCount=$event"></mbs-governative-project-and-procurement-lot-list-loader>
+			<stal-paginator [totalRecords]="governativeProjectAndProcurementLotCount" [(pageable)]="governativeProjectAndProcurementLotListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewGovernativeProjectAndProcurementLot(governativeProcurementLotDto)"></button>
+		</div>
+	</div>
+</div>

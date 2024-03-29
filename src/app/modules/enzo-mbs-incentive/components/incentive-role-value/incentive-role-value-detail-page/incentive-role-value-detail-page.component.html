@@ -1,0 +1,50 @@
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-6">
+        <div class="card mb-0">
+			<mbs-incentive-role-value-detail-box [incentiveRoleValue]="incentiveRoleValueDto"></mbs-incentive-role-value-detail-box>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editIncentiveRoleValue(incentiveRoleValueDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteIncentiveRoleValue(incentiveRoleValueDto)"></button>
+		</div>
+	</div>
+
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="incentiveRoleValueDto.incentiveCalculation !== null">
+        <div class="card mb-0">
+			<h3>incentive-calculation</h3>
+			<mbs-incentive-calculation-detail-box [incentiveCalculation]="incentiveRoleValueDto.incentiveCalculation" ></mbs-incentive-calculation-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../incentive-calculation/detail', incentiveRoleValueDto.incentiveCalculation.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../incentive-calculation/detail', incentiveRoleValueDto.incentiveCalculation.id]"></button>
+			-->
+		</div>
+	</div>
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="incentiveRoleValueDto.roleValue !== null">
+        <div class="card mb-0">
+			<h3>role-value</h3>
+			<mbs-role-value-detail-box [roleValue]="incentiveRoleValueDto.roleValue" ></mbs-role-value-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../role-value/detail', incentiveRoleValueDto.roleValue.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../role-value/detail', incentiveRoleValueDto.roleValue.id]"></button>
+			-->
+		</div>
+	</div>
+
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>incentive-assignation-stage</h3>
+			<mbs-incentive-assignation-stage-list-loader 
+				[filters]="{assignationRoleValueIdEquals: incentiveRoleValueDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="incentiveAssignationStageListPaginator"
+				[buttons]="incentiveAssignationStageTableButtons"
+				(resultCount)="incentiveAssignationStageCount=$event"></mbs-incentive-assignation-stage-list-loader>
+			<stal-paginator [totalRecords]="incentiveAssignationStageCount" [(pageable)]="incentiveAssignationStageListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveAssignationStage(incentiveRoleValueDto)"></button>
+		</div>
+	</div>
+</div>

@@ -60,6 +60,62 @@ import { MbsRoleValueNewUpdateFormComponent } from './components/role-value/role
 import { MbsRoleValueResourceService } from './services/role-value.service';
 import { MbsRoleValueResolver } from './resolvers/role-value.resolver';
 
+import { MbsGovernativeProcurementLotListLoaderComponent } from './components/governative-procurement-lot/governative-procurement-lot-list-loader/governative-procurement-lot-list-loader.component';
+import { MbsGovernativeProcurementLotDetailBoxComponent } from './components/governative-procurement-lot/governative-procurement-lot-detail-box/governative-procurement-lot-detail-box.component';
+import { MbsGovernativeProcurementLotDisplayColumnComponent } from './components/governative-procurement-lot/governative-procurement-lot-display-column/governative-procurement-lot-display-column.component';
+import { MbsGovernativeProcurementLotNewUpdateFormComponent } from './components/governative-procurement-lot/governative-procurement-lot-new-update-form/governative-procurement-lot-new-update-form.component';
+import { MbsGovernativeProcurementLotResourceService } from './services/governative-procurement-lot.service';
+import { MbsGovernativeProcurementLotResolver } from './resolvers/governative-procurement-lot.resolver';
+
+import { MbsIncentiveCalculationListLoaderComponent } from './components/incentive-calculation/incentive-calculation-list-loader/incentive-calculation-list-loader.component';
+import { MbsIncentiveCalculationDetailBoxComponent } from './components/incentive-calculation/incentive-calculation-detail-box/incentive-calculation-detail-box.component';
+import { MbsIncentiveCalculationDisplayColumnComponent } from './components/incentive-calculation/incentive-calculation-display-column/incentive-calculation-display-column.component';
+import { MbsIncentiveCalculationNewUpdateFormComponent } from './components/incentive-calculation/incentive-calculation-new-update-form/incentive-calculation-new-update-form.component';
+import { MbsIncentiveCalculationResourceService } from './services/incentive-calculation.service';
+import { MbsIncentiveCalculationResolver } from './resolvers/incentive-calculation.resolver';
+
+import { MbsBeneficiaryListLoaderComponent } from './components/beneficiary/beneficiary-list-loader/beneficiary-list-loader.component';
+import { MbsBeneficiaryDetailBoxComponent } from './components/beneficiary/beneficiary-detail-box/beneficiary-detail-box.component';
+import { MbsBeneficiaryDisplayColumnComponent } from './components/beneficiary/beneficiary-display-column/beneficiary-display-column.component';
+import { MbsBeneficiaryNewUpdateFormComponent } from './components/beneficiary/beneficiary-new-update-form/beneficiary-new-update-form.component';
+import { MbsBeneficiaryResourceService } from './services/beneficiary.service';
+import { MbsBeneficiaryResolver } from './resolvers/beneficiary.resolver';
+
+import { MbsIncentiveRoleValueListLoaderComponent } from './components/incentive-role-value/incentive-role-value-list-loader/incentive-role-value-list-loader.component';
+import { MbsIncentiveRoleValueDetailBoxComponent } from './components/incentive-role-value/incentive-role-value-detail-box/incentive-role-value-detail-box.component';
+import { MbsIncentiveRoleValueDisplayColumnComponent } from './components/incentive-role-value/incentive-role-value-display-column/incentive-role-value-display-column.component';
+import { MbsIncentiveRoleValueNewUpdateFormComponent } from './components/incentive-role-value/incentive-role-value-new-update-form/incentive-role-value-new-update-form.component';
+import { MbsIncentiveRoleValueResourceService } from './services/incentive-role-value.service';
+import { MbsIncentiveRoleValueResolver } from './resolvers/incentive-role-value.resolver';
+
+import { MbsIncentiveAssignationRoleListLoaderComponent } from './components/incentive-assignation-role/incentive-assignation-role-list-loader/incentive-assignation-role-list-loader.component';
+import { MbsIncentiveAssignationRoleDetailBoxComponent } from './components/incentive-assignation-role/incentive-assignation-role-detail-box/incentive-assignation-role-detail-box.component';
+import { MbsIncentiveAssignationRoleDisplayColumnComponent } from './components/incentive-assignation-role/incentive-assignation-role-display-column/incentive-assignation-role-display-column.component';
+import { MbsIncentiveAssignationRoleNewUpdateFormComponent } from './components/incentive-assignation-role/incentive-assignation-role-new-update-form/incentive-assignation-role-new-update-form.component';
+import { MbsIncentiveAssignationRoleResourceService } from './services/incentive-assignation-role.service';
+import { MbsIncentiveAssignationRoleResolver } from './resolvers/incentive-assignation-role.resolver';
+
+import { MbsIncentiveAssignationStageListLoaderComponent } from './components/incentive-assignation-stage/incentive-assignation-stage-list-loader/incentive-assignation-stage-list-loader.component';
+import { MbsIncentiveAssignationStageDetailBoxComponent } from './components/incentive-assignation-stage/incentive-assignation-stage-detail-box/incentive-assignation-stage-detail-box.component';
+import { MbsIncentiveAssignationStageDisplayColumnComponent } from './components/incentive-assignation-stage/incentive-assignation-stage-display-column/incentive-assignation-stage-display-column.component';
+import { MbsIncentiveAssignationStageNewUpdateFormComponent } from './components/incentive-assignation-stage/incentive-assignation-stage-new-update-form/incentive-assignation-stage-new-update-form.component';
+import { MbsIncentiveAssignationStageResourceService } from './services/incentive-assignation-stage.service';
+import { MbsIncentiveAssignationStageResolver } from './resolvers/incentive-assignation-stage.resolver';
+
+import { MbsGovernativeProjectListLoaderComponent } from './components/governative-project/governative-project-list-loader/governative-project-list-loader.component';
+import { MbsGovernativeProjectDetailBoxComponent } from './components/governative-project/governative-project-detail-box/governative-project-detail-box.component';
+import { MbsGovernativeProjectDisplayColumnComponent } from './components/governative-project/governative-project-display-column/governative-project-display-column.component';
+import { MbsGovernativeProjectNewUpdateFormComponent } from './components/governative-project/governative-project-new-update-form/governative-project-new-update-form.component';
+import { MbsGovernativeProjectResourceService } from './services/governative-project.service';
+import { MbsGovernativeProjectResolver } from './resolvers/governative-project.resolver';
+
+import { MbsGovernativeProjectAndProcurementLotListLoaderComponent } from './components/governative-project-and-procurement-lot/governative-project-and-procurement-lot-list-loader/governative-project-and-procurement-lot-list-loader.component';
+import { MbsGovernativeProjectAndProcurementLotDetailBoxComponent } from './components/governative-project-and-procurement-lot/governative-project-and-procurement-lot-detail-box/governative-project-and-procurement-lot-detail-box.component';
+import { MbsGovernativeProjectAndProcurementLotDisplayColumnComponent } from './components/governative-project-and-procurement-lot/governative-project-and-procurement-lot-display-column/governative-project-and-procurement-lot-display-column.component';
+import { MbsGovernativeProjectAndProcurementLotNewUpdateFormComponent } from './components/governative-project-and-procurement-lot/governative-project-and-procurement-lot-new-update-form/governative-project-and-procurement-lot-new-update-form.component';
+import { MbsGovernativeProjectAndProcurementLotResourceService } from './services/governative-project-and-procurement-lot.service';
+import { MbsGovernativeProjectAndProcurementLotResolver } from './resolvers/governative-project-and-procurement-lot.resolver';
+
 
 @NgModule({
 	imports: [ 
@@ -99,6 +155,38 @@ import { MbsRoleValueResolver } from './resolvers/role-value.resolver';
 		MbsRoleValueDetailBoxComponent,
 		MbsRoleValueDisplayColumnComponent,
 		MbsRoleValueNewUpdateFormComponent,
+		MbsGovernativeProcurementLotListLoaderComponent,
+		MbsGovernativeProcurementLotDetailBoxComponent,
+		MbsGovernativeProcurementLotDisplayColumnComponent,
+		MbsGovernativeProcurementLotNewUpdateFormComponent,
+		MbsIncentiveCalculationListLoaderComponent,
+		MbsIncentiveCalculationDetailBoxComponent,
+		MbsIncentiveCalculationDisplayColumnComponent,
+		MbsIncentiveCalculationNewUpdateFormComponent,
+		MbsBeneficiaryListLoaderComponent,
+		MbsBeneficiaryDetailBoxComponent,
+		MbsBeneficiaryDisplayColumnComponent,
+		MbsBeneficiaryNewUpdateFormComponent,
+		MbsIncentiveRoleValueListLoaderComponent,
+		MbsIncentiveRoleValueDetailBoxComponent,
+		MbsIncentiveRoleValueDisplayColumnComponent,
+		MbsIncentiveRoleValueNewUpdateFormComponent,
+		MbsIncentiveAssignationRoleListLoaderComponent,
+		MbsIncentiveAssignationRoleDetailBoxComponent,
+		MbsIncentiveAssignationRoleDisplayColumnComponent,
+		MbsIncentiveAssignationRoleNewUpdateFormComponent,
+		MbsIncentiveAssignationStageListLoaderComponent,
+		MbsIncentiveAssignationStageDetailBoxComponent,
+		MbsIncentiveAssignationStageDisplayColumnComponent,
+		MbsIncentiveAssignationStageNewUpdateFormComponent,
+		MbsGovernativeProjectListLoaderComponent,
+		MbsGovernativeProjectDetailBoxComponent,
+		MbsGovernativeProjectDisplayColumnComponent,
+		MbsGovernativeProjectNewUpdateFormComponent,
+		MbsGovernativeProjectAndProcurementLotListLoaderComponent,
+		MbsGovernativeProjectAndProcurementLotDetailBoxComponent,
+		MbsGovernativeProjectAndProcurementLotDisplayColumnComponent,
+		MbsGovernativeProjectAndProcurementLotNewUpdateFormComponent,
 	],
 	providers: [
 		MbsIncentiveAutocompleteService,
@@ -118,6 +206,22 @@ import { MbsRoleValueResolver } from './resolvers/role-value.resolver';
 		MbsRoleResolver,
 		MbsRoleValueResourceService,
 		MbsRoleValueResolver,
+		MbsGovernativeProcurementLotResourceService,
+		MbsGovernativeProcurementLotResolver,
+		MbsIncentiveCalculationResourceService,
+		MbsIncentiveCalculationResolver,
+		MbsBeneficiaryResourceService,
+		MbsBeneficiaryResolver,
+		MbsIncentiveRoleValueResourceService,
+		MbsIncentiveRoleValueResolver,
+		MbsIncentiveAssignationRoleResourceService,
+		MbsIncentiveAssignationRoleResolver,
+		MbsIncentiveAssignationStageResourceService,
+		MbsIncentiveAssignationStageResolver,
+		MbsGovernativeProjectResourceService,
+		MbsGovernativeProjectResolver,
+		MbsGovernativeProjectAndProcurementLotResourceService,
+		MbsGovernativeProjectAndProcurementLotResolver,
 		
 	],
 	exports: [
@@ -153,6 +257,38 @@ import { MbsRoleValueResolver } from './resolvers/role-value.resolver';
 		MbsRoleValueDetailBoxComponent,
 		MbsRoleValueDisplayColumnComponent,
 		MbsRoleValueNewUpdateFormComponent,
+		MbsGovernativeProcurementLotListLoaderComponent,
+		MbsGovernativeProcurementLotDetailBoxComponent,
+		MbsGovernativeProcurementLotDisplayColumnComponent,
+		MbsGovernativeProcurementLotNewUpdateFormComponent,
+		MbsIncentiveCalculationListLoaderComponent,
+		MbsIncentiveCalculationDetailBoxComponent,
+		MbsIncentiveCalculationDisplayColumnComponent,
+		MbsIncentiveCalculationNewUpdateFormComponent,
+		MbsBeneficiaryListLoaderComponent,
+		MbsBeneficiaryDetailBoxComponent,
+		MbsBeneficiaryDisplayColumnComponent,
+		MbsBeneficiaryNewUpdateFormComponent,
+		MbsIncentiveRoleValueListLoaderComponent,
+		MbsIncentiveRoleValueDetailBoxComponent,
+		MbsIncentiveRoleValueDisplayColumnComponent,
+		MbsIncentiveRoleValueNewUpdateFormComponent,
+		MbsIncentiveAssignationRoleListLoaderComponent,
+		MbsIncentiveAssignationRoleDetailBoxComponent,
+		MbsIncentiveAssignationRoleDisplayColumnComponent,
+		MbsIncentiveAssignationRoleNewUpdateFormComponent,
+		MbsIncentiveAssignationStageListLoaderComponent,
+		MbsIncentiveAssignationStageDetailBoxComponent,
+		MbsIncentiveAssignationStageDisplayColumnComponent,
+		MbsIncentiveAssignationStageNewUpdateFormComponent,
+		MbsGovernativeProjectListLoaderComponent,
+		MbsGovernativeProjectDetailBoxComponent,
+		MbsGovernativeProjectDisplayColumnComponent,
+		MbsGovernativeProjectNewUpdateFormComponent,
+		MbsGovernativeProjectAndProcurementLotListLoaderComponent,
+		MbsGovernativeProjectAndProcurementLotDetailBoxComponent,
+		MbsGovernativeProjectAndProcurementLotDisplayColumnComponent,
+		MbsGovernativeProjectAndProcurementLotNewUpdateFormComponent,
 	],
 })
 export class MbsIncentiveLibModule {}

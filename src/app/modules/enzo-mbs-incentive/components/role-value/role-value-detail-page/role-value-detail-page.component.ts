@@ -12,6 +12,7 @@ import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/c
 
 import { MbsRoleValueDto, MbsRoleValueResourceService} from '@mbs-incentive';
 import { EnzoRoleValueDialogComponent } from '../role-value-dialog/role-value-dialog.component';
+import { EnzoIncentiveRoleValueDialogComponent } from "../../incentive-role-value/incentive-role-value-dialog/incentive-role-value-dialog.component";
 
 @Component({
 	selector: 'enzo-role-value-detail-page',
@@ -53,6 +54,33 @@ export class EnzoRoleValueDetailPageComponent extends EngeAppGenericDetailPageCo
 		if(roleValue.id === undefined) return;
 		await lastValueFrom(this.resourceService.deleteRoleValueUsingDELETE(roleValue.id));
 	}
+
+	createNewIncentiveRoleValue(roleValueDto: MbsRoleValueDto) {
+		this.dialogService.open(EnzoIncentiveRoleValueDialogComponent, {
+			header: 'Create IncentiveRoleValue',
+			width: '70%',
+			data: {
+				roleValue: roleValueDto
+			}
+		});
+	}
+
+	protected incentiveRoleValueTableButtons: any[] = [
+		{
+			label: "Dettagli",
+			hideLabel: true,
+			icon: "pi pi-search",
+			severity: "secondary",
+			class: "p-button-sm p-button-outlined",
+			link: "../../../incentive-role-value/detail",
+			//command: (e: any) => this.tabManagerService.openInCard(),
+		}
+	];
+	protected incentiveRoleValueListPaginator: StalPaginator = {
+		page: 0,
+		size: 10
+	};
+	protected incentiveRoleValueCount: number;
 
 }
 

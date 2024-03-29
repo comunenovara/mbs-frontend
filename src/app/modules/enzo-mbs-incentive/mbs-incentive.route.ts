@@ -24,12 +24,36 @@ import { EnzoRoleDetailPageComponent } from './components/role/role-detail-page/
 import { MbsRoleValueResolver } from '@mbs-incentive/resolvers/role-value.resolver';
 import { EnzoRoleValueListPageComponent } from './components/role-value/role-value-list-page/role-value-list-page.component';
 import { EnzoRoleValueDetailPageComponent } from './components/role-value/role-value-detail-page/role-value-detail-page.component';
+import { MbsGovernativeProcurementLotResolver } from '@mbs-incentive/resolvers/governative-procurement-lot.resolver';
+import { EnzoGovernativeProcurementLotListPageComponent } from './components/governative-procurement-lot/governative-procurement-lot-list-page/governative-procurement-lot-list-page.component';
+import { EnzoGovernativeProcurementLotDetailPageComponent } from './components/governative-procurement-lot/governative-procurement-lot-detail-page/governative-procurement-lot-detail-page.component';
+import { MbsIncentiveCalculationResolver } from '@mbs-incentive/resolvers/incentive-calculation.resolver';
+import { EnzoIncentiveCalculationListPageComponent } from './components/incentive-calculation/incentive-calculation-list-page/incentive-calculation-list-page.component';
+import { EnzoIncentiveCalculationDetailPageComponent } from './components/incentive-calculation/incentive-calculation-detail-page/incentive-calculation-detail-page.component';
+import { MbsBeneficiaryResolver } from '@mbs-incentive/resolvers/beneficiary.resolver';
+import { EnzoBeneficiaryListPageComponent } from './components/beneficiary/beneficiary-list-page/beneficiary-list-page.component';
+import { EnzoBeneficiaryDetailPageComponent } from './components/beneficiary/beneficiary-detail-page/beneficiary-detail-page.component';
+import { MbsIncentiveRoleValueResolver } from '@mbs-incentive/resolvers/incentive-role-value.resolver';
+import { EnzoIncentiveRoleValueListPageComponent } from './components/incentive-role-value/incentive-role-value-list-page/incentive-role-value-list-page.component';
+import { EnzoIncentiveRoleValueDetailPageComponent } from './components/incentive-role-value/incentive-role-value-detail-page/incentive-role-value-detail-page.component';
+import { MbsIncentiveAssignationRoleResolver } from '@mbs-incentive/resolvers/incentive-assignation-role.resolver';
+import { EnzoIncentiveAssignationRoleListPageComponent } from './components/incentive-assignation-role/incentive-assignation-role-list-page/incentive-assignation-role-list-page.component';
+import { EnzoIncentiveAssignationRoleDetailPageComponent } from './components/incentive-assignation-role/incentive-assignation-role-detail-page/incentive-assignation-role-detail-page.component';
+import { MbsIncentiveAssignationStageResolver } from '@mbs-incentive/resolvers/incentive-assignation-stage.resolver';
+import { EnzoIncentiveAssignationStageListPageComponent } from './components/incentive-assignation-stage/incentive-assignation-stage-list-page/incentive-assignation-stage-list-page.component';
+import { EnzoIncentiveAssignationStageDetailPageComponent } from './components/incentive-assignation-stage/incentive-assignation-stage-detail-page/incentive-assignation-stage-detail-page.component';
+import { MbsGovernativeProjectResolver } from '@mbs-incentive/resolvers/governative-project.resolver';
+import { EnzoGovernativeProjectListPageComponent } from './components/governative-project/governative-project-list-page/governative-project-list-page.component';
+import { EnzoGovernativeProjectDetailPageComponent } from './components/governative-project/governative-project-detail-page/governative-project-detail-page.component';
+import { MbsGovernativeProjectAndProcurementLotResolver } from '@mbs-incentive/resolvers/governative-project-and-procurement-lot.resolver';
+import { EnzoGovernativeProjectAndProcurementLotListPageComponent } from './components/governative-project-and-procurement-lot/governative-project-and-procurement-lot-list-page/governative-project-and-procurement-lot-list-page.component';
+import { EnzoGovernativeProjectAndProcurementLotDetailPageComponent } from './components/governative-project-and-procurement-lot/governative-project-and-procurement-lot-detail-page/governative-project-and-procurement-lot-detail-page.component';
 
 export const enzoMbsIncentiveRoutes: Route[] = [
 	{
 		path: '', 
 		pathMatch : 'full',
-		redirectTo: 'page'
+		redirectTo: 'procurement-type'
 	},
 	{
 		path: 'procurement-type',
@@ -195,6 +219,174 @@ export const enzoMbsIncentiveRoutes: Route[] = [
 				component: EnzoRoleValueDetailPageComponent,
 				resolve: {
 					roleValue: MbsRoleValueResolver,
+				},
+			},
+		]
+	},
+	{
+		path: 'governative-procurement-lot',
+		children: [
+			{
+				path: '',
+				redirectTo: 'list',
+				pathMatch: 'full',
+			},
+			{
+				path: 'list', 
+				component: EnzoGovernativeProcurementLotListPageComponent,
+			},
+			{
+				path: 'detail/:id', 
+				component: EnzoGovernativeProcurementLotDetailPageComponent,
+				resolve: {
+					governativeProcurementLot: MbsGovernativeProcurementLotResolver,
+				},
+			},
+		]
+	},
+	{
+		path: 'incentive-calculation',
+		children: [
+			{
+				path: '',
+				redirectTo: 'list',
+				pathMatch: 'full',
+			},
+			{
+				path: 'list', 
+				component: EnzoIncentiveCalculationListPageComponent,
+			},
+			{
+				path: 'detail/:id', 
+				component: EnzoIncentiveCalculationDetailPageComponent,
+				resolve: {
+					incentiveCalculation: MbsIncentiveCalculationResolver,
+				},
+			},
+		]
+	},
+	{
+		path: 'beneficiary',
+		children: [
+			{
+				path: '',
+				redirectTo: 'list',
+				pathMatch: 'full',
+			},
+			{
+				path: 'list', 
+				component: EnzoBeneficiaryListPageComponent,
+			},
+			{
+				path: 'detail/:id', 
+				component: EnzoBeneficiaryDetailPageComponent,
+				resolve: {
+					beneficiary: MbsBeneficiaryResolver,
+				},
+			},
+		]
+	},
+	{
+		path: 'incentive-role-value',
+		children: [
+			{
+				path: '',
+				redirectTo: 'list',
+				pathMatch: 'full',
+			},
+			{
+				path: 'list', 
+				component: EnzoIncentiveRoleValueListPageComponent,
+			},
+			{
+				path: 'detail/:id', 
+				component: EnzoIncentiveRoleValueDetailPageComponent,
+				resolve: {
+					incentiveRoleValue: MbsIncentiveRoleValueResolver,
+				},
+			},
+		]
+	},
+	{
+		path: 'incentive-assignation-role',
+		children: [
+			{
+				path: '',
+				redirectTo: 'list',
+				pathMatch: 'full',
+			},
+			{
+				path: 'list', 
+				component: EnzoIncentiveAssignationRoleListPageComponent,
+			},
+			{
+				path: 'detail/:id', 
+				component: EnzoIncentiveAssignationRoleDetailPageComponent,
+				resolve: {
+					incentiveAssignationRole: MbsIncentiveAssignationRoleResolver,
+				},
+			},
+		]
+	},
+	{
+		path: 'incentive-assignation-stage',
+		children: [
+			{
+				path: '',
+				redirectTo: 'list',
+				pathMatch: 'full',
+			},
+			{
+				path: 'list', 
+				component: EnzoIncentiveAssignationStageListPageComponent,
+			},
+			{
+				path: 'detail/:id', 
+				component: EnzoIncentiveAssignationStageDetailPageComponent,
+				resolve: {
+					incentiveAssignationStage: MbsIncentiveAssignationStageResolver,
+				},
+			},
+		]
+	},
+	{
+		path: 'governative-project',
+		children: [
+			{
+				path: '',
+				redirectTo: 'list',
+				pathMatch: 'full',
+			},
+			{
+				path: 'list', 
+				component: EnzoGovernativeProjectListPageComponent,
+			},
+			{
+				path: 'detail/:id', 
+				component: EnzoGovernativeProjectDetailPageComponent,
+				resolve: {
+					governativeProject: MbsGovernativeProjectResolver,
+				},
+			},
+		]
+	},
+	{
+		path: 'governative-project-and-procurement-lot',
+		children: [
+			{
+				path: '',
+				redirectTo: 'list',
+				pathMatch: 'full',
+			},
+			{
+				path: 'list', 
+				component: EnzoGovernativeProjectAndProcurementLotListPageComponent,
+			},
+			{
+				path: 'detail/:id', 
+				component: EnzoGovernativeProjectAndProcurementLotDetailPageComponent,
+				resolve: {
+					governativeProjectAndProcurementLot: MbsGovernativeProjectAndProcurementLotResolver,
 				},
 			},
 		]
