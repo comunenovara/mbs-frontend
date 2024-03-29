@@ -38,6 +38,7 @@ import { EnzoGovernativeProcurementLotDialogComponent } from './components/gover
 import { EnzoIncentiveCalculationListPageComponent } from './components/incentive-calculation/incentive-calculation-list-page/incentive-calculation-list-page.component';
 import { EnzoIncentiveCalculationDetailPageComponent } from './components/incentive-calculation/incentive-calculation-detail-page/incentive-calculation-detail-page.component';
 import { EnzoIncentiveCalculationDialogComponent } from './components/incentive-calculation/incentive-calculation-dialog/incentive-calculation-dialog.component';
+import { EnzoIncentiveCalculationTableComponent } from './components/incentive-calculation/incentive-calculation-table/incentive-calculation-table.component';
 import { EnzoBeneficiaryListPageComponent } from './components/beneficiary/beneficiary-list-page/beneficiary-list-page.component';
 import { EnzoBeneficiaryDetailPageComponent } from './components/beneficiary/beneficiary-detail-page/beneficiary-detail-page.component';
 import { EnzoBeneficiaryDialogComponent } from './components/beneficiary/beneficiary-dialog/beneficiary-dialog.component';
@@ -73,6 +74,7 @@ import { ChipModule } from 'primeng/chip';
 		MbsIncentireRegulationComponent,
 		EnzoCalculationMethodDetailDialogComponent,
 		EnzoCalculationMethodDetail2Component,
+		EnzoIncentiveCalculationTableComponent,
 
 		EnzoProcurementTypeListPageComponent,
 		EnzoProcurementTypeDetailPageComponent,

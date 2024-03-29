@@ -38,7 +38,7 @@ export class EnzoGovernativeProjectListPageComponent {
 	};
 	governativeProjectCount: number;
 
-	governativeProjectListDc = ['_ck', 'id'];
+	governativeProjectListDc = ['_ck', 'id', 'code', 'description'];
 	paginatorEvent(paginator: any) {
 		let governativeProjectListPaginator = { ...paginator }
 		this.governativeProjectListPaginator = governativeProjectListPaginator;

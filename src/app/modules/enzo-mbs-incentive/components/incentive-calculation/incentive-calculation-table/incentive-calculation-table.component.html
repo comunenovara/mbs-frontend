@@ -1,0 +1,23 @@
+
+
+
+
+
+<div *ngFor="let stage of stages">
+
+    <h1>{{ stage.description }}</h1>
+
+    <div *ngIf="stage.id">
+        <div *ngFor="let roleValue of lote[stage.id]">
+
+            <h3>{{ roleValue.role.description }}</h3>
+            <span>Min: {{ roleValue.min }}</span>
+            <span>Max: {{ roleValue.maax }}</span>
+            <span>Default: {{ roleValue.defaul }}</span>
+        
+        </div>
+    </div>
+
+    <hr>
+
+</div>

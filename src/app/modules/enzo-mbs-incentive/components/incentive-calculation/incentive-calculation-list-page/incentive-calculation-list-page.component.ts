@@ -38,7 +38,7 @@ export class EnzoIncentiveCalculationListPageComponent {
 	};
 	incentiveCalculationCount: number;
 
-	incentiveCalculationListDc = ['_ck', 'id'];
+	incentiveCalculationListDc = ['_ck', 'id', 'procurement.code', 'procurement.description', 'description'];
 	paginatorEvent(paginator: any) {
 		let incentiveCalculationListPaginator = { ...paginator }
 		this.incentiveCalculationListPaginator = incentiveCalculationListPaginator;

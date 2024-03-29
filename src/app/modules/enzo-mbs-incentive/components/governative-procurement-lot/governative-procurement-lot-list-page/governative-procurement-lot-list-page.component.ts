@@ -38,7 +38,7 @@ export class EnzoGovernativeProcurementLotListPageComponent {
 	};
 	governativeProcurementLotCount: number;
 
-	governativeProcurementLotListDc = ['_ck', 'id'];
+	governativeProcurementLotListDc = ['_ck', 'id', 'code', 'description'];
 	paginatorEvent(paginator: any) {
 		let governativeProcurementLotListPaginator = { ...paginator }
 		this.governativeProcurementLotListPaginator = governativeProcurementLotListPaginator;
