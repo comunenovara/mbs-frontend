@@ -8,7 +8,7 @@ import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
 //import { TabManagerService } from '@stal/carder';
 
-import { MbsIncentiveCalculationResourceService, MbsRoleDto, MbsRoleResourceService, MbsRoleValueDto, MbsRoleValueResourceService, MbsStageDto, MbsStageResourceService } from '@mbs-incentive';
+import { MbsIncentiveAssignationRoleDto, MbsIncentiveAssignationRoleResourceService, MbsIncentiveCalculationResourceService, MbsRoleDto, MbsRoleResourceService, MbsRoleValueDto, MbsRoleValueResourceService, MbsStageDto, MbsStageResourceService } from '@mbs-incentive';
 import { EnzoIncentiveCalculationDialogComponent } from '../incentive-calculation-dialog/incentive-calculation-dialog.component';
 import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from '@enge/common-app';
 
@@ -23,8 +23,9 @@ export class EnzoIncentiveCalculationTableComponent extends EngeAppGenericDetail
 		route: ActivatedRoute,
 		//public tabManagerService: TabManagerService,
 		private stageResourceService: MbsStageResourceService,
-		private roleResourceService: MbsRoleResourceService,
 		private roleValueResourceService: MbsRoleValueResourceService,
+		private incentiveAssignationRoleResourceService: MbsIncentiveAssignationRoleResourceService,
+		private roleResourceService: MbsRoleResourceService,
 		private incentiveCalculationResourceService: MbsIncentiveCalculationResourceService,
 	) { super(eacs, route); }
 
@@ -42,6 +43,7 @@ export class EnzoIncentiveCalculationTableComponent extends EngeAppGenericDetail
 	}
 
 	lote: any = {};
+	assignationsByRole: any = {};
 
 	stages: MbsStageDto[];
 	roles: MbsRoleDto[];
@@ -64,6 +66,16 @@ export class EnzoIncentiveCalculationTableComponent extends EngeAppGenericDetail
 
 			this.lote[roleValue.stageId].push(roleValue);
 		}
-		
+
+
+		let incentiveAssignationRoles: MbsIncentiveAssignationRoleDto[] = await lastValueFrom(this.incentiveAssignationRoleResourceService.getAllIncentiveAssignationRolesUsingGET({"procurementLotIdEquals":1}));
+		for(let incentiveAssignationRole of incentiveAssignationRoles) {
+			if(!incentiveAssignationRole.assignationRoleId) continue
+
+			if(!this.assignationsByRole[incentiveAssignationRole.assignationRoleId])
+				this.assignationsByRole[incentiveAssignationRole.assignationRoleId] = []
+
+			this.assignationsByRole[incentiveAssignationRole.assignationRoleId].push(incentiveAssignationRole);
+		}
 	}
 }

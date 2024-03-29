@@ -15,7 +15,8 @@
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
 						<th *ngSwitchCase="'amount'" style="width:auto" pResizableColumn pSortableColumn="amount"> amount </th>
-						<th *ngSwitchCase="'governativeProject.code'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProject.code" > code</th>
+						<th *ngSwitchCase="'amountOfProject'" style="width:auto" pResizableColumn pSortableColumn="amount"> amount </th>
+						<th *ngSwitchCase="'governativeProject.code'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProject.code" >CUP</th>
 						<th *ngSwitchCase="'governativeProject.description'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProject.description" > description</th>
 						<th *ngSwitchCase="'governativeProject.amount'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProject.amount" > amount</th>
 						<th *ngSwitchCase="'governativeProcurementLot.code'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.code" > code</th>
@@ -30,7 +31,10 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
-						<td *ngSwitchCase="'amount'">{{ e.amount }}</td>
+						<td *ngSwitchCase="'amount'">{{ e.amount | currency: 'EUR' }}</td>
+						<td *ngSwitchCase="'amountOfProject'">
+							<span *ngIf="e.governativeProject">{{ e.amount | currency: 'EUR' }} su {{ e.governativeProcurementLot.amount | currency: 'EUR' }}</span>
+						</td>
 						<td *ngSwitchCase="'governativeProject.code'">
 							<span *ngIf="e.governativeProject">{{ e.governativeProject.code }}</span>
 						</td>

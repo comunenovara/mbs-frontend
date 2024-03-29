@@ -38,7 +38,7 @@ export class EnzoBeneficiaryListPageComponent {
 	};
 	beneficiaryCount: number;
 
-	beneficiaryListDc = ['_ck', 'id'];
+	beneficiaryListDc = ['_ck', 'id', 'name'];
 	paginatorEvent(paginator: any) {
 		let beneficiaryListPaginator = { ...paginator }
 		this.beneficiaryListPaginator = beneficiaryListPaginator;

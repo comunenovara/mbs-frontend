@@ -35,6 +35,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Progetti', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/governative-project'] },
                     { label: 'Appalti', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/governative-procurement-lot'] },
 					{ label: 'Regolamento incentivi', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/incentive-regulation'] },
+                    { label: 'Beneficiari incentivi', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/beneficiary'] },
                 ]
             },
 			{

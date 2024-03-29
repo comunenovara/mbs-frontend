@@ -231,7 +231,7 @@ export class MbsIncentiveAutocompleteService {
 			switchMap((value: string) => {
 				let filter: any = {};
 				if(value && value.length > 0)  {
-					filter.descriptionContains = value;
+					filter.nameContains = value;
 				};
 				return this.beneficiaryResourceService.getAllBeneficiariesUsingGET(filter);
 		  })
@@ -239,7 +239,7 @@ export class MbsIncentiveAutocompleteService {
 	}
 
 	displayBeneficiary(selectedElement: any) {
-		return selectedElement.description;
+		return selectedElement.name;
 	}
 
 	filterIncentiveRoleValue(observable: Observable<any>): Observable<MbsIncentiveRoleValueDto[]> {
