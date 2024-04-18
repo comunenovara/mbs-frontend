@@ -15,34 +15,29 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.model = [
             {
-                label: 'MBS',
+                label: 'Incentivi',
                 items: [
-                    { label: 'Beni immobili', icon: 'pi pi-fw pi-building', routerLink: ['/enzo/asset'] },
-                    { label: 'Rilievi', icon: 'pi pi-fw pi-compass', routerLink: ['/enzo/relif'] },
-                    { label: 'Interventi', icon: 'pi pi-fw pi-chart-line', routerLink: ['/enzo/operation'] },
+                    { label: 'Regolamento', icon: 'pi pi-fw pi-building', routerLink: ['/main/incentive-regulation'] },
+                    { label: 'Beneficiari', icon: 'pi pi-fw pi-chart-line', routerLink: ['/main/incentive-beneficiary'] },
+                    { label: 'Calcoli', icon: 'pi pi-fw pi-compass', routerLink: ['/main/incentive-calculation'] },
                 ]
             },
 			{
-                label: 'Config - Solo amministratori',
+                label: 'Progetti',
                 items: [
-                    { label: 'Tipi di intervento', icon: 'pi pi-fw pi-building', routerLink: ['/enzo/operation-type'] },
-                    { label: 'Tipi di fascicoli', icon: 'pi pi-fw pi-compass', routerLink: ['/enzo/dossier-type'] },
-                    { label: 'Tutti i fascicoli', icon: 'pi pi-fw pi-chart-line', routerLink: ['/enzo/dossier'] },
+                    { label: 'Progetti', icon: 'pi pi-fw pi-building', routerLink: ['/main/governative-project'] },
+                    { label: 'Appalti', icon: 'pi pi-fw pi-compass', routerLink: ['/main/governative-procurement-lot'] },
                 ]
             },
             {
-                label: 'Work',
+                label: 'Config',
                 items: [
-                    { label: 'Progetti', icon: 'pi pi-fw pi-building', routerLink: ['/work/progetto'] },
-                    { label: 'Progetti', icon: 'pi pi-fw pi-building', routerLink: ['/work/project'] },
-                    { label: 'Tecnici', icon: 'pi pi-fw pi-compass', routerLink: ['/work/tecnico'] },
+                    { label: 'Tipi appalti', icon: 'pi pi-fw pi-building', routerLink: ['/work/project'] },
                     { label: 'Tecnici', icon: 'pi pi-fw pi-compass', routerLink: ['/work/employee'] },
-                    { label: 'Aziende', icon: 'pi pi-fw pi-chart-line', routerLink: ['/work/azienda'] },
-                    { label: 'Aziende', icon: 'pi pi-fw pi-chart-line', routerLink: ['/work/company'] },
                 ]
             },
             {
-                label: 'Config - Work',
+                label: 'Gestione lavoro',
                 items: [
                     { label: 'Incarichi', icon: 'pi pi-fw pi-building', routerLink: ['/work/incarico'] },
                     { label: 'Ruoli', icon: 'pi pi-fw pi-building', routerLink: ['/work/role'] },
