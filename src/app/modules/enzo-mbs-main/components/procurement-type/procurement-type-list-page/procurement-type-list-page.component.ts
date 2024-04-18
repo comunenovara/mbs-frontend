@@ -38,7 +38,7 @@ export class EnzoProcurementTypeListPageComponent {
 	};
 	procurementTypeCount: number;
 
-	procurementTypeListDc = ['_ck', 'id'];
+	procurementTypeListDc = ['_ck', 'id', 'description'];
 	paginatorEvent(paginator: any) {
 		let procurementTypeListPaginator = { ...paginator }
 		this.procurementTypeListPaginator = procurementTypeListPaginator;
@@ -61,25 +61,20 @@ export class EnzoProcurementTypeListPageComponent {
 
 	tableButtons: any[] = [
 		{
-			label: "Dettagli",
-			hideLabel: true,
-			icon: "pi pi-search",
+			label: "Edit",
+			icon: "pi pi-pencil",
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
-			link: "../detail",
-			//command: (e: any) => this.tabManagerService.openInTab(),
+			hideLabel: true,
+			command: (e: any) => {
+				console.log(e);
+				const ref = this.dialogService.open(EnzoProcurementTypeDialogComponent, {
+					data: { procurementType: { ...e } },
+					header: 'Update procurementType',
+					width: '70%'
+				});
+			},
 			childs: [
-				{
-					label: "Edit",
-					icon: "pi pi-pencil",
-					command: (e: any) => {
-						const ref = this.dialogService.open(EnzoProcurementTypeDialogComponent, {
-							data: { procurementType: { ...e.item.data } },
-							header: 'Update procurementType',
-							width: '70%'
-						});
-					}
-				},
 				{
 					label: "Delete",
 					icon: "pi pi-trash",
