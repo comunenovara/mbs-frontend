@@ -1,0 +1,63 @@
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-6">
+        <div class="card mb-0">
+			<mbs-incentive-role-detail-box [incentiveRole]="incentiveRoleDto"></mbs-incentive-role-detail-box>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editIncentiveRole(incentiveRoleDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteIncentiveRole(incentiveRoleDto)"></button>
+		</div>
+	</div>
+
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="incentiveRoleDto.procurementType !== null">
+        <div class="card mb-0">
+			<h3>procurement-type</h3>
+			<mbs-procurement-type-detail-box [procurementType]="incentiveRoleDto.procurementType" ></mbs-procurement-type-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../procurement-type/detail', incentiveRoleDto.procurementType.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../procurement-type/detail', incentiveRoleDto.procurementType.id]"></button>
+			-->
+		</div>
+	</div>
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="incentiveRoleDto.regulation !== null">
+        <div class="card mb-0">
+			<h3>incentive-regulation</h3>
+			<mbs-incentive-regulation-detail-box [incentiveRegulation]="incentiveRoleDto.regulation" ></mbs-incentive-regulation-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../incentive-regulation/detail', incentiveRoleDto.regulation.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../incentive-regulation/detail', incentiveRoleDto.regulation.id]"></button>
+			-->
+		</div>
+	</div>
+
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>incentive-regulation-value</h3>
+			<mbs-incentive-regulation-value-list-loader 
+				[filters]="{roleIdEquals: incentiveRoleDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="incentiveRegulationValueListPaginator"
+				[buttons]="incentiveRegulationValueTableButtons"
+				(resultCount)="incentiveRegulationValueCount=$event"></mbs-incentive-regulation-value-list-loader>
+			<stal-paginator [totalRecords]="incentiveRegulationValueCount" [(pageable)]="incentiveRegulationValueListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveRegulationValue(incentiveRoleDto)"></button>
+		</div>
+	</div>
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>incentive-role-assignation</h3>
+			<mbs-incentive-role-assignation-list-loader 
+				[filters]="{roleIdEquals: incentiveRoleDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="incentiveRoleAssignationListPaginator"
+				[buttons]="incentiveRoleAssignationTableButtons"
+				(resultCount)="incentiveRoleAssignationCount=$event"></mbs-incentive-role-assignation-list-loader>
+			<stal-paginator [totalRecords]="incentiveRoleAssignationCount" [(pageable)]="incentiveRoleAssignationListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveRoleAssignation(incentiveRoleDto)"></button>
+		</div>
+	</div>
+</div>

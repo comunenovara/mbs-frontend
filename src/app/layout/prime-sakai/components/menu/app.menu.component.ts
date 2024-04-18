@@ -15,46 +15,43 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.model = [
             {
-                label: 'Main',
+                label: 'Varie',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-fw pi-building', routerLink: ['/work/dashboard'] },
                     { label: 'Cig', icon: 'pi pi-fw pi-building', routerLink: ['/amm/cig'] },
                 ]
             },
 			{
                 label: 'Carico lavoro',
                 items: [
+                    { label: 'Dashboard', icon: 'pi pi-fw pi-building', routerLink: ['/work/dashboard'] },
 					{ label: 'Progetti', icon: 'pi pi-fw pi-building', routerLink: ['/work/project'] },
                     { label: 'Tecnici', icon: 'pi pi-fw pi-compass', routerLink: ['/work/employee'] },
                     { label: 'Aziende', icon: 'pi pi-fw pi-chart-line', routerLink: ['/work/company'] },
                 ]
             },
 			{
-                label: 'Lavori Pubblici',
+                label: 'Progetti',
                 items: [
-                    { label: 'Progetti', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/governative-project'] },
-                    { label: 'Appalti', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/governative-procurement-lot'] },
-					{ label: 'Regolamento incentivi', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/incentive-regulation'] },
-                    { label: 'Beneficiari incentivi', icon: 'pi pi-fw pi-building', routerLink: ['/i7e/beneficiary'] },
-                ]
-            },
-			{
-                label: 'Gestione immobili',
-                items: [
-                    { label: 'Proprietà', icon: 'pi pi-fw pi-building', routerLink: ['/main/asset'] },
-                    { label: 'Rilievi', icon: 'pi pi-fw pi-compass', routerLink: ['/main/relif'] },
-                    { label: 'Interventi', icon: 'pi pi-fw pi-chart-line', routerLink: ['/main/operation'] },
+                    { label: 'Progetti', icon: 'pi pi-fw pi-building', routerLink: ['/main/governative-project'] },
+                    { label: 'Appalti', icon: 'pi pi-fw pi-compass', routerLink: ['/main/governative-procurement-lot'] },
                 ]
             },
             {
-                label: 'Config - Work',
+                label: 'Incentivi',
                 items: [
+                    { label: 'Regolamento', icon: 'pi pi-fw pi-building', routerLink: ['/main/incentive-regulation'] },
+                    { label: 'Beneficiari', icon: 'pi pi-fw pi-chart-line', routerLink: ['/main/incentive-beneficiary'] },
+                    { label: 'Calcoli', icon: 'pi pi-fw pi-compass', routerLink: ['/main/incentive-calculation'] },
+                ]
+            },
+            {
+                label: 'Config',
+                items: [
+                    { label: 'Tipi appalti', icon: 'pi pi-fw pi-building', routerLink: ['/main/procurement-type'] },
+                    { label: 'Tipi di intervento', icon: 'pi pi-fw pi-building', routerLink: ['/main/operation-type'] },
+					{ label: 'Tipi di fascicoli', icon: 'pi pi-fw pi-compass', routerLink: ['/main/dossier-type'] },
                     { label: 'Lavori Ruoli', icon: 'pi pi-fw pi-building', routerLink: ['/work/role'] },
                     { label: 'Lavori Categoria lavori', icon: 'pi pi-fw pi-compass', routerLink: ['/work/work-category'] },
-					{ label: 'Tipi di intervento', icon: 'pi pi-fw pi-building', routerLink: ['/main/operation-type'] },
-					{ label: 'Tipi di fascicoli', icon: 'pi pi-fw pi-compass', routerLink: ['/main/dossier-type'] },
-					{ label: 'Tutti i fascicoli', icon: 'pi pi-fw pi-chart-line', routerLink: ['/main/dossier'] },
-					{ label: 'Tipo appalti', icon: 'pi pi-fw pi-chart-line', routerLink: ['/i7e/procurement-type'] },
                 ]
             },
         ];

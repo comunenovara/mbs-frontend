@@ -1,0 +1,62 @@
+<div id="mbs-incentive-assignation-new-update-form" *ngIf="stepIs(formStep.FORM)">
+	<form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
+		<div class="grid p-fluid" style="margin-top: 0px;">
+
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="assignation != null">
+				<span>{{ 'assignation' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="assignation" [stalAutocomplete]="assignationAutocomplete">
+				<stal-autocomplete #assignationAutocomplete [filteredElements]="_filteredAssignation" [displayFn]="mbsMainAutocompleteService.displayIncentiveRoleAssignation"></stal-autocomplete>
+				<div *ngIf="!isValid(_newUpdateForm.controls['assignation'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['assignation'], 'validatorHaveId')">La assignation è richiesta.</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="calculationValue != null">
+				<span>{{ 'calculationValue' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="calculationValue" [stalAutocomplete]="calculationValueAutocomplete">
+				<stal-autocomplete #calculationValueAutocomplete [filteredElements]="_filteredCalculationValue" [displayFn]="mbsMainAutocompleteService.displayIncentiveCalculationValue"></stal-autocomplete>
+				<div *ngIf="!isValid(_newUpdateForm.controls['calculationValue'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['calculationValue'], 'validatorHaveId')">La calculationValue è richiesta.</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'value' }}</span>
+				<input type="number" pInputText formControlName="value" placeholder="Value">
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'preAmount' }}</span>
+				<input type="number" pInputText formControlName="preAmount" placeholder="PreAmount">
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'amount' }}</span>
+				<input type="number" pInputText formControlName="amount" placeholder="Amount">
+			</div>
+
+			<div class="col-12 md:col-6 lg:col-3">
+				<br>
+				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'Crea' }}</button>
+				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'Aggiorna' }}</button>
+			</div>
+
+		</div>
+	</form>
+</div>
+
+<div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
+	loading
+</div>
+
+<div *ngIf="stepIs(formStep.COMPLETE)">
+	<h1 *ngIf="!_isUpdate">{{ 'incentive-assignation' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'incentive-assignation' }} {{ 'aggiornato' }}</h1>
+
+	<hr>
+
+	<mbs-incentive-assignation-detail-box [incentiveAssignation]="_result"></mbs-incentive-assignation-detail-box>
+
+	<div *ngIf="!_isUpdate">
+		<button pButton color="primary" (click)="newIncentiveAssignation()">
+			<span *ngIf="!returnToParent">{{ 'Crea nuovo' }}</span>
+			<span *ngIf="returnToParent">{{ 'Modifica' }}</span>
+		</button>
+	</div>
+</div>

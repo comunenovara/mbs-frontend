@@ -1,0 +1,57 @@
+<div id="mbs-governative-procurement-lot-new-update-form" *ngIf="stepIs(formStep.FORM)">
+	<form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
+		<div class="grid p-fluid" style="margin-top: 0px;">
+
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="procurementType != null">
+				<span>{{ 'procurementType' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="procurementType" [stalAutocomplete]="procurementTypeAutocomplete">
+				<stal-autocomplete #procurementTypeAutocomplete [filteredElements]="_filteredProcurementType" [displayFn]="mbsMainAutocompleteService.displayProcurementType"></stal-autocomplete>
+				<div *ngIf="!isValid(_newUpdateForm.controls['procurementType'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['procurementType'], 'validatorHaveId')">La procurementType è richiesta.</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'code' }}</span>
+				<input type="text" pInputText formControlName="code" placeholder="Code">
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'description' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="description" placeholder="Description">
+				<div *ngIf="!isValid(_newUpdateForm.controls['description'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La description è richiesta.</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'amount' }}</span>
+				<input type="number" pInputText formControlName="amount" placeholder="Amount">
+			</div>
+
+			<div class="col-12 md:col-6 lg:col-3">
+				<br>
+				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'Crea' }}</button>
+				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'Aggiorna' }}</button>
+			</div>
+
+		</div>
+	</form>
+</div>
+
+<div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
+	loading
+</div>
+
+<div *ngIf="stepIs(formStep.COMPLETE)">
+	<h1 *ngIf="!_isUpdate">{{ 'governative-procurement-lot' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'governative-procurement-lot' }} {{ 'aggiornato' }}</h1>
+
+	<hr>
+
+	<mbs-governative-procurement-lot-detail-box [governativeProcurementLot]="_result"></mbs-governative-procurement-lot-detail-box>
+
+	<div *ngIf="!_isUpdate">
+		<button pButton color="primary" (click)="newGovernativeProcurementLot()">
+			<span *ngIf="!returnToParent">{{ 'Crea nuovo' }}</span>
+			<span *ngIf="returnToParent">{{ 'Modifica' }}</span>
+		</button>
+	</div>
+</div>
