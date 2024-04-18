@@ -43,6 +43,7 @@ export class EnzoIncentiveCalculationTableComponent extends EngeAppGenericDetail
 
 	protected override reloadFromEvent(event: StalEvent) {
 		if(event.data === "incentiveRoleValue") this.reloadPage();
+		if(event.data === "incentiveAssignationStage") this.reloadPage();
 	}
 
 	override async reloadPage() {
@@ -124,14 +125,53 @@ export class EnzoIncentiveCalculationTableComponent extends EngeAppGenericDetail
 		});
 	}
 
-	createNewIncentiveAssignationStage(incentiveAssignationRole: MbsIncentiveAssignationRoleDto, roleValue: MbsRoleValueDto) {
+	updateIncentiveRoleValueDto(incentiveCalculation: MbsIncentiveCalculationDto, roleValue: MbsRoleValueDto, incentiveRoleValue: MbsIncentiveRoleValueDto) {
+		this.dialogService.open(EnzoIncentiveRoleValueDialogComponent, {
+			header: 'Create IncentiveRoleValue',
+			width: '70%',
+			data: {
+				incentiveRoleValue: incentiveRoleValue,
+				incentiveCalculation: incentiveCalculation,
+				roleValue: roleValue
+			}
+		});
+	}
+
+	async deleteIncentiveRoleValueDto(incentiveRoleValue: MbsIncentiveRoleValueDto) {
+		if(!incentiveRoleValue.id) return;
+		await lastValueFrom(this.incentiveRoleValueResourceService.deleteIncentiveRoleValueUsingDELETE(incentiveRoleValue.id));
+		this.eacs.eventer.launchReloadContent("incentiveRoleValue");
+	}
+
+	createNewIncentiveAssignationStage(incentiveAssignationRole: MbsIncentiveAssignationRoleDto, incentiveRoleValue: MbsIncentiveRoleValueDto) {
+		console.log("incentiveAssignationRole", incentiveAssignationRole);
+		console.log("incentiveRoleValue", incentiveRoleValue);
 		this.dialogService.open(EnzoIncentiveAssignationStageDialogComponent, {
 			header: 'Aggiungi valore',
 			width: '70%',
 			data: {
 				assignationRole: incentiveAssignationRole,
+				assignationRoleValue: incentiveRoleValue
+			}
+		});
+	}
+
+	updateIncentiveAssignationStage(incentiveAssignationRole: MbsIncentiveAssignationRoleDto, roleValue: MbsRoleValueDto, incentiveAssignationStage: MbsIncentiveAssignationStageDto) {
+		this.dialogService.open(EnzoIncentiveAssignationStageDialogComponent, {
+			header: 'Aggiungi valore',
+			width: '70%',
+			data: {
+				incentiveAssignationStage: incentiveAssignationStage,
+				assignationRole: incentiveAssignationRole,
 				assignationRoleValue: roleValue
 			}
 		});
+	}
+
+	async deleteIncentiveAssignationStage(incentiveAssignationStage: MbsIncentiveAssignationStageDto) {
+		console.log(incentiveAssignationStage);
+		if(!incentiveAssignationStage.id) return;
+		await lastValueFrom(this.incentiveAssignationStageResourceService.deleteIncentiveAssignationStageUsingDELETE(incentiveAssignationStage.id));
+		this.eacs.eventer.launchReloadContent("incentiveAssignationStage");
 	}
 }

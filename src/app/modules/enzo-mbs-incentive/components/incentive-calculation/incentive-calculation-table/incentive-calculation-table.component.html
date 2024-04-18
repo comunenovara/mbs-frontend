@@ -1,37 +1,49 @@
-<ul>
-    <li *ngFor="let stage of stages">
 
-        <span>{{ stage.description }}</span>
+<div>
+    <div *ngFor="let stage of stages">
 
-        <ul *ngIf="stage.id">
-            <li *ngFor="let roleValue of rolesByStage[stage.id]">
+        <h1>{{ stage.description }}</h1>
 
-                <span>{{ roleValue.role.description }}</span>
+        <div *ngIf="stage.id">
+            <table border="1">
+                <ng-container *ngFor="let roleValue of rolesByStage[stage.id]">
 
-                <span *ngIf="incetiveRoleValueByRoleValue[roleValue.id]">
-                    {{ incetiveRoleValueByRoleValue[roleValue.id][0].value }}
-                    edit
-                </span>
-                <span *ngIf="!incetiveRoleValueByRoleValue[roleValue.id]">
-                    <span (click)="createNewIncentiveRoleValue(incentiveCalculation, roleValue)">ADD</span>
-                </span>
-            
-                <ul>
-                    <li *ngFor="let incentiveAssignationRole of assignationsByRole[roleValue.roleId]">
+                    <tr>
+                        <td colspan="2">{{ roleValue.role.description }}</td>
+                        <td *ngIf="incetiveRoleValueByRoleValue[roleValue.id]">
+                            {{ incetiveRoleValueByRoleValue[roleValue.id][0].value / 100 | percent: '0.2' }}
+                            <button pButton pRipple type="button" icon="pi pi-user-edit" class="p-button-rounded p-button-text" 
+                                (click)="updateIncentiveRoleValueDto(incentiveCalculation, roleValue, incetiveRoleValueByRoleValue[roleValue.id][0])"></button>
+                            <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text" 
+                                (click)="deleteIncentiveRoleValueDto(incetiveRoleValueByRoleValue[roleValue.id][0])"></button>
+                        </td>
+                        <td *ngIf="!incetiveRoleValueByRoleValue[roleValue.id]">
+                            <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-text" (click)="createNewIncentiveRoleValue(incentiveCalculation, roleValue)"></button>	
+                        </td>
+                    </tr>
 
-                        <span>{{ incentiveAssignationRole.beneficiary.name }}</span>
-
-                        <span *ngIf="assignationStagesByRoleValue[roleValue.id]">
-                            {{ assignationStagesByRoleValue[roleValue.id][0].value }}
-                            edit
-                        </span>
-                        <span *ngIf="!assignationStagesByRoleValue[roleValue.id]">
-                            <span (click)="createNewIncentiveAssignationStage(incentiveAssignationRole, roleValue)">ADD</span>
-                        </span>
-                        
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </li>
-</ul>
+                    <ng-container *ngIf="incetiveRoleValueByRoleValue[roleValue.id]">
+                        <tr *ngFor="let incentiveAssignationRole of assignationsByRole[roleValue.roleId]">
+                            <td></td>
+                            <td>{{ incentiveAssignationRole.beneficiary.name }}-{{ incetiveRoleValueByRoleValue[roleValue.id][0].id }}</td>
+                            <td *ngIf="incetiveRoleValueByRoleValue[roleValue.id][0]">
+                                {{ incetiveRoleValueByRoleValue[roleValue.id][0].value }}
+                                <button pButton pRipple type="button" icon="pi pi-user-edit" class="p-button-rounded p-button-text" 
+                                    (click)="updateIncentiveAssignationStage(incentiveAssignationRole, roleValue, assignationStagesByRoleValue[incetiveRoleValueByRoleValue[roleValue.id][0].id][0])"></button>
+                                <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text" 
+                                    (click)="deleteIncentiveAssignationStage(assignationStagesByRoleValue[incetiveRoleValueByRoleValue[roleValue.id][0].id][0])"></button>
+                            </td>
+                            <td *ngIf="!incetiveRoleValueByRoleValue[roleValue.id][0]">
+                                <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-text"
+                                    (click)="createNewIncentiveAssignationStage(incentiveAssignationRole, incetiveRoleValueByRoleValue[roleValue.id][0])"></button>	
+                            </td>
+                        </tr>
+                    </ng-container>
+                    
+                </ng-container>
+            </table>
+        </div>
+        <hr>
+    </div>
+</div>
+<pre>{{ assignationStagesByRoleValue | json }}</pre>
