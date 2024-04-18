@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-procurement-type-list-loader 
+		[dcs]="procurementTypeListDc" [buttons]="tableButtons" 
+		[paginator]="procurementTypeListPaginator" (resultCount)="procurementTypeCount=$event"> 
+	</mbs-procurement-type-list-loader>
+
+	<stal-paginator [totalRecords]="procurementTypeCount" [(pageable)]="procurementTypeListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewProcurementType()"></button>
+
+</div>

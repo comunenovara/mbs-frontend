@@ -1,0 +1,50 @@
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-6">
+        <div class="card mb-0">
+			<mbs-incentive-calculation-method-detail-box [incentiveCalculationMethod]="incentiveCalculationMethodDto"></mbs-incentive-calculation-method-detail-box>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editIncentiveCalculationMethod(incentiveCalculationMethodDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteIncentiveCalculationMethod(incentiveCalculationMethodDto)"></button>
+		</div>
+	</div>
+
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="incentiveCalculationMethodDto.procurementType !== null">
+        <div class="card mb-0">
+			<h3>procurement-type</h3>
+			<mbs-procurement-type-detail-box [procurementType]="incentiveCalculationMethodDto.procurementType" ></mbs-procurement-type-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../procurement-type/detail', incentiveCalculationMethodDto.procurementType.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../procurement-type/detail', incentiveCalculationMethodDto.procurementType.id]"></button>
+			-->
+		</div>
+	</div>
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="incentiveCalculationMethodDto.regulation !== null">
+        <div class="card mb-0">
+			<h3>incentive-regulation</h3>
+			<mbs-incentive-regulation-detail-box [incentiveRegulation]="incentiveCalculationMethodDto.regulation" ></mbs-incentive-regulation-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../incentive-regulation/detail', incentiveCalculationMethodDto.regulation.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../incentive-regulation/detail', incentiveCalculationMethodDto.regulation.id]"></button>
+			-->
+		</div>
+	</div>
+
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>incentive-calculation-factor</h3>
+			<mbs-incentive-calculation-factor-list-loader 
+				[filters]="{incentiveCalculationMethodIdEquals: incentiveCalculationMethodDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="incentiveCalculationFactorListPaginator"
+				[buttons]="incentiveCalculationFactorTableButtons"
+				(resultCount)="incentiveCalculationFactorCount=$event"></mbs-incentive-calculation-factor-list-loader>
+			<stal-paginator [totalRecords]="incentiveCalculationFactorCount" [(pageable)]="incentiveCalculationFactorListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveCalculationFactor(incentiveCalculationMethodDto)"></button>
+		</div>
+	</div>
+</div>

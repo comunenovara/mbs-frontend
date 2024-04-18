@@ -1,0 +1,51 @@
+<div id="mbs-incentive-calculation-factor-new-update-form" *ngIf="stepIs(formStep.FORM)">
+	<form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
+		<div class="grid p-fluid" style="margin-top: 0px;">
+
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="incentiveCalculationMethod != null">
+				<span>{{ 'incentiveCalculationMethod' }}</span>
+				<input type="text" pInputText formControlName="incentiveCalculationMethod" [stalAutocomplete]="incentiveCalculationMethodAutocomplete">
+				<stal-autocomplete #incentiveCalculationMethodAutocomplete [filteredElements]="_filteredIncentiveCalculationMethod" [displayFn]="mbsMainAutocompleteService.displayIncentiveCalculationMethod"></stal-autocomplete>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'minval' }}</span>
+				<input type="number" pInputText formControlName="minval" placeholder="Minval">
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'maxval' }}</span>
+				<input type="number" pInputText formControlName="maxval" placeholder="Maxval">
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'defaultval' }}</span>
+				<input type="number" pInputText formControlName="defaultval" placeholder="Defaultval">
+			</div>
+
+			<div class="col-12 md:col-6 lg:col-3">
+				<br>
+				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'Crea' }}</button>
+				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'Aggiorna' }}</button>
+			</div>
+
+		</div>
+	</form>
+</div>
+
+<div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
+	loading
+</div>
+
+<div *ngIf="stepIs(formStep.COMPLETE)">
+	<h1 *ngIf="!_isUpdate">{{ 'incentive-calculation-factor' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'incentive-calculation-factor' }} {{ 'aggiornato' }}</h1>
+
+	<hr>
+
+	<mbs-incentive-calculation-factor-detail-box [incentiveCalculationFactor]="_result"></mbs-incentive-calculation-factor-detail-box>
+
+	<div *ngIf="!_isUpdate">
+		<button pButton color="primary" (click)="newIncentiveCalculationFactor()">
+			<span *ngIf="!returnToParent">{{ 'Crea nuovo' }}</span>
+			<span *ngIf="returnToParent">{{ 'Modifica' }}</span>
+		</button>
+	</div>
+</div>

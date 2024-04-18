@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-incentive-calculation-value-list-loader 
+		[dcs]="incentiveCalculationValueListDc" [buttons]="tableButtons" 
+		[paginator]="incentiveCalculationValueListPaginator" (resultCount)="incentiveCalculationValueCount=$event"> 
+	</mbs-incentive-calculation-value-list-loader>
+
+	<stal-paginator [totalRecords]="incentiveCalculationValueCount" [(pageable)]="incentiveCalculationValueListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveCalculationValue()"></button>
+
+</div>

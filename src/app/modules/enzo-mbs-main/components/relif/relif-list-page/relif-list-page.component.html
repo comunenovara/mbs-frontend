@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-relif-list-loader 
+		[dcs]="relifListDc" [buttons]="tableButtons" 
+		[paginator]="relifListPaginator" (resultCount)="relifCount=$event"> 
+	</mbs-relif-list-loader>
+
+	<stal-paginator [totalRecords]="relifCount" [(pageable)]="relifListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewRelif()"></button>
+
+</div>

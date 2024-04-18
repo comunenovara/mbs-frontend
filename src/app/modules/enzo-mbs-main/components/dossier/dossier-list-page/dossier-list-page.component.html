@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-dossier-list-loader 
+		[dcs]="dossierListDc" [buttons]="tableButtons" 
+		[paginator]="dossierListPaginator" (resultCount)="dossierCount=$event"> 
+	</mbs-dossier-list-loader>
+
+	<stal-paginator [totalRecords]="dossierCount" [(pageable)]="dossierListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewDossier()"></button>
+
+</div>

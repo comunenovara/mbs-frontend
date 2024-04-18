@@ -1,0 +1,37 @@
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-6">
+        <div class="card mb-0">
+			<mbs-governative-project-procurement-lot-detail-box [governativeProjectProcurementLot]="governativeProjectProcurementLotDto"></mbs-governative-project-procurement-lot-detail-box>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editGovernativeProjectProcurementLot(governativeProjectProcurementLotDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteGovernativeProjectProcurementLot(governativeProjectProcurementLotDto)"></button>
+		</div>
+	</div>
+
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="governativeProjectProcurementLotDto.project !== null">
+        <div class="card mb-0">
+			<h3>governative-project</h3>
+			<mbs-governative-project-detail-box [governativeProject]="governativeProjectProcurementLotDto.project" ></mbs-governative-project-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../governative-project/detail', governativeProjectProcurementLotDto.project.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../governative-project/detail', governativeProjectProcurementLotDto.project.id]"></button>
+			-->
+		</div>
+	</div>
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="governativeProjectProcurementLotDto.procurementLot !== null">
+        <div class="card mb-0">
+			<h3>governative-procurement-lot</h3>
+			<mbs-governative-procurement-lot-detail-box [governativeProcurementLot]="governativeProjectProcurementLotDto.procurementLot" ></mbs-governative-procurement-lot-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../governative-procurement-lot/detail', governativeProjectProcurementLotDto.procurementLot.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../governative-procurement-lot/detail', governativeProjectProcurementLotDto.procurementLot.id]"></button>
+			-->
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,62 @@
+<div id="mbs-incentive-regulation-value-new-update-form" *ngIf="stepIs(formStep.FORM)">
+	<form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
+		<div class="grid p-fluid" style="margin-top: 0px;">
+
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="stage != null">
+				<span>{{ 'stage' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="stage" [stalAutocomplete]="stageAutocomplete">
+				<stal-autocomplete #stageAutocomplete [filteredElements]="_filteredStage" [displayFn]="mbsMainAutocompleteService.displayIncentiveStage"></stal-autocomplete>
+				<div *ngIf="!isValid(_newUpdateForm.controls['stage'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['stage'], 'validatorHaveId')">La stage è richiesta.</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="role != null">
+				<span>{{ 'role' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="role" [stalAutocomplete]="roleAutocomplete">
+				<stal-autocomplete #roleAutocomplete [filteredElements]="_filteredRole" [displayFn]="mbsMainAutocompleteService.displayIncentiveRole"></stal-autocomplete>
+				<div *ngIf="!isValid(_newUpdateForm.controls['role'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['role'], 'validatorHaveId')">La role è richiesta.</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'minval' }}</span>
+				<input type="number" pInputText formControlName="minval" placeholder="Minval">
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'maxval' }}</span>
+				<input type="number" pInputText formControlName="maxval" placeholder="Maxval">
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'defaultval' }}</span>
+				<input type="number" pInputText formControlName="defaultval" placeholder="Defaultval">
+			</div>
+
+			<div class="col-12 md:col-6 lg:col-3">
+				<br>
+				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'Crea' }}</button>
+				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'Aggiorna' }}</button>
+			</div>
+
+		</div>
+	</form>
+</div>
+
+<div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
+	loading
+</div>
+
+<div *ngIf="stepIs(formStep.COMPLETE)">
+	<h1 *ngIf="!_isUpdate">{{ 'incentive-regulation-value' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'incentive-regulation-value' }} {{ 'aggiornato' }}</h1>
+
+	<hr>
+
+	<mbs-incentive-regulation-value-detail-box [incentiveRegulationValue]="_result"></mbs-incentive-regulation-value-detail-box>
+
+	<div *ngIf="!_isUpdate">
+		<button pButton color="primary" (click)="newIncentiveRegulationValue()">
+			<span *ngIf="!returnToParent">{{ 'Crea nuovo' }}</span>
+			<span *ngIf="returnToParent">{{ 'Modifica' }}</span>
+		</button>
+	</div>
+</div>

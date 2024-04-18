@@ -1,0 +1,72 @@
+<div id="mbs-incentive-withheld-new-update-form" *ngIf="stepIs(formStep.FORM)">
+	<form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
+		<div class="grid p-fluid" style="margin-top: 0px;">
+
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="procurementType != null">
+				<span>{{ 'procurementType' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="procurementType" [stalAutocomplete]="procurementTypeAutocomplete">
+				<stal-autocomplete #procurementTypeAutocomplete [filteredElements]="_filteredProcurementType" [displayFn]="mbsMainAutocompleteService.displayProcurementType"></stal-autocomplete>
+				<div *ngIf="!isValid(_newUpdateForm.controls['procurementType'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['procurementType'], 'validatorHaveId')">La procurementType è richiesta.</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="regulation != null">
+				<span>{{ 'regulation' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="regulation" [stalAutocomplete]="regulationAutocomplete">
+				<stal-autocomplete #regulationAutocomplete [filteredElements]="_filteredRegulation" [displayFn]="mbsMainAutocompleteService.displayIncentiveRegulation"></stal-autocomplete>
+				<div *ngIf="!isValid(_newUpdateForm.controls['regulation'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['regulation'], 'validatorHaveId')">La regulation è richiesta.</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'description' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="description" placeholder="Description">
+				<div *ngIf="!isValid(_newUpdateForm.controls['description'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La description è richiesta.</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<label for="active">{{ 'active' }}</label>
+				<input type="checkbox" formControlName="active" inputId="active" />
+				<div *ngIf="!isValid(_newUpdateForm.controls['active'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['active'], 'required')">La active è richiesta.</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'amount' }}</span>
+				<input type="number" pInputText formControlName="amount" placeholder="Amount">
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'percentage' }}</span>
+				<input type="number" pInputText formControlName="percentage" placeholder="Percentage">
+			</div>
+
+			<div class="col-12 md:col-6 lg:col-3">
+				<br>
+				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'Crea' }}</button>
+				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'Aggiorna' }}</button>
+			</div>
+
+		</div>
+	</form>
+</div>
+
+<div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
+	loading
+</div>
+
+<div *ngIf="stepIs(formStep.COMPLETE)">
+	<h1 *ngIf="!_isUpdate">{{ 'incentive-withheld' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'incentive-withheld' }} {{ 'aggiornato' }}</h1>
+
+	<hr>
+
+	<mbs-incentive-withheld-detail-box [incentiveWithheld]="_result"></mbs-incentive-withheld-detail-box>
+
+	<div *ngIf="!_isUpdate">
+		<button pButton color="primary" (click)="newIncentiveWithheld()">
+			<span *ngIf="!returnToParent">{{ 'Crea nuovo' }}</span>
+			<span *ngIf="returnToParent">{{ 'Modifica' }}</span>
+		</button>
+	</div>
+</div>

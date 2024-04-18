@@ -1,0 +1,24 @@
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-6">
+        <div class="card mb-0">
+			<mbs-incentive-calculation-factor-detail-box [incentiveCalculationFactor]="incentiveCalculationFactorDto"></mbs-incentive-calculation-factor-detail-box>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editIncentiveCalculationFactor(incentiveCalculationFactorDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteIncentiveCalculationFactor(incentiveCalculationFactorDto)"></button>
+		</div>
+	</div>
+
+	<div class="col-12 lg:col-6 xl:col-3" *ngIf="incentiveCalculationFactorDto.incentiveCalculationMethod !== null">
+        <div class="card mb-0">
+			<h3>incentive-calculation-method</h3>
+			<mbs-incentive-calculation-method-detail-box [incentiveCalculationMethod]="incentiveCalculationFactorDto.incentiveCalculationMethod" ></mbs-incentive-calculation-method-detail-box>
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				[routerLink]="['../../../incentive-calculation-method/detail', incentiveCalculationFactorDto.incentiveCalculationMethod.id]"></button>
+			<!--
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+				(click)="tabManagerService.openInCard()" 
+				[routerLink]="['../../../incentive-calculation-method/detail', incentiveCalculationFactorDto.incentiveCalculationMethod.id]"></button>
+			-->
+		</div>
+	</div>
+
+</div>

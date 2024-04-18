@@ -1,0 +1,69 @@
+<div id="mbs-dossier-new-update-form" *ngIf="stepIs(formStep.FORM)">
+	<form [formGroup]="_newUpdateForm" (ngSubmit)="submit()">
+		<div class="grid p-fluid" style="margin-top: 0px;">
+
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="type != null">
+				<span>{{ 'type' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="type" [stalAutocomplete]="typeAutocomplete">
+				<stal-autocomplete #typeAutocomplete [filteredElements]="_filteredType" [displayFn]="mbsMainAutocompleteService.displayDossierType"></stal-autocomplete>
+				<div *ngIf="!isValid(_newUpdateForm.controls['type'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['type'], 'validatorHaveId')">La type è richiesta.</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="elaborateGroup != null">
+				<span>{{ 'elaborateGroup' }}</span>
+				<input type="text" pInputText formControlName="elaborateGroup" [stalAutocomplete]="elaborateGroupAutocomplete">
+				<stal-autocomplete #elaborateGroupAutocomplete [filteredElements]="_filteredElaborateGroup" [displayFn]="mbsMainAutocompleteService.displayElaborateGroup"></stal-autocomplete>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="asset != null">
+				<span>{{ 'asset' }}</span>
+				<input type="text" pInputText formControlName="asset" [stalAutocomplete]="assetAutocomplete">
+				<stal-autocomplete #assetAutocomplete [filteredElements]="_filteredAsset" [displayFn]="mbsMainAutocompleteService.displayAsset"></stal-autocomplete>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="relif != null">
+				<span>{{ 'relif' }}</span>
+				<input type="text" pInputText formControlName="relif" [stalAutocomplete]="relifAutocomplete">
+				<stal-autocomplete #relifAutocomplete [filteredElements]="_filteredRelif" [displayFn]="mbsMainAutocompleteService.displayRelif"></stal-autocomplete>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4" [hidden]="operation != null">
+				<span>{{ 'operation' }}</span>
+				<input type="text" pInputText formControlName="operation" [stalAutocomplete]="operationAutocomplete">
+				<stal-autocomplete #operationAutocomplete [filteredElements]="_filteredOperation" [displayFn]="mbsMainAutocompleteService.displayOperation"></stal-autocomplete>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<span>{{ 'description' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="description" placeholder="Description">
+				<div *ngIf="!isValid(_newUpdateForm.controls['description'])" class="filed-required">
+					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La description è richiesta.</span>
+				</div>
+			</div>
+
+			<div class="col-12 md:col-6 lg:col-3">
+				<br>
+				<button pButton *ngIf="!_isUpdate" type="submit" color="accent">{{ 'Crea' }}</button>
+				<button pButton class="p-button-outlined"  *ngIf="_isUpdate" type="submit" color="accent">{{ 'Aggiorna' }}</button>
+			</div>
+
+		</div>
+	</form>
+</div>
+
+<div *ngIf="stepIs(formStep.LOADING)" fxLayoutAlign="center">
+	loading
+</div>
+
+<div *ngIf="stepIs(formStep.COMPLETE)">
+	<h1 *ngIf="!_isUpdate">{{ 'dossier' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'dossier' }} {{ 'aggiornato' }}</h1>
+
+	<hr>
+
+	<mbs-dossier-detail-box [dossier]="_result"></mbs-dossier-detail-box>
+
+	<div *ngIf="!_isUpdate">
+		<button pButton color="primary" (click)="newDossier()">
+			<span *ngIf="!returnToParent">{{ 'Crea nuovo' }}</span>
+			<span *ngIf="returnToParent">{{ 'Modifica' }}</span>
+		</button>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-6">
+        <div class="card mb-0">
+			<mbs-operation-type-detail-box [operationType]="operationTypeDto"></mbs-operation-type-detail-box>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editOperationType(operationTypeDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteOperationType(operationTypeDto)"></button>
+		</div>
+	</div>
+
+
+	<div class="col-12 lg:col-12 xl:col-12">
+		<div class="card mb-0 relative">
+			<h3>operation</h3>
+			<mbs-operation-list-loader 
+				[filters]="{typeIdEquals: operationTypeDto.id}" 
+				[dcs]="['id', 'description']" 
+				[paginator]="operationListPaginator"
+				[buttons]="operationTableButtons"
+				(resultCount)="operationCount=$event"></mbs-operation-list-loader>
+			<stal-paginator [totalRecords]="operationCount" [(pageable)]="operationListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewOperation(operationTypeDto)"></button>
+		</div>
+	</div>
+</div>

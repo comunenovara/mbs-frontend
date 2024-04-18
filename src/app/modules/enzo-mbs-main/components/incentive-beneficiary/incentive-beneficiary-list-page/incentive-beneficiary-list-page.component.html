@@ -1,0 +1,12 @@
+<div class="card mb-0 relative">
+	
+	<mbs-incentive-beneficiary-list-loader 
+		[dcs]="incentiveBeneficiaryListDc" [buttons]="tableButtons" 
+		[paginator]="incentiveBeneficiaryListPaginator" (resultCount)="incentiveBeneficiaryCount=$event"> 
+	</mbs-incentive-beneficiary-list-loader>
+
+	<stal-paginator [totalRecords]="incentiveBeneficiaryCount" [(pageable)]="incentiveBeneficiaryListPaginator"></stal-paginator>
+
+	<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveBeneficiary()"></button>
+
+</div>
