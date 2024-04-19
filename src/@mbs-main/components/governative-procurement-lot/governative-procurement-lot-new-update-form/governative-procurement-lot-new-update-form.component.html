@@ -3,27 +3,27 @@
 		<div class="grid p-fluid" style="margin-top: 0px;">
 
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="procurementType != null">
-				<span>{{ 'procurementType' }}</span><span class="filed-required">*</span>
+				<span>{{ 'Tipo appalto' }}</span><span class="filed-required">*</span>
 				<input type="text" pInputText formControlName="procurementType" [stalAutocomplete]="procurementTypeAutocomplete">
 				<stal-autocomplete #procurementTypeAutocomplete [filteredElements]="_filteredProcurementType" [displayFn]="mbsMainAutocompleteService.displayProcurementType"></stal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['procurementType'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['procurementType'], 'validatorHaveId')">La procurementType è richiesta.</span>
+					<span *ngIf="checkControlError(_newUpdateForm.controls['procurementType'], 'validatorHaveId')">Il tipo appalto è richiesto.</span>
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'code' }}</span>
-				<input type="text" pInputText formControlName="code" placeholder="Code">
+				<span>{{ 'CIG' }}</span>
+				<input type="text" pInputText formControlName="code" placeholder="CIG">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'description' }}</span><span class="filed-required">*</span>
-				<input type="text" pInputText formControlName="description" placeholder="Description">
+				<span>{{ 'Descrizione' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="description" placeholder="Descrizione">
 				<div *ngIf="!isValid(_newUpdateForm.controls['description'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La description è richiesta.</span>
+					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La descrizione è richiesta.</span>
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'amount' }}</span>
-				<input type="number" pInputText formControlName="amount" placeholder="Amount">
+				<span>{{ 'Importo' }}</span>
+				<input type="number" pInputText formControlName="amount" placeholder="Importo">
 			</div>
 
 			<div class="col-12 md:col-6 lg:col-3">
@@ -41,8 +41,8 @@
 </div>
 
 <div *ngIf="stepIs(formStep.COMPLETE)">
-	<h1 *ngIf="!_isUpdate">{{ 'governative-procurement-lot' }} {{ 'creato' }}</h1>
-	<h1 *ngIf="_isUpdate">{{ 'governative-procurement-lot' }} {{ 'aggiornato' }}</h1>
+	<h1 *ngIf="!_isUpdate">{{ 'Appalto' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'Appalto' }} {{ 'aggiornato' }}</h1>
 
 	<hr>
 

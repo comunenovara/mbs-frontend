@@ -27,7 +27,7 @@ export class EnzoGovernativeProjectListPageComponent {
 
 	createNewGovernativeProject() {
 		this.dialogService.open(EnzoGovernativeProjectDialogComponent, {
-			header: 'Create governativeProject',
+			header: 'Crea progetto',
 			width: '70%'
 		});
 	}
@@ -38,7 +38,7 @@ export class EnzoGovernativeProjectListPageComponent {
 	};
 	governativeProjectCount: number;
 
-	governativeProjectListDc = ['_ck', 'id'];
+	governativeProjectListDc = ['_ck', 'code', 'description', 'amount'];
 	paginatorEvent(paginator: any) {
 		let governativeProjectListPaginator = { ...paginator }
 		this.governativeProjectListPaginator = governativeProjectListPaginator;
@@ -70,18 +70,18 @@ export class EnzoGovernativeProjectListPageComponent {
 			//command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
-					label: "Edit",
+					label: "Modifica",
 					icon: "pi pi-pencil",
 					command: (e: any) => {
 						const ref = this.dialogService.open(EnzoGovernativeProjectDialogComponent, {
 							data: { governativeProject: { ...e.item.data } },
-							header: 'Update governativeProject',
+							header: 'Modifica progetto',
 							width: '70%'
 						});
 					}
 				},
 				{
-					label: "Delete",
+					label: "Elimina",
 					icon: "pi pi-trash",
 					command: async (e: any) => {
 						await lastValueFrom(this.resourceService.deleteGovernativeProjectUsingDELETE(e.item.data.id));

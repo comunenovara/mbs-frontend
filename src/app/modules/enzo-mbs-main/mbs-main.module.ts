@@ -6,6 +6,8 @@ import { EngeCommonAppModule } from '@enge/common-app';
 
 import { enzoMbsMainRoutes } from './mbs-main.route';
 
+import { TabMenuModule } from 'primeng/tabmenu';
+
 import { EnzoAssetListPageComponent } from './components/asset/asset-list-page/asset-list-page.component';
 import { EnzoAssetDetailPageComponent } from './components/asset/asset-detail-page/asset-detail-page.component';
 import { EnzoAssetDialogComponent } from './components/asset/asset-dialog/asset-dialog.component';
@@ -81,6 +83,10 @@ import { EnzoIncentiveAssignationDialogComponent } from './components/incentive-
 		RouterModule.forChild(enzoMbsMainRoutes),
 		MbsMainLibModule,
 		EngeCommonAppModule,
+
+		TabMenuModule,
+
+		
 	],
 	declarations: [
 		EnzoAssetListPageComponent,

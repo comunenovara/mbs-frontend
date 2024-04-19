@@ -27,7 +27,7 @@ export class EnzoIncentiveRegulationListPageComponent {
 
 	createNewIncentiveRegulation() {
 		this.dialogService.open(EnzoIncentiveRegulationDialogComponent, {
-			header: 'Create incentiveRegulation',
+			header: 'Crea regolamento',
 			width: '70%'
 		});
 	}
@@ -38,7 +38,7 @@ export class EnzoIncentiveRegulationListPageComponent {
 	};
 	incentiveRegulationCount: number;
 
-	incentiveRegulationListDc = ['_ck', 'id'];
+	incentiveRegulationListDc = ['_ck', 'id', 'description'];
 	paginatorEvent(paginator: any) {
 		let incentiveRegulationListPaginator = { ...paginator }
 		this.incentiveRegulationListPaginator = incentiveRegulationListPaginator;
@@ -70,12 +70,12 @@ export class EnzoIncentiveRegulationListPageComponent {
 			//command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
-					label: "Edit",
+					label: "Modifica",
 					icon: "pi pi-pencil",
 					command: (e: any) => {
 						const ref = this.dialogService.open(EnzoIncentiveRegulationDialogComponent, {
 							data: { incentiveRegulation: { ...e.item.data } },
-							header: 'Update incentiveRegulation',
+							header: 'Modifica regolamento',
 							width: '70%'
 						});
 					}

@@ -3,10 +3,10 @@
 		<div class="grid p-fluid" style="margin-top: 0px;">
 
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'description' }}</span><span class="filed-required">*</span>
-				<input type="text" pInputText formControlName="description" placeholder="Description">
+				<span>{{ 'Descrizione' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="description" placeholder="Descrizione">
 				<div *ngIf="!isValid(_newUpdateForm.controls['description'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La description è richiesta.</span>
+					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La descrizione è richiesta.</span>
 				</div>
 			</div>
 
@@ -25,8 +25,8 @@
 </div>
 
 <div *ngIf="stepIs(formStep.COMPLETE)">
-	<h1 *ngIf="!_isUpdate">{{ 'incentive-regulation' }} {{ 'creato' }}</h1>
-	<h1 *ngIf="_isUpdate">{{ 'incentive-regulation' }} {{ 'aggiornato' }}</h1>
+	<h1 *ngIf="!_isUpdate">{{ 'Regolamento' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'Regolamento' }} {{ 'aggiornato' }}</h1>
 
 	<hr>
 

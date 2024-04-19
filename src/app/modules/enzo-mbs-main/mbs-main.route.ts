@@ -346,6 +346,7 @@ export const enzoMbsMainRoutes: Route[] = [
 				resolve: {
 					incentiveRegulation: MbsIncentiveRegulationResolver,
 				},
+				loadChildren: () => import('./components/incentive-regulation/incentive-regulation-configuration/incentive-regulation-configuration.module').then(m => m.EnzoMbsIncentiveRegulationConfiguratorModule)
 			},
 		]
 	},

@@ -45,7 +45,7 @@ export class EnzoGovernativeProjectDetailPageComponent extends EngeAppGenericDet
 	editGovernativeProject(governativeProject: MbsGovernativeProjectDto) {
 		const ref = this.dialogService.open(EnzoGovernativeProjectDialogComponent, {
 			data: { governativeProject: governativeProject },
-			header: 'Update governativeProject',
+			header: 'Modifica progetto',
 			width: '70%'
 		});
 	}

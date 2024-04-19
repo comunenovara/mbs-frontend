@@ -14,8 +14,8 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description"> description </th>
-						<th *ngSwitchCase="'active'" style="width:auto" pResizableColumn pSortableColumn="active"> active </th>
+						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description">Descrizione</th>
+						<th *ngSwitchCase="'active'" style="width:auto" pResizableColumn pSortableColumn="active">Attivo</th>
 					</ng-container>
 					<th *ngIf="buttons" style="width:150px"></th>
 				</tr>

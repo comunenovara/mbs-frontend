@@ -1,6 +1,6 @@
 <ng-container *ngIf="governativeProject">
 	<div class="h4 ml-16">ID: <b>{{ governativeProject.id }}</b></div>
-	<div class="h4 ml-16">code: <b>{{ governativeProject.code }}</b></div>
-	<div class="h4 ml-16">description: <b>{{ governativeProject.description }}</b></div>
-	<div class="h4 ml-16">amount: <b>{{ governativeProject.amount }}</b></div>
+	<div class="h4 ml-16">CUP: <b>{{ governativeProject.code }}</b></div>
+	<div class="h4 ml-16">Descrizione: <b>{{ governativeProject.description }}</b></div>
+	<div class="h4 ml-16">Importo: <b>{{ governativeProject.amount | currency: 'EUR' }}</b></div>
 </ng-container>

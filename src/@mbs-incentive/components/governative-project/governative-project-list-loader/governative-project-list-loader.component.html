@@ -14,9 +14,9 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
-						<th *ngSwitchCase="'code'" style="width:auto" pResizableColumn pSortableColumn="code"> code </th>
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description"> description </th>
-						<th *ngSwitchCase="'amount'" style="width:auto" pResizableColumn pSortableColumn="amount"> amount </th>
+						<th *ngSwitchCase="'code'" style="width:auto" pResizableColumn pSortableColumn="code">CUP</th>
+						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description">Descrizione</th>
+						<th *ngSwitchCase="'amount'" style="width:auto" pResizableColumn pSortableColumn="amount">Importo</th>
 					</ng-container>
 					<th *ngIf="buttons" style="width:150px"></th>
 				</tr>
@@ -28,7 +28,7 @@
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
 						<td *ngSwitchCase="'code'">{{ e.code }}</td>
 						<td *ngSwitchCase="'description'">{{ e.description }}</td>
-						<td *ngSwitchCase="'amount'">{{ e.amount }}</td>
+						<td *ngSwitchCase="'amount'">{{ e.amount | currency: 'EUR' }}</td>
 					</ng-container>
 					<td *ngIf="buttons" style="text-align:center">
 						<ng-container *ngFor="let b of buttons">

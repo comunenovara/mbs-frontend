@@ -27,7 +27,7 @@ export class EnzoGovernativeProcurementLotListPageComponent {
 
 	createNewGovernativeProcurementLot() {
 		this.dialogService.open(EnzoGovernativeProcurementLotDialogComponent, {
-			header: 'Create governativeProcurementLot',
+			header: 'Crea appalto',
 			width: '70%'
 		});
 	}
@@ -38,7 +38,7 @@ export class EnzoGovernativeProcurementLotListPageComponent {
 	};
 	governativeProcurementLotCount: number;
 
-	governativeProcurementLotListDc = ['_ck', 'id'];
+	governativeProcurementLotListDc = ['_ck', 'code', 'description', 'amount'];
 	paginatorEvent(paginator: any) {
 		let governativeProcurementLotListPaginator = { ...paginator }
 		this.governativeProcurementLotListPaginator = governativeProcurementLotListPaginator;
@@ -70,18 +70,18 @@ export class EnzoGovernativeProcurementLotListPageComponent {
 			//command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
-					label: "Edit",
+					label: "Modifica",
 					icon: "pi pi-pencil",
 					command: (e: any) => {
 						const ref = this.dialogService.open(EnzoGovernativeProcurementLotDialogComponent, {
 							data: { governativeProcurementLot: { ...e.item.data } },
-							header: 'Update governativeProcurementLot',
+							header: 'Modifica appalto',
 							width: '70%'
 						});
 					}
 				},
 				{
-					label: "Delete",
+					label: "Cancella",
 					icon: "pi pi-trash",
 					command: async (e: any) => {
 						await lastValueFrom(this.resourceService.deleteGovernativeProcurementLotUsingDELETE(e.item.data.id));

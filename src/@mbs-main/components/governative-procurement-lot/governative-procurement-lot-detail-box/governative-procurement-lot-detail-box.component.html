@@ -1,6 +1,6 @@
 <ng-container *ngIf="governativeProcurementLot">
 	<div class="h4 ml-16">ID: <b>{{ governativeProcurementLot.id }}</b></div>
-	<div class="h4 ml-16">code: <b>{{ governativeProcurementLot.code }}</b></div>
-	<div class="h4 ml-16">description: <b>{{ governativeProcurementLot.description }}</b></div>
-	<div class="h4 ml-16">amount: <b>{{ governativeProcurementLot.amount }}</b></div>
+	<div class="h4 ml-16">CIG: <b>{{ governativeProcurementLot.code }}</b></div>
+	<div class="h4 ml-16">Descrizione: <b>{{ governativeProcurementLot.description }}</b></div>
+	<div class="h4 ml-16">Importo: <b>{{ governativeProcurementLot.amount | currency: 'EUR' }}</b></div>
 </ng-container>

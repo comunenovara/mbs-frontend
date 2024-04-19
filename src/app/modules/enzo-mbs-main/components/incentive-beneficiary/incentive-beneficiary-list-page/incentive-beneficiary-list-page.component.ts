@@ -27,7 +27,7 @@ export class EnzoIncentiveBeneficiaryListPageComponent {
 
 	createNewIncentiveBeneficiary() {
 		this.dialogService.open(EnzoIncentiveBeneficiaryDialogComponent, {
-			header: 'Create incentiveBeneficiary',
+			header: 'Aggiungi beneficiario',
 			width: '70%'
 		});
 	}
@@ -38,7 +38,7 @@ export class EnzoIncentiveBeneficiaryListPageComponent {
 	};
 	incentiveBeneficiaryCount: number;
 
-	incentiveBeneficiaryListDc = ['_ck', 'id'];
+	incentiveBeneficiaryListDc = ['_ck', 'id', 'description', 'active'];
 	paginatorEvent(paginator: any) {
 		let incentiveBeneficiaryListPaginator = { ...paginator }
 		this.incentiveBeneficiaryListPaginator = incentiveBeneficiaryListPaginator;
@@ -70,12 +70,12 @@ export class EnzoIncentiveBeneficiaryListPageComponent {
 			//command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
-					label: "Edit",
+					label: "Modifica",
 					icon: "pi pi-pencil",
 					command: (e: any) => {
 						const ref = this.dialogService.open(EnzoIncentiveBeneficiaryDialogComponent, {
 							data: { incentiveBeneficiary: { ...e.item.data } },
-							header: 'Update incentiveBeneficiary',
+							header: 'Aggiorna beneficiario',
 							width: '70%'
 						});
 					}

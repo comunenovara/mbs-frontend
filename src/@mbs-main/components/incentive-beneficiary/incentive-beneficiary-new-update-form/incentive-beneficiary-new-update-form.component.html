@@ -3,15 +3,15 @@
 		<div class="grid p-fluid" style="margin-top: 0px;">
 
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'description' }}</span><span class="filed-required">*</span>
-				<input type="text" pInputText formControlName="description" placeholder="Description">
+				<span>{{ 'Descrizione' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="description" placeholder="Descrizione">
 				<div *ngIf="!isValid(_newUpdateForm.controls['description'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La description è richiesta.</span>
+					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La descrizione è richiesta.</span>
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<label for="active">{{ 'active' }}</label>
-				<input type="checkbox" formControlName="active" inputId="active" />
+				<label for="active">{{ 'Attivo' }}</label>
+				<input type="checkbox" formControlName="active" inputId="Attivo" />
 				<div *ngIf="!isValid(_newUpdateForm.controls['active'])" class="filed-required">
 					<span *ngIf="checkControlError(_newUpdateForm.controls['active'], 'required')">La active è richiesta.</span>
 				</div>
@@ -32,8 +32,8 @@
 </div>
 
 <div *ngIf="stepIs(formStep.COMPLETE)">
-	<h1 *ngIf="!_isUpdate">{{ 'incentive-beneficiary' }} {{ 'creato' }}</h1>
-	<h1 *ngIf="_isUpdate">{{ 'incentive-beneficiary' }} {{ 'aggiornato' }}</h1>
+	<h1 *ngIf="!_isUpdate">{{ 'Beneficiario' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'Beneficiario' }} {{ 'aggiornato' }}</h1>
 
 	<hr>
 

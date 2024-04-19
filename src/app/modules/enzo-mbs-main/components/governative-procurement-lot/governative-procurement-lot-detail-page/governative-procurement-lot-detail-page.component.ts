@@ -46,7 +46,7 @@ export class EnzoGovernativeProcurementLotDetailPageComponent extends EngeAppGen
 	editGovernativeProcurementLot(governativeProcurementLot: MbsGovernativeProcurementLotDto) {
 		const ref = this.dialogService.open(EnzoGovernativeProcurementLotDialogComponent, {
 			data: { governativeProcurementLot: governativeProcurementLot },
-			header: 'Update governativeProcurementLot',
+			header: 'Modifica appalto',
 			width: '70%'
 		});
 	}

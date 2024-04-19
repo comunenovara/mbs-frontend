@@ -45,7 +45,7 @@ export class EnzoIncentiveBeneficiaryDetailPageComponent extends EngeAppGenericD
 	editIncentiveBeneficiary(incentiveBeneficiary: MbsIncentiveBeneficiaryDto) {
 		const ref = this.dialogService.open(EnzoIncentiveBeneficiaryDialogComponent, {
 			data: { incentiveBeneficiary: incentiveBeneficiary },
-			header: 'Update incentiveBeneficiary',
+			header: 'Modifica beneficiario',
 			width: '70%'
 		});
 	}
