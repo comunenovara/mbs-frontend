@@ -19,26 +19,26 @@
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'description' }}</span><span class="filed-required">*</span>
-				<input type="text" pInputText formControlName="description" placeholder="Description">
+				<span>{{ 'Descrizione' }}</span><span class="filed-required">*</span>
+				<input type="text" pInputText formControlName="description" placeholder="Descrizione">
 				<div *ngIf="!isValid(_newUpdateForm.controls['description'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La description è richiesta.</span>
+					<span *ngIf="checkControlError(_newUpdateForm.controls['description'], 'required')">La descrizione è richiesta.</span>
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<label for="active">{{ 'active' }}</label>
+				<label for="active">{{ 'Attiva' }}</label>
 				<input type="checkbox" formControlName="active" inputId="active" />
 				<div *ngIf="!isValid(_newUpdateForm.controls['active'])" class="filed-required">
 					<span *ngIf="checkControlError(_newUpdateForm.controls['active'], 'required')">La active è richiesta.</span>
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'amount' }}</span>
-				<input type="number" pInputText formControlName="amount" placeholder="Amount">
+				<span>{{ 'Importo' }}</span>
+				<input type="number" pInputText formControlName="amount" placeholder="Importo">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'percentage' }}</span>
-				<input type="number" pInputText formControlName="percentage" placeholder="Percentage">
+				<span>{{ 'Percentuale' }}</span>
+				<input type="number" pInputText formControlName="percentage" placeholder="Percentuale">
 			</div>
 
 			<div class="col-12 md:col-6 lg:col-3">
@@ -56,8 +56,8 @@
 </div>
 
 <div *ngIf="stepIs(formStep.COMPLETE)">
-	<h1 *ngIf="!_isUpdate">{{ 'incentive-withheld' }} {{ 'creato' }}</h1>
-	<h1 *ngIf="_isUpdate">{{ 'incentive-withheld' }} {{ 'aggiornato' }}</h1>
+	<h1 *ngIf="!_isUpdate">{{ 'Trattenuta' }} {{ 'creata' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'Trattenuta' }} {{ 'aggiornata' }}</h1>
 
 	<hr>
 

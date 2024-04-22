@@ -47,7 +47,11 @@ export class EnzoIncentiveRegulationDetailPageComponent extends EngeAppGenericDe
 
 	async loadProcurementTypes() {
 		let items: MenuItem[] = [
-            { label: 'Home', icon: 'pi pi-fw pi-home' }
+            { 
+				label: 'Home',
+				icon: 'pi pi-fw pi-home',
+				routerLink: '.'
+			}
         ];
 
 		let procurementTypes: MbsProcurementTypeDto[] = await lastValueFrom(this.procurementTypeResourceService.getAllProcurementTypesUsingGET({}))

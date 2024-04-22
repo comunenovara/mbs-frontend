@@ -1,53 +1,85 @@
-<div class="grid">
+<div class="grid" *ngIf="incentiveRegulationDto">
     <div class="col-2 lg:col-2 xl:col-2">
         <div class="card mb-0">
-			Metodo di calcolo
+			<h3>Calcolo</h3>
+			<button *ngIf="!incentiveCalculationMethodDto" pButton pRipple label="Aggiungi" class="p-button-warning" (click)="createNewIncentiveCalculationMethod(incentiveRegulationDto, procurementTypeDto)"></button>
+			<mbs-incentive-calculation-method-detail-box *ngIf="incentiveCalculationMethodDto" [incentiveCalculationMethod]="incentiveCalculationMethodDto"></mbs-incentive-calculation-method-detail-box>
+			<button *ngIf="incentiveCalculationMethodDto" pButton pRipple icon="pi pi-trash" class="p-button-outlined p-button-danger" (click)="removeIncentiveCalculationMethod(incentiveCalculationMethodDto)"></button>
 		</div>
 	</div>
 
     <div class="col-5 lg:col-5 xl:col-5">
-        <div class="card mb-0">
-			Fasce di calcolo
+		<div class="card mb-0 relative" *ngIf="!incentiveCalculationMethodDto">
+			<h2>E' necessario aggiungere un tipo di calcolo</h2>
+		</div>
+		<div class="card mb-0 relative" *ngIf="incentiveCalculationMethodDto">
+			<h3>Fattori di calcolo</h3>
+			<mbs-incentive-calculation-factor-list-loader 
+				[filters]="{incentiveCalculationMethodIdEquals: incentiveCalculationMethodDto.id}" 
+				[dcs]="['minval', 'maxval', 'defaultval']" 
+				[paginator]="incentiveCalculationFactorListPaginator"
+				[buttons]="incentiveCalculationFactorTableButtons"
+				(resultCount)="incentiveCalculationFactorCount=$event"></mbs-incentive-calculation-factor-list-loader>
+			<stal-paginator [totalRecords]="incentiveCalculationFactorCount" [(pageable)]="incentiveCalculationFactorListPaginator"></stal-paginator>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveCalculationFactor(incentiveCalculationMethodDto)"></button>
 		</div>
 	</div>
+
+
 
     <div class="col-5 lg:col-5 xl:col-5">
 		<div class="card mb-0 relative">
 			<h3>Trattenute</h3>
 			<mbs-incentive-withheld-list-loader 
-				[filters]="{regulationIdEquals: incentiveRegulationDto.id}" 
-				[dcs]="['id', 'description']" 
+				[filters]="childComponentsFilters" 
+				[dcs]="['description', 'active', 'value']" 
 				[paginator]="incentiveWithheldListPaginator"
 				[buttons]="incentiveWithheldTableButtons"
 				(resultCount)="incentiveWithheldCount=$event"></mbs-incentive-withheld-list-loader>
 			<stal-paginator [totalRecords]="incentiveWithheldCount" [(pageable)]="incentiveWithheldListPaginator"></stal-paginator>
-			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveWithheld(incentiveRegulationDto)"></button>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveWithheld(incentiveRegulationDto, procurementTypeDto)"></button>
 		</div>
 	</div>
-	<div class="col-4 lg:col-4 xl:col-4">
+
+
+
+
+
+
+
+
+
+	<div class="col-3 lg:col-3 xl:col-3">
 		<div class="card mb-0 relative">
 			<h3>Fasi</h3>
 			<mbs-incentive-stage-list-loader 
-				[filters]="{regulationIdEquals: incentiveRegulationDto.id}" 
-				[dcs]="['id', 'description']" 
+				[filters]="childComponentsFilters" 
+				[dcs]="['description']" 
 				[paginator]="incentiveStageListPaginator"
 				[buttons]="incentiveStageTableButtons"
 				(resultCount)="incentiveStageCount=$event"></mbs-incentive-stage-list-loader>
 			<stal-paginator [totalRecords]="incentiveStageCount" [(pageable)]="incentiveStageListPaginator"></stal-paginator>
-			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveStage(incentiveRegulationDto)"></button>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveStage(incentiveRegulationDto, procurementTypeDto)"></button>
 		</div>
 	</div>
-	<div class="col-4 lg:col-4 xl:col-4">
+    
+    
+    <div class="col-6 lg:col-6 xl:col-6">
+
+    </div>
+
+
+	<div class="col-3 lg:col-3 xl:col-3">
 		<div class="card mb-0 relative">
 			<h3>Ruolo</h3>
 			<mbs-incentive-role-list-loader 
-				[filters]="{regulationIdEquals: incentiveRegulationDto.id}" 
-				[dcs]="['id', 'description']" 
+				[filters]="childComponentsFilters" 
+				[dcs]="['description']" 
 				[paginator]="incentiveRoleListPaginator"
 				[buttons]="incentiveRoleTableButtons"
 				(resultCount)="incentiveRoleCount=$event"></mbs-incentive-role-list-loader>
 			<stal-paginator [totalRecords]="incentiveRoleCount" [(pageable)]="incentiveRoleListPaginator"></stal-paginator>
-			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveRole(incentiveRegulationDto)"></button>
+			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveRole(incentiveRegulationDto, procurementTypeDto)"></button>
 		</div>
 	</div>
 </div>

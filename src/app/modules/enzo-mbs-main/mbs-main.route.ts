@@ -39,6 +39,7 @@ import { EnzoIncentiveBeneficiaryDetailPageComponent } from './components/incent
 import { MbsIncentiveRegulationResolver } from '@mbs-main/resolvers/incentive-regulation.resolver';
 import { EnzoIncentiveRegulationListPageComponent } from './components/incentive-regulation/incentive-regulation-list-page/incentive-regulation-list-page.component';
 import { EnzoIncentiveRegulationDetailPageComponent } from './components/incentive-regulation/incentive-regulation-detail-page/incentive-regulation-detail-page.component';
+import { EnzoIncentiveRegulationConfigurationComponent } from './components/incentive-regulation/incentive-regulation-configuration/incentive-regulation-configuration.component';
 import { MbsIncentiveWithheldResolver } from '@mbs-main/resolvers/incentive-withheld.resolver';
 import { EnzoIncentiveWithheldListPageComponent } from './components/incentive-withheld/incentive-withheld-list-page/incentive-withheld-list-page.component';
 import { EnzoIncentiveWithheldDetailPageComponent } from './components/incentive-withheld/incentive-withheld-detail-page/incentive-withheld-detail-page.component';
@@ -69,6 +70,7 @@ import { EnzoIncentiveCalculationValueDetailPageComponent } from './components/i
 import { MbsIncentiveAssignationResolver } from '@mbs-main/resolvers/incentive-assignation.resolver';
 import { EnzoIncentiveAssignationListPageComponent } from './components/incentive-assignation/incentive-assignation-list-page/incentive-assignation-list-page.component';
 import { EnzoIncentiveAssignationDetailPageComponent } from './components/incentive-assignation/incentive-assignation-detail-page/incentive-assignation-detail-page.component';
+import { MbsIncentiveRegulationParentResolver } from './resolvers/incentive-regulation.resolver';
 
 export const enzoMbsMainRoutes: Route[] = [
 	{
@@ -346,7 +348,16 @@ export const enzoMbsMainRoutes: Route[] = [
 				resolve: {
 					incentiveRegulation: MbsIncentiveRegulationResolver,
 				},
-				loadChildren: () => import('./components/incentive-regulation/incentive-regulation-configuration/incentive-regulation-configuration.module').then(m => m.EnzoMbsIncentiveRegulationConfiguratorModule)
+				children: [
+					{
+						path: 'procurement-type/:id', 
+						resolve: {
+							incentiveRegulation: MbsIncentiveRegulationParentResolver,
+							procurementType: MbsProcurementTypeResolver,
+						},
+						component: EnzoIncentiveRegulationConfigurationComponent,
+					}
+				]
 			},
 		]
 	},

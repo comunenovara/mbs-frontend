@@ -1,6 +1,6 @@
 <ng-container *ngIf="incentiveCalculationFactor">
 	<div class="h4 ml-16">ID: <b>{{ incentiveCalculationFactor.id }}</b></div>
-	<div class="h4 ml-16">minval: <b>{{ incentiveCalculationFactor.minval }}</b></div>
-	<div class="h4 ml-16">maxval: <b>{{ incentiveCalculationFactor.maxval }}</b></div>
-	<div class="h4 ml-16">defaultval: <b>{{ incentiveCalculationFactor.defaultval }}</b></div>
+	<div class="h4 ml-16">Min: <b>{{ incentiveCalculationFactor.minval | currency: 'EUR' }}</b></div>
+	<div class="h4 ml-16">Max: <b>{{ incentiveCalculationFactor.maxval | currency: 'EUR'}}</b></div>
+	<div class="h4 ml-16">Value: <b>{{ incentiveCalculationFactor.defaultval/100 | percent: '0.2' }}</b></div>
 </ng-container>

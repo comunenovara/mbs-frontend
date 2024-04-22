@@ -14,9 +14,9 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
-						<th *ngSwitchCase="'minval'" style="width:auto" pResizableColumn pSortableColumn="minval"> minval </th>
-						<th *ngSwitchCase="'maxval'" style="width:auto" pResizableColumn pSortableColumn="maxval"> maxval </th>
-						<th *ngSwitchCase="'defaultval'" style="width:auto" pResizableColumn pSortableColumn="defaultval"> defaultval </th>
+						<th *ngSwitchCase="'minval'" style="width:auto" pResizableColumn pSortableColumn="minval">Min</th>
+						<th *ngSwitchCase="'maxval'" style="width:auto" pResizableColumn pSortableColumn="maxval">Max</th>
+						<th *ngSwitchCase="'defaultval'" style="width:auto" pResizableColumn pSortableColumn="defaultval">Value</th>
 						<th *ngSwitchCase="'incentiveCalculationMethod.description'" style="width:auto" pResizableColumn commentpSortableColumn="incentiveCalculationMethod.description" > description</th>
 						<th *ngSwitchCase="'incentiveCalculationMethod.code'" style="width:auto" pResizableColumn commentpSortableColumn="incentiveCalculationMethod.code" > code</th>
 					</ng-container>
@@ -28,9 +28,9 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
-						<td *ngSwitchCase="'minval'">{{ e.minval }}</td>
-						<td *ngSwitchCase="'maxval'">{{ e.maxval }}</td>
-						<td *ngSwitchCase="'defaultval'">{{ e.defaultval }}</td>
+					<td *ngSwitchCase="'minval'">{{ e.minval | currency: 'EUR' }}</td>
+						<td *ngSwitchCase="'maxval'">{{ e.maxval | currency: 'EUR' }}</td>
+						<td *ngSwitchCase="'defaultval'">{{ e.defaultval/100 | percent: '0.2' }}</td>
 						<td *ngSwitchCase="'incentiveCalculationMethod.description'">
 							<span *ngIf="e.incentiveCalculationMethod">{{ e.incentiveCalculationMethod.description }}</span>
 						</td>

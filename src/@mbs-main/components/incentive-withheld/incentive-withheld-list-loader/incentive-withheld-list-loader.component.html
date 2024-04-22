@@ -14,10 +14,11 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description"> description </th>
-						<th *ngSwitchCase="'active'" style="width:auto" pResizableColumn pSortableColumn="active"> active </th>
+						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description">Descrizione</th>
+						<th *ngSwitchCase="'active'" style="width:auto" pResizableColumn pSortableColumn="active">Attivo</th>
 						<th *ngSwitchCase="'amount'" style="width:auto" pResizableColumn pSortableColumn="amount"> amount </th>
 						<th *ngSwitchCase="'percentage'" style="width:auto" pResizableColumn pSortableColumn="percentage"> percentage </th>
+						<th *ngSwitchCase="'value'" style="width:auto" pResizableColumn >Valore</th>
 						<th *ngSwitchCase="'procurementType.description'" style="width:auto" pResizableColumn commentpSortableColumn="procurementType.description" > description</th>
 						<th *ngSwitchCase="'regulation.description'" style="width:auto" pResizableColumn commentpSortableColumn="incentiveRegulation.description" > description</th>
 					</ng-container>
@@ -30,9 +31,16 @@
 						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
 						<td *ngSwitchCase="'description'">{{ e.description }}</td>
-						<td *ngSwitchCase="'active'">{{ e.active }}</td>
+						<td *ngSwitchCase="'active'">
+							<span *ngIf="e.active">V</span>
+							<span *ngIf="!e.active">X</span>
+						</td>
 						<td *ngSwitchCase="'amount'">{{ e.amount }}</td>
 						<td *ngSwitchCase="'percentage'">{{ e.percentage }}</td>
+						<td *ngSwitchCase="'value'">
+							<span *ngIf="e.amount">{{ e.amount | currency: 'EUR' }}</span>
+							<span *ngIf="e.percentage">{{ e.percentage/100 | percent: '0.2' }}</span>
+						</td>
 						<td *ngSwitchCase="'procurementType.description'">
 							<span *ngIf="e.procurementType">{{ e.procurementType.description }}</span>
 						</td>

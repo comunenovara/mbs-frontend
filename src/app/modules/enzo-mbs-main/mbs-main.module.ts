@@ -77,6 +77,8 @@ import { EnzoIncentiveCalculationValueDialogComponent } from './components/incen
 import { EnzoIncentiveAssignationListPageComponent } from './components/incentive-assignation/incentive-assignation-list-page/incentive-assignation-list-page.component';
 import { EnzoIncentiveAssignationDetailPageComponent } from './components/incentive-assignation/incentive-assignation-detail-page/incentive-assignation-detail-page.component';
 import { EnzoIncentiveAssignationDialogComponent } from './components/incentive-assignation/incentive-assignation-dialog/incentive-assignation-dialog.component';
+import { EnzoIncentiveRegulationConfigurationComponent } from './components/incentive-regulation/incentive-regulation-configuration/incentive-regulation-configuration.component';
+import { MbsIncentiveRegulationParentResolver } from './resolvers/incentive-regulation.resolver'
 
 @NgModule({
 	imports: [ 
@@ -89,6 +91,9 @@ import { EnzoIncentiveAssignationDialogComponent } from './components/incentive-
 		
 	],
 	declarations: [
+		EnzoIncentiveRegulationConfigurationComponent,
+
+
 		EnzoAssetListPageComponent,
 		EnzoAssetDetailPageComponent,
 		EnzoAssetDialogComponent,
@@ -186,7 +191,8 @@ import { EnzoIncentiveAssignationDialogComponent } from './components/incentive-
 		{
 			provide: MBS_MAIN_ENDPOINT,
 			useValue: 'http://localhost:3000/mbs/main'
-		}
+		},
+		MbsIncentiveRegulationParentResolver,
 	]
 })
 export class EnzoMbsMainModule {}

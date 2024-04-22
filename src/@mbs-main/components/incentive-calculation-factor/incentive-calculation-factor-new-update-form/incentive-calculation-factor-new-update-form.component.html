@@ -8,16 +8,16 @@
 				<stal-autocomplete #incentiveCalculationMethodAutocomplete [filteredElements]="_filteredIncentiveCalculationMethod" [displayFn]="mbsMainAutocompleteService.displayIncentiveCalculationMethod"></stal-autocomplete>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'minval' }}</span>
-				<input type="number" pInputText formControlName="minval" placeholder="Minval">
+				<span>{{ 'Min' }}</span>
+				<input type="number" pInputText formControlName="minval" placeholder="Min">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'maxval' }}</span>
-				<input type="number" pInputText formControlName="maxval" placeholder="Maxval">
+				<span>{{ 'Max' }}</span>
+				<input type="number" pInputText formControlName="maxval" placeholder="Max">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'defaultval' }}</span>
-				<input type="number" pInputText formControlName="defaultval" placeholder="Defaultval">
+				<span>{{ 'Value' }}</span>
+				<input type="number" pInputText formControlName="defaultval" placeholder="Value">
 			</div>
 
 			<div class="col-12 md:col-6 lg:col-3">
@@ -35,8 +35,8 @@
 </div>
 
 <div *ngIf="stepIs(formStep.COMPLETE)">
-	<h1 *ngIf="!_isUpdate">{{ 'incentive-calculation-factor' }} {{ 'creato' }}</h1>
-	<h1 *ngIf="_isUpdate">{{ 'incentive-calculation-factor' }} {{ 'aggiornato' }}</h1>
+	<h1 *ngIf="!_isUpdate">{{ 'Fattore di calcolo' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'Fattore di calcolo' }} {{ 'aggiornato' }}</h1>
 
 	<hr>
 
