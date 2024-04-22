@@ -7,7 +7,7 @@
 				<input type="text" pInputText formControlName="stage" [stalAutocomplete]="stageAutocomplete">
 				<stal-autocomplete #stageAutocomplete [filteredElements]="_filteredStage" [displayFn]="mbsMainAutocompleteService.displayIncentiveStage"></stal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['stage'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['stage'], 'validatorHaveId')">La stage è richiesta.</span>
+					<span *ngIf="checkControlError(_newUpdateForm.controls['stage'], 'validatorHaveId')">La fase è richiesta.</span>
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4" [hidden]="role != null">
@@ -15,20 +15,20 @@
 				<input type="text" pInputText formControlName="role" [stalAutocomplete]="roleAutocomplete">
 				<stal-autocomplete #roleAutocomplete [filteredElements]="_filteredRole" [displayFn]="mbsMainAutocompleteService.displayIncentiveRole"></stal-autocomplete>
 				<div *ngIf="!isValid(_newUpdateForm.controls['role'])" class="filed-required">
-					<span *ngIf="checkControlError(_newUpdateForm.controls['role'], 'validatorHaveId')">La role è richiesta.</span>
+					<span *ngIf="checkControlError(_newUpdateForm.controls['role'], 'validatorHaveId')">Il ruolo è richiesto.</span>
 				</div>
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'minval' }}</span>
-				<input type="number" pInputText formControlName="minval" placeholder="Minval">
+				<span>{{ 'Minimo' }}</span>
+				<input type="number" pInputText formControlName="minval" placeholder="Minimo">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'maxval' }}</span>
-				<input type="number" pInputText formControlName="maxval" placeholder="Maxval">
+				<span>{{ 'Massimo' }}</span>
+				<input type="number" pInputText formControlName="maxval" placeholder="Massimo">
 			</div>
 			<div class="col-12 md:col-6 lg:col-4">
-				<span>{{ 'defaultval' }}</span>
-				<input type="number" pInputText formControlName="defaultval" placeholder="Defaultval">
+				<span>{{ 'Default' }}</span>
+				<input type="number" pInputText formControlName="defaultval" placeholder="Default">
 			</div>
 
 			<div class="col-12 md:col-6 lg:col-3">
@@ -46,8 +46,8 @@
 </div>
 
 <div *ngIf="stepIs(formStep.COMPLETE)">
-	<h1 *ngIf="!_isUpdate">{{ 'incentive-regulation-value' }} {{ 'creato' }}</h1>
-	<h1 *ngIf="_isUpdate">{{ 'incentive-regulation-value' }} {{ 'aggiornato' }}</h1>
+	<h1 *ngIf="!_isUpdate">{{ 'Valore' }} {{ 'creato' }}</h1>
+	<h1 *ngIf="_isUpdate">{{ 'Valore' }} {{ 'aggiornato' }}</h1>
 
 	<hr>
 

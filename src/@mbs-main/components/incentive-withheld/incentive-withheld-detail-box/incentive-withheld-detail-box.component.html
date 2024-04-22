@@ -2,6 +2,6 @@
 	<div class="h4 ml-16">ID: <b>{{ incentiveWithheld.id }}</b></div>
 	<div class="h4 ml-16">Descrizione: <b>{{ incentiveWithheld.description }}</b></div>
 	<div class="h4 ml-16">Attiva: <b>{{ incentiveWithheld.active }}</b></div>
-	<div class="h4 ml-16">Importo: <b>{{ incentiveWithheld.amount }}</b></div>
-	<div class="h4 ml-16">Percentuale: <b>{{ incentiveWithheld.percentage }}</b></div>
+	<div class="h4 ml-16">Importo: <b>{{ incentiveWithheld.amount | currency: 'EUR' }}</b></div>
+	<div class="h4 ml-16">Percentuale: <b>{{ incentiveWithheld.percentage/100 | percent: '0.2'  }}</b></div>
 </ng-container>

@@ -47,15 +47,13 @@ export class EnzoIncentiveRegulationConfigurationComponent extends EngeAppGeneri
 	override onLoad() {
 		this.incentiveRegulationDto = this.route.snapshot.data['incentiveRegulation'];
         this.procurementTypeDto = this.route.snapshot.data['procurementType'];
-
-        this.childComponentsFilters = {
-            regulationIdEquals: this.incentiveRegulationDto.id,
-            procurementTypeIdEquals: this.procurementTypeDto.id
-        }
-
-        this.customLoading();
-
-        
+		
+		this.childComponentsFilters = {
+			regulationIdEquals: this.incentiveRegulationDto.id,
+			procurementTypeIdEquals: this.procurementTypeDto.id
+		}
+		
+		this.localCalculationMethod();
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {
@@ -68,13 +66,14 @@ export class EnzoIncentiveRegulationConfigurationComponent extends EngeAppGeneri
 	}
 
 	override async reloadPage() {
-        // mettere il ricaricamento di info base
-		await this.customLoading();
+		this.incentiveRegulationDto = await lastValueFrom(this.incentiveRegulationResourceService.getIncentiveRegulationUsingGET(this.id));
+
+		await this.localCalculationMethod();
 	}
 
 
 
-    async customLoading() {
+    async localCalculationMethod() {
 		let incentiveCalculationMethods = await lastValueFrom(this.incentiveCalculationMethodResourceService.getAllIncentiveCalculationMethodsUsingGET(this.childComponentsFilters));
         if(incentiveCalculationMethods.length > 0)
             this.incentiveCalculationMethodDto = incentiveCalculationMethods[0];

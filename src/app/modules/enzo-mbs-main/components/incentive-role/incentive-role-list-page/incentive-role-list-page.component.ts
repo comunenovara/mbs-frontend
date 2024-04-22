@@ -38,7 +38,7 @@ export class EnzoIncentiveRoleListPageComponent {
 	};
 	incentiveRoleCount: number;
 
-	incentiveRoleListDc = ['_ck', 'id'];
+	incentiveRoleListDc = ['_ck', 'id', 'regulation.description', 'procurementType.description', 'description'];
 	paginatorEvent(paginator: any) {
 		let incentiveRoleListPaginator = { ...paginator }
 		this.incentiveRoleListPaginator = incentiveRoleListPaginator;

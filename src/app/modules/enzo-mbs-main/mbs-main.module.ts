@@ -7,6 +7,7 @@ import { EngeCommonAppModule } from '@enge/common-app';
 import { enzoMbsMainRoutes } from './mbs-main.route';
 
 import { TabMenuModule } from 'primeng/tabmenu';
+import { ChipModule } from 'primeng/chip';
 
 import { EnzoAssetListPageComponent } from './components/asset/asset-list-page/asset-list-page.component';
 import { EnzoAssetDetailPageComponent } from './components/asset/asset-detail-page/asset-detail-page.component';
@@ -78,6 +79,7 @@ import { EnzoIncentiveAssignationListPageComponent } from './components/incentiv
 import { EnzoIncentiveAssignationDetailPageComponent } from './components/incentive-assignation/incentive-assignation-detail-page/incentive-assignation-detail-page.component';
 import { EnzoIncentiveAssignationDialogComponent } from './components/incentive-assignation/incentive-assignation-dialog/incentive-assignation-dialog.component';
 import { EnzoIncentiveRegulationConfigurationComponent } from './components/incentive-regulation/incentive-regulation-configuration/incentive-regulation-configuration.component';
+import { EnzoIncentireRegulationMatrixComponent } from './components/incentive-regulation/incentive-regulation-matrix/incentive-regulation-matrix.component';
 import { MbsIncentiveRegulationParentResolver } from './resolvers/incentive-regulation.resolver'
 
 @NgModule({
@@ -87,12 +89,12 @@ import { MbsIncentiveRegulationParentResolver } from './resolvers/incentive-regu
 		EngeCommonAppModule,
 
 		TabMenuModule,
-
+		ChipModule,
 		
 	],
 	declarations: [
 		EnzoIncentiveRegulationConfigurationComponent,
-
+		EnzoIncentireRegulationMatrixComponent,
 
 		EnzoAssetListPageComponent,
 		EnzoAssetDetailPageComponent,

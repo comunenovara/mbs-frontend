@@ -1,7 +1,7 @@
-<div class="grid" *ngIf="incentiveRegulationDto">
+<div class="grid" *ngIf="incentiveRegulationDto && procurementTypeDto">
     <div class="col-2 lg:col-2 xl:col-2">
         <div class="card mb-0">
-			<h3>Calcolo</h3>
+			<h3>Tipo calcolo</h3>
 			<button *ngIf="!incentiveCalculationMethodDto" pButton pRipple label="Aggiungi" class="p-button-warning" (click)="createNewIncentiveCalculationMethod(incentiveRegulationDto, procurementTypeDto)"></button>
 			<mbs-incentive-calculation-method-detail-box *ngIf="incentiveCalculationMethodDto" [incentiveCalculationMethod]="incentiveCalculationMethodDto"></mbs-incentive-calculation-method-detail-box>
 			<button *ngIf="incentiveCalculationMethodDto" pButton pRipple icon="pi pi-trash" class="p-button-outlined p-button-danger" (click)="removeIncentiveCalculationMethod(incentiveCalculationMethodDto)"></button>
@@ -65,13 +65,13 @@
     
     
     <div class="col-6 lg:col-6 xl:col-6">
-
+		<enzo-incentive-regulation-matrix [incentiveRegulation]="incentiveRegulationDto" [procurementType]="procurementTypeDto"></enzo-incentive-regulation-matrix>
     </div>
 
 
 	<div class="col-3 lg:col-3 xl:col-3">
 		<div class="card mb-0 relative">
-			<h3>Ruolo</h3>
+			<h3>Ruoli</h3>
 			<mbs-incentive-role-list-loader 
 				[filters]="childComponentsFilters" 
 				[dcs]="['description']" 
