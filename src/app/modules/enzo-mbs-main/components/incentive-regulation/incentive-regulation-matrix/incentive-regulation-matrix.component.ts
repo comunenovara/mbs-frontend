@@ -5,6 +5,8 @@ import { StalEvent } from "@stal/eventer";
 import { EngeAppCommonService, EngeAppGenericPageComponent } from '@enge/common-app';
 import { MbsIncentiveRegulationDto, MbsIncentiveRoleDto, MbsIncentiveRoleResourceService, MbsIncentiveRegulationValueDto, MbsIncentiveStageDto, MbsIncentiveStageResourceService, MbsIncentiveRegulationValueResourceService, MbsProcurementTypeDto } from '@mbs-main';
 import { EnzoIncentiveRegulationValueDialogComponent } from '../../incentive-regulation-value/incentive-regulation-value-dialog/incentive-regulation-value-dialog.component';
+import { EnzoIncentiveRoleDialogComponent } from '../../incentive-role/incentive-role-dialog/incentive-role-dialog.component';
+import { EnzoIncentiveStageDialogComponent } from '../../incentive-stage/incentive-stage-dialog/incentive-stage-dialog.component';
 
 @Component({
 	selector: 'enzo-incentive-regulation-matrix',
@@ -71,18 +73,14 @@ export class EnzoIncentireRegulationMatrixComponent extends EngeAppGenericPageCo
 		}
 	}
 
-	createNewRoleValue(incentiveStage: MbsIncentiveStageDto, incentiveRole: MbsIncentiveRoleDto) {
-		this.dialogService.open(EnzoIncentiveRegulationValueDialogComponent, {
-			header: 'Aggiungi valore',
-			width: '70%',
-			data: {
-				stage: incentiveStage,
-				role: incentiveRole
-			}
-		});
-	}
 
-	updateRoleValue(incentiveStage: MbsIncentiveStageDto, incentiveRole: MbsIncentiveRoleDto, incentiveRegulationValue: MbsIncentiveRegulationValueDto) {
+
+
+
+
+
+
+	createUpdateRoleValue(incentiveStage: MbsIncentiveStageDto, incentiveRole: MbsIncentiveRoleDto, incentiveRegulationValue?: MbsIncentiveRegulationValueDto) {
 		this.dialogService.open(EnzoIncentiveRegulationValueDialogComponent, {
 			header: 'Modifica valore',
 			width: '70%',
@@ -95,8 +93,67 @@ export class EnzoIncentireRegulationMatrixComponent extends EngeAppGenericPageCo
 	}
 
 	async deleteRoleValue(incentiveRegulationValue: MbsIncentiveRegulationValueDto) {
-		if(incentiveRegulationValue.id === undefined) return;
+		if(!incentiveRegulationValue.id) return;
 		await lastValueFrom(this.incentiveRegulationValueResourceService.deleteIncentiveRegulationValueUsingDELETE(incentiveRegulationValue.id));
 		this.eacs.eventer.launchReloadContent("incentiveRegulationValue");
 	}
+
+
+
+
+
+
+
+
+
+
+	createUpdateIncentiveStage(incentiveRegulationDto: MbsIncentiveRegulationDto, procurementTypeDto: MbsProcurementTypeDto, incentiveStageDto?: MbsIncentiveStageDto) {
+		this.dialogService.open(EnzoIncentiveStageDialogComponent, {
+			header: 'Aggiorna fase',
+			width: '70%',
+			data: {
+				regulation: incentiveRegulationDto,
+                procurementType: procurementTypeDto,
+				incentiveStage: incentiveStageDto,
+			}
+		});
+	}
+
+	async deleteIncentiveStage(incentiveStageDto: MbsIncentiveStageDto) {
+		if(!incentiveStageDto.id) return;
+		await lastValueFrom(this.incentiveStageResourceService.deleteIncentiveStageUsingDELETE(incentiveStageDto.id));
+		this.eacs.eventer.launchReloadContent("incentiveStage");
+	}
+
+	
+
+
+
+
+
+
+
+
+	
+	createUpdateNewIncentiveRole(incentiveRegulationDto: MbsIncentiveRegulationDto, procurementTypeDto: MbsProcurementTypeDto, incentiveRoleDto?: MbsIncentiveRoleDto) {
+		this.dialogService.open(EnzoIncentiveRoleDialogComponent, {
+			header: 'Crea ruolo',
+			width: '70%',
+			data: {
+				regulation: incentiveRegulationDto,
+                procurementType: procurementTypeDto,
+				incentiveRole: incentiveRoleDto
+			}
+		});
+	}
+
+	async deleteIncentiveRole(incentiveRoleDto: MbsIncentiveRoleDto) {
+		if(!incentiveRoleDto.id) return;
+		await lastValueFrom(this.incentiveRoleResourceService.deleteIncentiveRoleUsingDELETE(incentiveRoleDto.id));
+		this.eacs.eventer.launchReloadContent("incentiveRole");
+	}
+
+	
+
+
 }

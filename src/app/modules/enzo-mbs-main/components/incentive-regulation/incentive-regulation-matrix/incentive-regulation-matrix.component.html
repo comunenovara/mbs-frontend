@@ -1,25 +1,39 @@
 <table id="role-stage-value">
 	<tr>
 		<th class="first top"></th>
-		<th *ngFor="let stage of incentiveStages" class="top">{{ stage.description }}</th>
+		<th *ngFor="let stage of incentiveStages" class="top">
+			{{ stage.description }}
+			<br>
+			<button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-warning p-button-rounded p-button-text" (click)="createUpdateIncentiveStage(incentiveRegulation, procurementType, stage)"></button>
+			<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-danger p-button-rounded p-button-text" (click)="deleteIncentiveStage(stage)"></button>
+		</th>
+		<th class="top"><button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded" (click)="createUpdateIncentiveStage(incentiveRegulation, procurementType)"></button></th>
 	</tr>
 	<tr *ngFor="let role of incentiveRoles">
-		<td class="first bold">{{ role.description }}</td>
+		<td class="first bold">
+			{{ role.description }}
+			<br>
+			<button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-warning p-button-rounded p-button-text" (click)="createUpdateNewIncentiveRole(incentiveRegulation, procurementType, role)"></button>
+			<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-danger p-button-rounded p-button-text" ></button>
+		</td>
 		<td *ngFor="let stage of incentiveStages">
 			<div *ngIf="role.id !== undefined && stage.id !== undefined && valueMatrix !== undefined">
-				<div *ngIf="valueMatrix[role.id] !== undefined && valueMatrix[role.id][stage.id] !== undefined" style="text-align: right;">
+				<div *ngIf="valueMatrix[role.id] !== undefined && valueMatrix[role.id][stage.id] !== undefined">
 					<p-chip *ngIf="valueMatrix[role.id][stage.id].minval == valueMatrix[role.id][stage.id].maxval" 
 						label="{{ valueMatrix[role.id][stage.id].minval /100 | percent: '0.2' }}"></p-chip>
 					<p-chip *ngIf="valueMatrix[role.id][stage.id].minval != valueMatrix[role.id][stage.id].maxval" 
 						label="{{ valueMatrix[role.id][stage.id].minval /100 | percent: '0.2' }} - {{ valueMatrix[role.id][stage.id].maxval /100 | percent: '0.2' }} ({{ valueMatrix[role.id][stage.id].defaultval /100 | percent: '0.2' }})"></p-chip>
-<br>
-						<button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-warning p-button-rounded p-button-text" (click)="updateRoleValue(stage, role, valueMatrix[role.id][stage.id])"></button>
-						<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-danger p-button-rounded p-button-text" (click)="deleteRoleValue(valueMatrix[role.id][stage.id])"></button>
+					<br>
+					<button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-warning p-button-rounded p-button-text" (click)="createUpdateRoleValue(stage, role, valueMatrix[role.id][stage.id])"></button>
+					<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-danger p-button-rounded p-button-text" (click)="deleteRoleValue(valueMatrix[role.id][stage.id])"></button>
 				</div>
 				<div *ngIf="valueMatrix[role.id] === undefined || valueMatrix[role.id][stage.id] === undefined">
-					<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-text" (click)="createNewRoleValue(stage, role)"></button>	
+					<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-text" (click)="createUpdateRoleValue(stage, role)"></button>	
 				</div>
 			</div>
 		</td>
+	</tr>
+	<tr>
+		<td class="first add-button-cell"><button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded" (click)="createUpdateNewIncentiveRole(incentiveRegulation, procurementType)"></button></td>
 	</tr>
 </table>

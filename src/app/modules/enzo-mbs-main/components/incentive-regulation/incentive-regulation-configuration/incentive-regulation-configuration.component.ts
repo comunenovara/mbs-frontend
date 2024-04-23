@@ -48,6 +48,9 @@ export class EnzoIncentiveRegulationConfigurationComponent extends EngeAppGeneri
 		this.incentiveRegulationDto = this.route.snapshot.data['incentiveRegulation'];
         this.procurementTypeDto = this.route.snapshot.data['procurementType'];
 		
+		if(this.incentiveRegulationDto.id)
+			this.id = this.incentiveRegulationDto.id
+
 		this.childComponentsFilters = {
 			regulationIdEquals: this.incentiveRegulationDto.id,
 			procurementTypeIdEquals: this.procurementTypeDto.id
@@ -93,6 +96,18 @@ export class EnzoIncentiveRegulationConfigurationComponent extends EngeAppGeneri
 			header: 'Aggiungi calcolo',
 			width: '70%',
 			data: {
+				regulation: incentiveRegulationDto,
+                procurementType: procurementTypeDto
+			}
+		});
+	}
+
+	editIncentiveCalculationMethod(incentiveCalculationMethodDto: MbsIncentiveCalculationMethodDto, incentiveRegulationDto: MbsIncentiveRegulationDto, procurementTypeDto: MbsProcurementTypeDto) {
+		this.dialogService.open(EnzoIncentiveCalculationMethodDialogComponent, {
+			header: 'Modifica calcolo',
+			width: '70%',
+			data: {
+				incentiveCalculationMethod: incentiveCalculationMethodDto,
 				regulation: incentiveRegulationDto,
                 procurementType: procurementTypeDto
 			}
@@ -219,105 +234,6 @@ export class EnzoIncentiveRegulationConfigurationComponent extends EngeAppGeneri
 
 
 
-	createNewIncentiveStage(incentiveRegulationDto: MbsIncentiveRegulationDto, procurementTypeDto: MbsProcurementTypeDto) {
-		this.dialogService.open(EnzoIncentiveStageDialogComponent, {
-			header: 'Crea fase',
-			width: '70%',
-			data: {
-				regulation: incentiveRegulationDto,
-                procurementType: procurementTypeDto
-			}
-		});
-	}
 
-	protected incentiveStageTableButtons: any[] = [
-		{
-			label: "Modifica",
-			hideLabel: true,
-			icon: "pi pi-pencil",
-			severity: "secondary",
-			class: "p-button-sm p-button-outlined",
-			command: (e: any) => {
-				const ref = this.dialogService.open(EnzoIncentiveStageDialogComponent, {
-					data: { 
-						incentiveStage: { ...e },
-						regulation: { ...e.regulation },
-						procurementType: { ...e.procurementType }
-					},
-					header: 'Modifica fase',
-					width: '70%'
-				});
-			},
-			childs: [
-				{
-					label: "Cancella",
-					icon: "pi pi-trash",
-					command: async (e: any) => {
-						await lastValueFrom(this.incentiveStageResourceService.deleteIncentiveStageUsingDELETE(e.item.data.id));
-						this.eacs.eventer.launchReloadContent("incentiveStage");
-					}
-				}
-			]
-		}
-	];
-	protected incentiveStageListPaginator: StalPaginator = {
-		page: 0,
-		size: 10
-	};
-	protected incentiveStageCount: number;
-
-
-
-
-
-
-
-	
-	createNewIncentiveRole(incentiveRegulationDto: MbsIncentiveRegulationDto, procurementTypeDto: MbsProcurementTypeDto) {
-		this.dialogService.open(EnzoIncentiveRoleDialogComponent, {
-			header: 'Crea ruolo',
-			width: '70%',
-			data: {
-				regulation: incentiveRegulationDto,
-                procurementType: procurementTypeDto
-			}
-		});
-	}
-
-	protected incentiveRoleTableButtons: any[] = [
-		{
-			label: "Modifica",
-			hideLabel: true,
-			icon: "pi pi-pencil",
-			severity: "secondary",
-			class: "p-button-sm p-button-outlined",
-			command: (e: any) => {
-				const ref = this.dialogService.open(EnzoIncentiveRoleDialogComponent, {
-					data: { 
-						incentiveRole: { ...e },
-						regulation: { ...e.regulation },
-						procurementType: { ...e.procurementType }
-					},
-					header: 'Modifica ruolo',
-					width: '70%'
-				});
-			},
-			childs: [
-				{
-					label: "Cancella",
-					icon: "pi pi-trash",
-					command: async (e: any) => {
-						await lastValueFrom(this.incentiveRoleResourceService.deleteIncentiveRoleUsingDELETE(e.item.data.id));
-						this.eacs.eventer.launchReloadContent("incentiveRole");
-					}
-				}
-			]
-		}
-	];
-	protected incentiveRoleListPaginator: StalPaginator = {
-		page: 0,
-		size: 10
-	};
-	protected incentiveRoleCount: number;
 
 }
