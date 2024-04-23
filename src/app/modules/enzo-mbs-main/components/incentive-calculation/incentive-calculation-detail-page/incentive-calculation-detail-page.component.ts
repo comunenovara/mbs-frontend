@@ -207,17 +207,23 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 
 
 
-	deleteIncentiveCalculationValue(incentiveCalculationValueDto: MbsIncentiveCalculationValueDto) {
-		console.log("delete", incentiveCalculationValueDto);
+	async deleteIncentiveCalculationValue(incentiveCalculationValueDto: MbsIncentiveCalculationValueDto) {
+		if(!incentiveCalculationValueDto.id) return;
+		await lastValueFrom(this.incentiveCalculationValueResourceService.deleteIncentiveCalculationValueUsingDELETE(incentiveCalculationValueDto.id));
+		this.eacs.eventer.launchReloadContent("incentiveCalculationValue");
 	}
 
 
-	deleteIncentiveRoleAssignation(incentiveRoleAssignationDto: MbsIncentiveRoleAssignationDto) {
-		console.log("delete", incentiveRoleAssignationDto);
+	async deleteIncentiveRoleAssignation(incentiveRoleAssignationDto: MbsIncentiveRoleAssignationDto) {
+		if(!incentiveRoleAssignationDto.id) return;
+		await lastValueFrom(this.incentiveRoleAssignationResourceService.deleteIncentiveRoleAssignationUsingDELETE(incentiveRoleAssignationDto.id));
+		this.eacs.eventer.launchReloadContent("incentiveRoleAssignation");
 	}
 
-	deleteIncentiveAssignation(incentiveAssignation: MbsIncentiveAssignationDto) {
-		console.log("delete", incentiveAssignation);
+	async deleteIncentiveAssignation(incentiveAssignationDto: MbsIncentiveAssignationDto) {
+		if(!incentiveAssignationDto.id) return;
+		await lastValueFrom(this.incentiveAssignationResourceService.deleteIncentiveAssignationUsingDELETE(incentiveAssignationDto.id));
+		this.eacs.eventer.launchReloadContent("incentiveAssignation");
 	}
 
 
