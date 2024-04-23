@@ -14,7 +14,7 @@
 			{{ role.description }}
 			<br>
 			<button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-warning p-button-rounded p-button-text" (click)="createUpdateNewIncentiveRole(incentiveRegulation, procurementType, role)"></button>
-			<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-danger p-button-rounded p-button-text" ></button>
+			<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-danger p-button-rounded p-button-text" (click)="deleteIncentiveRole(role)"></button>
 		</td>
 		<td *ngFor="let stage of incentiveStages">
 			<div *ngIf="role.id !== undefined && stage.id !== undefined && valueMatrix !== undefined">
