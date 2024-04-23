@@ -10,6 +10,8 @@ import { MbsIncentiveRoleAssignationDto } from '@mbs-main/class/incentive-role-a
 import { MbsIncentiveBeneficiaryDto } from '@mbs-main/class/incentive-beneficiary-dto.class';
 import { MbsIncentiveCalculationDto } from '@mbs-main/class/incentive-calculation-dto.class';
 import { MbsIncentiveRoleDto } from '@mbs-main/class/incentive-role-dto.class';
+import { MbsIncentiveRegulationDto } from '@mbs-main/class/incentive-regulation-dto.class';
+import { MbsProcurementTypeDto } from '@mbs-main/class/procurement-type-dto.class';
 
 @Component({
 	selector: 'mbs-incentive-role-assignation-new-update-form',
@@ -23,6 +25,8 @@ export class MbsIncentiveRoleAssignationNewUpdateFormComponent extends EngeLibGe
 	@Input() beneficiary: MbsIncentiveBeneficiaryDto | undefined;
 	@Input() calculation: MbsIncentiveCalculationDto | undefined;
 	@Input() role: MbsIncentiveRoleDto | undefined;
+	@Input() incentiveRegulation: MbsIncentiveRegulationDto | undefined;
+	@Input() procurementTypeId: number | undefined;
 
 	constructor(
 		ecs: EngeCommonService,
@@ -55,6 +59,10 @@ export class MbsIncentiveRoleAssignationNewUpdateFormComponent extends EngeLibGe
 		this._filteredBeneficiary = this.mbsMainAutocompleteService.filterIncentiveBeneficiary(this._newUpdateForm.controls['beneficiary'].valueChanges);
 		this._filteredCalculation = this.mbsMainAutocompleteService.filterIncentiveCalculation(this._newUpdateForm.controls['calculation'].valueChanges);
 		this._filteredRole = this.mbsMainAutocompleteService.filterIncentiveRole(this._newUpdateForm.controls['role'].valueChanges);
+
+		if(this.incentiveRegulation && this.procurementTypeId) {
+			this._filteredRole = this.mbsMainAutocompleteService.filterIncentiveRoleByIncentiveRegulationAndProcurementType(this.incentiveRegulation, this.procurementTypeId, this._newUpdateForm.controls['role'].valueChanges);
+		}
 	}
 
 	override prepareResult(): MbsIncentiveRoleAssignationDto {

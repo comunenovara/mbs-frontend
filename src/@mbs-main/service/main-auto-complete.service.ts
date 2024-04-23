@@ -377,6 +377,21 @@ export class MbsMainAutocompleteService {
 		  })
 	   );
 	}
+	filterIncentiveRoleByIncentiveRegulationAndProcurementType(incentiveRegulation: MbsIncentiveRegulationDto, procurementTypeId: number, observable: Observable<any>): Observable<MbsIncentiveRoleDto[]> {
+		return observable.pipe(
+			startWith(() => ''),
+			switchMap((value: string) => {
+				let filter: any = {
+					regulationIdEquals: incentiveRegulation.id,
+					procurementTypeIdEquals: procurementTypeId,
+				};
+				if(value && value.length > 0)  {
+					filter.descriptionContains = value;
+				};
+				return this.incentiveRoleResourceService.getAllIncentiveRolesUsingGET(filter);
+		  })
+	   );
+	}
 
 	displayIncentiveRole(selectedElement: any) {
 		return selectedElement.description;

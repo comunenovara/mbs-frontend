@@ -9,7 +9,7 @@
 
 	<div class="col-12 lg:col-6 xl:col-3" *ngIf="incentiveCalculationDto.governativeProcurementLot !== null">
         <div class="card mb-0">
-			<h3>governative-procurement-lot</h3>
+			<h3>Appalto</h3>
 			<mbs-governative-procurement-lot-detail-box [governativeProcurementLot]="incentiveCalculationDto.governativeProcurementLot" ></mbs-governative-procurement-lot-detail-box>
 			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
 				[routerLink]="['../../../governative-procurement-lot/detail', incentiveCalculationDto.governativeProcurementLot.id]"></button>
@@ -22,7 +22,7 @@
 	</div>
 	<div class="col-12 lg:col-6 xl:col-3" *ngIf="incentiveCalculationDto.regulation !== null">
         <div class="card mb-0">
-			<h3>incentive-regulation</h3>
+			<h3>Regolamento incentivi applicato</h3>
 			<mbs-incentive-regulation-detail-box [incentiveRegulation]="incentiveCalculationDto.regulation" ></mbs-incentive-regulation-detail-box>
 			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
 				[routerLink]="['../../../incentive-regulation/detail', incentiveCalculationDto.regulation.id]"></button>
@@ -36,28 +36,76 @@
 
 	<div class="col-12 lg:col-12 xl:col-12">
 		<div class="card mb-0 relative">
-			<h3>incentive-role-assignation</h3>
-			<mbs-incentive-role-assignation-list-loader 
-				[filters]="{calculationIdEquals: incentiveCalculationDto.id}" 
-				[dcs]="['id', 'description']" 
-				[paginator]="incentiveRoleAssignationListPaginator"
-				[buttons]="incentiveRoleAssignationTableButtons"
-				(resultCount)="incentiveRoleAssignationCount=$event"></mbs-incentive-role-assignation-list-loader>
-			<stal-paginator [totalRecords]="incentiveRoleAssignationCount" [(pageable)]="incentiveRoleAssignationListPaginator"></stal-paginator>
-			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveRoleAssignation(incentiveCalculationDto)"></button>
+			<div *ngFor="let stage of this.incentiveStages">
+				<h3>{{ stage.description }}</h3>
+				
+				<ng-container *ngIf="stage.id && incentiveRegulationValueByStage[stage.id]">
+					<div *ngFor="let incentiveRegulationValue of incentiveRegulationValueByStage[stage.id]">
+						<span>{{ incentiveRegulationValue.role.description }}</span> | 
+						<span>{{ incentiveRegulationValue.minval/100 | percent: '0.0' }}</span>-<span>{{ incentiveRegulationValue.maxval/100 | percent: '0.0' }}</span> |
+						
+						<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded" 
+							*ngIf="!incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id]"
+							(click)="createUpdateIncentiveCalculationValue(incentiveCalculationDto, incentiveRegulationValue)">
+						</button>
+
+						<ng-container *ngIf="incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id]">
+							<span>{{ incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0].value/100 | percent: '0.2' }}</span>
+							<button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded" 
+								(click)="createUpdateIncentiveCalculationValue(incentiveCalculationDto, incentiveRegulationValue, incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0])">
+							</button>
+							<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded" 
+								(click)="deleteIncentiveCalculationValue(incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0])">
+							</button>
+
+
+							<br>
+							<div *ngFor="let roleAssignation of roleAssignationByRole[incentiveRegulationValue.role.id]">
+								<span>{{ roleAssignation.beneficiary.description }}</span> |
+								
+								<button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded" 
+									(click)="createUpdateIncentiveRoleAssignation(incentiveCalculationDto, incentiveRegulationValue, roleAssignation)">
+								</button>
+								<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded" 
+									(click)="deleteIncentiveRoleAssignation(roleAssignation)">
+								</button>
+
+								|
+
+								<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded" 
+									*ngIf="!incentiveAssignationByRoleAssignation[roleAssignation.id]"
+									(click)="createUpdateIncentiveAssignation(roleAssignation, incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0])">
+								</button>
+
+								<ng-container *ngIf="incentiveAssignationByRoleAssignation[roleAssignation.id]">
+									<span>{{ incentiveAssignationByRoleAssignation[roleAssignation.id][0].value/100 | percent: '0.0' }}</span>
+
+									<button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded" 
+										(click)="createUpdateIncentiveAssignation(roleAssignation, incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0], incentiveAssignationByRoleAssignation[roleAssignation.id][0])">
+									</button>
+									<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded" 
+										(click)="deleteIncentiveAssignation(incentiveAssignationByRoleAssignation[roleAssignation.id][0])">
+									</button>
+
+								</ng-container>
+
+
+							</div>
+
+
+							<br>
+							<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded" (click)="createUpdateIncentiveRoleAssignation(incentiveCalculationDto, incentiveRegulationValue.role)"></button>
+							<hr>
+						</ng-container>
+						
+					</div>
+				</ng-container>
+				
+				
+				
+				<hr>
+			</div>
 		</div>
 	</div>
-	<div class="col-12 lg:col-12 xl:col-12">
-		<div class="card mb-0 relative">
-			<h3>incentive-calculation-value</h3>
-			<mbs-incentive-calculation-value-list-loader 
-				[filters]="{calculationIdEquals: incentiveCalculationDto.id}" 
-				[dcs]="['id', 'description']" 
-				[paginator]="incentiveCalculationValueListPaginator"
-				[buttons]="incentiveCalculationValueTableButtons"
-				(resultCount)="incentiveCalculationValueCount=$event"></mbs-incentive-calculation-value-list-loader>
-			<stal-paginator [totalRecords]="incentiveCalculationValueCount" [(pageable)]="incentiveCalculationValueListPaginator"></stal-paginator>
-			<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded create-button" (click)="createNewIncentiveCalculationValue(incentiveCalculationDto)"></button>
-		</div>
-	</div>
+
 </div>
