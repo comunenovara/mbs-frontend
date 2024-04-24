@@ -14,11 +14,11 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description"> description </th>
+						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description">Descrizione</th>
 						<th *ngSwitchCase="'procurement.code'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.code" >CIG</th>
 						<th *ngSwitchCase="'procurement.description'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.description" >Appalto</th>
-						<th *ngSwitchCase="'procurement.amount'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.amount" > amount</th>
-						<th *ngSwitchCase="'regulation.description'" style="width:auto" pResizableColumn commentpSortableColumn="incentiveRegulation.description" > description</th>
+						<th *ngSwitchCase="'procurement.amount'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.amount" >Importo</th>
+						<th *ngSwitchCase="'regulation.description'" style="width:auto" pResizableColumn commentpSortableColumn="incentiveRegulation.description" >Regolamento</th>
 					</ng-container>
 					<th *ngIf="buttons" style="width:150px"></th>
 				</tr>

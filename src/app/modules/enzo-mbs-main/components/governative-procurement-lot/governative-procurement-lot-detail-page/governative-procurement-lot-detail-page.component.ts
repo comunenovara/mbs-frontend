@@ -73,8 +73,7 @@ export class EnzoGovernativeProcurementLotDetailPageComponent extends EngeAppGen
 			icon: "pi pi-search",
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
-			link: "../../../governative-project-procurement-lot/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			command: (e: any) => this.eacs.router.navigate(["/main/governative-project/detail/", e.projectId]),
 		}
 	];
 	protected governativeProjectProcurementLotListPaginator: StalPaginator = {

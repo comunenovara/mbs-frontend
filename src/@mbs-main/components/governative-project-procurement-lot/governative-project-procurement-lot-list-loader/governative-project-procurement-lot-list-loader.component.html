@@ -14,13 +14,13 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:30px"></th>
 						<th *ngSwitchCase="'id'" style="text-align:center; width: 50px" pResizableColumn pSortableColumn="id">id</th>
-						<th *ngSwitchCase="'amount'" style="width:auto" pResizableColumn pSortableColumn="amount"> amount </th>
-						<th *ngSwitchCase="'project.code'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProject.code" > code</th>
-						<th *ngSwitchCase="'project.description'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProject.description" > description</th>
-						<th *ngSwitchCase="'project.amount'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProject.amount" > amount</th>
-						<th *ngSwitchCase="'procurementLot.code'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.code" > code</th>
-						<th *ngSwitchCase="'procurementLot.description'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.description" > description</th>
-						<th *ngSwitchCase="'procurementLot.amount'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.amount" > amount</th>
+						<th *ngSwitchCase="'amount'" style="width:auto" pResizableColumn pSortableColumn="amount">Importo su progetto</th>
+						<th *ngSwitchCase="'project.code'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProject.code" >CUP</th>
+						<th *ngSwitchCase="'project.description'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProject.description" >Progetto</th>
+						<th *ngSwitchCase="'project.amount'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProject.amount" >Totale progetto</th>
+						<th *ngSwitchCase="'procurementLot.code'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.code" >CIG</th>
+						<th *ngSwitchCase="'procurementLot.description'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.description" >Appalto</th>
+						<th *ngSwitchCase="'procurementLot.amount'" style="width:auto" pResizableColumn commentpSortableColumn="governativeProcurementLot.amount" >Importo lotto</th>
 					</ng-container>
 					<th *ngIf="buttons" style="width:150px"></th>
 				</tr>
@@ -30,7 +30,7 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
-						<td *ngSwitchCase="'amount'">{{ e.amount }}</td>
+						<td *ngSwitchCase="'amount'">{{ e.amount | currency: 'EUR' }}</td>
 						<td *ngSwitchCase="'project.code'">
 							<span *ngIf="e.project">{{ e.project.code }}</span>
 						</td>
@@ -38,7 +38,7 @@
 							<span *ngIf="e.project">{{ e.project.description }}</span>
 						</td>
 						<td *ngSwitchCase="'project.amount'">
-							<span *ngIf="e.project">{{ e.project.amount }}</span>
+							<span *ngIf="e.project">{{ e.project.amount | currency: 'EUR' }}</span>
 						</td>
 						<td *ngSwitchCase="'procurementLot.code'">
 							<span *ngIf="e.procurementLot">{{ e.procurementLot.code }}</span>
@@ -47,7 +47,7 @@
 							<span *ngIf="e.procurementLot">{{ e.procurementLot.description }}</span>
 						</td>
 						<td *ngSwitchCase="'procurementLot.amount'">
-							<span *ngIf="e.procurementLot">{{ e.procurementLot.amount }}</span>
+							<span *ngIf="e.procurementLot">{{ e.procurementLot.amount | currency: 'EUR' }}</span>
 						</td>
 					</ng-container>
 					<td *ngIf="buttons" style="text-align:center">

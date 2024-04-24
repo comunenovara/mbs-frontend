@@ -57,7 +57,7 @@ export class EnzoGovernativeProjectDetailPageComponent extends EngeAppGenericDet
 
 	createNewGovernativeProjectProcurementLot(governativeProjectDto: MbsGovernativeProjectDto) {
 		this.dialogService.open(EnzoGovernativeProjectProcurementLotDialogComponent, {
-			header: 'Create GovernativeProjectProcurementLot',
+			header: 'Aggiungi appalto al progetto',
 			width: '70%',
 			data: {
 				project: governativeProjectDto
@@ -72,8 +72,7 @@ export class EnzoGovernativeProjectDetailPageComponent extends EngeAppGenericDet
 			icon: "pi pi-search",
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
-			link: "../../../governative-project-procurement-lot/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			command: (e: any) => this.eacs.router.navigate(["/main/governative-procurement-lot/detail/", e.projectId]),
 		}
 	];
 	protected governativeProjectProcurementLotListPaginator: StalPaginator = {

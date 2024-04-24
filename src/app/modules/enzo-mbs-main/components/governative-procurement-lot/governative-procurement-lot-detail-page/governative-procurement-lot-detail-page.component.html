@@ -1,5 +1,5 @@
 <div class="grid">
-    <div class="col-12 lg:col-6 xl:col-6">
+    <div class="col-12 lg:col-6 xl:col-4">
         <div class="card mb-0">
 			<mbs-governative-procurement-lot-detail-box [governativeProcurementLot]="governativeProcurementLotDto"></mbs-governative-procurement-lot-detail-box>
 			<div class="h4 ml-16">Tipo appalto: <b>{{ governativeProcurementLotDto.procurementType.description }}</b></div>
@@ -9,12 +9,12 @@
 		</div>
 	</div>
 
-	<div class="col-12 lg:col-12 xl:col-12">
+	<div class="col-12 lg:col-12 xl:col-8">
 		<div class="card mb-0 relative">
-			<h3>governative-project-procurement-lot</h3>
+			<h3>Progetti collegati</h3>
 			<mbs-governative-project-procurement-lot-list-loader 
 				[filters]="{procurementLotIdEquals: governativeProcurementLotDto.id}" 
-				[dcs]="['id', 'description']" 
+				[dcs]="['project.code', 'project.description', 'project.amount', 'amount']" 
 				[paginator]="governativeProjectProcurementLotListPaginator"
 				[buttons]="governativeProjectProcurementLotTableButtons"
 				(resultCount)="governativeProjectProcurementLotCount=$event"></mbs-governative-project-procurement-lot-list-loader>
@@ -24,10 +24,10 @@
 	</div>
 	<div class="col-12 lg:col-12 xl:col-12">
 		<div class="card mb-0 relative">
-			<h3>incentive-calculation</h3>
+			<h3>Calcoli incentivi</h3>
 			<mbs-incentive-calculation-list-loader 
 				[filters]="{governativeProcurementLotIdEquals: governativeProcurementLotDto.id}" 
-				[dcs]="['id', 'description']" 
+				[dcs]="['id', 'description', 'regulation.description', 'confirmed', 'amount']" 
 				[paginator]="incentiveCalculationListPaginator"
 				[buttons]="incentiveCalculationTableButtons"
 				(resultCount)="incentiveCalculationCount=$event"></mbs-incentive-calculation-list-loader>
