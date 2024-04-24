@@ -1,111 +1,159 @@
 <div class="grid">
-    <div class="col-12 lg:col-6 xl:col-6">
+    <div class="col-12 lg:col-6 xl:col-3">
         <div class="card mb-0">
 			<mbs-incentive-calculation-detail-box [incentiveCalculation]="incentiveCalculationDto"></mbs-incentive-calculation-detail-box>
-			<button pButton pRipple type="button" label="Modifica" class="p-button-outlined p-button-secondary" (click)="editIncentiveCalculation(incentiveCalculationDto)"></button>
-			<button pButton pRipple type="button" label="Cancella" class="p-button-outlined p-button-danger" (click)="deleteIncentiveCalculation(incentiveCalculationDto)"></button>
+			<button pButton pRipple type="button" label="Modifica" class="p-button-text p-button-secondary" (click)="editIncentiveCalculation(incentiveCalculationDto)"></button>
+			<button pButton pRipple type="button" label="Cancella" class="p-button-text p-button-danger" (click)="deleteIncentiveCalculation(incentiveCalculationDto)"></button>
 		</div>
 	</div>
 
 	<div class="col-12 lg:col-6 xl:col-3" *ngIf="incentiveCalculationDto.governativeProcurementLot !== null">
-        <div class="card mb-0">
+        <div class="card mb-2">
 			<h3>Appalto</h3>
 			<mbs-governative-procurement-lot-detail-box [governativeProcurementLot]="incentiveCalculationDto.governativeProcurementLot" ></mbs-governative-procurement-lot-detail-box>
-			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-text" 
 				[routerLink]="['../../../governative-procurement-lot/detail', incentiveCalculationDto.governativeProcurementLot.id]"></button>
 		</div>
-	</div>
-	<div class="col-12 lg:col-6 xl:col-3" *ngIf="incentiveCalculationDto.regulation !== null">
-        <div class="card mb-0">
+		<div class="card mb-0">
 			<h3>Regolamento incentivi applicato</h3>
 			<mbs-incentive-regulation-detail-box [incentiveRegulation]="incentiveCalculationDto.regulation" ></mbs-incentive-regulation-detail-box>
-			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
+			<button pButton pRipple type="button" label="Dettagli" class="p-button-text" 
 				[routerLink]="['../../../incentive-regulation/detail', incentiveCalculationDto.regulation.id]"></button>
+		</div>
+	</div>
+	<div class="col-12 lg:col-6 xl:col-6" *ngIf="incentiveCalculationDto.regulation !== null">
+        <div class="card mb-0" *ngIf="incentiveCalculationObj">
+			<table>
+				<tr>
+					<th>Scaglione</th>
+					<th>Percentuale</th>
+					<th>Importo</th>
+				</tr>
+				<tr *ngFor="let incentiveAmountCalculationRow of incentiveCalculationObj['incentiveAmountCalculationTable']">
+					<td>{{ incentiveAmountCalculationRow.calculationFactor.minval | currency: 'EUR' }} - {{ incentiveAmountCalculationRow.calculationFactor.maxval | currency: 'EUR' }}</td>
+					<td>{{ incentiveAmountCalculationRow.calculationFactor.defaultval/100 | percent: '0.2' }}</td>
+					<td>{{ incentiveAmountCalculationRow.amount | currency: 'EUR' }}</td>
+				</tr>
+			</table>
+
+			<table>
+				<tr>
+					<th>Descrizione</th>
+					<th>Formula</th>
+					<th>Importo</th>
+				</tr>
+				<tr>
+					<td>Lordo incentivi</td>
+					<td style="text-align: center;">+</td>
+					<td>{{ incentiveCalculationObj.incentiveAmount | currency: 'EUR' }}</td>
+				</tr>
+				<tr *ngFor="let incentiveWithheldCalculationRaw of incentiveCalculationObj['incentiveWithheldCalculationTable']">
+					<td>{{ incentiveWithheldCalculationRaw.incentiveWithheld.description }}</td>
+					<td style="text-align: center;">-</td>
+					<td>{{ incentiveWithheldCalculationRaw.amount | currency: 'EUR' }}</td>
+				</tr>
+				<tr>
+					<td>Fondo incentivi</td>
+					<td style="text-align: center;">=</td>
+					<td><h4>{{ this.incentiveAmount | currency: 'EUR' }}</h4></td>
+				</tr>
+			</table>
 		</div>
 	</div>
 
 	<div class="col-12 lg:col-12 xl:col-12">
-		<div class="card mb-0 relative">
-			<div *ngFor="let stage of this.incentiveStages">
-				<h3>{{ stage.description }}</h3>
-				<ng-container *ngIf="stage.id && incentiveRegulationValueByStage[stage.id]">
-					<table style="width: 100%;">
-						<ng-container *ngFor="let incentiveRegulationValue of incentiveRegulationValueByStage[stage.id]">
-							<tr>
-								<td><h6>{{ incentiveRegulationValue.role.description }}</h6></td>
-								<td>
-									<span>{{ incentiveRegulationValue.minval/100 | percent: '0.0' }}</span> - <span>{{ incentiveRegulationValue.maxval/100 | percent: '0.0' }}</span>
-								</td>
-								<td>
-									<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded" 
-										*ngIf="!incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id]"
-										(click)="createUpdateIncentiveCalculationValue(incentiveCalculationDto, incentiveRegulationValue)">
+		<div class="card mb-4 relative" *ngFor="let stage of this.incentiveStages">
+			<h3>{{ stage.description }}</h3>
+			<ng-container *ngIf="stage.id && incentiveRegulationValueByStage[stage.id]">
+				<table style="width: 100%;">
+					<tr>
+						<th colspan="2" style="width: 70%;"></th>
+						<th style="width: 5%;">Regolamento</th>
+						<th style="width: 10%;">Assegnati</th>
+						<th colspan="2" style="width: 10%;">Valore</th>
+					</tr>
+					<ng-container *ngFor="let incentiveRegulationValue of incentiveRegulationValueByStage[stage.id]">
+						<tr>
+							<td colspan="6"><hr></td>
+						</tr>
+						<tr>
+							<td colspan="2"><h6>{{ incentiveRegulationValue.role.description }}</h6></td>
+							<td style="text-align: center;">
+								<span>{{ incentiveRegulationValue.minval/100 | percent: '0.0' }}</span>
+								<span *ngIf="incentiveRegulationValue.minval != incentiveRegulationValue.maxval">
+									- {{ incentiveRegulationValue.maxval/100 | percent: '0.0' }}
+								</span>
+							</td>
+							<td style="text-align: center;">
+								<button pButton icon="pi pi-plus" class="ml-2 p-button p-button-text p-button-success" 
+									*ngIf="!incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id]"
+									(click)="createUpdateIncentiveCalculationValue(incentiveCalculationDto, incentiveRegulationValue)">
+								</button>
+	
+								<ng-container *ngIf="incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id]">
+									<p-chip label="{{ incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0].value/100 | percent: '0.0' }}"></p-chip>
+									<button pButton icon="pi pi-pencil" class="ml-2 p-button p-button-text p-button-secondary" 
+										(click)="createUpdateIncentiveCalculationValue(incentiveCalculationDto, incentiveRegulationValue, incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0])">
 									</button>
-		
-									<ng-container *ngIf="incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id]">
-										<span>{{ incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0].value/100 | percent: '0.2' }}</span>
+									<button pButton icon="pi pi-trash" class="ml-1 p-button p-button-text p-button-danger"
+										(click)="deleteIncentiveCalculationValue(incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0])">
+									</button>
+								</ng-container>
+							</td>
+							<td colspan="2" style="text-align: center;">
+								<ng-container *ngIf="incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id]">
+									<h4>{{ this.incentiveAmount/100*incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0].value | currency: 'EUR' }}</h4>
+								</ng-container>
+							</td>
+						</tr>
+						<ng-container *ngIf="incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id]">
+							<tr *ngFor="let roleAssignation of roleAssignationByRole[incentiveRegulationValue.role.id]">
+								<td></td>
+								<td>
+									<p-chip label="{{ roleAssignation.beneficiary.description }}"></p-chip>
+									<button pButton icon="pi pi-pencil" class="ml-2 p-button p-button-text p-button-secondary" 
+										(click)="createUpdateIncentiveRoleAssignation(incentiveCalculationDto, incentiveRegulationValue, roleAssignation)">
+									</button>
+									<button pButton icon="pi pi-trash" class="ml-1 p-button p-button-text p-button-danger"
+										(click)="deleteIncentiveRoleAssignation(roleAssignation)">
+									</button>
+								</td>
+								<td></td>
+								<td style="text-align: center;">
+									<button pButton icon="pi pi-plus" class="ml-2 p-button p-button-text p-button-success"
+										*ngIf="!incentiveAssignationByRoleAssignation[roleAssignation.id]"
+										(click)="createUpdateIncentiveAssignation(roleAssignation, incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0])">
+									</button>
+	
+									<ng-container *ngIf="incentiveAssignationByRoleAssignation[roleAssignation.id]">
+										<p-chip label="{{ incentiveAssignationByRoleAssignation[roleAssignation.id][0].value/100 | percent: '0.0' }}"></p-chip>
+
+										<button pButton icon="pi pi-pencil" class="ml-2 p-button p-button-text p-button-secondary"
+											(click)="createUpdateIncentiveAssignation(roleAssignation, incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0], incentiveAssignationByRoleAssignation[roleAssignation.id][0])">
+										</button>
+										<button pButton icon="pi pi-trash" class="ml-1 p-button p-button-text p-button-danger"
+											(click)="deleteIncentiveAssignation(incentiveAssignationByRoleAssignation[roleAssignation.id][0])">
+										</button>
 									</ng-container>
 								</td>
-								<td>
-									<ng-container *ngIf="incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id]">
-										<button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded" 
-											(click)="createUpdateIncentiveCalculationValue(incentiveCalculationDto, incentiveRegulationValue, incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0])">
-										</button>
-										<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded" 
-											(click)="deleteIncentiveCalculationValue(incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0])">
-										</button>
+								<td style="text-align: center;">
+									<ng-container *ngIf="incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id] && incentiveAssignationByRoleAssignation[roleAssignation.id]">
+										<span>{{ (this.incentiveAmount/100*incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0].value)/100*incentiveAssignationByRoleAssignation[roleAssignation.id][0].value | currency: 'EUR' }}</span>
 									</ng-container>
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<button pButton icon="pi pi-plus" class="ml-2 p-button p-button-text p-button-success" 
+										(click)="createUpdateIncentiveRoleAssignation(incentiveCalculationDto, incentiveRegulationValue.role)"></button>
 								</td>
 							</tr>
-							<ng-container *ngIf="incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id]">
-								<tr>
-									<td colspan="4">
-										<table style="margin-left:50px; width: 100%;">
-											<tr *ngFor="let roleAssignation of roleAssignationByRole[incentiveRegulationValue.role.id]">
-												<td>{{ roleAssignation.beneficiary.description }}</td>
-												<td>
-													<button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded" 
-														(click)="createUpdateIncentiveRoleAssignation(incentiveCalculationDto, incentiveRegulationValue, roleAssignation)">
-													</button>
-													<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded" 
-														(click)="deleteIncentiveRoleAssignation(roleAssignation)">
-													</button>											
-												</td>
-												<td>
-													<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded" 
-														*ngIf="!incentiveAssignationByRoleAssignation[roleAssignation.id]"
-														(click)="createUpdateIncentiveAssignation(roleAssignation, incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0])">
-													</button>
-					
-													<ng-container *ngIf="incentiveAssignationByRoleAssignation[roleAssignation.id]">
-														<span>{{ incentiveAssignationByRoleAssignation[roleAssignation.id][0].value/100 | percent: '0.0' }}</span>
-													</ng-container>
-												</td>
-												<td>
-													<ng-container *ngIf="incentiveAssignationByRoleAssignation[roleAssignation.id]">
-														<button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded" 
-															(click)="createUpdateIncentiveAssignation(roleAssignation, incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0], incentiveAssignationByRoleAssignation[roleAssignation.id][0])">
-														</button>
-														<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded" 
-															(click)="deleteIncentiveAssignation(incentiveAssignationByRoleAssignation[roleAssignation.id][0])">
-														</button>
-													</ng-container>
-												</td>
-											</tr>
-											<tr>
-												<td colspan="3">
-													<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded" (click)="createUpdateIncentiveRoleAssignation(incentiveCalculationDto, incentiveRegulationValue.role)"></button>
-												</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-							</ng-container>
 						</ng-container>
-					</table>
-				</ng-container>
-				<hr>
-			</div>
+					</ng-container>
+				</table>
+			</ng-container>
 		</div>
 	</div>
 </div>

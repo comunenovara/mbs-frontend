@@ -10,7 +10,7 @@ import { StalPaginator } from '@stal/paginator';
 
 import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
-import { MbsIncentiveAssignationDto, MbsIncentiveAssignationResourceService, MbsIncentiveBeneficiaryDto, MbsIncentiveBeneficiaryResourceService, MbsIncentiveCalculationDto, MbsIncentiveCalculationResourceService, MbsIncentiveCalculationValueDto, MbsIncentiveCalculationValueResourceService, MbsIncentiveRegulationValueDto, MbsIncentiveRegulationValueResourceService, MbsIncentiveRoleAssignationDto, MbsIncentiveRoleAssignationResourceService, MbsIncentiveRoleDto, MbsIncentiveStageDto, MbsIncentiveStageResourceService} from '@mbs-main';
+import { MbsGovernativeProcurementLotDto, MbsIncentiveAssignationDto, MbsIncentiveAssignationResourceService, MbsIncentiveBeneficiaryDto, MbsIncentiveBeneficiaryResourceService, MbsIncentiveCalculationDto, MbsIncentiveCalculationFactorResourceService, MbsIncentiveCalculationResourceService, MbsIncentiveCalculationValueDto, MbsIncentiveCalculationValueResourceService, MbsIncentiveRegulationDto, MbsIncentiveRegulationValueDto, MbsIncentiveRegulationValueResourceService, MbsIncentiveRoleAssignationDto, MbsIncentiveRoleAssignationResourceService, MbsIncentiveRoleDto, MbsIncentiveStageDto, MbsIncentiveStageResourceService, MbsIncentiveWithheldDto, MbsIncentiveWithheldResourceService} from '@mbs-main';
 import { EnzoIncentiveCalculationDialogComponent } from '../incentive-calculation-dialog/incentive-calculation-dialog.component';
 import { EnzoIncentiveRoleAssignationDialogComponent } from "../../incentive-role-assignation/incentive-role-assignation-dialog/incentive-role-assignation-dialog.component";
 import { EnzoIncentiveCalculationValueDialogComponent } from "../../incentive-calculation-value/incentive-calculation-value-dialog/incentive-calculation-value-dialog.component";
@@ -33,6 +33,8 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 		private incentiveCalculationValueResourceService: MbsIncentiveCalculationValueResourceService,
 		private incentiveRoleAssignationResourceService: MbsIncentiveRoleAssignationResourceService,
 		private incentiveAssignationResourceService: MbsIncentiveAssignationResourceService,
+		private incentiveCalculationFactorResourceService: MbsIncentiveCalculationFactorResourceService,
+		private incentiveWithheldResourceService: MbsIncentiveWithheldResourceService,
 	) { super(eacs, route); }
 
 	incentiveCalculationDto: MbsIncentiveCalculationDto;
@@ -41,6 +43,7 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 		this.incentiveCalculationDto = this.route.snapshot.data['incentiveCalculation'];
 
 		this.loadAssignationTable();
+		this.incentiveCalculation(this.incentiveCalculationDto);
 	}
 
 	protected override reloadFromEvent(event: StalEvent) {
@@ -54,6 +57,7 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 		this.incentiveCalculationDto = await lastValueFrom(this.resourceService.getIncentiveCalculationUsingGET(this.id));
 
 		this.loadAssignationTable();
+		this.incentiveCalculation(this.incentiveCalculationDto);
 	}
 
 	editIncentiveCalculation(incentiveCalculation: MbsIncentiveCalculationDto) {
@@ -225,6 +229,75 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 		await lastValueFrom(this.incentiveAssignationResourceService.deleteIncentiveAssignationUsingDELETE(incentiveAssignationDto.id));
 		this.eacs.eventer.launchReloadContent("incentiveAssignation");
 	}
+
+
+	protected incentiveCalculationObj: any;
+	protected incentiveAmount: number = 0;
+	async incentiveCalculation(incentiveCalculation: MbsIncentiveCalculationDto) {
+		if(!incentiveCalculation.governativeProcurementLot.amount || incentiveCalculation.governativeProcurementLot.amount == 0)
+			console.log("Calcolo non possibile se appalto non ha importo");
+
+		let procurementLotAmount = incentiveCalculation.governativeProcurementLot.amount;
+
+		let calculationFactors = await lastValueFrom(this.incentiveCalculationFactorResourceService.getAllIncentiveCalculationFactorsUsingGET({
+			"incentiveCalculationMethod.regulationIdEquals": incentiveCalculation.regulationId,
+			"incentiveCalculationMethod.procurementTypeIdEquals": incentiveCalculation.governativeProcurementLotId,
+		}));
+
+		let incentiveAmountCalculationTable: any[] = [];
+		let incentiveAmount = 0;
+		for(let calculationFactor of calculationFactors) {
+			let amount = 0;
+
+			if(procurementLotAmount > calculationFactor.minval && procurementLotAmount < calculationFactor.maxval)
+				amount = (procurementLotAmount - calculationFactor.minval) / 100 * calculationFactor.defaultval
+
+			if(procurementLotAmount > calculationFactor.maxval)
+				amount = calculationFactor.maxval / 100 * calculationFactor.defaultval
+
+			if(amount > 0) {
+				incentiveAmountCalculationTable.push({
+					calculationFactor: calculationFactor,
+					amount: amount
+				})
+				incentiveAmount += amount;
+			}
+		}
+
+		let incentiveWithhelds: MbsIncentiveWithheldDto[] = await lastValueFrom(this.incentiveWithheldResourceService.getAllIncentiveWithheldsUsingGET({
+			"regulationIdEquals": incentiveCalculation.regulationId,
+			"procurementTypeIdEquals": incentiveCalculation.governativeProcurementLotId,
+		}));
+
+		let withheldsAmountCalculationTable: any[] = [];
+		let withheldsAmount = 0;
+		for(let incentiveWithheld of incentiveWithhelds) {
+			let amount = 0;
+
+			if(incentiveWithheld.percentage)
+				amount = incentiveAmount/100 * incentiveWithheld.percentage
+
+			if(incentiveWithheld.amount)
+				amount = incentiveWithheld.amount
+
+			withheldsAmountCalculationTable.push({
+				incentiveWithheld: incentiveWithheld,
+				amount: amount
+			})
+			withheldsAmount += amount
+		}
+
+		this.incentiveCalculationObj = {
+			incentiveAmountCalculationTable: incentiveAmountCalculationTable,
+			incentiveAmount: incentiveAmount,
+			incentiveWithheldCalculationTable: withheldsAmountCalculationTable,
+			withheldsAmount: withheldsAmount,
+		}
+
+		this.incentiveAmount = incentiveAmount - withheldsAmount;
+
+	}
+
 
 
 }

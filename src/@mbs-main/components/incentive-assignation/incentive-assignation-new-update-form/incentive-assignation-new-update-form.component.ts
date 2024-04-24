@@ -45,8 +45,6 @@ export class MbsIncentiveAssignationNewUpdateFormComponent extends EngeLibGeneri
 		this._newUpdateForm = this._formBuilder.group({
 			id: [null],
 			value: [null, [  ]],
-			preAmount: [null, [  ]],
-			amount: [null, [  ]],
 			assignation: [this.assignation, [ EngeValidator.haveId,  ]],
 			calculationValue: [this.calculationValue, [ EngeValidator.haveId,  ]],
 		});
@@ -59,8 +57,6 @@ export class MbsIncentiveAssignationNewUpdateFormComponent extends EngeLibGeneri
 		let result: MbsIncentiveAssignationDto = this._newUpdateForm.value;
 		{
 			result.value = (result.value != null) ? +result.value : null;
-			result.preAmount = (result.preAmount != null) ? +result.preAmount : null;
-			result.amount = (result.amount != null) ? +result.amount : null;
 			result.assignationId = (result.assignation != null) ? result.assignation.id : undefined;
 			result.calculationValueId = (result.calculationValue != null) ? result.calculationValue.id : undefined;
 		}
