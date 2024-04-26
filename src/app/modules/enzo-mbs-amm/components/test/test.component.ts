@@ -1,71 +1,64 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { filter } from 'rxjs/operators';
 import { AuthConfig, NullValidationHandler, OAuthService } from 'angular-oauth2-oidc';
 
 
 @Component({
     templateUrl: './test.component.html'
 })
-export class MbsTestComponent  {
+export class MbsTestComponent implements OnInit {
     constructor(
         private oauthService: OAuthService,
     ) { }
     
-    private configureWithoutDiscovery() {
+    
+    ngOnInit(): void {
         this.oauthService.configure(noDiscoveryAuthConfig);
-        this.oauthService.tokenValidationHandler = new NullValidationHandler();
     }
+
 
     async login() {
-        try {
-            this.configureWithoutDiscovery();
-            console.log("hasValidAccessToken", this.oauthService.hasValidAccessToken());
-            this.oauthService.initLoginFlow();
-            //await this.oauthService.initLoginFlowInPopup({ width: 600 });
-        } catch (e) {
-            console.log(e);
-        }
+        //this.oauthService.initLoginFlow();
+        await this.oauthService.initLoginFlowInPopup({ width: 600 });
+    }
+
+    async prova() {
+        let login = await this.oauthService.tryLogin();
+        console.log(login);
     }
 
 
-
-
-
-    get userName(): string | null {
-        const claims = this.oauthService.getIdentityClaims();
-        if (!claims) return null;
-        return claims['given_name'];
+    me() {
+        console.log("id token", this.oauthService.hasValidIdToken());
+        console.log("access token", this.oauthService.hasValidAccessToken());
+        console.log("token", this.oauthService.getAccessToken());
     }
 
-    get idToken(): string {
-        return this.oauthService.getIdToken();
+    logout() {
+        this.oauthService.revokeTokenAndLogout();
     }
 
-    get accessToken(): string {
-        return this.oauthService.getAccessToken();
-    }
-
-    refresh() {
-        this.oauthService.refreshToken();
-    }
 
 }
 
 
 export const noDiscoveryAuthConfig: AuthConfig = {
-    loginUrl: 'https://auth.comune.novara.it/o/authorize/latrin',
+    loginUrl: 'https://auth.comune.novara.it/o/authorize',
+    tokenEndpoint: 'https://auth.comune.novara.it/o/token/',
+    requestAccessToken: true,
     clientId: '2aJ0QTnhqqz7aCnS028piqDF80VPTYRhqfdUIA5N',
     redirectUri: 'http://10.1.20.240/mbs/login/callback',
     scope: 'read write introspection',
     postLogoutRedirectUri: '',
     responseType: 'code',
     showDebugInformation: true,
+    oidc: false,
     /*
     //clientId: 'LBvYyqQNMQLylVTqjTevVw52Bmtem580MWkXLC7Z',
     //redirectUri: 'https://srvwebdev.comune.novara.it/apps/public/sample-app/',
     resource: '',
     rngUrl: '',
-    oidc: true,
+    
     requestAccessToken: true,
     options: null,
     issuer: 'https://accounts.google.com',

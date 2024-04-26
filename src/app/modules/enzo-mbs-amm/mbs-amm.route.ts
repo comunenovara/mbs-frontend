@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { MbsCigNewFormComponent } from './components/cig-new-form/cig-new-form.component';
-//import { MbsTestComponent } from './components/test/test.component';
+import { MbsTestComponent } from './components/test/test.component';
 
 
 export const enzoMbsAmmRoutes: Route[] = [
@@ -16,6 +16,6 @@ export const enzoMbsAmmRoutes: Route[] = [
 	{
 		path: 'test',
 		//canActivate: [AuthGuard],
-		//component: MbsTestComponent,
+		component: MbsTestComponent,
 	},
 ];
