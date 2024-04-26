@@ -17,6 +17,7 @@ const routes: Route[] = [
             { path: 'work', loadChildren: () => import('./modules/enzo-mbs-work/mbs-work.module').then(m => m.EnzoMbsWorkModule) },
 			{ path: 'amm', loadChildren: () => import('./modules/enzo-mbs-amm/mbs-amm.module').then(m => m.EnzoMbsAmmModule) },
 			{ path: 'i7e', loadChildren: () => import('./modules/enzo-mbs-incentive/mbs-incentive.module').then(m => m.EnzoMbsIncentiveModule) },
+            { path: 'auth', loadChildren: () => import('./core/auth/auth.module').then(m => m.ConaAuthModule) },
         ]
     },
 //    { path: 'notfound', component: NotfoundComponent },

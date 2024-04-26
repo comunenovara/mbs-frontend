@@ -1,0 +1,9 @@
+<div *ngIf="!userToken">
+    <button (click)="startLogin()">avvia login</button>
+    <button (click)="completeLogin()">complata Login</button>
+    <button (click)="loadUser()">loggato?</button>
+</div>
+<div *ngIf="userToken">
+    {{ userToken }}
+    <button (click)="logout()">logout</button>
+</div>

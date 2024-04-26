@@ -11,24 +11,29 @@ export class MbsTestComponent implements OnInit {
         private oauthService: OAuthService,
     ) { }
     
-    
     ngOnInit(): void {
         this.oauthService.configure(noDiscoveryAuthConfig);
+        this.completeLogin();
+    }
+
+    userToken: string;
+
+    async startLogin() {
+        this.oauthService.initLoginFlow();
+        //await this.oauthService.initLoginFlowInPopup({ width: 600 });
+    }
+
+    async completeLogin() {
+        try {
+            let login = await this.oauthService.tryLogin();
+            if(login) this.loadUser();
+        } catch(e) {}
     }
 
 
-    async login() {
-        //this.oauthService.initLoginFlow();
-        await this.oauthService.initLoginFlowInPopup({ width: 600 });
-    }
+    loadUser() {
+        this.userToken = this.oauthService.getAccessToken();
 
-    async prova() {
-        let login = await this.oauthService.tryLogin();
-        console.log(login);
-    }
-
-
-    me() {
         console.log("id token", this.oauthService.hasValidIdToken());
         console.log("access token", this.oauthService.hasValidAccessToken());
         console.log("token", this.oauthService.getAccessToken());
