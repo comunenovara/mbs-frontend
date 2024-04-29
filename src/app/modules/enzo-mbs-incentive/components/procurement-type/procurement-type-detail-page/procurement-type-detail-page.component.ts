@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-//import { TabManagerService } from '@stal/carder';
+
 
 import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
@@ -74,7 +74,7 @@ export class EnzoProcurementTypeDetailPageComponent extends EngeAppGenericDetail
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../../../calculation-method/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			////command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
 	protected calculationMethodListPaginator: StalPaginator = {
@@ -101,7 +101,7 @@ export class EnzoProcurementTypeDetailPageComponent extends EngeAppGenericDetail
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../../../governative-procurement-lot/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			////command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
 	protected governativeProcurementLotListPaginator: StalPaginator = {

@@ -192,7 +192,8 @@ import { MbsIncentiveRegulationParentResolver } from './resolvers/incentive-regu
 	providers: [
 		{
 			provide: MBS_MAIN_ENDPOINT,
-			useValue: 'http://localhost:3000/mbs/main'
+			useValue: 'http://mbs-back.comune.novara.it/mbs/main'
+			//useValue: 'http://localhost:3000/mbs/main'
 		},
 		MbsIncentiveRegulationParentResolver,
 	]

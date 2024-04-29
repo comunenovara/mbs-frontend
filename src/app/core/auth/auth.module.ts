@@ -10,13 +10,14 @@ import { ConaAuthLoginComponent } from './components/login/login.component';
 import { ConaAuthLoginCallbackComponent } from './components/callback/callback.component';
 import { MbsTestComponent } from './components/test/test.component';
 
-export const authConfig: AuthConfig = {
+export const conaAuthConfig: AuthConfig = {
     loginUrl: 'https://auth.comune.novara.it/o/authorize',
     tokenEndpoint: 'https://auth.comune.novara.it/o/token/',
     requestAccessToken: true,
 
     clientId: '2aJ0QTnhqqz7aCnS028piqDF80VPTYRhqfdUIA5N',
-    redirectUri: 'http://10.1.20.240/mbs/login/callback',
+    redirectUri: 'http://mbs.comune.novara.it/auth/login/callback',
+    //redirectUri: 'http://localhost:4200/auth/login/callback',
     responseType: 'code',
     postLogoutRedirectUri: '',
     scope: 'read write introspection',

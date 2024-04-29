@@ -76,7 +76,7 @@ export const enzoMbsMainRoutes: Route[] = [
 	{
 		path: '', 
 		pathMatch : 'full',
-		redirectTo: 'asset'
+		redirectTo: 'governative-project'
 	},
 	{
 		path: 'asset',

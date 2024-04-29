@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { authConfig } from '../../auth.module';
+import { conaAuthConfig } from '../../auth.module';
 
 
 @Component({
@@ -12,7 +12,7 @@ export class ConaAuthLoginComponent implements OnInit {
     ) { }
     
     ngOnInit(): void {
-        this.oauthService.configure(authConfig);
+        this.oauthService.configure(conaAuthConfig);
         this.oauthService.initLoginFlow();
     }
 }

@@ -20,8 +20,6 @@ import { AppMenuComponent } from './components/menu/app.menu.component';
 import { AppTopBarComponent } from './components/topbar/app.topbar.component';
 import { AppFooterComponent } from './components/footer/app.footer.component';
 import { AppSidebarComponent } from "./components/sidebar/app.sidebar.component";
-import { StalCarderModule } from '@stal/carder'
-
 
 @NgModule({
     declarations: [
@@ -45,8 +43,6 @@ import { StalCarderModule } from '@stal/carder'
         InputSwitchModule,
         RippleModule,
         RouterModule,
-        
-        StalCarderModule,
         
     ],
     exports: [AppLayoutComponent]

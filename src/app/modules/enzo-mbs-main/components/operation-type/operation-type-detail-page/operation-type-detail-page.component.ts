@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-import { TabManagerService } from '@stal/carder';
+
 
 import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
@@ -23,7 +23,7 @@ export class EnzoOperationTypeDetailPageComponent extends EngeAppGenericDetailPa
 	constructor(
 		eacs: EngeAppCommonService,
 		route: ActivatedRoute,
-		public tabManagerService: TabManagerService,
+
 		private dialogService: DialogService,
 		private resourceService: MbsOperationTypeResourceService,
 	) { super(eacs, route); }
@@ -73,7 +73,7 @@ export class EnzoOperationTypeDetailPageComponent extends EngeAppGenericDetailPa
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../../../operation/detail",
-			command: (e: any) => this.tabManagerService.openInCard(),
+			//command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
 	protected operationListPaginator: StalPaginator = {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 
 
@@ -8,11 +9,12 @@ import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 export class MbsTestComponent implements OnInit {
     constructor(
         private oauthService: OAuthService,
+        private router: Router,
     ) { }
     
     ngOnInit(): void {
         this.oauthService.configure(noDiscoveryAuthConfig);
-        this.completeLogin();
+        this.loadUser();
     }
 
     userToken: string;
@@ -39,7 +41,8 @@ export class MbsTestComponent implements OnInit {
     }
 
     logout() {
-        this.oauthService.revokeTokenAndLogout();
+        this.oauthService.logOut();
+        this.router.navigateByUrl("/");
     }
 
 

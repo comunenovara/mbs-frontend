@@ -12,7 +12,7 @@
 			<h3>Tipo fascicolo</h3>
 			<mbs-dossier-type-detail-box [dossierType]="dossierDto.type" ></mbs-dossier-type-detail-box>
 			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
-				(click)="tabManagerService.openInCard()" 
+				
 				[routerLink]="['../../../dossier-type/detail', dossierDto.type.id]"></button>
 
 		</div>
@@ -25,7 +25,7 @@
 				[routerLink]="['../../../elaborate-group/detail', dossierDto.elaborateGroup.id]"></button>
 			<!--
 			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
-				(click)="tabManagerService.openInCard()" 
+				
 				[routerLink]="['../../../elaborate-group/detail', dossierDto.elaborateGroup.id]"></button>
 			-->
 		</div>
@@ -35,7 +35,7 @@
 			<h3>Bene immobile</h3>
 			<mbs-asset-detail-box [asset]="dossierDto.asset" ></mbs-asset-detail-box>
 			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
-				(click)="tabManagerService.openInCard()" 
+				
 				[routerLink]="['../../../asset/detail', dossierDto.asset.id]"></button>
 
 		</div>
@@ -45,7 +45,7 @@
 			<h3>Rilievo</h3>
 			<mbs-relif-detail-box [relif]="dossierDto.relif" ></mbs-relif-detail-box>
 			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
-				(click)="tabManagerService.openInCard()" 
+				
 				[routerLink]="['../../../relif/detail', dossierDto.relif.id]"></button>
 
 		</div>
@@ -55,7 +55,7 @@
 			<h3>Intervento</h3>
 			<mbs-operation-detail-box [operation]="dossierDto.operation" ></mbs-operation-detail-box>
 			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
-				(click)="tabManagerService.openInCard()" 
+				
 				[routerLink]="['../../../operation/detail', dossierDto.operation.id]"></button>
 
 		</div>

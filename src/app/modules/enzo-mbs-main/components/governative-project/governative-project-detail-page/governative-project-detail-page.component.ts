@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-//import { TabManagerService } from '@stal/carder';
+
 
 import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
@@ -72,7 +72,7 @@ export class EnzoGovernativeProjectDetailPageComponent extends EngeAppGenericDet
 			icon: "pi pi-search",
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
-			command: (e: any) => this.eacs.router.navigate(["/main/governative-procurement-lot/detail/", e.projectId]),
+			command: (e: any) => this.eacs.router.navigate(["/main/governative-procurement-lot/detail/", e.procurementLotId]),
 		}
 	];
 	protected governativeProjectProcurementLotListPaginator: StalPaginator = {

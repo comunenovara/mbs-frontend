@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-//import { TabManagerService } from '@stal/carder';
+
 
 import { MbsIncentiveBeneficiaryResourceService } from '@mbs-main';
 import { EnzoIncentiveBeneficiaryDialogComponent } from '../incentive-beneficiary-dialog/incentive-beneficiary-dialog.component';
@@ -67,7 +67,7 @@ export class EnzoIncentiveBeneficiaryListPageComponent {
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../detail",
-			//command: (e: any) => this.tabManagerService.openInTab(),
+			////command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
 					label: "Modifica",

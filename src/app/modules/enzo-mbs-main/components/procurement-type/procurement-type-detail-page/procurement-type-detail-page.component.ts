@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-//import { TabManagerService } from '@stal/carder';
+
 
 import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
@@ -77,7 +77,7 @@ export class EnzoProcurementTypeDetailPageComponent extends EngeAppGenericDetail
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../../../governative-procurement-lot/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			////command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
 	protected governativeProcurementLotListPaginator: StalPaginator = {
@@ -104,7 +104,7 @@ export class EnzoProcurementTypeDetailPageComponent extends EngeAppGenericDetail
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../../../incentive-withheld/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			////command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
 	protected incentiveWithheldListPaginator: StalPaginator = {
@@ -131,7 +131,7 @@ export class EnzoProcurementTypeDetailPageComponent extends EngeAppGenericDetail
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../../../incentive-calculation-method/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			////command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
 	protected incentiveCalculationMethodListPaginator: StalPaginator = {
@@ -158,7 +158,7 @@ export class EnzoProcurementTypeDetailPageComponent extends EngeAppGenericDetail
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../../../incentive-stage/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			////command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
 	protected incentiveStageListPaginator: StalPaginator = {
@@ -185,7 +185,7 @@ export class EnzoProcurementTypeDetailPageComponent extends EngeAppGenericDetail
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../../../incentive-role/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			////command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
 	protected incentiveRoleListPaginator: StalPaginator = {

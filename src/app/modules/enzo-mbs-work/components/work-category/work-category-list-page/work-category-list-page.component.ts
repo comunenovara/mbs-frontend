@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-//import { TabManagerService } from '@stal/carder';
+
 
 import { MbsWorkCategoryResourceService } from '@mbs-work';
 import { EnzoWorkCategoryDialogComponent } from '../work-category-dialog/work-category-dialog.component';
@@ -67,7 +67,7 @@ export class EnzoWorkCategoryListPageComponent {
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../detail",
-			//command: (e: any) => this.tabManagerService.openInTab(),
+			////command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
 					label: "Edit",

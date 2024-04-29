@@ -5,7 +5,7 @@ import { lastValueFrom } from "rxjs";
 import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEvent } from "@stal/eventer";
-//import { TabManagerService } from '@stal/carder';
+
 
 import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 

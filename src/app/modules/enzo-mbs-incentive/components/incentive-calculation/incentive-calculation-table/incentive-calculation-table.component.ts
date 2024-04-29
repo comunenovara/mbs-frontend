@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-//import { TabManagerService } from '@stal/carder';
+
 
 import { MbsIncentiveAssignationRoleDto, MbsIncentiveAssignationRoleResourceService, MbsIncentiveAssignationStageDto, MbsIncentiveAssignationStageResourceService, MbsIncentiveCalculationDto, MbsIncentiveCalculationResourceService, MbsIncentiveRoleValueDto, MbsIncentiveRoleValueResourceService, MbsRoleDto, MbsRoleResourceService, MbsRoleValueDto, MbsRoleValueResourceService, MbsStageDto, MbsStageResourceService } from '@mbs-incentive';
 import { EnzoIncentiveCalculationDialogComponent } from '../incentive-calculation-dialog/incentive-calculation-dialog.component';

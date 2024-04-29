@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-//import { TabManagerService } from '@stal/carder';
+
 
 import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
@@ -249,11 +249,11 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 		for(let calculationFactor of calculationFactors) {
 			let amount = 0;
 
-			if(procurementLotAmount > calculationFactor.minval && procurementLotAmount < calculationFactor.maxval)
-				amount = (procurementLotAmount - calculationFactor.minval) / 100 * calculationFactor.defaultval
-
 			if(procurementLotAmount > calculationFactor.maxval)
-				amount = calculationFactor.maxval / 100 * calculationFactor.defaultval
+				amount = calculationFactor.maxval * calculationFactor.defaultval / 100
+
+			if(procurementLotAmount > calculationFactor.minval && procurementLotAmount < calculationFactor.maxval)
+				amount = (procurementLotAmount - calculationFactor.minval) * calculationFactor.defaultval / 100
 
 			if(amount > 0) {
 				incentiveAmountCalculationTable.push({

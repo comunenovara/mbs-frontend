@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-import { TabManagerService } from '@stal/carder';
+
 
 import { EngeAppGenericDetailPageComponent, EngeAppCommonService } from "@enge/common-app";
 
@@ -76,7 +76,7 @@ export class EnzoAssetDetailPageComponent extends EngeAppGenericDetailPageCompon
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../../../relif/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			////command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
 	protected relifListPaginator: StalPaginator = {
@@ -103,7 +103,7 @@ export class EnzoAssetDetailPageComponent extends EngeAppGenericDetailPageCompon
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../../../operation/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			////command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
 	protected operationListPaginator: StalPaginator = {
@@ -130,7 +130,7 @@ export class EnzoAssetDetailPageComponent extends EngeAppGenericDetailPageCompon
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../../../dossier/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			////command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
 	protected dossierListPaginator: StalPaginator = {

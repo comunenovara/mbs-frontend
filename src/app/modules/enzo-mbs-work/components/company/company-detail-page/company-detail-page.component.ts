@@ -6,14 +6,13 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-//import { TabManagerService } from '@stal/carder';
+
 
 import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
 import { MbsCompanyDto, MbsCompanyResourceService} from '@mbs-work';
 import { EnzoCompanyDialogComponent } from '../company-dialog/company-dialog.component';
 import { EnzoAssignementDialogComponent } from "../../assignement/assignement-dialog/assignement-dialog.component";
-import { TabManagerService } from "@stal/carder";
 
 
 @Component({
@@ -25,7 +24,6 @@ export class EnzoCompanyDetailPageComponent extends EngeAppGenericDetailPageComp
 	constructor(
 		eacs: EngeAppCommonService,
 		route: ActivatedRoute,
-		public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsCompanyResourceService,
 	) { super(eacs, route); }
@@ -75,7 +73,7 @@ export class EnzoCompanyDetailPageComponent extends EngeAppGenericDetailPageComp
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../../../assignement/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			////command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
 	protected assignementListPaginator: StalPaginator = {

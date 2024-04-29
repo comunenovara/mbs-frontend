@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-//import { TabManagerService } from '@stal/carder';
+
 
 import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
@@ -289,7 +289,7 @@ export class EnzoIncentiveRegulationDetailPageComponent extends EngeAppGenericDe
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../../../incentive-calculation/detail",
-			//command: (e: any) => this.tabManagerService.openInCard(),
+			////command: (e: any) => this.tabManagerService.openInCard(),
 		}
 	];
 	protected incentiveCalculationListPaginator: StalPaginator = {

@@ -91,7 +91,7 @@
 								</button>
 	
 								<ng-container *ngIf="incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id]">
-									<p-chip label="{{ incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0].value/100 | percent: '0.0' }}"></p-chip>
+									<p-chip label="{{ incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0].value/100 | percent: '0.2' }}"></p-chip>
 									<button pButton icon="pi pi-pencil" class="ml-2 p-button p-button-text p-button-secondary" 
 										(click)="createUpdateIncentiveCalculationValue(incentiveCalculationDto, incentiveRegulationValue, incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0])">
 									</button>

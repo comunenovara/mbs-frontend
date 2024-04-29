@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-//import { TabManagerService } from '@stal/carder';
+
 
 import { MbsCalculationFactorResourceService } from '@mbs-incentive';
 import { EnzoCalculationFactorDialogComponent } from '../calculation-factor-dialog/calculation-factor-dialog.component';
@@ -67,7 +67,7 @@ export class EnzoCalculationFactorListPageComponent {
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../detail",
-			//command: (e: any) => this.tabManagerService.openInTab(),
+			////command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
 					label: "Edit",

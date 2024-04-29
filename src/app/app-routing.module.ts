@@ -28,7 +28,7 @@ const routeConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
     anchorScrolling: 'enabled',
     onSameUrlNavigation: 'reload',
-    useHash: true
+    useHash: false
 }
 
 @NgModule({

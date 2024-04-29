@@ -1,0 +1,22 @@
+<div *ngIf="step == 1">
+    Analisi dei parametri di accesso
+</div>
+<div *ngIf="step == 2">
+    Errore nel processo di login:
+    Parametri di accesso mancanti
+    <ul>
+        <li *ngFor="let error of errors">{{ error }}</li>
+    </ul>
+    <button [routerLink]="'/'">Ritorna alla home</button>
+</div>
+<div *ngIf="step == 3">
+    Accesso in corso
+</div>
+<div *ngIf="step == 4">
+    Errore nel processo di login: 
+    Errore generico
+    <button [routerLink]="'/'">Ritorna alla home</button>
+</div>
+<div *ngIf="step == 5">
+    Accesso completato. Redirect in corso.
+</div>

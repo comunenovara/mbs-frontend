@@ -12,7 +12,7 @@
 			<h3>Tipo intervento</h3>
 			<mbs-operation-type-detail-box [operationType]="operationDto.type" ></mbs-operation-type-detail-box>
 			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
-				(click)="tabManagerService.openInCard()" 
+				
 				[routerLink]="['../../../operation-type/detail', operationDto.type.id]"></button>
 
 		</div>
@@ -22,7 +22,7 @@
 			<h3>Bene immobile</h3>
 			<mbs-asset-detail-box [asset]="operationDto.asset" ></mbs-asset-detail-box>
 			<button pButton pRipple type="button" label="Dettagli" class="p-button-outlined" 
-				(click)="tabManagerService.openInCard()" 
+				
 				[routerLink]="['../../../asset/detail', operationDto.asset.id]"></button>
 
 		</div>

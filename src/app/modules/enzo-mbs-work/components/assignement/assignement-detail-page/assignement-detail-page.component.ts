@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-import { TabManagerService } from '@stal/carder';
+
 
 import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
@@ -22,7 +22,6 @@ export class EnzoAssignementDetailPageComponent extends EngeAppGenericDetailPage
 	constructor(
 		eacs: EngeAppCommonService,
 		route: ActivatedRoute,
-		public tabManagerService: TabManagerService,
 		private dialogService: DialogService,
 		private resourceService: MbsAssignementResourceService,
 	) { super(eacs, route); }

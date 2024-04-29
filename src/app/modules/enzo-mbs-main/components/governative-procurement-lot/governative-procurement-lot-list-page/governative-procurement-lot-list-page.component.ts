@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { StalEventerService, StalEvent } from "@stal/eventer";
 import { StalPaginator } from '@stal/paginator';
-//import { TabManagerService } from '@stal/carder';
+
 
 import { MbsGovernativeProcurementLotResourceService } from '@mbs-main';
 import { EnzoGovernativeProcurementLotDialogComponent } from '../governative-procurement-lot-dialog/governative-procurement-lot-dialog.component';
@@ -67,7 +67,7 @@ export class EnzoGovernativeProcurementLotListPageComponent {
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
 			link: "../detail",
-			//command: (e: any) => this.tabManagerService.openInTab(),
+			////command: (e: any) => this.tabManagerService.openInTab(),
 			childs: [
 				{
 					label: "Modifica",
