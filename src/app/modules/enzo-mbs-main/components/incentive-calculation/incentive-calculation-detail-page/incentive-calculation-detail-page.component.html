@@ -67,8 +67,8 @@
 			<ng-container *ngIf="stage.id && incentiveRegulationValueByStage[stage.id]">
 				<table style="width: 100%;">
 					<tr>
-						<th colspan="2" style="width: 70%;"></th>
-						<th style="width: 5%;">Regolamento</th>
+						<th colspan="2" style="width: 65%;"></th>
+						<th style="width: 10%;">Regolamento</th>
 						<th style="width: 10%;">Assegnati</th>
 						<th colspan="2" style="width: 10%;">Valore</th>
 					</tr>
@@ -79,9 +79,9 @@
 						<tr>
 							<td colspan="2"><h6>{{ incentiveRegulationValue.role.description }}</h6></td>
 							<td style="text-align: center;">
-								<span>{{ incentiveRegulationValue.minval/100 | percent: '0.0' }}</span>
+								<span>{{ incentiveRegulationValue.minval/100 | percent: '0.2' }}</span>
 								<span *ngIf="incentiveRegulationValue.minval != incentiveRegulationValue.maxval">
-									- {{ incentiveRegulationValue.maxval/100 | percent: '0.0' }}
+									- {{ incentiveRegulationValue.maxval/100 | percent: '0.2' }}
 								</span>
 							</td>
 							<td style="text-align: center;">

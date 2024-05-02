@@ -249,11 +249,14 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 		for(let calculationFactor of calculationFactors) {
 			let amount = 0;
 
+			if(procurementLotAmount > calculationFactor.minval && procurementLotAmount < calculationFactor.maxval)
+				if(incentiveAmount == 0)
+					amount = procurementLotAmount * calculationFactor.defaultval / 100
+				else
+					amount = (procurementLotAmount - calculationFactor.minval) * calculationFactor.defaultval / 100
+
 			if(procurementLotAmount > calculationFactor.maxval)
 				amount = calculationFactor.maxval * calculationFactor.defaultval / 100
-
-			if(procurementLotAmount > calculationFactor.minval && procurementLotAmount < calculationFactor.maxval)
-				amount = (procurementLotAmount - calculationFactor.minval) * calculationFactor.defaultval / 100
 
 			if(amount > 0) {
 				incentiveAmountCalculationTable.push({
