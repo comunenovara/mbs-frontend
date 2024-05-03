@@ -231,6 +231,11 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 	}
 
 
+
+
+
+
+
 	protected incentiveCalculationObj: any;
 	protected incentiveAmount: number = 0;
 	async incentiveCalculation(incentiveCalculation: MbsIncentiveCalculationDto) {
@@ -241,7 +246,7 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 
 		let calculationFactors = await lastValueFrom(this.incentiveCalculationFactorResourceService.getAllIncentiveCalculationFactorsUsingGET({
 			"incentiveCalculationMethod.regulationIdEquals": incentiveCalculation.regulationId,
-			"incentiveCalculationMethod.procurementTypeIdEquals": incentiveCalculation.governativeProcurementLotId,
+			"incentiveCalculationMethod.procurementTypeIdEquals": incentiveCalculation.governativeProcurementLot.procurementTypeId,
 		}));
 
 		let incentiveAmountCalculationTable: any[] = [];
