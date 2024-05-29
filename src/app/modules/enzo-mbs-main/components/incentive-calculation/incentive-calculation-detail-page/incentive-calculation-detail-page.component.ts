@@ -83,7 +83,7 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 	incentiveRegulationValueByStage: any;
 	incentiveCalculationValueByIncentiveRegulationValue: any;
 	roleAssignationByRole: any;
-	incentiveAssignationByRoleAssignation: any;
+	incentiveAssignationByStageAndRoleAssignation: any;
 
 	async loadAssignationTable() {
 		this.incentiveStages = await lastValueFrom(this.incentiveStageResourceService.getAllIncentiveStagesUsingGET({
@@ -140,19 +140,26 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 			}
 		}
 
-		this.incentiveAssignationByRoleAssignation = {};
+		this.incentiveAssignationByStageAndRoleAssignation = {};
 		{
 			let incentiveAssignations: MbsIncentiveAssignationDto[] = await lastValueFrom(this.incentiveAssignationResourceService.getAllIncentiveAssignationsUsingGET({
 				"assignation.calculationIdEquals": this.incentiveCalculationDto.id
 			}))
 
 			for(let incentiveAssignation of incentiveAssignations) {
+				if(!incentiveAssignation.calculationValue.regulationValue.stageId) continue
 				if(!incentiveAssignation.assignationId) continue
-				
-				if(!this.incentiveAssignationByRoleAssignation[incentiveAssignation.assignationId])
-					this.incentiveAssignationByRoleAssignation[incentiveAssignation.assignationId] = [];
 
-				this.incentiveAssignationByRoleAssignation[incentiveAssignation.assignationId].push(incentiveAssignation);
+				let stageId: number = +incentiveAssignation.calculationValue.regulationValue.stageId;
+				let assignationId: number = +incentiveAssignation.assignationId;
+				
+				if(!this.incentiveAssignationByStageAndRoleAssignation[stageId])
+					this.incentiveAssignationByStageAndRoleAssignation[stageId] = {};
+
+				if(!this.incentiveAssignationByStageAndRoleAssignation[stageId][assignationId])
+					this.incentiveAssignationByStageAndRoleAssignation[stageId][assignationId] = [];
+
+				this.incentiveAssignationByStageAndRoleAssignation[stageId][assignationId].push(incentiveAssignation);
 			}
 		}
 		
