@@ -282,13 +282,15 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 
 		let incentiveWithhelds: MbsIncentiveWithheldDto[] = await lastValueFrom(this.incentiveWithheldResourceService.getAllIncentiveWithheldsUsingGET({
 			"regulationIdEquals": incentiveCalculation.regulationId,
-			"procurementTypeIdEquals": incentiveCalculation.governativeProcurementLotId,
+			"procurementTypeIdEquals": incentiveCalculation.governativeProcurementLot.procurementTypeId,
 		}));
 
 		let withheldsAmountCalculationTable: any[] = [];
 		let withheldsAmount = 0;
 		for(let incentiveWithheld of incentiveWithhelds) {
 			let amount = 0;
+
+			console.log("mammt", incentiveWithhelds);
 
 			if(incentiveWithheld.percentage)
 				amount = incentiveAmount/100 * incentiveWithheld.percentage
