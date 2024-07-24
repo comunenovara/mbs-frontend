@@ -77,14 +77,14 @@
 							<td colspan="6"><hr></td>
 						</tr>
 						<tr>
-							<td colspan="2"><h6>{{ incentiveRegulationValue.role.description }}</h6></td>
+							<td colspan="2"><h6 class="m-0">{{ incentiveRegulationValue.role.description }}</h6></td>
 							<td style="text-align: center;">
 								<span>{{ incentiveRegulationValue.minval/100 | percent: '0.2' }}</span>
 								<span *ngIf="incentiveRegulationValue.minval != incentiveRegulationValue.maxval">
 									- {{ incentiveRegulationValue.maxval/100 | percent: '0.2' }}
 								</span>
 							</td>
-							<td style="text-align: center;">
+							<td style="text-align: center; display: flex; align-items: center; justify-content: center;">
 								<button pButton icon="pi pi-plus" class="ml-2 p-button p-button-text p-button-success" 
 									*ngIf="!incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id]"
 									(click)="createUpdateIncentiveCalculationValue(incentiveCalculationDto, incentiveRegulationValue)">
@@ -106,6 +106,9 @@
 								</ng-container>
 							</td>
 						</tr>
+						<tr>
+							<td colspan="6"><hr></td>
+						</tr>
 						<ng-container *ngIf="incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id]">
 							<tr *ngFor="let roleAssignation of roleAssignationByRole[incentiveRegulationValue.role.id]">
 								<td></td>
@@ -119,7 +122,7 @@
 									</button>
 								</td>
 								<td></td>
-								<td style="text-align: center;">
+								<td style="text-align: center; display: flex; align-items: center; justify-content: center;">
 									<button pButton icon="pi pi-plus" class="ml-2 p-button p-button-text p-button-success"
 										*ngIf="!incentiveAssignationByStageAndRoleAssignation || !incentiveAssignationByStageAndRoleAssignation[stage.id] || !incentiveAssignationByStageAndRoleAssignation[stage.id][roleAssignation.id]"
 										(click)="createUpdateIncentiveAssignation(roleAssignation, incentiveCalculationValueByIncentiveRegulationValue[incentiveRegulationValue.id][0])">
@@ -158,8 +161,13 @@
 	</div>
 
 	<div class="col-4 lg:col-4 xl:col-4">
-		<div class="card mb-4 relative">
-			
+		<div class="card mb-4 relative" *ngIf="beneficiaries">
+			<ng-container *ngFor="let beneficiary of beneficiaries">
+				<p class="mb-1">{{ beneficiary.description }}:</p>
+				<p-chip label="{{ calculateBeneficiaryAmountByIncentiveValue(incentiveValueByBeneficiary[beneficiary.id]) | currency: 'EUR' }}"></p-chip>
+				<br>
+				<hr>
+			</ng-container>
 		</div>
 	</div>
 </div>

@@ -10,11 +10,12 @@ import { StalPaginator } from '@stal/paginator';
 
 import { EngeAppCommonService, EngeAppGenericDetailPageComponent } from "@enge/common-app";
 
-import { MbsGovernativeProcurementLotDto, MbsIncentiveAssignationDto, MbsIncentiveAssignationResourceService, MbsIncentiveBeneficiaryDto, MbsIncentiveBeneficiaryResourceService, MbsIncentiveCalculationDto, MbsIncentiveCalculationFactorResourceService, MbsIncentiveCalculationResourceService, MbsIncentiveCalculationValueDto, MbsIncentiveCalculationValueResourceService, MbsIncentiveRegulationDto, MbsIncentiveRegulationValueDto, MbsIncentiveRegulationValueResourceService, MbsIncentiveRoleAssignationDto, MbsIncentiveRoleAssignationResourceService, MbsIncentiveRoleDto, MbsIncentiveStageDto, MbsIncentiveStageResourceService, MbsIncentiveWithheldDto, MbsIncentiveWithheldResourceService} from '@mbs-main';
+import { MbsIncentiveAssignationDto, MbsIncentiveAssignationResourceService, MbsIncentiveCalculationDto, MbsIncentiveCalculationFactorResourceService, MbsIncentiveCalculationResourceService, MbsIncentiveCalculationValueDto, MbsIncentiveCalculationValueResourceService, MbsIncentiveRegulationDto, MbsIncentiveRegulationValueDto, MbsIncentiveRegulationValueResourceService, MbsIncentiveRoleAssignationDto, MbsIncentiveRoleAssignationResourceService, MbsIncentiveRoleDto, MbsIncentiveStageDto, MbsIncentiveStageResourceService, MbsIncentiveWithheldDto, MbsIncentiveWithheldResourceService} from '@mbs-main';
 import { EnzoIncentiveCalculationDialogComponent } from '../incentive-calculation-dialog/incentive-calculation-dialog.component';
 import { EnzoIncentiveRoleAssignationDialogComponent } from "../../incentive-role-assignation/incentive-role-assignation-dialog/incentive-role-assignation-dialog.component";
 import { EnzoIncentiveCalculationValueDialogComponent } from "../../incentive-calculation-value/incentive-calculation-value-dialog/incentive-calculation-value-dialog.component";
 import { EnzoIncentiveAssignationDialogComponent } from "../../incentive-assignation/incentive-assignation-dialog/incentive-assignation-dialog.component";
+import { MbsIncentiveRoleValueDto } from "@mbs-incentive";
 
 @Component({
 	selector: 'enzo-incentive-calculation-detail-page',
@@ -84,6 +85,8 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 	incentiveCalculationValueByIncentiveRegulationValue: any;
 	roleAssignationByRole: any;
 	incentiveAssignationByStageAndRoleAssignation: any;
+	incentiveValueByBeneficiary: any;
+	beneficiaries: any[];
 
 	async loadAssignationTable() {
 		this.incentiveStages = await lastValueFrom(this.incentiveStageResourceService.getAllIncentiveStagesUsingGET({
@@ -124,6 +127,9 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 			}
 		}
 
+		this.incentiveValueByBeneficiary = {};
+		this.beneficiaries = [];
+
 		this.roleAssignationByRole = {}
 		{
 			let roleAssignations: MbsIncentiveRoleAssignationDto[] = await lastValueFrom(this.incentiveRoleAssignationResourceService.getAllIncentiveRoleAssignationsUsingGET({
@@ -136,7 +142,15 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 				if(!this.roleAssignationByRole[roleAssignation.roleId])
 					this.roleAssignationByRole[roleAssignation.roleId] = [];
 
+
+				if ( roleAssignation.beneficiaryId ) 
+					this.incentiveValueByBeneficiary[roleAssignation.beneficiaryId] = [];
+
+				if ( roleAssignation.beneficiaryId ) 
+					this.beneficiaries.push(roleAssignation.beneficiary);
+
 				this.roleAssignationByRole[roleAssignation.roleId].push(roleAssignation);
+
 			}
 		}
 
@@ -159,17 +173,25 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 				if(!this.incentiveAssignationByStageAndRoleAssignation[stageId][assignationId])
 					this.incentiveAssignationByStageAndRoleAssignation[stageId][assignationId] = [];
 
+				if (incentiveAssignation.assignation.beneficiaryId)
+					this.incentiveValueByBeneficiary[incentiveAssignation.assignation.beneficiaryId].push(incentiveAssignation);
+
 				this.incentiveAssignationByStageAndRoleAssignation[stageId][assignationId].push(incentiveAssignation);
+
 			}
 		}
-		
-
 
 
 	}
 
 
 
+	calculateBeneficiaryAmountByIncentiveValue(incentiveValues: any[]) {
+		let amount = 0;
+		for(let incentiveValue of incentiveValues)
+			amount += (this.incentiveAmount/100*incentiveValue.value*incentiveValue.calculationValue.value)/100;
+		return amount;
+	}
 
 
 
@@ -289,8 +311,6 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 		let withheldsAmount = 0;
 		for(let incentiveWithheld of incentiveWithhelds) {
 			let amount = 0;
-
-			console.log("mammt", incentiveWithhelds);
 
 			if(incentiveWithheld.percentage)
 				amount = incentiveAmount/100 * incentiveWithheld.percentage
