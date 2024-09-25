@@ -87,6 +87,10 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 	incentiveAssignationByStageAndRoleAssignation: any;
 	incentiveValueByBeneficiary: any;
 	beneficiaries: any[];
+	beneficiariesList: any;
+
+	incentiveCalculationValueByIncentiveRegulationValueTotalSum: number = 0;
+
 
 	async loadAssignationTable() {
 		this.incentiveStages = await lastValueFrom(this.incentiveStageResourceService.getAllIncentiveStagesUsingGET({
@@ -124,11 +128,14 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 					this.incentiveCalculationValueByIncentiveRegulationValue[incentiveCalculationValue.regulationValueId] = [];
 
 				this.incentiveCalculationValueByIncentiveRegulationValue[incentiveCalculationValue.regulationValueId].push(incentiveCalculationValue);
+				this.incentiveCalculationValueByIncentiveRegulationValueTotalSum += incentiveCalculationValue.value;
 			}
+			
 		}
 
 		this.incentiveValueByBeneficiary = {};
 		this.beneficiaries = [];
+		this.beneficiariesList = {};
 
 		this.roleAssignationByRole = {}
 		{
@@ -146,10 +153,14 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 				if ( roleAssignation.beneficiaryId ) 
 					this.incentiveValueByBeneficiary[roleAssignation.beneficiaryId] = [];
 
-				if ( roleAssignation.beneficiaryId ) 
-					this.beneficiaries.push(roleAssignation.beneficiary);
-
 				this.roleAssignationByRole[roleAssignation.roleId].push(roleAssignation);
+
+				if ( roleAssignation.beneficiaryId ) {
+					if ( this.beneficiariesList[roleAssignation.beneficiaryId] )
+						continue
+					this.beneficiariesList[roleAssignation.beneficiaryId] = true;
+					this.beneficiaries.push(roleAssignation.beneficiary);
+				}
 
 			}
 		}
@@ -261,8 +272,19 @@ export class EnzoIncentiveCalculationDetailPageComponent extends EngeAppGenericD
 
 
 
+	sumIncentiveCalculationValuePercentageByStageValue: any = {}
+
+	sumIncentiveCalculationValuePercentageByStage(idStage: number, incentiveCalculationValue: MbsIncentiveCalculationValueDto) {
+		if (!this.sumIncentiveCalculationValuePercentageByStageValue[idStage])
+			this.sumIncentiveCalculationValuePercentageByStageValue[idStage] = []
+		this.sumIncentiveCalculationValuePercentageByStageValue[idStage].push(incentiveCalculationValue.value)
+		return incentiveCalculationValue
+	}
 
 
+	reduce(arrayToSum: number[]) {
+		return arrayToSum.reduce((acc, cur) => acc + cur, 0);
+	}
 
 
 	protected incentiveCalculationObj: any;
