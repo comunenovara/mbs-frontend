@@ -67,13 +67,12 @@ export class EnzoIncentiveBeneficiaryDetailPageComponent extends EngeAppGenericD
 
 	protected incentiveRoleAssignationTableButtons: any[] = [
 		{
-			label: "Dettagli",
+			label: "Dettagli calcolo incentivi",
 			hideLabel: true,
 			icon: "pi pi-search",
 			severity: "secondary",
 			class: "p-button-sm p-button-outlined",
-			link: "../../../incentive-role-assignation/detail",
-			////command: (e: any) => this.tabManagerService.openInCard(),
+			command: (e: any) => this.eacs.router.navigate(["/main/incentive-calculation/detail/", e.calculationId]),
 		}
 	];
 	protected incentiveRoleAssignationListPaginator: StalPaginator = {

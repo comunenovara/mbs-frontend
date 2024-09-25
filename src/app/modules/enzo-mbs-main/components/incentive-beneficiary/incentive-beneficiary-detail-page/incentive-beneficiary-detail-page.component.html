@@ -10,10 +10,10 @@
 
 	<div class="col-12 lg:col-12 xl:col-12">
 		<div class="card mb-0 relative">
-			<h3>incentive-role-assignation</h3>
+			<h3>Ruoli da incentivi</h3>
 			<mbs-incentive-role-assignation-list-loader 
 				[filters]="{beneficiaryIdEquals: incentiveBeneficiaryDto.id}" 
-				[dcs]="['id', 'description']" 
+				[dcs]="['calculation.description', 'role.description']" 
 				[paginator]="incentiveRoleAssignationListPaginator"
 				[buttons]="incentiveRoleAssignationTableButtons"
 				(resultCount)="incentiveRoleAssignationCount=$event"></mbs-incentive-role-assignation-list-loader>
