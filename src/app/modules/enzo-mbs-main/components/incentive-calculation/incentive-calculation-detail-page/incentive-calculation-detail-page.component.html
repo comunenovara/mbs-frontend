@@ -161,13 +161,13 @@
 	</div>
 
 	<div class="col-4 lg:col-4 xl:col-4">
-		<div class="card mb-4 relative" *ngIf="beneficiaries && incentiveStages">
+		<div class="card mb-4 relative" *ngIf="incentiveStages">
 			<p class="mb-1">Totale incentivi assegnati (%):</p>
 			<h5 class="m-0">{{ incentiveCalculationValueByIncentiveRegulationValueTotalSum/100 | percent: '0.2' }}</h5>
 			<ng-container *ngFor="let stage of incentiveStages">
-				<p class="mb-1" *ngIf="stage.id">{{ sumIncentiveCalculationValuePercentageByStageValue[stage.id] }}</p>
-				<br>
 				<hr>
+				<p class="mb-1">{{ stage.description }}:</p>
+				<p class="mb-1" *ngIf="stage.id"><b>{{ sumIncentiveCalculationValuePercentageByStageValue[stage.id] }}</b></p>
 			</ng-container>
 		</div>
 		<div class="card mb-4 relative" *ngIf="beneficiaries">
@@ -179,4 +179,5 @@
 			</ng-container>
 		</div>
 	</div>
+	
 </div>
