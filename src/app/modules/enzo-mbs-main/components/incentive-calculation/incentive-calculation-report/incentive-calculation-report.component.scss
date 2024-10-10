@@ -1,0 +1,10 @@
+ol {
+    li {
+        margin-bottom: 2rem;
+        ol {
+            li {
+                margin: 0.5rem auto;
+            }
+        }
+    }
+}

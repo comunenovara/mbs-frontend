@@ -1,0 +1,88 @@
+<div class="" style="background: white; color: black; padding: 3rem 3rem 6rem 3rem;">
+    <div class="" style="text-align: center;">
+        <h3 style="color: black;">INCENTIVAZIONE ECONOMICA FUNZIONI TECNICHE</h3>
+    </div>
+    <div class="" style="text-align: center;">
+        <h4 style="color: black;">RICHIESTA CALCOLO COMPETENZE</h4>
+    </div>
+    <div class="" style="">
+        <p class="">
+            Io sottoscritto/a <!-- INPUT INPUT INPUT -->
+        </p>
+        <p class="">
+            in qualità di Responsabile Unico del Procedimento (RUP) del'appalto di cui in ulteriore seguito,
+            richiedo la quantificazione delle competenze per incentivazione economica delle funzioni tecniche
+            svolte dal personale interno e contestualmente dichiaro:
+        </p>
+        <ol>
+            <li>
+                <u>Dati relativi all'appalto</u>:
+                <br/>
+                <br/>
+                <ol type="a">
+                    <li>
+                        <b>Descrizione appalto</b>: <!-- INPUT INPUT INPUT -->
+                    </li>
+                    <li>
+                        <b>Tipologia</b> appalto: <!-- INPUT INPUT INPUT -->
+                    </li>
+                    <li>
+                        <b>Valore</b> appalto: <!-- INPUT INPUT INPUT -->
+                    </li>
+                    <li>
+                        <b>Procedura</b> adottata per l'affidamento: <!-- INPUT INPUT INPUT -->
+                    </li>
+                    <li>
+                        Determina di <b>costituzione del Fondo</b>: <!-- INPUT INPUT INPUT -->
+                    </li>
+                    <li>
+                        Nominativo <b>RUP</b>: <!-- INPUT INPUT INPUT -->
+                    </li>
+                    <li>
+                        Nominativo <b>Direttore dell'esecuzione</b>: <!-- INPUT INPUT INPUT -->
+                    </li>
+                    <li>
+                        L'appalto prevede alcune prestazioni professionali affidate a <b>professionisti esterni</b>? <!-- INPUT INPUT INPUT --><br/>
+                        <!-- INPUT INPUT INPUT -->
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <u>Dati relativi al personale</u>:
+                <br/>
+                <br/>
+                <table>
+                    <tr>
+                        <th>Nominativo</th>
+                        <th>Lordo</th>
+                    </tr>
+                    <ng-container *ngFor="let beneficiary of beneficiaries">
+                        <tr *ngIf="calculateBeneficiaryAmountByIncentiveValue(incentiveValueByBeneficiary[beneficiary.id], false) > 0">
+                            <td>
+                                {{ beneficiary.description }}
+                            </td>
+                            <td>
+                                {{ calculateBeneficiaryAmountByIncentiveValue(incentiveValueByBeneficiary[beneficiary.id]) | currency: 'EUR' }}
+                            </td>
+                        </tr>
+                    </ng-container>
+                    <tr>
+                        <td>Totale</td>
+                        <td>
+                            <b>{{ incentiveTotalValue | currency: 'EUR' }}</b>
+                        </td>
+                    </tr>
+                </table>
+            </li>
+        </ol>
+    </div>
+    <div class="" style="">
+        <p class="" style="float: left;">
+            Novara, <!-- INPUT INPUT INPUT -->
+        </p>
+        <p class="" style="float: right; text-align: right;">
+            Il RUP, <br/>
+            <!-- INPUT INPUT INPUT -->
+        </p>
+    </div>
+</div>

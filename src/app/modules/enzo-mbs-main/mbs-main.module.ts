@@ -81,6 +81,7 @@ import { EnzoIncentiveAssignationDialogComponent } from './components/incentive-
 import { EnzoIncentiveRegulationConfigurationComponent } from './components/incentive-regulation/incentive-regulation-configuration/incentive-regulation-configuration.component';
 import { EnzoIncentireRegulationMatrixComponent } from './components/incentive-regulation/incentive-regulation-matrix/incentive-regulation-matrix.component';
 import { MbsIncentiveRegulationParentResolver } from './resolvers/incentive-regulation.resolver'
+import { EnzoIncentiveCalculationReportComponent } from './components/incentive-calculation/incentive-calculation-report/incentive-calculation-report.component';
 
 @NgModule({
 	imports: [ 
@@ -187,6 +188,8 @@ import { MbsIncentiveRegulationParentResolver } from './resolvers/incentive-regu
 		EnzoIncentiveAssignationListPageComponent,
 		EnzoIncentiveAssignationDetailPageComponent,
 		EnzoIncentiveAssignationDialogComponent,
+
+		EnzoIncentiveCalculationReportComponent,
 		
 	],
 	providers: [
